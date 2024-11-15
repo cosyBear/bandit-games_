@@ -6,5 +6,15 @@ plugins {
 dependencies {
     implementation project(':common')
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok:1.18.36'
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.36'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.36'
 }
 

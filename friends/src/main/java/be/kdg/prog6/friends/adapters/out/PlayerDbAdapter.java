@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor @Slf4j
@@ -41,5 +42,12 @@ public class PlayerDbAdapter implements PlayerPort {
                 .orElseThrow(() -> new EntityNotFoundException("PLayer was not found"));
 
         return playerJpaEntity.convertToDomainWithFriends();
+    }
+
+    @Override
+    public List<Player> findAllFriends(UUID playerId) {
+        final List<PlayerJpaEntity> friends = playerJpaRepository.findAllFriends(playerId);
+
+        return friends.stream().map(PlayerJpaEntity::convertToDomain).toList();
     }
 }

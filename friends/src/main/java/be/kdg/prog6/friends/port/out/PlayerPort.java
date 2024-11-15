@@ -2,6 +2,7 @@ package be.kdg.prog6.friends.port.out;
 
 import be.kdg.prog6.friends.domain.Player;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface PlayerPort {
@@ -11,4 +12,6 @@ public interface PlayerPort {
     void saveNewFriend(Player player, UUID newFriendId);
 
     Player findByIdWithFriends(UUID uuid);
+
+    List<Player> findAllFriends(UUID playerId);
 }

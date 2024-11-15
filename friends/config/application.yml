@@ -1,7 +1,7 @@
 server:
   port: ${PORT:8092}
   servlet:
-    context-path: /bcb
+    context-path: /friends
 
 
 spring:

@@ -1,0 +1,6 @@
+rootProject.name = 'integration5'
+
+include 'application'
+include 'common'
+include 'library'
+include 'friends'

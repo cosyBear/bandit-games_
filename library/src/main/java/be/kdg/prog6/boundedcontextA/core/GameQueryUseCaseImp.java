@@ -1,34 +1,32 @@
 package be.kdg.prog6.boundedcontextA.core;
-
 import be.kdg.prog6.boundedcontextA.GameMapper;
-import be.kdg.prog6.boundedcontextA.domain.Game;
 import be.kdg.prog6.boundedcontextA.domain.GameType;
-import be.kdg.prog6.boundedcontextA.port.in.AchievementQuery;
 import be.kdg.prog6.boundedcontextA.port.in.GameQuery;
 import be.kdg.prog6.boundedcontextA.port.in.GameQueryUseCase;
 import be.kdg.prog6.boundedcontextA.port.out.GameLoadPort;
-import be.kdg.prog6.boundedcontextA.port.out.GameSavePort;
+import jakarta.transaction.Transactional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class GameQueryUseCaseImp implements GameQueryUseCase {
 
 
     private final GameLoadPort gameLoadPort;
-    private final GameSavePort gameSavePort;
 
     private static final Logger logger = LogManager.getLogger(GameQueryUseCaseImp.class);
 
-    public GameQueryUseCaseImp(GameLoadPort gameLoadPort, GameSavePort gameSavePort) {
+    public GameQueryUseCaseImp(GameLoadPort gameLoadPort) {
         this.gameLoadPort = gameLoadPort;
-        this.gameSavePort = gameSavePort;
+
     }
 
 
     @Override
+    @Transactional
     public List<GameQuery> getAllAvailableGame() {
         return gameLoadPort.fetchAvailableGames().stream()
                 .map(GameMapper::toQuery)
@@ -36,11 +34,13 @@ public class GameQueryUseCaseImp implements GameQueryUseCase {
     }
 
     @Override
+    @Transactional
     public GameQuery getGameByName(String name) {
         return GameMapper.toQuery(gameLoadPort.fetchGameByName(name));
     }
 
     @Override
+    @Transactional
     public List<GameQuery> getGamesByCategory(GameType category) {
         return gameLoadPort.fetchGamesByCategory(category).stream()
                 .map(GameMapper::toQuery)

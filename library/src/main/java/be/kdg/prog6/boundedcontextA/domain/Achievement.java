@@ -16,7 +16,12 @@ public class Achievement {
     public Achievement() {
 
     }
-
+    public Achievement( String achievementName, String achievementDescription, String imageUrl, boolean achieved) {
+        this.achievementName = achievementName;
+        this.achievementDescription = achievementDescription;
+        this.imageUrl = imageUrl;
+        this.achieved = achieved;
+    }
     public Achievement(AchievementId achievementId, String achievementName, String achievementDescription, String imageUrl, boolean achieved) {
         this.achievementId = achievementId;
         this.achievementName = achievementName;
@@ -33,6 +38,8 @@ public class Achievement {
         this.imageUrl = url;
         return "the url is updated";
     }
+
+
 
 }
 

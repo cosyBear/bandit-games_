@@ -7,11 +7,12 @@ import be.kdg.prog6.boundedcontextA.domain.GameType;
 import be.kdg.prog6.boundedcontextA.port.out.GameLoadPort;
 import be.kdg.prog6.boundedcontextA.port.out.GameSavePort;
 import be.kdg.prog6.common.events.util.NoAvailableGameException;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 
-
+@Service
 public class GameDataBaseAdapter implements GameLoadPort, GameSavePort {
 
     private final GameJpaRepository gameJpaRepository;
@@ -55,19 +56,19 @@ public class GameDataBaseAdapter implements GameLoadPort, GameSavePort {
     }
 
     @Override
-    public void SaveGame(Game game) {
+    public void saveGame(Game game) {
         GameEntity gameEntity = GameMapper.mapToEntity(game);
         gameJpaRepository.save(gameEntity);
     }
 
-    @Override
-    public void saveListOfGames(List<Game> gamesList) {
-        List<GameEntity> entities = gamesList.stream()
-                .map(GameMapper::mapToEntity)
-                .toList();
-
-        gameJpaRepository.saveAll(entities);
-    }
+//    @Override
+//    public void saveListOfGames(List<Game> gamesList) {
+//        List<GameEntity> entities = gamesList.stream()
+//                .map(GameMapper::mapToEntity)
+//                .toList();
+//
+//        gameJpaRepository.saveAll(entities);
+//    }
 
 
 

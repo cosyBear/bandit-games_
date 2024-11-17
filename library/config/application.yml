@@ -1,9 +1,25 @@
 server:
   port: ${PORT:8091}
   servlet:
-    context-path: /bca
-
+    context-path: /api
 
 spring:
+  main:
+    allow-bean-definition-overriding: true
   config:
     additional-location: ${SPRING_CONFIG_ADDITIONAL_LOCATION}
+  datasource:
+    url: jdbc:mysql://localhost:3306/library
+    username: user
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  sql:
+    init:
+      mode: always
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: create
+    show-sql: false
+  logging:
+    level: info

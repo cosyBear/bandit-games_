@@ -1,4 +1,4 @@
-package be.kdg.prog6.boundedcontextA;
+package be.kdg.prog6.boundedcontextA.util;
 
 
 import be.kdg.prog6.boundedcontextA.adapters.in.dto.CreateGameDto;

@@ -1,6 +1,6 @@
 package be.kdg.prog6.boundedcontextA.adapters.in;
 
-import be.kdg.prog6.boundedcontextA.GameMapper;
+import be.kdg.prog6.boundedcontextA.util.GameMapper;
 import be.kdg.prog6.boundedcontextA.adapters.in.dto.CreateGameDto;
 import be.kdg.prog6.boundedcontextA.domain.GameType;
 import be.kdg.prog6.boundedcontextA.port.in.*;

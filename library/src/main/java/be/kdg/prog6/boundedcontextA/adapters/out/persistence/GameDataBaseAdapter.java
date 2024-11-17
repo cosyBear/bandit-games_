@@ -1,5 +1,5 @@
 package be.kdg.prog6.boundedcontextA.adapters.out.persistence;
-import be.kdg.prog6.boundedcontextA.GameMapper;
+import be.kdg.prog6.boundedcontextA.util.GameMapper;
 import be.kdg.prog6.boundedcontextA.adapters.out.Entity.GameEntity;
 import be.kdg.prog6.boundedcontextA.adapters.out.Entity.GameTypeEntity;
 import be.kdg.prog6.boundedcontextA.domain.Game;

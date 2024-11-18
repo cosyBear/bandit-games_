@@ -1,4 +1,4 @@
-image: gradle:8.1-jdk21
+image: gradle:8.1-jdk17
 
 before_script:
   - GRADLE_USER_HOME="$(pwd)/.gradle"

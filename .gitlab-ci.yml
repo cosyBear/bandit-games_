@@ -9,12 +9,11 @@ stages:
   - lint
   - test
 
-# Cache Gradle dependencies to speed up builds
 cache:
   key: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG"
   paths:
     - .gradle/caches/
-    - .gradle/wrapper/
+    - gradle/wrapper/
 
 # Lint stage to check code quality with Checkstyle
 lint:
@@ -32,12 +31,15 @@ build:
     - gradle --no-daemon --build-cache --parallel assemble # This will build the entire application or individual modules
   artifacts:
     paths:
-      - build/libs/  # Store build artifacts
+      - application/build/libs/*.jar
+      - friends/build/libs/*.jar
+      - library/build/libs/*.jar
+      - common/build/libs/*.jar
     when: always
   cache:
     paths:
       - .gradle/caches/
-      - .gradle/wrapper/
+      - gradle/wrapper/
 
 # Test stage for running tests on the whole project or specific modules
 test:
@@ -74,7 +76,7 @@ build_application:
     key: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-application"
     paths:
       - .gradle/caches/
-      - .gradle/wrapper/
+      - gradle/wrapper/
 
 build_friends:
   stage: build
@@ -82,7 +84,7 @@ build_friends:
     - gradle :friends:assemble  # Builds only the 'friends' module
   artifacts:
     paths:
-      - build/libs/
+      - friends/build/libs/*.jar
     when: always
   cache:
     key: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-friends"
@@ -96,7 +98,7 @@ build_library:
     - gradle :library:assemble  # Builds only the 'library' module
   artifacts:
     paths:
-      - build/libs/
+      - library/build/libs/*.jar
     when: always
   cache:
     key: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-library"

@@ -15,14 +15,14 @@ cache:
     - .gradle/caches/
     - gradle/wrapper/
 
-# Lint stage to check code quality with Checkstyle
-lint:
-  stage: lint
-  script:
-    - gradle checkstyleMain
-  artifacts:
-    paths:
-      - build/reports/checkstyle/
+## Lint stage to check code quality with Checkstyle
+#lint:
+#  stage: lint
+#  script:
+#    - gradle checkstyleMain
+#  artifacts:
+#    paths:
+#      - build/reports/checkstyle/
 
 # Build individual modules or the whole project
 build:

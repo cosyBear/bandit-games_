@@ -14,4 +14,6 @@ public interface PlayerJpaRepository extends JpaRepository<PlayerJpaEntity, UUID
     Optional<PlayerJpaEntity> findByIdWithFriends(@Param("id") UUID id);
 
     List<PlayerJpaEntity> findAllFriends(UUID playerId);
+
+    List<PlayerJpaEntity> findByNickNameIgnoringCase(String nickName);
 }

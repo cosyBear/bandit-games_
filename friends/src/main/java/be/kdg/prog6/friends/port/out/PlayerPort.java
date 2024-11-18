@@ -14,4 +14,6 @@ public interface PlayerPort {
     Player findByIdWithFriends(UUID uuid);
 
     List<Player> findAllFriends(UUID playerId);
+
+    List<Player> searchForFriend(String nickName);
 }

@@ -19,4 +19,9 @@ public class LoadFriendsImpl implements LoadFriends {
     public List<Player> getAllFriends(UUID playerId) {
         return playerPort.findAllFriends(playerId);
     }
+
+    @Override
+    public List<Player> searchForFriend(String nickName) {
+        return playerPort.searchForFriend(nickName);
+    }
 }

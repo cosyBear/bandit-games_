@@ -50,4 +50,11 @@ public class PlayerDbAdapter implements PlayerPort {
 
         return friends.stream().map(PlayerJpaEntity::convertToDomain).toList();
     }
+
+    @Override
+    public List<Player> searchForFriend(String nickName) {
+        final List<PlayerJpaEntity> friends = playerJpaRepository.findByNickNameIgnoringCase(nickName);
+
+        return friends.stream().map(PlayerJpaEntity::convertToDomain).toList();
+    }
 }

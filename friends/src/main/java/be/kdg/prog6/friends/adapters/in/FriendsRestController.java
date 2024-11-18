@@ -41,4 +41,15 @@ public class FriendsRestController {
 
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/nickname")
+    public ResponseEntity<List<PlayerDto>> searchByNickname(
+            @RequestParam("searchTerm") final String nickname
+    ) {
+        final List<Player> friends = loadFriends.searchForFriend(nickname);
+
+        final List<PlayerDto> response = friends.stream().map(PlayerDto::convertToDTO).toList();
+
+        return ResponseEntity.ok(response);
+    }
 }

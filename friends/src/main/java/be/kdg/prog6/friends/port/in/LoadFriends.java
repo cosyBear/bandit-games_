@@ -7,4 +7,5 @@ import java.util.UUID;
 
 public interface LoadFriends {
     List<Player> getAllFriends(UUID playerId);
+    List<Player> searchForFriend(String nickName);
 }

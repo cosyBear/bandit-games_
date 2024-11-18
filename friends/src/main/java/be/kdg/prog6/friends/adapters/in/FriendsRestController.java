@@ -4,6 +4,7 @@ import be.kdg.prog6.friends.adapters.dto.PlayerDto;
 import be.kdg.prog6.friends.domain.Player;
 import be.kdg.prog6.friends.port.in.AddFriend;
 import be.kdg.prog6.friends.port.in.LoadFriends;
+import be.kdg.prog6.friends.port.in.RemoveFriend;
 import be.kdg.prog6.friends.port.in.command.AddFriendCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ import java.util.UUID;
 public class FriendsRestController {
     private final AddFriend addFriend;
     private final LoadFriends loadFriends;
+    private final RemoveFriend removeFriend;
 
     @PostMapping
     public ResponseEntity<PlayerDto> addNewFriend(
@@ -51,5 +53,16 @@ public class FriendsRestController {
         final List<PlayerDto> response = friends.stream().map(PlayerDto::convertToDTO).toList();
 
         return ResponseEntity.ok(response);
+    }
+
+
+    @DeleteMapping("/{playerId}/friends/{friendId}")
+    public ResponseEntity<Void> removeFriend(
+            @PathVariable("playerId") final UUID playerId,
+            @PathVariable("friendId") final UUID friendId
+    ) {
+        removeFriend.removeFriend(friendId, playerId);
+
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

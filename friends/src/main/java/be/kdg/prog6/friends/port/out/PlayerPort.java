@@ -9,11 +9,11 @@ public interface PlayerPort {
 
     Player findById(UUID uuid);
 
-    void saveNewFriend(Player player, UUID newFriendId);
-
     Player findByIdWithFriends(UUID uuid);
 
     List<Player> findAllFriends(UUID playerId);
 
     List<Player> searchForFriend(String nickName);
+
+    void savePlayerWithFriends(Player player);
 }

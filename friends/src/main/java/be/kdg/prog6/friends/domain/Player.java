@@ -31,4 +31,8 @@ public class Player {
     public void addFriend(Player player){
         this.friends.add(player);
     }
+
+    public void removeFriend(Player player){
+        this.friends.remove(player);
+    }
 }

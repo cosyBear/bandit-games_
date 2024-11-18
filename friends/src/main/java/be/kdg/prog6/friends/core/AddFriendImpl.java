@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AddFriendImpl implements AddFriend {
     private final PlayerPort playerPort;
+
     @Override
     @Transactional
     public Player addFriend(AddFriendCommand command) {
@@ -21,7 +22,7 @@ public class AddFriendImpl implements AddFriend {
 
         player.addFriend(friend);
 
-        playerPort.saveNewFriend(player, friend.getId().id());
+        playerPort.savePlayerWithFriends(player);
 
         return player;
     }

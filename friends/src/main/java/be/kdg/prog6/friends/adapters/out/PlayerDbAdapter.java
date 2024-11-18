@@ -10,9 +10,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
-@RequiredArgsConstructor @Slf4j
+@RequiredArgsConstructor
+@Slf4j
 @Repository
 public class PlayerDbAdapter implements PlayerPort {
     private final PlayerJpaRepository playerJpaRepository;
@@ -23,17 +26,6 @@ public class PlayerDbAdapter implements PlayerPort {
                 .orElseThrow(() -> new EntityNotFoundException("Player was not found"));
 
         return playerJpaEntity.convertToDomain();
-    }
-
-    @Override
-    public void saveNewFriend(Player player, UUID newFriendId) {
-        final PlayerJpaEntity playerJpaEntity = playerJpaRepository.findByIdWithFriends(player.getId().id())
-                .orElseThrow(() -> new EntityNotFoundException("Player was not found"));
-
-        final PlayerJpaEntity newFriendJpaEntity = playerJpaRepository.findById(newFriendId)
-                .orElseThrow(() -> new EntityNotFoundException("New friend was not found"));
-
-        playerJpaEntity.addFriend(newFriendJpaEntity);
     }
 
     @Override
@@ -56,5 +48,26 @@ public class PlayerDbAdapter implements PlayerPort {
         final List<PlayerJpaEntity> friends = playerJpaRepository.findByNickNameIgnoringCase(nickName);
 
         return friends.stream().map(PlayerJpaEntity::convertToDomain).toList();
+    }
+
+    @Override
+    public void savePlayerWithFriends(Player player) {
+        final PlayerJpaEntity playerJpaEntity = playerJpaRepository.findByIdWithFriends(player.getId().id())
+                .orElseThrow(() -> new EntityNotFoundException("Player was not found"));
+
+        Set<PlayerJpaEntity> newFriends = player.getFriends().stream()
+                .map(friend -> playerJpaRepository.findById(friend.getId().id())
+                        .orElseThrow(() -> new EntityNotFoundException("Friend not found: " + friend.getId().id())))
+                .collect(Collectors.toSet());
+
+        playerJpaEntity.getFriends().removeIf(existingFriend -> !newFriends.contains(existingFriend));
+
+        newFriends.forEach(newFriend -> {
+            if (!playerJpaEntity.getFriends().contains(newFriend)) {
+                playerJpaEntity.addFriend(newFriend);
+            }
+        });
+
+        playerJpaRepository.save(playerJpaEntity);
     }
 }

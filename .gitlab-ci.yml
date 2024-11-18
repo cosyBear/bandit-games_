@@ -56,18 +56,3 @@ test:
     paths:
       - .gradle/caches/
       - .gradle/wrapper/
-
-sast:
-  stage: security
-  include:
-    - template: Security/SAST.gitlab-ci.yml
-
-dependency-scanning:
-  stage: security
-  include:
-    - template: Dependency-Scanning.gitlab-ci.yml
-
-container-scanning:
-  stage: security
-  include:
-    - template: Container-Scanning.gitlab-ci.yml

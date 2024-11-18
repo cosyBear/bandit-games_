@@ -1,6 +1,13 @@
 plugins {
     id 'module-config'
     id 'spring-conventions'
+    id 'checkstyle'
+    id 'jacoco'
+}
+
+checkstyle {
+    toolVersion = '10.0'
+    configFile = file('config/checkstyle/checkstyle.xml')
 }
 
 dependencies {

@@ -1,0 +1,73 @@
+image: eclipse-temurin:21
+
+before_script:
+  - GRADLE_USER_HOME="$(pwd)/.gradle"
+  - export GRADLE_USER_HOME
+
+stages:
+  - build
+  - lint
+  - test
+  - security
+
+lint:
+  stage: lint
+  script:
+    - gradle checkstyleMain
+  artifacts:
+    paths:
+      - build/reports/checkstyle/
+  cache:
+    key: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG"
+    paths:
+      - .gradle/caches/
+      - .gradle/wrapper/
+
+build:
+  stage: build
+  script: gradle --no-daemon --build-cache --parallel assemble
+  cache:
+    key: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG"
+    paths:
+      - .gradle/caches/
+      - .gradle/wrapper/
+
+test:
+  stage: test
+  services:
+    - postgres:15.3-alpine
+  variables:
+    POSTGRES_DB: 'library-test'
+    POSTGRES_USER: '$POSTGRES_USER'
+    POSTGRES_PASSWORD: '$POSTGRES_PASSWORD'
+    CI_DB_HOST_PORT: 'postgres:5432'
+  before_script:
+    - until pg_isready -h postgres -p 5432; do sleep 1; done
+  script: gradle --no-daemon check
+  artifacts:
+    when: always
+    reports:
+      junit: build/test-results/test/**/TEST-*.xml
+    paths:
+      - build/reports/jacoco/test/html/
+  cache:
+    key: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG"
+    policy: pull
+    paths:
+      - .gradle/caches/
+      - .gradle/wrapper/
+
+sast:
+  stage: security
+  include:
+    - template: Security/SAST.gitlab-ci.yml
+
+dependency-scanning:
+  stage: security
+  include:
+    - template: Dependency-Scanning.gitlab-ci.yml
+
+container-scanning:
+  stage: security
+  include:
+    - template: Container-Scanning.gitlab-ci.yml

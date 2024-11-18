@@ -1,4 +1,4 @@
-image: openjdk:21-jdk-slim
+image: gradle:8.1-jdk21
 
 before_script:
   - GRADLE_USER_HOME="$(pwd)/.gradle"

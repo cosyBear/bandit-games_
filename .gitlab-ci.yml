@@ -45,7 +45,7 @@ build:
 test:
   stage: test
   services:
-    - postgres:15.3-alpine
+    - postgres:15
   variables:
     POSTGRES_DB: 'library-test'
     POSTGRES_USER: '$POSTGRES_USER'
@@ -92,23 +92,6 @@ build_library:
       - .gradle/caches/
       - .gradle/wrapper/
 
-# Test specific modules (optional)
-test_application:
-  stage: test
-  script:
-    - gradle :application:test  # Runs tests only for the 'application' module
-  artifacts:
-    when: always
-    reports:
-      junit: build/test-results/test/**/TEST-*.xml
-    paths:
-      - build/reports/jacoco/test/html/
-  cache:
-    key: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-application-test"
-    policy: pull
-    paths:
-      - .gradle/caches/
-      - .gradle/wrapper/
 
 test_friends:
   stage: test

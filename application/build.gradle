@@ -7,8 +7,8 @@ plugins {
 }
 
 checkstyle {
-    toolVersion = '10.0'
-    configFile = file("$projectDir/config/checkstyle.xml")
+    toolVersion = '8.45'
+    configFile = file('config/checkstyle.xml') // Path relative to the application module
 }
 
 

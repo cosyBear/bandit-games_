@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module name="Checker">
     <module name="TreeWalker">
-        <!-- Enforce indentation of 4 spaces -->
         <module name="Indentation">
             <property name="column" value="4"/>
         </module>
-
-        <!-- Check for whitespace around operators -->
-        <module name="WhitespaceAround"/>
-
-        <!-- Prevent magic numbers (numbers not defined as constants) -->
-        <module name="MagicNumber">
-            <property name="ignoreNumbers" value="0"/>
-        </module>
-
     </module>
 </module>

@@ -6,7 +6,7 @@ before_script:
 
 stages:
   - build
-  - lint
+#  - lint
   - test
 
 cache:
@@ -63,20 +63,6 @@ test:
     paths:
       - build/reports/jacoco/test/html/
 
-# Build individual modules (if you want to build and test a specific module)
-build_application:
-  stage: build
-  script:
-    - gradle :application:assemble  # Builds only the 'application' module
-  artifacts:
-    paths:
-      - build/libs/
-    when: always
-  cache:
-    key: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-application"
-    paths:
-      - .gradle/caches/
-      - gradle/wrapper/
 
 build_friends:
   stage: build

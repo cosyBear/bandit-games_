@@ -9,7 +9,7 @@ import be.kdg.prog6.friends.port.in.RemoveFriend;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.boot.model.naming.IllegalIdentifierException;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -135,5 +135,10 @@ class RemoveFriendImplTestIntegration extends AbstractDatabaseTest {
 
         assertNotNull(playerJpaEntity);
         assertEquals(1, playerJpaEntity.getFriends().size());
+    }
+
+    @AfterEach
+    void cleanup(){
+        playerJpaRepository.deleteAll();
     }
 }

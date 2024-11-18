@@ -1,0 +1,22 @@
+package be.kdg.prog6.libraryBoundedContext.domain;
+
+import be.kdg.prog6.libraryBoundedContext.domain.id.PlayerId;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+
+@Data @AllArgsConstructor @NoArgsConstructor
+public class Player {
+
+
+    private PlayerId playerId;
+    private Library library;
+
+
+
+
+
+
+}

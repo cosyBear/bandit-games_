@@ -1,0 +1,11 @@
+
+
+
+
+// so what you need to do is the following
+// the library will create a jpa for it and than each thing you do to the game
+//either save or delete or get the game you do it via teh library
+// so maybe create a method in teh domain library a method that give you back the game
+// also for the database Adapter for the game use case use the library not the game...
+//change the gameMapper
+// change the gameQuery useCase to use the lib

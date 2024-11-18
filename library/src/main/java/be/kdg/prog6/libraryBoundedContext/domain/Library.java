@@ -1,5 +1,6 @@
 package be.kdg.prog6.libraryBoundedContext.domain;
 
+import be.kdg.prog6.libraryBoundedContext.domain.id.GameId;
 import be.kdg.prog6.libraryBoundedContext.domain.id.LibraryId;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,5 +35,27 @@ public class Library {
         games.remove(game);
         return "game is removed ";
     }
+
+    private void markGameAsFavorite(String gameName){
+        games.stream().filter(
+                game -> game.getGameName().equals(gameName)
+        ).findFirst().ifPresent(
+                Game::markAsFavorite
+        );
+
+    }
+
+    private String givePlayerAnAchievement(GameId gameId, Achievement achievement) {
+        return games.stream()
+                .filter(game -> game.getGameId().equals(gameId))
+                .findFirst()
+                .map(game -> game.givePlayerAnAchievement(achievement))
+                .orElse("Game not found with the given GameId.");
+    }
+
+
+
+
+
 
 }

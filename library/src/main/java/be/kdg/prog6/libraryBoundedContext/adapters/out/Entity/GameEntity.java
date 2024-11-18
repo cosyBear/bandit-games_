@@ -1,17 +1,15 @@
 package be.kdg.prog6.libraryBoundedContext.adapters.out.Entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Getter
-@Setter
 @Entity
 @Table(catalog = "library")
+@Data @NoArgsConstructor  @AllArgsConstructor
 public class GameEntity {
 
     @Id
@@ -31,15 +29,9 @@ public class GameEntity {
 
     private boolean favourite;
 
-    public GameEntity() {
-    }
+    @ManyToOne()
+    @JoinColumn(name = "library_id")
+    private LibraryEntity library;
 
-    public GameEntity(UUID gameId, String gameName, GameTypeEntity gameType, List<AchievementEntity> achievementList, String imageUrl, boolean favourite) {
-        this.gameId = gameId;
-        this.gameName = gameName;
-        this.gameType = gameType;
-        this.achievementList = achievementList;
-        this.imageUrl = imageUrl;
-        this.favourite = favourite;
-    }
+
 }

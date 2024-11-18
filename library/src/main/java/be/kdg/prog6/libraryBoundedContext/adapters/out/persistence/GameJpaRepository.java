@@ -23,3 +23,5 @@ public interface GameJpaRepository extends JpaRepository<GameEntity , UUID> {
     @Query("select g from GameEntity g where g.gameType = :Category")
     List<GameEntity> getGamesByCategory(@Param("Category")GameTypeEntity Category);
 }
+// SO THE GAME BOUNDE CONTEXT SEND AN EVENT TO GIVE A PLAYER AND ACHVIEMNT
+// THE LIBRARY LISTEN TO THAT EVENT AND THAN GIVE THE PLAYER THE ACHVIMENT

@@ -1,11 +1,8 @@
 package be.kdg.prog6.libraryBoundedContext.core;
 
+import be.kdg.prog6.libraryBoundedContext.port.in.*;
 import be.kdg.prog6.libraryBoundedContext.util.GameMapper;
 import be.kdg.prog6.libraryBoundedContext.domain.Game;
-import be.kdg.prog6.libraryBoundedContext.port.in.CreateGameCommand;
-import be.kdg.prog6.libraryBoundedContext.port.in.GameUseCase;
-import be.kdg.prog6.libraryBoundedContext.port.in.GameCommand;
-import be.kdg.prog6.libraryBoundedContext.port.in.GameQuery;
 import be.kdg.prog6.libraryBoundedContext.port.out.GameLoadPort;
 import be.kdg.prog6.libraryBoundedContext.port.out.GameSavePort;
 import be.kdg.prog6.common.events.util.DomainException;
@@ -30,7 +27,7 @@ public class GameUseCaseImp implements GameUseCase {
 
     @Transactional
     @Override
-    public GameQuery markGameAsFavourite(GameCommand command) {
+    public GameQuery markGameAsFavourite(GameCommand command) {// change this
         Game game = gameLoadPort.fetchGameByName(command.gameName());
         if (game == null) {
             logger.error("Game not found: {}", command.gameName());
@@ -53,6 +50,15 @@ public class GameUseCaseImp implements GameUseCase {
         gameSavePort.saveGame(game);
         return GameMapper.toQuery(game);
     }
+
+    @Override
+    public GameQuery givePlayerAnAchievement(EarnAchievementCommand command) {
+
+        return null;
+    }
+
+    // so the store create the game and the store will send an event to the library context to add the game to the lib
+
 
 
 }

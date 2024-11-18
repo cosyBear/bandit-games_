@@ -3,15 +3,13 @@ package be.kdg.prog6.friends.adapters.out.entity;
 import be.kdg.prog6.friends.domain.Gender;
 import be.kdg.prog6.friends.domain.Player;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Entity @Table(catalog = "friends", name = "player")
-@Data @AllArgsConstructor @NoArgsConstructor
+@Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class PlayerJpaEntity {
     @Id
     private UUID id;
@@ -19,7 +17,7 @@ public class PlayerJpaEntity {
     private String firstName;
     private String lastName;
     private String gender;
-    @OneToOne(mappedBy = "addressJpaEntity", orphanRemoval = true)
+    @OneToOne(mappedBy = "playerJpaEntity", orphanRemoval = true, cascade = CascadeType.ALL)
     private AddressJpaEntity addressJpaEntity;
 
     @ManyToMany
@@ -29,6 +27,23 @@ public class PlayerJpaEntity {
             inverseJoinColumns = @JoinColumn(name = "friend_id")
     )
     private Set<PlayerJpaEntity> friends = new HashSet<>();
+
+    public PlayerJpaEntity(UUID id, String nickname, String firstName, String lastName, String gender, AddressJpaEntity addressJpaEntity) {
+        this.id = id;
+        this.nickname = nickname;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.addressJpaEntity = addressJpaEntity;
+    }
+
+    public PlayerJpaEntity(UUID id, String nickname, String firstName, String lastName, String gender) {
+        this.id = id;
+        this.nickname = nickname;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+    }
 
     public Player convertToDomain() {
         return new Player(

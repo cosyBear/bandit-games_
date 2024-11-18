@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.*;
 
-@Data @AllArgsConstructor @NoArgsConstructor
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Player {
 
     private PlayerId id;
@@ -17,7 +19,8 @@ public class Player {
     private Address address;
     private Set<Player> friends = new HashSet<>();
 
-    public record PlayerId(UUID id){}
+    public record PlayerId(UUID id) {
+    }
 
     public Player(PlayerId id, String nickname, String firstName, String lastName, Gender gender, Address address) {
         this.id = id;
@@ -36,7 +39,11 @@ public class Player {
     }
 
 
-    public void removeFriend(Player player){
-        this.friends.remove(player);
+    public void removeFriend(Player player) {
+        if (this.friends.contains(player)) {
+            this.friends.remove(player);
+        } else {
+            throw new IllegalArgumentException("Friend with ID " + player.getId().id + "is not a friend of this player.");
+        }
     }
 }

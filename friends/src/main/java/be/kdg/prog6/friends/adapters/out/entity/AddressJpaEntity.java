@@ -2,14 +2,12 @@ package be.kdg.prog6.friends.adapters.out.entity;
 
 import be.kdg.prog6.friends.domain.Address;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
 
 @Entity @Table(catalog = "friends", name = "address")
-@Data @AllArgsConstructor @NoArgsConstructor
+@Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class AddressJpaEntity {
 
     @Id
@@ -19,8 +17,18 @@ public class AddressJpaEntity {
     private String country;
     private String houseNumber;
     @OneToOne
-    @JoinColumn(name = "address_id")
+    @JoinColumn(name = "player_id")
     private PlayerJpaEntity playerJpaEntity;
+
+    public AddressJpaEntity(UUID id, String street, String city, String country, String houseNumber) {
+        this.id = id;
+        this.street = street;
+        this.city = city;
+        this.country = country;
+        this.houseNumber = houseNumber;
+    }
+
+
 
     public Address convertToDomain(){
         return new Address(

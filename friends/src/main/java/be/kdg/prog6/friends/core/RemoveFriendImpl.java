@@ -19,7 +19,7 @@ public class RemoveFriendImpl implements RemoveFriend {
     @Override
     @Transactional
     public void removeFriend(UUID friendId, UUID playerId) {
-        final Player player = playerPort.findById(playerId);
+        final Player player = playerPort.findByIdWithFriends(playerId);
 
         final Player friend = playerPort.findById(friendId);
 

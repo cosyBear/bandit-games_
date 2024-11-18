@@ -7,7 +7,7 @@ plugins {
 
 checkstyle {
     toolVersion = '10.0'
-    configFile = file('config/checkstyle/checkstyle.xml')
+    configFile = file('application/config/checkstyle/checkstyle.xml')
 }
 
 

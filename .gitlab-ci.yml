@@ -1,4 +1,4 @@
-image: gradle:8.1-jdk17
+image: openjdk:21-jdk-slim
 
 before_script:
   - GRADLE_USER_HOME="$(pwd)/.gradle"
@@ -9,6 +9,14 @@ stages:
   - lint
   - test
 
+# Cache Gradle dependencies to speed up builds
+cache:
+  key: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG"
+  paths:
+    - .gradle/caches/
+    - .gradle/wrapper/
+
+# Lint stage to check code quality with Checkstyle
 lint:
   stage: lint
   script:
@@ -16,21 +24,22 @@ lint:
   artifacts:
     paths:
       - build/reports/checkstyle/
-  cache:
-    key: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG"
-    paths:
-      - .gradle/caches/
-      - .gradle/wrapper/
 
+# Build individual modules or the whole project
 build:
   stage: build
-  script: gradle --no-daemon --build-cache --parallel assemble
+  script:
+    - gradle --no-daemon --build-cache --parallel assemble # This will build the entire application or individual modules
+  artifacts:
+    paths:
+      - build/libs/  # Store build artifacts
+    when: always
   cache:
-    key: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG"
     paths:
       - .gradle/caches/
       - .gradle/wrapper/
 
+# Test stage for running tests on the whole project or specific modules
 test:
   stage: test
   services:
@@ -42,7 +51,64 @@ test:
     CI_DB_HOST_PORT: 'postgres:5432'
   before_script:
     - until pg_isready -h postgres -p 5432; do sleep 1; done
-  script: gradle --no-daemon check
+  script:
+    # You can specify a particular module to test, or run tests for the entire project
+    - gradle --no-daemon check
+  artifacts:
+    when: always
+    reports:
+      junit: build/test-results/test/**/TEST-*.xml
+    paths:
+      - build/reports/jacoco/test/html/
+
+# Build individual modules (if you want to build and test a specific module)
+build_application:
+  stage: build
+  script:
+    - gradle :application:assemble  # Builds only the 'application' module
+  artifacts:
+    paths:
+      - build/libs/
+    when: always
+  cache:
+    key: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-application"
+    paths:
+      - .gradle/caches/
+      - .gradle/wrapper/
+
+build_friends:
+  stage: build
+  script:
+    - gradle :friends:assemble  # Builds only the 'friends' module
+  artifacts:
+    paths:
+      - build/libs/
+    when: always
+  cache:
+    key: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-friends"
+    paths:
+      - .gradle/caches/
+      - .gradle/wrapper/
+
+build_library:
+  stage: build
+  script:
+    - gradle :library:assemble  # Builds only the 'library' module
+  artifacts:
+    paths:
+      - build/libs/
+    when: always
+  cache:
+    key: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-library"
+    paths:
+      - .gradle/caches/
+      - .gradle/wrapper/
+
+# Test specific modules (optional)
+test_application:
+  stage: test
+  script:
+    - gradle :application:test  # Runs tests only for the 'application' module
   artifacts:
     when: always
     reports:
@@ -50,7 +116,41 @@ test:
     paths:
       - build/reports/jacoco/test/html/
   cache:
-    key: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG"
+    key: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-application-test"
+    policy: pull
+    paths:
+      - .gradle/caches/
+      - .gradle/wrapper/
+
+test_friends:
+  stage: test
+  script:
+    - gradle :friends:test  # Runs tests only for the 'friends' module
+  artifacts:
+    when: always
+    reports:
+      junit: build/test-results/test/**/TEST-*.xml
+    paths:
+      - build/reports/jacoco/test/html/
+  cache:
+    key: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-friends-test"
+    policy: pull
+    paths:
+      - .gradle/caches/
+      - .gradle/wrapper/
+
+test_library:
+  stage: test
+  script:
+    - gradle :library:test  # Runs tests only for the 'library' module
+  artifacts:
+    when: always
+    reports:
+      junit: build/test-results/test/**/TEST-*.xml
+    paths:
+      - build/reports/jacoco/test/html/
+  cache:
+    key: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-library-test"
     policy: pull
     paths:
       - .gradle/caches/

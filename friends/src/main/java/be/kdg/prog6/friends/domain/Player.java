@@ -28,9 +28,13 @@ public class Player {
         this.address = address;
     }
 
-    public void addFriend(Player player){
+    public void addFriend(Player player) {
+        if (this.friends.contains(player)) {
+            throw new IllegalArgumentException("Friend with ID " + player.getId().id() + " is already in the friends set.");
+        }
         this.friends.add(player);
     }
+
 
     public void removeFriend(Player player){
         this.friends.remove(player);

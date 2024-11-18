@@ -7,8 +7,9 @@ plugins {
 
 checkstyle {
     toolVersion = '10.0'
-    configFile = file('application/config/checkstyle/checkstyle.xml')
+    configFile = file("$projectDir/config/checkstyle/checkstyle.xml")
 }
+
 
 
 bootJar {

@@ -10,6 +10,13 @@ checkstyle {
     configFile = file('config/checkstyle/checkstyle.xml')
 }
 
+
+bootJar {
+    mainClass = 'be.kdg.CompleteApplication'
+}
+
+
+
 dependencies {
     implementation project(":common")
     implementation project(':library')

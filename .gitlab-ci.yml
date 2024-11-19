@@ -8,6 +8,9 @@ stages:
   - build
   - test
 
+variables:
+  MODULES: "application common library friends"
+
 cache:
   key: "$CI_PROJECT_NAME"
   paths:
@@ -17,42 +20,21 @@ cache:
 build:
   stage: build
   script:
-    - gradle --no-daemon --build-cache --parallel assemble
+    - echo "Building Modules"
+    - |
+     for MODULE in $MODULES; do
+       if git diff --name-only $CI_COMMIT_BEFORE_SHA $CI_COMMIT_SHA | grep -q "^$MODULE/"; then
+         echo "Building module $MODULE"
+         ./gradlew --no-daemon --build-cache --parallel :$MODULE:build
+       else
+         echo "Skipping module $MODULE"
+       fi
   artifacts:
     paths:
-      - application/build/libs/*.jar
-      - friends/build/libs/*.jar
-      - library/build/libs/*.jar
-      - common/build/libs/*.jar
+      - application/build/libs/
+      - friends/build/libs/
+      - library/build/libs/
     when: always
-  rules:
-    - changes:
-        - application/**
-        - common/**
-
-build_friends:
-  stage: build
-  script:
-    - gradle :friends:assemble
-  artifacts:
-    paths:
-      - friends/build/libs/*.jar
-    when: always
-  rules:
-    - changes:
-        - friends/**
-
-build_library:
-  stage: build
-  script:
-    - gradle :library:assemble
-  artifacts:
-    paths:
-      - library/build/libs/*.jar
-    when: always
-  rules:
-    - changes:
-        - library/**
 
 test:
   stage: test
@@ -64,10 +46,6 @@ test:
       junit: build/test-results/test/**/TEST-*.xml
     paths:
       - build/reports/jacoco/test/html/
-  rules:
-    - changes:
-        - application/**
-        - common/**
 
 test_friends:
   stage: test

@@ -9,7 +9,8 @@ public class BRestController {
 
     @GetMapping("/hellob")
     public void sayHelloB(){
-        System.out.println("Hello BoundedContext B");
+        System.out.println("Hello BoundedContext B" +
+                "cjhanmeetgdewyt");
     }
 
 }

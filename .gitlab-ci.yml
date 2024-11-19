@@ -61,6 +61,5 @@ test:
     when: always
     reports:
      junit: $TEST_ONLY_MODULES/build/test-results/test/*.xml
-     jacoco: $TEST_ONLY_MODULES/build/reports/jacoco/test-coverage.xml
   coverage: '/TOTAL\s+\d+\%\s+/'
 

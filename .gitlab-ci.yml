@@ -42,33 +42,15 @@ build:
       - library/build/libs/
     when: always
 
-unit-tests:
+test:
   stage: test
   image: gradle:8.1-jdk17
   services:
     - name: docker:dind
       command: [ "--tls=false" ]
   script:
-    - echo "Running unit tests"
-    - ./gradlew $TEST_ONLY_MODULES:unitTest jacocoTestReport --no-daemon
-  artifacts:
-    paths:
-      - $TEST_ONLY_MODULES/build/test-results/
-      - $TEST_ONLY_MODULES/build/reports/jacoco/
-    when: always
-    reports:
-      junit: $TEST_ONLY_MODULES/build/test-results/test/*.xml
-  coverage: '/TOTAL\s+\d+\%\s+/'
-
-integration-tests:
-  stage: test
-  image: gradle:8.1-jdk17
-  services:
-    - name: docker:dind
-      command: [ "--tls=false" ]
-  script:
-    - echo "Running integration tests"
-    - ./gradlew $TEST_ONLY_MODULES:integrationTest jacocoTestReport --no-daemon
+    - echo "Running tests with Testcontainers"
+    - ./gradlew $TEST_ONLY_MODULES:test jacocoTestReport --no-daemon --max-workers 4 --info
   artifacts:
     paths:
       - $TEST_ONLY_MODULES/build/test-results/

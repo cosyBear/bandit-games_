@@ -58,6 +58,7 @@ test:
     paths:
       - $TEST_ONLY_MODULES/build/test-results/
       - $TEST_ONLY_MODULES/build/reports/jacoco/test/html/
+      - $TEST_ONLY_MODULES/build/reports/jacoco/test/*.xml
     when: always
     reports:
       junit: $TEST_ONLY_MODULES/build/test-results/test/*.xml

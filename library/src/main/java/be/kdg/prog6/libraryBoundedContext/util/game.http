@@ -21,9 +21,6 @@ PATCH http://localhost:8091/api/games/123e4567-e89b-12d3-a456-426614174000/e7a1c
 Content-Type: application/json
 Accept: application/json
 
-
-###
-
 ### Test: Earn Achievement
 POST http://localhost:8091/api/games/123e4567-e89b-12d3-a456-426614174000/games/a2b7c0e4-3d11-4b5b-8297-3e45fc173c81/achievements?gameName=Need%20for%20Speed&achievementName=Champion%20Driver
 Content-Type: application/json

@@ -1,5 +1,6 @@
 package be.kdg.prog6.libraryBoundedContext.core;
 import be.kdg.prog6.common.events.util.GameNotFoundException;
+import be.kdg.prog6.libraryBoundedContext.domain.Game;
 import be.kdg.prog6.libraryBoundedContext.domain.Library;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.FetchGamesByNameQuery;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GetGamesByCategoryQuery;
@@ -30,9 +31,11 @@ public class GameQueryUseCaseImp implements GameQueryUseCase {
 
     @Override
     public List<GameQuery> getAllAvailableGame(RetrieveAllGamesQuery query) {
+
         return libraryLoadPort.fetchLibraryWithAllAvailableGames(query.playerId()).getGames().stream()
                 .map(Mapper::toQuery)
                 .toList();
+
     }
 
     @Override

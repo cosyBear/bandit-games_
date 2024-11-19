@@ -1,4 +1,9 @@
+import be.kdg.prog6.common.events.util.AchievementAlreadyEarnedException;
+import be.kdg.prog6.common.events.util.AchievementNotFoundException;
+import be.kdg.prog6.common.events.util.GameAlreadyMarkedAsFavoriteException;
+import be.kdg.prog6.common.events.util.GameNotFoundException;
 import be.kdg.prog6.libraryBoundedContext.LibraryBoundedContextApplication;
+import be.kdg.prog6.libraryBoundedContext.domain.Achievement;
 import be.kdg.prog6.libraryBoundedContext.domain.Library;
 import be.kdg.prog6.libraryBoundedContext.domain.id.GameId;
 import be.kdg.prog6.libraryBoundedContext.domain.id.PlayerId;
@@ -19,9 +24,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.UUID;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -96,9 +98,81 @@ class GameUseCaseImpTest {
                 "Achievement should be marked as achieved"
         );
 
-        // Optional: Verify the query result reflects the changes
         assertTrue(result.getAchievementList().stream()
                         .anyMatch(a -> a.getAchievementName().equals("First Blood") && a.isAchieved()),
                 "Returned query should reflect the achieved status");
     }
+
+
+    @Test
+    void markGameAsFavourite_GameNotFound_ShouldThrowException() {
+        // Arrange
+        GameCommand command = new GameCommand(playerId, "Nonexistent Game", UUID.randomUUID());
+
+        when(libraryLoadPort.fetchLibraryWithGamesByNamePattern(playerId, "Nonexistent Game"))
+                .thenReturn(null);
+
+        // Act & Assert
+        Exception exception = assertThrows(GameNotFoundException.class, () -> {
+            sut.markGameAsFavourite(command);
+        });
+
+        assertEquals("Game not found with name: Nonexistent Game", exception.getMessage());
+    }
+
+    @Test
+    void markGameAsFavourite_GameAlreadyMarked_ShouldThrowException() {
+        // Arrange
+        GameCommand command = new GameCommand(playerId, gameName, gameId.gameId());
+        Library library = TestLibraryData.createLibraryWithChessMaster();
+
+        // Simulate the game is already marked as favorite
+        library.findGameById(gameId).markAsFavorite();
+
+        when(libraryLoadPort.fetchLibraryWithGamesByNamePattern(playerId, gameName))
+                .thenReturn(library);
+
+        // Act & Assert
+        Exception exception = assertThrows(GameAlreadyMarkedAsFavoriteException.class, () -> {
+            sut.markGameAsFavourite(command);
+        });
+
+        String expectedMessage = "Game is already marked as favorite";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+
+    @Test
+    void givePlayerAnAchievement_AchievementAlreadyEarned_ShouldThrowException() {
+        // Arrange
+        EarnAchievementCommand command = new EarnAchievementCommand(
+                playerId,
+                gameName,
+                gameId.gameId(),
+                "First Blood"
+        );
+
+        Library library = TestLibraryData.createLibraryWithChessMaster();
+
+        // Simulate the player already earned the achievement
+        library.findGameById(gameId).getAchievementList().stream()
+                .filter(a -> a.getAchievementName().equals("First Blood"))
+                .forEach(Achievement::markAsAchieved);
+
+        when(libraryLoadPort.fetchLibraryWithGamesByNamePattern(playerId, gameName))
+                .thenReturn(library);
+
+        // Act & Assert
+        Exception exception = assertThrows(AchievementAlreadyEarnedException.class, () -> {
+            sut.givePlayerAnAchievement(command);
+        });
+
+        String expectedMessage = "Achievement already earned: First Blood";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
 }

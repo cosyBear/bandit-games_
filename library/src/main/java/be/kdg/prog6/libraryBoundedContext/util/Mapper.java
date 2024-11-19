@@ -60,7 +60,7 @@ public class Mapper {
                 .toList();
 
         GameEntity gameEntity = new GameEntity();
-        gameEntity.setGameId(game.getGameId().gameId());
+        gameEntity.setGameId(game.getGameId().id());
         gameEntity.setGameName(game.getGameName());
         gameEntity.setGameType(GameTypeEntity.valueOf(game.getGameType().name()));
         gameEntity.setAchievementList(achievementEntities);

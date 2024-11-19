@@ -1,5 +1,8 @@
 package be.kdg.prog6.libraryBoundedContext.domain;
 
+import be.kdg.prog6.common.events.util.AchievementAlreadyEarnedException;
+import be.kdg.prog6.common.events.util.AchievementNotFoundException;
+import be.kdg.prog6.common.events.util.GameAlreadyMarkedAsFavoriteException;
 import be.kdg.prog6.libraryBoundedContext.domain.id.GameId;
 import lombok.Getter;
 import lombok.Setter;
@@ -45,7 +48,7 @@ public class Game {
 
     public void markAsFavorite() {
         if (this.favourite) {
-            throw new IllegalStateException("Game is already marked as favorite.");
+            throw new GameAlreadyMarkedAsFavoriteException("Game is already marked as favorite.");
         }
         this.favourite = true;
     }
@@ -65,14 +68,19 @@ public class Game {
     }
 
 
-    public void  givePlayerAnAchievement(String AchievementName) {
+    public void givePlayerAnAchievement(String achievementName) {
         achievementList.stream()
-                .filter(item -> item.getAchievementName().equalsIgnoreCase(AchievementName))
+                .filter(a -> a.getAchievementName().equalsIgnoreCase(achievementName))
                 .findFirst()
-                .ifPresent(
-                        Achievement::markAsAchieved
+                .ifPresentOrElse(
+                        achievement -> {
+                            if (achievement.isAchieved()) {
+                                throw new AchievementAlreadyEarnedException("Achievement already earned: " + achievementName);
+                            }
+                            achievement.markAsAchieved();
+                        },
+                        () -> { throw new AchievementNotFoundException("Achievement not found: " + achievementName); }
                 );
-
     }
 
     public void addAchievement(Achievement achievement) {

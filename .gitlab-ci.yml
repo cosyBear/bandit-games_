@@ -57,8 +57,7 @@ test:
   artifacts:
     paths:
       - $TEST_ONLY_MODULES/build/test-results/
-      - $TEST_ONLY_MODULES/build/reports/jacoco/test/html/
-      - $TEST_ONLY_MODULES/build/reports/jacoco/test/*.xml
     when: always
     reports:
       junit: $TEST_ONLY_MODULES/build/test-results/test/*.xml
+      coverage: '/TOTAL.*?([0-9]{1,3})%/'

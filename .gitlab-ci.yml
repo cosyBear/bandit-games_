@@ -13,10 +13,11 @@ variables:
   MODULES: "application common library friends"
 
 cache:
-  key: gradle-cache-key
+  key: "$CI_COMMIT_REF_NAME"
   paths:
     - .gradle/caches/
     - gradle/wrapper/
+    - .gradle/wrapper/
 
 build:
   stage: build

@@ -16,7 +16,7 @@ public class Library {
 
     private LibraryId libraryId;
     private List<Game> games = new ArrayList<>();
-    private PlayerId playerId; // Identifier for the associated Player
+    private PlayerId playerId;
 
 
     public Library(LibraryId libraryId, List<Game> games, PlayerId playerId) {

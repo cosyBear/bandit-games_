@@ -12,9 +12,6 @@ import java.util.UUID;
 public interface LibraryJpaRepository  extends JpaRepository<LibraryEntity, UUID> {
 
 
-    //get games  with name
-    //get games by cat
-
     @Query("SELECT l FROM LibraryEntity l LEFT JOIN FETCH l.games WHERE l.player.playerId = :playerId")
     LibraryEntity fetchLibraryWithAllAvailableGames(@Param("playerId") UUID playerId);
 

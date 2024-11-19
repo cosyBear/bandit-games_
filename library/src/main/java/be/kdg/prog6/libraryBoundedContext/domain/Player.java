@@ -12,6 +12,5 @@ public class Player {
 
     private PlayerId playerId;
 
-
-
 }
+//TODO remove the player object from the Library bounded Context and place PlayerId in teh Library instead of player object

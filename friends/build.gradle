@@ -8,15 +8,14 @@ tasks.withType(org.springframework.boot.gradle.tasks.bundling.BootJar).configure
 }
 
 test {
-    useJUnitPlatform()
     finalizedBy jacocoTestReport
 }
+
 
 jacocoTestReport {
     dependsOn test
     reports {
-        xml.enabled = true
-        xml.destination file("${project.buildDir}/reports/jacoco/test-coverage.xml")  // Specify destination for XML report
+        xml.enabled  true
     }
 }
 

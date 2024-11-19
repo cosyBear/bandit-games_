@@ -41,19 +41,23 @@ build:
 
 test:
   stage: test
-  image: docker:20.10
+  image: gradle:8.1-jdk17
   services:
-    - docker:20.10-dind # Docker-in-Docker service
+    - name: docker:dind
+      command: [ "--tls=false" ]
+
   variables:
-    DOCKER_HOST: "tcp://docker:2375" # Connect Testcontainers to the DIND service
-    DOCKER_TLS_CERTDIR: ""          # Disable TLS for simplicity (not recommended in production)
+    DOCKER_HOST: "tcp://docker:2375"
+    DOCKER_TLS_CERTDIR: ""
+    DOCKER_DRIVER: overlay2
+
   script:
     - echo "Running tests with Testcontainers"
-    - ./gradlew $TEST_MODULE:test --no-daemon --max-workers 4 --info
+    - ./gradlew $TEST_ONLY_MODULES:test --no-daemon --max-workers 4 --info
   artifacts:
     paths:
-      - $TEST_MODULE/build/test-results/
-      - $TEST_MODULE/build/reports/jacoco/test/html/
+      - $TEST_ONLY_MODULES/build/test-results/
+      - $TEST_ONLY_MODULES/build/reports/jacoco/test/html/
     when: always
     reports:
-      junit: $TEST_MODULE/build/test-results/test/*.xml
+      junit: $TEST_ONLY_MODULES/build/test-results/test/*.xml

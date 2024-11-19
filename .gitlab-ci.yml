@@ -28,7 +28,7 @@ build:
       for MODULE in $MODULES; do
         if git diff --name-only $CI_COMMIT_BEFORE_SHA $CI_COMMIT_SHA | grep -q "^$MODULE/"; then
           echo "Building module $MODULE"
-          ./gradlew --no-daemon --build-cache --parallel :$MODULE:build
+          ./gradlew --no-daemon --build-cache --parallel :$MODULE:build -x test
         else
           echo "Skipping module $MODULE"
         fi
@@ -59,6 +59,3 @@ test:
       - $TEST_MODULE/build/test-results/
       - $TEST_MODULE/build/reports/jacoco/test/html/
     when: always
-  rules:
-    - changes:
-        - $TEST_ONLY_MODULES/src/test/**

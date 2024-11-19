@@ -50,7 +50,7 @@ unit-tests:
       command: [ "--tls=false" ]
   script:
     - echo "Running unit tests"
-    - ./gradlew $TEST_ONLY_MODULES:test --tests '*!TestIntegration' jacocoTestReport --no-daemon --max-workers 4 --info
+    - ./gradlew $TEST_ONLY_MODULES:unitTest jacocoTestReport --no-daemon
   artifacts:
     paths:
       - $TEST_ONLY_MODULES/build/test-results/
@@ -68,7 +68,7 @@ integration-tests:
       command: [ "--tls=false" ]
   script:
     - echo "Running integration tests"
-    - ./gradlew $TEST_ONLY_MODULES:test --tests '*TestIntegration' jacocoTestReport --no-daemon --max-workers 4 --info
+    - ./gradlew $TEST_ONLY_MODULES:integrationTest jacocoTestReport --no-daemon
   artifacts:
     paths:
       - $TEST_ONLY_MODULES/build/test-results/
@@ -77,4 +77,3 @@ integration-tests:
     reports:
       junit: $TEST_ONLY_MODULES/build/test-results/test/*.xml
   coverage: '/TOTAL\s+\d+\%\s+/'
-

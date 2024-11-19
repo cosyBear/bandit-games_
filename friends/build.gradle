@@ -16,7 +16,15 @@ jacocoTestReport {
     dependsOn test
 }
 
+tasks.register('unitTest', Test) {
+    useJUnitPlatform()
+    exclude '**/*TestIntegration.class'
+}
 
+tasks.register('integrationTest', Test) {
+    useJUnitPlatform()
+    include '**/*TestIntegration.class'
+}
 
 dependencies {
     implementation project(':common')

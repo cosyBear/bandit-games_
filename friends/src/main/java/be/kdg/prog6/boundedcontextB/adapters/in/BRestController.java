@@ -9,7 +9,10 @@ public class BRestController {
 
     @GetMapping("/hellob")
     public void sayHelloB(){
-        System.out.println("Hello BoundedContedfvxt B");
+        System.out.println("Hello BoundedContedfvxt B" +
+                "dfcsd" +
+                "sdfwdf" +
+                "wefwef");
     }
 
 }

@@ -15,8 +15,8 @@ test {
 jacocoTestReport {
     dependsOn test
     reports {
-        xml.enabled true
-        xml.destination file("${buildDir}/reports/jacoco/test-coverage.xml")  // Specify destination for XML report
+        xml.enabled = true
+        xml.destination file("${project.buildDir}/reports/jacoco/test-coverage.xml")  // Specify destination for XML report
     }
 }
 

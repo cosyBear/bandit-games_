@@ -33,7 +33,6 @@ build:
       done
   artifacts:
     paths:
-      - application/build/libs/
       - friends/build/libs/
       - library/build/libs/
     when: always

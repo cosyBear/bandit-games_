@@ -9,7 +9,7 @@ stages:
   - test
 
 cache:
-  key: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG"
+  key: "$CI_PROJECT_NAME"
   paths:
     - .gradle/caches/
     - gradle/wrapper/
@@ -30,51 +30,6 @@ test:
   stage: test
   script:
     - gradle --no-daemon check
-  artifacts:
-    when: always
-    reports:
-      junit: build/test-results/test/**/TEST-*.xml
-    paths:
-      - build/reports/jacoco/test/html/
-
-
-build_friends:
-  stage: build
-  script:
-    - gradle :friends:assemble
-  artifacts:
-    paths:
-      - friends/build/libs/*.jar
-    when: always
-
-
-build_library:
-  stage: build
-  script:
-    - gradle :library:assemble
-  artifacts:
-    paths:
-      - library/build/libs/*.jar
-    when: always
-
-
-
-test_friends:
-  stage: test
-  script:
-    - gradle :friends:test
-  artifacts:
-    when: always
-    reports:
-      junit: build/test-results/test/**/TEST-*.xml
-    paths:
-      - build/reports/jacoco/test/html/
-
-
-test_library:
-  stage: test
-  script:
-    - gradle :library:test
   artifacts:
     when: always
     reports:

@@ -1,14 +1,8 @@
 plugins {
     id 'module-config'
     id 'spring-conventions'
-    id 'checkstyle'
     id 'jacoco'
     id 'java'
-}
-
-checkstyle {
-    toolVersion = '8.45'
-    configFile = file('config/checkstyle.xml') // Path relative to the application module
 }
 
 

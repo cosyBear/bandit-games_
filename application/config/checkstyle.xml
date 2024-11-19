@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<module name="Checker">
-    <module name="TreeWalker">
-        <module name="Indentation">
-            <property name="column" value="4"/>
-        </module>
-    </module>
-</module>

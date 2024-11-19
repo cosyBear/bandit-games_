@@ -11,7 +11,7 @@ stages:
 
 variables:
   MODULES: "application common library friends"
-  TEST_ONLY_MODULES: "library friends"
+  TEST_ONLY_MODULES: "friends"
 
 cache:
   key: "$CI_COMMIT_REF_NAME"

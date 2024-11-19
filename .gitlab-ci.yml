@@ -48,17 +48,18 @@ test:
     - |
       # Check if there are any test files in the src/test directory
       TEST_FILES=$(git diff --name-only $CI_COMMIT_BEFORE_SHA $CI_COMMIT_SHA | grep -E "^$TEST_MODULE/src/test/.*\.java$")
+      echo "Test files to be run: $TEST_FILES"
       if [ -z "$TEST_FILES" ]; then
         echo "No test files found in $TEST_MODULE/src/test/. Skipping tests."
         exit 0
       fi
       # Run tests for the module
-      ./gradlew $TEST_MODULE:test --no-daemon --max-workers 4
+      ./gradlew $TEST_MODULE:test --no-daemon --max-workers 4 --info
       
-      # Debugging step: List build directory contents
-      echo "Listing build/test-results:"
+      # Debugging step: List build/test-results
+      echo "Listing $TEST_MODULE/build/test-results:"
       ls -R $TEST_MODULE/build/test-results/
-      echo "Listing build/reports/jacoco/test/html/:"
+      echo "Listing $TEST_MODULE/build/reports/jacoco/test/html/"
       ls -R $TEST_MODULE/build/reports/jacoco/test/html/
   artifacts:
     paths:

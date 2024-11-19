@@ -22,19 +22,21 @@ build:
   script:
     - echo "Building Modules"
     - |
-     for MODULE in $MODULES; do
-       if git diff --name-only $CI_COMMIT_BEFORE_SHA $CI_COMMIT_SHA | grep -q "^$MODULE/"; then
-         echo "Building module $MODULE"
-         ./gradlew --no-daemon --build-cache --parallel :$MODULE:build
-       else
-         echo "Skipping module $MODULE"
-       fi
+      for MODULE in $MODULES; do
+        if git diff --name-only $CI_COMMIT_BEFORE_SHA $CI_COMMIT_SHA | grep -q "^$MODULE/"; then
+          echo "Building module $MODULE"
+          ./gradlew --no-daemon --build-cache --parallel :$MODULE:build
+        else
+          echo "Skipping module $MODULE"
+        fi
+      done
   artifacts:
     paths:
       - application/build/libs/
       - friends/build/libs/
       - library/build/libs/
     when: always
+
 
 test:
   stage: test

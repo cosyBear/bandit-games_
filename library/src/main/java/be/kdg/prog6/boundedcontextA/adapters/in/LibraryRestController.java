@@ -9,7 +9,8 @@ public class LibraryRestController {
 
     @GetMapping("/hellob")
     public void sayHelloB(){
-        System.out.println("Hello BoundedContext Bbbbb"
+        System.out.println("Hello BoundedContext Bbbbb" +
+                "sdfsdfsdfsf"
         );
     }
 

@@ -7,8 +7,6 @@ import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.FetchGamesByNameQuer
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GameQuery;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GetGamesByCategoryQuery;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.RetrieveAllGamesQuery;
-import be.kdg.prog6.libraryBoundedContext.util.GameMapper;
-import be.kdg.prog6.libraryBoundedContext.adapters.in.dto.CreateGameDto;
 import be.kdg.prog6.libraryBoundedContext.domain.GameType;
 import be.kdg.prog6.libraryBoundedContext.port.in.*;
 import org.springframework.http.HttpStatus;

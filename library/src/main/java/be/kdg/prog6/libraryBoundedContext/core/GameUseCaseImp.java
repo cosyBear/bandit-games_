@@ -8,7 +8,7 @@ import be.kdg.prog6.libraryBoundedContext.port.in.game.GameUseCase;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GameQuery;
 import be.kdg.prog6.libraryBoundedContext.port.out.LibraryLoadPort;
 import be.kdg.prog6.libraryBoundedContext.port.out.LibrarySavePort;
-import be.kdg.prog6.libraryBoundedContext.util.GameMapper;
+import be.kdg.prog6.libraryBoundedContext.util.Mapper;
 import be.kdg.prog6.libraryBoundedContext.domain.Game;
 import be.kdg.prog6.common.events.util.GameNotFoundException;
 import jakarta.transaction.Transactional;
@@ -45,7 +45,7 @@ public class GameUseCaseImp implements GameUseCase {
         librarySavePort.save(library);
         logger.info("Game marked as favorite: ");
 
-        return GameMapper.toQuery(game);
+        return Mapper.toQuery(game);
     }
 
 
@@ -61,10 +61,9 @@ public class GameUseCaseImp implements GameUseCase {
         Game game = library.givePlayerAnAchievement(new GameId(command.gameId()), command.AchievementName());
 
         librarySavePort.save(library);
-        return GameMapper.toQuery(game);
+        return Mapper.toQuery(game);
     }
 
 
-    // so the store create the game and the store will send an event to the library context to add the game to the lib
 
 }

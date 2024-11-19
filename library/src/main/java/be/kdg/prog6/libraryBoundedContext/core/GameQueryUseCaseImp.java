@@ -1,12 +1,11 @@
 package be.kdg.prog6.libraryBoundedContext.core;
 import be.kdg.prog6.common.events.util.GameNotFoundException;
 import be.kdg.prog6.libraryBoundedContext.domain.Library;
-import be.kdg.prog6.libraryBoundedContext.port.in.GameCommand;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.FetchGamesByNameQuery;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GetGamesByCategoryQuery;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.RetrieveAllGamesQuery;
 import be.kdg.prog6.libraryBoundedContext.port.out.LibraryLoadPort;
-import be.kdg.prog6.libraryBoundedContext.util.GameMapper;
+import be.kdg.prog6.libraryBoundedContext.util.Mapper;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GameQuery;
 import be.kdg.prog6.libraryBoundedContext.port.in.game.GameQueryUseCase;
 import jakarta.transaction.Transactional;
@@ -30,15 +29,13 @@ public class GameQueryUseCaseImp implements GameQueryUseCase {
 
 
     @Override
-    @Transactional
     public List<GameQuery> getAllAvailableGame(RetrieveAllGamesQuery query) {
         return libraryLoadPort.fetchLibraryWithAllAvailableGames(query.playerId()).getGames().stream()
-                .map(GameMapper::toQuery)
+                .map(Mapper::toQuery)
                 .toList();
     }
 
     @Override
-    @Transactional
     public List<GameQuery> fetchGamesByName(FetchGamesByNameQuery query) {
         Library library = libraryLoadPort.fetchLibraryWithGamesByNamePattern(query.playerId(), query.gameName());
         if (library == null || library.getGames().isEmpty()) {
@@ -46,17 +43,16 @@ public class GameQueryUseCaseImp implements GameQueryUseCase {
         }
 
         return library.getGames().stream()
-                .map(GameMapper::toQuery)
+                .map(Mapper::toQuery)
                 .toList();
     }
 
 
     @Override
-    @Transactional
     public List<GameQuery> getGamesByCategory(GetGamesByCategoryQuery query) {
         Library library  = libraryLoadPort.fetchLibraryWithGamesByCategory(query.playerId(), query.category());
         return library.getGames().stream()
-                .map(GameMapper::toQuery)
+                .map(Mapper::toQuery)
                 .toList();
     }
 

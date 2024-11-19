@@ -13,11 +13,11 @@ import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GameQuery;
 
 import java.util.List;
 
-public class GameMapper {
+public class Mapper {
 
     public static Library mapDomainLibrary(LibraryEntity entity) {
         List<Game> gameList = entity.getGames().stream()
-                .map(GameMapper::mapToDomain)
+                .map(Mapper::mapToDomain)
                 .toList();
 
         PlayerId playerId = new PlayerId(entity.getPlayer().getPlayerId());
@@ -56,7 +56,7 @@ public class GameMapper {
     // Map Game (Domain) to GameEntity
     public static GameEntity mapToEntity(Game game) {
         List<AchievementEntity> achievementEntities = game.getAchievementList().stream()
-                .map(GameMapper::mapToEntity)
+                .map(Mapper::mapToEntity)
                 .toList();
 
         GameEntity gameEntity = new GameEntity();
@@ -74,7 +74,7 @@ public class GameMapper {
     // Map GameEntity to Game (Domain)
     public static Game mapToDomain(GameEntity entity) {
         List<Achievement> achievements = entity.getAchievementList().stream()
-                .map(GameMapper::mapToDomain)
+                .map(Mapper::mapToDomain)
                 .toList();
 
         return new Game(

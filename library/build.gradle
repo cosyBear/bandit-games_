@@ -17,8 +17,10 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok:1.18.36'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.36'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-//    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    testImplementation 'org.mockito:mockito-core:5.4.0'
     implementation 'org.springframework.boot:spring-boot-starter-actuator:3.1.4'
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
 }
 

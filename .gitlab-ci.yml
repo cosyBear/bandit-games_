@@ -12,7 +12,6 @@ stages:
 variables:
   MODULES: "application common library friends"
   TEST_ONLY_MODULES: "library friends"
-  TEST_GROUPS: 5
 
 cache:
   key: "$CI_COMMIT_REF_NAME"
@@ -40,23 +39,21 @@ build:
       - library/build/libs/
     when: always
 
-
-# Parallel Testing for Modules Defined in TEST_ONLY_MODULES
 test:
   stage: test
   parallel:
     matrix:
       - TEST_MODULE: $TEST_ONLY_MODULES
   script:
-    - echo "Running tests for $TEST_MODULE, group $CI_NODE_INDEX of $CI_NODE_TOTAL"
     - |
-      TEST_FILES=$(find $TEST_MODULE/src/test -maxdepth 1 -type f -name "*.java")
+      # Check if there are any test files in the src/test directory
+      TEST_FILES=$(git diff --name-only $CI_COMMIT_BEFORE_SHA $CI_COMMIT_SHA | grep -E "^$TEST_MODULE/src/test/.*\.java$")
       if [ -z "$TEST_FILES" ]; then
         echo "No test files found in $TEST_MODULE/src/test/. Skipping tests."
-        exit 0  
+        exit 0
       fi
-      ./gradlew $TEST_MODULE:test --no-daemon --parallel --max-workers 4  # Adjust max-workers to control parallelism
-
+      # Run tests for the module
+      ./gradlew $TEST_MODULE:test --no-daemon --max-workers 4
   artifacts:
     paths:
       - $TEST_MODULE/build/test-results/
@@ -64,5 +61,4 @@ test:
     when: always
   rules:
     - changes:
-        - $TEST_ONLY_MODULES/**
-        - $TEST_MODULE/**
+        - $TEST_ONLY_MODULES/src/test/**

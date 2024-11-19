@@ -1,7 +1,17 @@
 plugins {
     id 'module-config'
     id 'spring-conventions'
+    id 'jacoco'
+    id 'java'
 }
+
+
+
+bootJar {
+    mainClass = 'be.kdg.CompleteApplication'
+}
+
+
 
 dependencies {
     implementation project(":common")

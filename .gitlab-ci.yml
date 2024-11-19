@@ -26,6 +26,30 @@ build:
       - common/build/libs/*.jar
     when: always
 
+build_friends:
+  stage: build
+  script:
+    - gradle :friends:assemble
+  artifacts:
+    paths:
+      - friends/build/libs/*.jar
+    when: always
+  rules:
+    - changes:
+        - friends/**
+
+build_library:
+  stage: build
+  script:
+    - gradle :library:assemble
+  artifacts:
+    paths:
+      - library/build/libs/*.jar
+    when: always
+  rules:
+    - changes:
+        - library/**
+
 test:
   stage: test
   script:
@@ -36,3 +60,31 @@ test:
       junit: build/test-results/test/**/TEST-*.xml
     paths:
       - build/reports/jacoco/test/html/
+
+test_friends:
+  stage: test
+  script:
+    - gradle :friends:test
+  artifacts:
+    when: always
+    reports:
+      junit: build/test-results/test/**/TEST-*.xml
+    paths:
+      - build/reports/jacoco/test/html/
+  rules:
+    - changes:
+        - friends/**
+
+test_library:
+  stage: test
+  script:
+    - gradle :library:test
+  artifacts:
+    when: always
+    reports:
+      junit: build/test-results/test/**/TEST-*.xml
+    paths:
+      - build/reports/jacoco/test/html/
+  rules:
+    - changes:
+        - library/**

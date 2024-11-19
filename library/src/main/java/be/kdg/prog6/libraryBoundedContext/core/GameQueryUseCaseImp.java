@@ -1,9 +1,14 @@
 package be.kdg.prog6.libraryBoundedContext.core;
+import be.kdg.prog6.common.events.util.GameNotFoundException;
+import be.kdg.prog6.libraryBoundedContext.domain.Library;
+import be.kdg.prog6.libraryBoundedContext.port.in.GameCommand;
+import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.FetchGamesByNameQuery;
+import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GetGamesByCategoryQuery;
+import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.RetrieveAllGamesQuery;
+import be.kdg.prog6.libraryBoundedContext.port.out.LibraryLoadPort;
 import be.kdg.prog6.libraryBoundedContext.util.GameMapper;
-import be.kdg.prog6.libraryBoundedContext.domain.GameType;
-import be.kdg.prog6.libraryBoundedContext.port.in.GameQuery;
-import be.kdg.prog6.libraryBoundedContext.port.in.GameQueryUseCase;
-import be.kdg.prog6.libraryBoundedContext.port.out.GameLoadPort;
+import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GameQuery;
+import be.kdg.prog6.libraryBoundedContext.port.in.game.GameQueryUseCase;
 import jakarta.transaction.Transactional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,34 +20,42 @@ import java.util.List;
 public class GameQueryUseCaseImp implements GameQueryUseCase {
 
 
-    private final GameLoadPort gameLoadPort;
+    private final LibraryLoadPort libraryLoadPort;
 
     private static final Logger logger = LogManager.getLogger(GameQueryUseCaseImp.class);
 
-    public GameQueryUseCaseImp(GameLoadPort gameLoadPort) {
-        this.gameLoadPort = gameLoadPort;
-
+    public GameQueryUseCaseImp(LibraryLoadPort libraryLoadPort) {
+        this.libraryLoadPort = libraryLoadPort;
     }
 
 
     @Override
     @Transactional
-    public List<GameQuery> getAllAvailableGame() {
-        return gameLoadPort.fetchAvailableGames().stream()
+    public List<GameQuery> getAllAvailableGame(RetrieveAllGamesQuery query) {
+        return libraryLoadPort.fetchLibraryWithAllAvailableGames(query.playerId()).getGames().stream()
                 .map(GameMapper::toQuery)
                 .toList();
     }
 
     @Override
     @Transactional
-    public GameQuery getGameByName(String name) {
-        return GameMapper.toQuery(gameLoadPort.fetchGameByName(name));
+    public List<GameQuery> fetchGamesByName(FetchGamesByNameQuery query) {
+        Library library = libraryLoadPort.fetchLibraryWithGamesByNamePattern(query.playerId(), query.gameName());
+        if (library == null || library.getGames().isEmpty()) {
+            throw new GameNotFoundException("No games found matching: " + query.gameName());
+        }
+
+        return library.getGames().stream()
+                .map(GameMapper::toQuery)
+                .toList();
     }
+
 
     @Override
     @Transactional
-    public List<GameQuery> getGamesByCategory(GameType category) {
-        return gameLoadPort.fetchGamesByCategory(category).stream()
+    public List<GameQuery> getGamesByCategory(GetGamesByCategoryQuery query) {
+        Library library  = libraryLoadPort.fetchLibraryWithGamesByCategory(query.playerId(), query.category());
+        return library.getGames().stream()
                 .map(GameMapper::toQuery)
                 .toList();
     }

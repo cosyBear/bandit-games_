@@ -11,23 +11,18 @@ import java.util.UUID;
 
 @Entity
 @Table(catalog = "library")
-@Data @NoArgsConstructor @AllArgsConstructor
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class LibraryEntity {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO )
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID libraryId;
 
-    @OneToOne(mappedBy = "library", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "player_id")
+    @OneToOne
+    @JoinColumn(name = "player_id", referencedColumnName = "playerId")
     private PlayerEntity player;
 
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            orphanRemoval = true,
-            mappedBy = "libraryEntity"
-    )
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "libraryEntity")
     private List<GameEntity> games = new ArrayList<>();
-
-
 }

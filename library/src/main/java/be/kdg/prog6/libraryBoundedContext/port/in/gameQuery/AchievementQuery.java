@@ -1,4 +1,4 @@
-package be.kdg.prog6.libraryBoundedContext.port.in;
+package be.kdg.prog6.libraryBoundedContext.port.in.gameQuery;
 
 import lombok.Getter;
 import lombok.Setter;

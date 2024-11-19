@@ -1,4 +1,8 @@
 package be.kdg.prog6.libraryBoundedContext.port.in;
 
-public record GameCommand(String gameName) {
+import be.kdg.prog6.libraryBoundedContext.domain.id.PlayerId;
+
+import java.util.UUID;
+
+public record GameCommand(PlayerId playerId, String gameName , UUID gameId) {
 }

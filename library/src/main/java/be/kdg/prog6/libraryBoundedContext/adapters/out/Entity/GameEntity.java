@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Entity
 @Table(catalog = "library")
-@Data @NoArgsConstructor  @AllArgsConstructor
+@Data   @AllArgsConstructor
 public class GameEntity {
 
     @Id
@@ -33,5 +33,17 @@ public class GameEntity {
     @JoinColumn(name = "library_id")
     private LibraryEntity library;
 
+    public GameEntity(){
 
+    }
+
+
+    public GameEntity(UUID uuid, String gameName, GameTypeEntity gameTypeEntity, List<AchievementEntity> achievementEntities, String imageUrl, boolean favourite) {
+        this.gameId = uuid;
+        this.gameName = gameName;
+        this.gameType = gameTypeEntity;
+        this.achievementList = achievementEntities;
+        this.imageUrl = imageUrl;
+        this.favourite = favourite;
+    }
 }

@@ -45,7 +45,7 @@ public class Game {
 
     public void markAsFavorite() {
         if (this.favourite) {
-            throw new IllegalStateException("Game is already marked as favorite");
+            throw new IllegalStateException("Game is already marked as favorite.");
         }
         this.favourite = true;
     }
@@ -53,6 +53,7 @@ public class Game {
     public boolean isGameMarkedAsFavorite() {
         return this.favourite;
     }
+
 
     public String updateGameType(GameType newGameType) {
         this.gameType = newGameType;
@@ -63,16 +64,18 @@ public class Game {
         return gameType;
     }
 
-    public String givePlayerAnAchievement(Achievement achievement) {
+
+    public void  givePlayerAnAchievement(String AchievementName) {
         achievementList.stream()
-                .filter(item -> item.getAchievementName().equalsIgnoreCase(achievement.getAchievementName()))
+                .filter(item -> item.getAchievementName().equalsIgnoreCase(AchievementName))
                 .findFirst()
-                .ifPresent(Achievement::markAsAchieved);
-        return "Achievement marked as achieved";
+                .ifPresent(
+                        Achievement::markAsAchieved
+                );
+
     }
 
-    public String addAchievement(Achievement achievement) {
+    public void addAchievement(Achievement achievement) {
         this.achievementList.add(achievement);
-        return "achievement Added";
     }
 }

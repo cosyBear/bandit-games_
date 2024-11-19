@@ -10,12 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 @Data @AllArgsConstructor @NoArgsConstructor
 public class Player {
 
-
     private PlayerId playerId;
-    private Library library;
-
-
-
 
 
 

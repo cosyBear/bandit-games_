@@ -1,2 +1,21 @@
-GET http://localhost:8091/api/games
+### Test: Fetch All Available Games
+GET http://localhost:8080/games?playerId=123e4567-e89b-12d3-a456-426614174000
+Accept: application/json
 
+### Test: Fetch Games by Name
+GET http://localhost:8080/games?playerId=123e4567-e89b-12d3-a456-426614174000&gameName=GTA
+Accept: application/json
+
+### Test: Fetch Games by Category
+GET http://localhost:8080/games?playerId=123e4567-e89b-12d3-a456-426614174000&category=ACTION
+Accept: application/json
+
+### Test: Mark Game as Favorite
+PATCH http://localhost:8080/games/123e4567-e89b-12d3-a456-426614174000/games/456e7891-e89b-12d3-a456-426614174000/favorite?gameName=GTA
+Content-Type: application/json
+Accept: application/json
+
+### Test: Earn Achievement
+POST http://localhost:8080/games/123e4567-e89b-12d3-a456-426614174000/games/456e7891-e89b-12d3-a456-426614174000/achievements?gameName=GTA&achievementName=First%20Win
+Content-Type: application/json
+Accept: application/json

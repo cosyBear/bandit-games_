@@ -2,22 +2,36 @@ package be.kdg.prog6.libraryBoundedContext.util;
 
 
 import be.kdg.prog6.libraryBoundedContext.adapters.in.dto.CreateGameDto;
-import be.kdg.prog6.libraryBoundedContext.adapters.out.Entity.AchievementEntity;
-import be.kdg.prog6.libraryBoundedContext.adapters.out.Entity.GameEntity;
-import be.kdg.prog6.libraryBoundedContext.adapters.out.Entity.GameTypeEntity;
-import be.kdg.prog6.libraryBoundedContext.domain.Achievement;
-import be.kdg.prog6.libraryBoundedContext.domain.Game;
-import be.kdg.prog6.libraryBoundedContext.domain.GameType;
+import be.kdg.prog6.libraryBoundedContext.adapters.out.Entity.*;
+import be.kdg.prog6.libraryBoundedContext.domain.*;
 import be.kdg.prog6.libraryBoundedContext.domain.id.AchievementId;
 import be.kdg.prog6.libraryBoundedContext.domain.id.GameId;
+import be.kdg.prog6.libraryBoundedContext.domain.id.LibraryId;
+import be.kdg.prog6.libraryBoundedContext.domain.id.PlayerId;
 import be.kdg.prog6.libraryBoundedContext.port.in.*;
+import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.AchievementQuery;
+import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GameQuery;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
+
 
 public class GameMapper {
+
+    // Map LibraryEntity to Library (Domain)
+    public static Library mapDomainLibrary(LibraryEntity entity) {
+        List<Game> gameList = entity.getGames().stream()
+                .map(GameMapper::mapToDomain)
+                .toList();
+
+        PlayerId playerId = new PlayerId(entity.getPlayer().getPlayerId());
+        return new Library(
+                new LibraryId(entity.getLibraryId()),
+                gameList,
+                playerId
+
+        );
+    }
+
 
     public static GameQuery toQuery(Game game) {
         List<AchievementQuery> achievementQueryList = game.getAchievementList().stream()
@@ -35,68 +49,6 @@ public class GameMapper {
                 game.isFavourite(),
                 game.getImageUrl()
         );
-    }
-
-
-    public static GameEntity mapToEntity(Game game) {
-        List<AchievementEntity> achievementEntities = game.getAchievementList().stream()
-                .map(item -> new AchievementEntity(
-                        item.getAchievementId().achievementId(),
-                        item.getAchievementName(),
-                        item.getAchievementDescription(),
-                        item.getImageUrl(),
-                        item.isAchieved()))
-                .collect(Collectors.toList());
-
-
-        return new GameEntity(
-                game.getGameId().gameId(),
-                game.getGameName(),
-                GameTypeEntity.valueOf(game.retrieveGameType().toString()),
-                achievementEntities,
-                game.getImageUrl(),
-                game.isFavourite()
-        );
-
-    }
-
-    public static Game mapToDomain(GameEntity entity) {
-        List<Achievement> achievements = new ArrayList<>();
-        entity.getAchievementList().forEach(item ->
-                achievements.add(new Achievement(
-                        new AchievementId(item.getAchievementId()),
-                        item.getAchievementName(),
-                        item.getAchievementDescription(),
-                        item.getImageUrl(),
-                        item.isAchieved()))
-        );
-        return new Game(
-                new GameId(entity.getGameId()),
-                entity.getGameName(),
-                GameType.valueOf(entity.getGameType().toString()),
-                achievements,
-                entity.getImageUrl(),
-                entity.isFavourite()
-        );
-    }
-
-
-    public static Game mapToDomainFromCommand(CreateGameCommand createGameCommand) {
-        List<Achievement> achievementList = createGameCommand.achievementCommandList().stream()
-                .map(item -> new Achievement(
-                        item.achievementName(),
-                        item.achievementDescription(),
-                        item.imageUrl(),
-                        item.achieved()))
-                .collect(Collectors.toList());
-
-        return new Game(
-                new GameId(UUID.randomUUID()),
-                createGameCommand.gameName(),
-                GameType.valueOf(createGameCommand.gameType()),
-                achievementList,
-                createGameCommand.imageUrl(),
-                createGameCommand.favourite());
     }
 
     public static CreateGameCommand toCommand(CreateGameDto dto) {
@@ -118,7 +70,72 @@ public class GameMapper {
         );
     }
 
+    // Map Library (Domain) to LibraryEntity
+    public static LibraryEntity mapEntityLibrary(Library library) {
+        List<GameEntity> gameEntities = library.getGames().stream()
+                .map(GameMapper::mapToEntity)
+                .toList();
 
+        LibraryEntity libraryEntity = new LibraryEntity();
+        libraryEntity.setLibraryId(library.getLibraryId().libraryId());
+        libraryEntity.setGames(gameEntities);
 
+        return libraryEntity;
+    }
+
+    // Map Game (Domain) to GameEntity
+    public static GameEntity mapToEntity(Game game) {
+        List<AchievementEntity> achievementEntities = game.getAchievementList().stream()
+                .map(GameMapper::mapToEntity)
+                .toList();
+
+        GameEntity gameEntity = new GameEntity();
+        gameEntity.setGameId(game.getGameId().gameId());
+        gameEntity.setGameName(game.getGameName());
+        gameEntity.setGameType(GameTypeEntity.valueOf(game.getGameType().name()));
+        gameEntity.setAchievementList(achievementEntities);
+        gameEntity.setImageUrl(game.getImageUrl());
+        gameEntity.setFavourite(game.isFavourite());
+
+        return gameEntity;
+    }
+
+    // Map GameEntity to Game (Domain)
+    public static Game mapToDomain(GameEntity entity) {
+        List<Achievement> achievements = entity.getAchievementList().stream()
+                .map(GameMapper::mapToDomain)
+                .toList();
+
+        return new Game(
+                new GameId(entity.getGameId()),
+                entity.getGameName(),
+                GameType.valueOf(entity.getGameType().name()),
+                achievements,
+                entity.getImageUrl(),
+                entity.isFavourite()
+        );
+    }
+
+    // Map AchievementEntity to Achievement (Domain)
+    public static Achievement mapToDomain(AchievementEntity entity) {
+        return new Achievement(
+                new AchievementId(entity.getAchievementId()),
+                entity.getAchievementName(),
+                entity.getAchievementDescription(),
+                entity.getImageUrl(),
+                entity.isAchieved()
+        );
+    }
+
+    // Map Achievement (Domain) to AchievementEntity
+    public static AchievementEntity mapToEntity(Achievement achievement) {
+        return new AchievementEntity(
+                achievement.getAchievementId().achievementId(),
+                achievement.getAchievementName(),
+                achievement.getAchievementDescription(),
+                achievement.getImageUrl(),
+                achievement.isAchieved()
+        );
+    }
 }
 

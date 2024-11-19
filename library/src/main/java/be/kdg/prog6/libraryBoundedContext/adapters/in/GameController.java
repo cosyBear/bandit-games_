@@ -1,5 +1,12 @@
 package be.kdg.prog6.libraryBoundedContext.adapters.in;
 
+import be.kdg.prog6.libraryBoundedContext.domain.id.PlayerId;
+import be.kdg.prog6.libraryBoundedContext.port.in.game.GameQueryUseCase;
+import be.kdg.prog6.libraryBoundedContext.port.in.game.GameUseCase;
+import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.FetchGamesByNameQuery;
+import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GameQuery;
+import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GetGamesByCategoryQuery;
+import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.RetrieveAllGamesQuery;
 import be.kdg.prog6.libraryBoundedContext.util.GameMapper;
 import be.kdg.prog6.libraryBoundedContext.adapters.in.dto.CreateGameDto;
 import be.kdg.prog6.libraryBoundedContext.domain.GameType;
@@ -9,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/games")
@@ -24,35 +32,72 @@ public class GameController {
 
 
     @GetMapping
-    public ResponseEntity<List<GameQuery>> fetchAllAvailableGames() {
-        return ResponseEntity.status(HttpStatus.OK).body(gameQueryUseCase.getAllAvailableGame());
+    public ResponseEntity<List<GameQuery>> fetchAllAvailableGames(@RequestParam UUID playerId) {
+        RetrieveAllGamesQuery query = new RetrieveAllGamesQuery(new PlayerId(playerId));
+        return ResponseEntity.status(HttpStatus.OK).body(gameQueryUseCase.getAllAvailableGame(query));
     }
 
-    @GetMapping("/{gameName}")
-    public ResponseEntity<GameQuery> fetchGameByName(@PathVariable String gameName) {
-        return ResponseEntity.status(HttpStatus.OK).body(gameQueryUseCase.getGameByName(gameName));
-    }
+    @GetMapping
+    public ResponseEntity<List<GameQuery>> fetchGamesByName(
+            @RequestParam UUID playerId,
+            @RequestParam String gameName) {
 
+        FetchGamesByNameQuery query = new FetchGamesByNameQuery(new PlayerId(playerId), gameName);
 
-    @GetMapping("/search")
-    public ResponseEntity<List<GameQuery>> fetchGamesByCategory(@RequestParam String category) {
-        return ResponseEntity.status(HttpStatus.OK).body(gameQueryUseCase.getGamesByCategory(GameType.valueOf(category)));
-    }
+        List<GameQuery> results = gameQueryUseCase.fetchGamesByName(query);
 
-    @PatchMapping("/{gameName}/favorite")
-    public ResponseEntity<GameQuery> makeGameAsFavorite(@PathVariable String gameName) {
-        GameQuery updatedGame = gameUseCase.markGameAsFavourite(new GameCommand(gameName));
-        return ResponseEntity.ok(updatedGame);
-    }
-
-    @PostMapping
-    public ResponseEntity<GameQuery> addGame(@RequestBody CreateGameDto game) {
-        CreateGameCommand command = GameMapper.toCommand(game);
-        GameQuery createdGame = gameUseCase.createGame(command);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdGame);
+        return ResponseEntity.status(HttpStatus.OK).body(results);
 
     }
 
+
+    @GetMapping
+    public ResponseEntity<List<GameQuery>> fetchGamesByCategory(
+            @RequestParam UUID playerId,
+            @RequestParam String category) {
+
+        GetGamesByCategoryQuery query = new GetGamesByCategoryQuery(new PlayerId(playerId), GameType.valueOf(category));
+
+        List<GameQuery> results = gameQueryUseCase.getGamesByCategory(query);
+
+        return ResponseEntity.status(HttpStatus.OK).body(results);
+
+    }
+
+
+    @PatchMapping("/{playerId}/games/{gameId}/favorite")
+    public ResponseEntity<GameQuery> makeGameAsFavorite(
+            @PathVariable UUID playerId,
+            @PathVariable UUID gameId,
+            @RequestParam String gameName) {
+
+        GameCommand command = new GameCommand(new PlayerId(playerId), gameName, gameId);
+
+        GameQuery updatedGame = gameUseCase.markGameAsFavourite(command);
+
+        return ResponseEntity.status(HttpStatus.OK).body(updatedGame);
+    }
+
+
+
+    @PostMapping("/{playerId}/games/{gameId}/achievements")
+    public ResponseEntity<GameQuery> earnAchievement(
+            @PathVariable UUID playerId,
+            @PathVariable UUID gameId,
+            @RequestParam String gameName,
+            @RequestParam String achievementName) {
+
+        EarnAchievementCommand command = new EarnAchievementCommand(
+                new PlayerId(playerId),
+                gameName,
+                gameId,
+                achievementName
+        );
+
+        GameQuery updatedGame = gameUseCase.givePlayerAnAchievement(command);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(updatedGame);
+    }
 
 
 }

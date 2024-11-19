@@ -25,6 +25,10 @@ build:
       - library/build/libs/*.jar
       - common/build/libs/*.jar
     when: always
+  rules:
+    - changes:
+        - application/**
+        - common/**
 
 build_friends:
   stage: build
@@ -60,6 +64,10 @@ test:
       junit: build/test-results/test/**/TEST-*.xml
     paths:
       - build/reports/jacoco/test/html/
+  rules:
+    - changes:
+        - application/**
+        - common/**
 
 test_friends:
   stage: test

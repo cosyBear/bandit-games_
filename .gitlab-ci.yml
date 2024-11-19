@@ -54,6 +54,12 @@ test:
       fi
       # Run tests for the module
       ./gradlew $TEST_MODULE:test --no-daemon --max-workers 4
+      
+      # Debugging step: List build directory contents
+      echo "Listing build/test-results:"
+      ls -R $TEST_MODULE/build/test-results/
+      echo "Listing build/reports/jacoco/test/html/:"
+      ls -R $TEST_MODULE/build/reports/jacoco/test/html/
   artifacts:
     paths:
       - $TEST_MODULE/build/test-results/

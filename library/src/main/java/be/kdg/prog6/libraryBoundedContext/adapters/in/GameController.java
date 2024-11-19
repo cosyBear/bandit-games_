@@ -31,13 +31,13 @@ public class GameController {
     }
 
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<GameQuery>> fetchAllAvailableGames(@RequestParam UUID playerId) {
         RetrieveAllGamesQuery query = new RetrieveAllGamesQuery(new PlayerId(playerId));
         return ResponseEntity.status(HttpStatus.OK).body(gameQueryUseCase.getAllAvailableGame(query));
     }
 
-    @GetMapping
+    @GetMapping("/search")
     public ResponseEntity<List<GameQuery>> fetchGamesByName(
             @RequestParam UUID playerId,
             @RequestParam String gameName) {
@@ -51,7 +51,7 @@ public class GameController {
     }
 
 
-    @GetMapping
+    @GetMapping("category")
     public ResponseEntity<List<GameQuery>> fetchGamesByCategory(
             @RequestParam UUID playerId,
             @RequestParam String category) {
@@ -65,7 +65,7 @@ public class GameController {
     }
 
 
-    @PatchMapping("/{playerId}/games/{gameId}/favorite")
+    @PatchMapping("/{playerId}/{gameId}/favorite")
     public ResponseEntity<GameQuery> makeGameAsFavorite(
             @PathVariable UUID playerId,
             @PathVariable UUID gameId,

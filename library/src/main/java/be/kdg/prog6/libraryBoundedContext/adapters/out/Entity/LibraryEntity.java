@@ -23,6 +23,6 @@ public class LibraryEntity {
     @JoinColumn(name = "player_id", referencedColumnName = "playerId")
     private PlayerEntity player;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "libraryEntity")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "library")
     private List<GameEntity> games = new ArrayList<>();
 }

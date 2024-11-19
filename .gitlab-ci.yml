@@ -41,14 +41,19 @@ build:
 
 test:
   stage: test
-  parallel:
-    matrix:
-      - TEST_MODULE: $TEST_ONLY_MODULES
+  image: docker:20.10
+  services:
+    - docker:20.10-dind # Docker-in-Docker service
+  variables:
+    DOCKER_HOST: "tcp://docker:2375" # Connect Testcontainers to the DIND service
+    DOCKER_TLS_CERTDIR: ""          # Disable TLS for simplicity (not recommended in production)
   script:
-    - echo "Running tests for module $TEST_MODULE"
+    - echo "Running tests with Testcontainers"
     - ./gradlew $TEST_MODULE:test --no-daemon --max-workers 4 --info
   artifacts:
     paths:
       - $TEST_MODULE/build/test-results/
       - $TEST_MODULE/build/reports/jacoco/test/html/
     when: always
+    reports:
+      junit: $TEST_MODULE/build/test-results/test/*.xml

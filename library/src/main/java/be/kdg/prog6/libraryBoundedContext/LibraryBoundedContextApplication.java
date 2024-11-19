@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BoundedContextAApplication {
+public class LibraryBoundedContextApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BoundedContextAApplication.class, args);
+        SpringApplication.run(LibraryBoundedContextApplication.class, args);
     }
 
 }

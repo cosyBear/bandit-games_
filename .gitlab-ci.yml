@@ -6,7 +6,6 @@ before_script:
 
 stages:
   - build
-#  - lint
   - test
 
 cache:
@@ -15,20 +14,10 @@ cache:
     - .gradle/caches/
     - gradle/wrapper/
 
-## Lint stage to check code quality with Checkstyle
-#lint:
-#  stage: lint
-#  script:
-#    - gradle checkstyleMain
-#  artifacts:
-#    paths:
-#      - build/reports/checkstyle/
-
-# Build individual modules or the whole project
 build:
   stage: build
   script:
-    - gradle --no-daemon --build-cache --parallel assemble # This will build the entire application or individual modules
+    - gradle --no-daemon --build-cache --parallel assemble
   artifacts:
     paths:
       - application/build/libs/*.jar
@@ -36,25 +25,10 @@ build:
       - library/build/libs/*.jar
       - common/build/libs/*.jar
     when: always
-  cache:
-    paths:
-      - .gradle/caches/
-      - gradle/wrapper/
 
-# Test stage for running tests on the whole project or specific modules
 test:
   stage: test
-  services:
-    - postgres:15
-  variables:
-    POSTGRES_DB: 'library-test'
-    POSTGRES_USER: '$POSTGRES_USER'
-    POSTGRES_PASSWORD: '$POSTGRES_PASSWORD'
-    CI_DB_HOST_PORT: 'postgres:5432'
-  before_script:
-    - until pg_isready -h postgres -p 5432; do sleep 1; done
   script:
-    # You can specify a particular module to test, or run tests for the entire project
     - gradle --no-daemon check
   artifacts:
     when: always
@@ -67,62 +41,43 @@ test:
 build_friends:
   stage: build
   script:
-    - gradle :friends:assemble  # Builds only the 'friends' module
+    - gradle :friends:assemble
   artifacts:
     paths:
       - friends/build/libs/*.jar
     when: always
-  cache:
-    key: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-friends"
-    paths:
-      - .gradle/caches/
-      - .gradle/wrapper/
+
 
 build_library:
   stage: build
   script:
-    - gradle :library:assemble  # Builds only the 'library' module
+    - gradle :library:assemble
   artifacts:
     paths:
       - library/build/libs/*.jar
     when: always
-  cache:
-    key: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-library"
-    paths:
-      - .gradle/caches/
-      - .gradle/wrapper/
+
 
 
 test_friends:
   stage: test
   script:
-    - gradle :friends:test  # Runs tests only for the 'friends' module
+    - gradle :friends:test
   artifacts:
     when: always
     reports:
       junit: build/test-results/test/**/TEST-*.xml
     paths:
       - build/reports/jacoco/test/html/
-  cache:
-    key: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-friends-test"
-    policy: pull
-    paths:
-      - .gradle/caches/
-      - .gradle/wrapper/
+
 
 test_library:
   stage: test
   script:
-    - gradle :library:test  # Runs tests only for the 'library' module
+    - gradle :library:test
   artifacts:
     when: always
     reports:
       junit: build/test-results/test/**/TEST-*.xml
     paths:
       - build/reports/jacoco/test/html/
-  cache:
-    key: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG-library-test"
-    policy: pull
-    paths:
-      - .gradle/caches/
-      - .gradle/wrapper/

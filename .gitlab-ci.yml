@@ -11,17 +11,20 @@ stages:
 
 variables:
   MODULES: "application common library friends"
+  TEST_ONLY_MODULES: "library friends"
+  TEST_GROUPS: 5
 
 cache:
   key: "$CI_COMMIT_REF_NAME"
   paths:
     - .gradle/caches/
     - gradle/wrapper/
+    - buildSrc/.gradle/
 
 build:
   stage: build
   script:
-    - echo "Building Modules"
+    - echo "Building Changed Modules"
     - |
       for MODULE in $MODULES; do
         if git diff --name-only $CI_COMMIT_BEFORE_SHA $CI_COMMIT_SHA | grep -q "^$MODULE/"; then
@@ -38,41 +41,28 @@ build:
     when: always
 
 
+# Parallel Testing for Modules Defined in TEST_ONLY_MODULES
 test:
   stage: test
+  parallel:
+    matrix:
+      - TEST_MODULE: $TEST_ONLY_MODULES
   script:
-    - gradle --no-daemon check
-  artifacts:
-    when: always
-    reports:
-      junit: build/test-results/test/**/TEST-*.xml
-    paths:
-      - build/reports/jacoco/test/html/
+    - echo "Running tests for $TEST_MODULE, group $CI_NODE_INDEX of $CI_NODE_TOTAL"
+    - |
+      TEST_FILES=$(find $TEST_MODULE/src/test -maxdepth 1 -type f -name "*.java")
+      if [ -z "$TEST_FILES" ]; then
+        echo "No test files found in $TEST_MODULE/src/test/. Skipping tests."
+        exit 0  
+      fi
+      ./gradlew $TEST_MODULE:test --no-daemon --parallel --max-workers 4  # Adjust max-workers to control parallelism
 
-test_friends:
-  stage: test
-  script:
-    - gradle :friends:test
   artifacts:
-    when: always
-    reports:
-      junit: build/test-results/test/**/TEST-*.xml
     paths:
-      - build/reports/jacoco/test/html/
+      - $TEST_MODULE/build/test-results/
+      - $TEST_MODULE/build/reports/jacoco/test/html/
+    when: always
   rules:
     - changes:
-        - friends/**
-
-test_library:
-  stage: test
-  script:
-    - gradle :library:test
-  artifacts:
-    when: always
-    reports:
-      junit: build/test-results/test/**/TEST-*.xml
-    paths:
-      - build/reports/jacoco/test/html/
-  rules:
-    - changes:
-        - library/**
+        - $TEST_ONLY_MODULES/**
+        - $TEST_MODULE/**

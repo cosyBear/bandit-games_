@@ -11,11 +11,7 @@ public class BRestController {
     public void sayHelloB(){
         System.out.println("Hello BoundedContedfvxt B" +
                 "cjhanmeetgdewytsdfdcccdwefefsdfsdf" +
-                "effe" +
-                "efef" +
-                "ef" +
-                "w" +
-                "ef");
+                "dddddd");
     }
 
 }

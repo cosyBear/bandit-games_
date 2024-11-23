@@ -49,4 +49,6 @@ dependencies {
 
     testImplementation 'org.testcontainers:mysql:1.19.0'
 
+    runtimeOnly 'org.postgresql:postgresql'
+
 }

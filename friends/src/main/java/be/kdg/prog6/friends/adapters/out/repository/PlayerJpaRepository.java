@@ -12,11 +12,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface PlayerJpaRepository extends JpaRepository<PlayerJpaEntity, UUID> {
-    @Query("SELECT p FROM PlayerJpaEntity p LEFT JOIN FETCH p.friends WHERE p.id = :id")
-    Optional<PlayerJpaEntity> findByIdWithFriends(@Param("id") UUID id);
-
-    @Query("SELECT f FROM PlayerJpaEntity p JOIN p.friends f WHERE p.id = :id")
-    List<PlayerJpaEntity> findAllFriends(@Param("id") UUID playerId);
-
-    List<PlayerJpaEntity> findByNicknameIgnoringCase(String nickName);
+    @Query("""
+                SELECT p FROM PlayerJpaEntity p
+                 WHERE LOWER(p.nickname) LIKE LOWER(CONCAT('%', :nickname, '%'))
+            """)
+    List<PlayerJpaEntity> searchAllByNicknameIgnoreCase(String nickname);
 }

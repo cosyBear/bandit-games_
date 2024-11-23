@@ -1,8 +1,11 @@
 package be.kdg.prog6.friends.core;
 
 import be.kdg.prog6.friends.adapters.out.entity.AddressJpaEntity;
+import be.kdg.prog6.friends.adapters.out.entity.FriendsId;
+import be.kdg.prog6.friends.adapters.out.entity.FriendsJpaEntity;
 import be.kdg.prog6.friends.adapters.out.entity.PlayerJpaEntity;
 import be.kdg.prog6.friends.adapters.out.repository.AddressJpaRepository;
+import be.kdg.prog6.friends.adapters.out.repository.FriendsJpaRepository;
 import be.kdg.prog6.friends.adapters.out.repository.PlayerJpaRepository;
 import be.kdg.prog6.friends.domain.Gender;
 import be.kdg.prog6.friends.port.in.RemoveFriend;
@@ -34,6 +37,8 @@ class RemoveFriendImplTestIntegration extends AbstractDatabaseTest {
     @Autowired
     private AddressJpaRepository addressJpaRepository;
     @Autowired
+    private FriendsJpaRepository friendsJpaRepository;
+    @Autowired
     private RemoveFriend sut;
 
     private UUID playerId = null;
@@ -63,6 +68,8 @@ class RemoveFriendImplTestIntegration extends AbstractDatabaseTest {
                 friend1
         )));
 
+        playerJpaRepository.save(friend1);
+
         final PlayerJpaEntity friend2 = playerJpaRepository.save(
                 new PlayerJpaEntity(
                         UUID.randomUUID(),
@@ -84,9 +91,8 @@ class RemoveFriendImplTestIntegration extends AbstractDatabaseTest {
                 friend2
         )));
 
-        Set<PlayerJpaEntity> friends = new HashSet<>(Arrays.asList(
-                friend2
-        ));
+        playerJpaRepository.save(friend2);
+
 
         final PlayerJpaEntity player = new PlayerJpaEntity(
                 UUID.randomUUID(),
@@ -96,7 +102,6 @@ class RemoveFriendImplTestIntegration extends AbstractDatabaseTest {
                 Gender.FEMALE.toString()
         );
 
-        player.setFriends(friends);
         playerJpaRepository.save(player);
 
         playerId = player.getId();
@@ -112,6 +117,12 @@ class RemoveFriendImplTestIntegration extends AbstractDatabaseTest {
 
         playerJpaRepository.save(player);
 
+        final FriendsJpaEntity friendsJpaEntity = new FriendsJpaEntity(
+                new FriendsId(playerId, friend2Id)
+        );
+
+        friendsJpaRepository.save(friendsJpaEntity);
+
     }
 
 
@@ -119,26 +130,23 @@ class RemoveFriendImplTestIntegration extends AbstractDatabaseTest {
     void shouldRemoveFriendOfPlayer() {
         sut.removeFriend(friend2Id, playerId);
 
-        final PlayerJpaEntity playerJpaEntity = playerJpaRepository.findByIdWithFriends(playerId)
-                .orElse(null);
+        final List<FriendsJpaEntity> friendsJpaEntities = friendsJpaRepository.findAllByPlayerId(playerId);
 
-        assertNotNull(playerJpaEntity);
-        assertEquals(0, playerJpaEntity.getFriends().size());
+        assertEquals(0, friendsJpaEntities.size());
     }
 
     @Test
     void shouldNotRemoveNotExistingFriend(){
         assertThrows(IllegalArgumentException.class, () -> sut.removeFriend(friend1Id, playerId));
 
-        final PlayerJpaEntity playerJpaEntity = playerJpaRepository.findByIdWithFriends(playerId)
-                .orElse(null);
+        final List<FriendsJpaEntity> friendsJpaEntities = friendsJpaRepository.findAllByPlayerId(playerId);
 
-        assertNotNull(playerJpaEntity);
-        assertEquals(1, playerJpaEntity.getFriends().size());
+        assertEquals(1, friendsJpaEntities.size());
     }
 
     @AfterEach
     void cleanup(){
         playerJpaRepository.deleteAll();
+        friendsJpaRepository.deleteAll();
     }
 }

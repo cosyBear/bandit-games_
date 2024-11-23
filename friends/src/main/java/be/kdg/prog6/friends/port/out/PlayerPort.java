@@ -1,5 +1,6 @@
 package be.kdg.prog6.friends.port.out;
 
+import be.kdg.prog6.friends.domain.Friends;
 import be.kdg.prog6.friends.domain.Player;
 
 import java.util.List;
@@ -9,11 +10,11 @@ public interface PlayerPort {
 
     Player findById(UUID uuid);
 
-    Player findByIdWithFriends(UUID uuid);
+//    Player findByIdWithFriends(UUID uuid);
+//
+//    List<Friends> findAllFriends(UUID playerId);
 
-    List<Player> findAllFriends(UUID playerId);
+    Friends searchForFriend(String nickName);
 
-    List<Player> searchForFriend(String nickName);
-
-    void savePlayerWithFriends(Player player);
+//    void savePlayerWithFriends(Player player);
 }

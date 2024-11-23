@@ -3,6 +3,7 @@ package be.kdg.prog6.friends.adapters.out;
 import be.kdg.prog6.common.exception.EntityNotFoundException;
 import be.kdg.prog6.friends.adapters.out.entity.PlayerJpaEntity;
 import be.kdg.prog6.friends.adapters.out.repository.PlayerJpaRepository;
+import be.kdg.prog6.friends.domain.Friends;
 import be.kdg.prog6.friends.domain.Player;
 import be.kdg.prog6.friends.port.out.PlayerPort;
 import lombok.RequiredArgsConstructor;
@@ -27,47 +28,10 @@ public class PlayerDbAdapter implements PlayerPort {
 
         return playerJpaEntity.convertToDomain();
     }
-
     @Override
-    public Player findByIdWithFriends(UUID uuid) {
-        final PlayerJpaEntity playerJpaEntity = playerJpaRepository.findByIdWithFriends(uuid)
-                .orElseThrow(() -> new EntityNotFoundException("PLayer was not found"));
+    public Friends searchForFriend(String nickName) {
+        final List<PlayerJpaEntity> playerJpaEntities = playerJpaRepository.searchAllByNicknameIgnoreCase(nickName);
 
-        return playerJpaEntity.convertToDomainWithFriends();
-    }
-
-    @Override
-    public List<Player> findAllFriends(UUID playerId) {
-        final List<PlayerJpaEntity> friends = playerJpaRepository.findAllFriends(playerId);
-
-        return friends.stream().map(PlayerJpaEntity::convertToDomain).toList();
-    }
-
-    @Override
-    public List<Player> searchForFriend(String nickName) {
-        final List<PlayerJpaEntity> friends = playerJpaRepository.findByNicknameIgnoringCase(nickName);
-
-        return friends.stream().map(PlayerJpaEntity::convertToDomain).toList();
-    }
-
-    @Override
-    public void savePlayerWithFriends(Player player) {
-        final PlayerJpaEntity playerJpaEntity = playerJpaRepository.findByIdWithFriends(player.getId().id())
-                .orElseThrow(() -> new EntityNotFoundException("Player was not found"));
-
-        Set<PlayerJpaEntity> newFriends = player.getFriends().stream()
-                .map(friend -> playerJpaRepository.findById(friend.getId().id())
-                        .orElseThrow(() -> new EntityNotFoundException("Friend not found: " + friend.getId().id())))
-                .collect(Collectors.toSet());
-
-        playerJpaEntity.getFriends().removeIf(existingFriend -> !newFriends.contains(existingFriend));
-
-        newFriends.forEach(newFriend -> {
-            if (!playerJpaEntity.getFriends().contains(newFriend)) {
-                playerJpaEntity.addFriend(newFriend);
-            }
-        });
-
-        playerJpaRepository.save(playerJpaEntity);
+        return new Friends(playerJpaEntities.stream().map(PlayerJpaEntity::convertToDomain).collect(Collectors.toSet()));
     }
 }

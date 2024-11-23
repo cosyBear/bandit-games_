@@ -31,24 +31,6 @@ public class PlayerDto {
         this.gender = gender;
     }
 
-    public static PlayerDto convertToDTOWithFriends(Player player) {
-        return new PlayerDto(
-                player.getId().id(),
-                player.getNickname(),
-                player.getFirstName(),
-                player.getLastName(),
-                player.getGender(),
-                player.getFriends().stream().map(friend -> {
-                    return new PlayerDto(
-                            friend.getId().id(),
-                            friend.getNickname(),
-                            friend.getFirstName(),
-                            friend.getLastName(),
-                            friend.getGender()
-                    );
-                }).collect(Collectors.toSet())
-        );
-    }
 
     public static PlayerDto convertToDTO(Player player) {
         return new PlayerDto(

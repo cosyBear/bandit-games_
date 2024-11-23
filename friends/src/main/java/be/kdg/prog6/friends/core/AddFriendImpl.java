@@ -1,8 +1,10 @@
 package be.kdg.prog6.friends.core;
 
+import be.kdg.prog6.friends.domain.Friends;
 import be.kdg.prog6.friends.domain.Player;
 import be.kdg.prog6.friends.port.in.AddFriend;
 import be.kdg.prog6.friends.port.in.command.AddFriendCommand;
+import be.kdg.prog6.friends.port.out.FriendsPort;
 import be.kdg.prog6.friends.port.out.PlayerPort;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -13,17 +15,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class AddFriendImpl implements AddFriend {
     private final PlayerPort playerPort;
+    private final FriendsPort friendsPort;
 
     @Override
     @Transactional
     public Player addFriend(AddFriendCommand command) {
-        final Player player = playerPort.findByIdWithFriends(command.playerId());
+        final Friends friends = friendsPort.findAll(command.playerId());
         final Player friend = playerPort.findById(command.friendId());
 
-        player.addFriend(friend);
+        friends.addFriend(friend);
 
-        playerPort.savePlayerWithFriends(player);
+        friendsPort.saveAllFriends(friends, command.playerId());
 
-        return player;
+        return friend;
     }
 }

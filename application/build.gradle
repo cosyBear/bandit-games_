@@ -12,9 +12,14 @@ bootJar {
 }
 
 
-
 dependencies {
     implementation project(":common")
     implementation project(':library')
     implementation project(':friends')
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    testImplementation 'org.springframework.security:spring-security-test'
+
+    runtimeOnly 'org.postgresql:postgresql'
 }

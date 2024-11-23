@@ -17,33 +17,28 @@ public class Player {
     private String lastName;
     private Gender gender;
     private Address address;
-    private Set<Player> friends = new HashSet<>();
 
     public record PlayerId(UUID id) {
     }
 
-    public Player(PlayerId id, String nickname, String firstName, String lastName, Gender gender, Address address) {
+    public Player(PlayerId id, String nickname, String firstName, String lastName, Gender gender) {
         this.id = id;
         this.nickname = nickname;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
-        this.address = address;
     }
 
-    public void addFriend(Player player) {
-        if (this.friends.contains(player)) {
-            throw new IllegalArgumentException("Friend with ID " + player.getId().id() + " is already in the friends set.");
-        }
-        this.friends.add(player);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return Objects.equals(id, player.id);
     }
 
-
-    public void removeFriend(Player player) {
-        if (this.friends.contains(player)) {
-            this.friends.remove(player);
-        } else {
-            throw new IllegalArgumentException("Friend with ID " + player.getId().id + "is not a friend of this player.");
-        }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

@@ -9,10 +9,10 @@ import be.kdg.prog6.libraryBoundedContext.port.out.LibraryLoadPort;
 import be.kdg.prog6.libraryBoundedContext.util.Mapper;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GameQuery;
 import be.kdg.prog6.libraryBoundedContext.port.in.game.GameQueryUseCase;
-import jakarta.transaction.Transactional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -30,6 +30,7 @@ public class GameQueryUseCaseImp implements GameQueryUseCase {
 
 
     @Override
+    @Transactional(readOnly = true)
     public List<GameQuery> getAllAvailableGame(RetrieveAllGamesQuery query) {
 
         return libraryLoadPort.fetchLibraryWithAllAvailableGames(query.playerId()).getGames().stream()
@@ -39,6 +40,7 @@ public class GameQueryUseCaseImp implements GameQueryUseCase {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<GameQuery> fetchGamesByName(FetchGamesByNameQuery query) {
         Library library = libraryLoadPort.fetchLibraryWithGamesByNamePattern(query.playerId(), query.gameName());
         if (library == null || library.getGames().isEmpty()) {
@@ -52,6 +54,7 @@ public class GameQueryUseCaseImp implements GameQueryUseCase {
 
 
     @Override
+    @Transactional(readOnly = true)
     public List<GameQuery> getGamesByCategory(GetGamesByCategoryQuery query) {
         Library library  = libraryLoadPort.fetchLibraryWithGamesByCategory(query.playerId(), query.category());
         return library.getGames().stream()

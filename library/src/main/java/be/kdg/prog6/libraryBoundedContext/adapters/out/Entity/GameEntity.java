@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(catalog = "library")
-@Data   @AllArgsConstructor
+@Table(catalog = "library", name = "game")
+@Data  @AllArgsConstructor
 public class GameEntity {
 
     @Id
@@ -21,8 +21,7 @@ public class GameEntity {
     @Enumerated(EnumType.STRING)
     private GameTypeEntity gameType;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH}, orphanRemoval = false)
-    @JoinColumn(name = "game_id")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "gameEntity")
     private List<AchievementEntity> achievementList = new ArrayList<>();
 
     private String imageUrl;
@@ -31,7 +30,7 @@ public class GameEntity {
 
     @ManyToOne()
     @JoinColumn(name = "library_id")
-    private LibraryEntity library;
+    private LibraryEntity libraryEntity;
 
     public GameEntity(){
 

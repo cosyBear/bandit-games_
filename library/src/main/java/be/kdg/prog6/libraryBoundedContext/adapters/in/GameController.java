@@ -18,6 +18,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/games")
+@CrossOrigin(origins = "http://localhost:5173")
 public class GameController {
 
     private final GameQueryUseCase gameQueryUseCase;
@@ -29,8 +30,8 @@ public class GameController {
     }
 
 
-    @GetMapping("/all")
-    public ResponseEntity<List<GameQuery>> fetchAllAvailableGames(@RequestParam UUID playerId) {
+    @GetMapping("/{playerId}")
+    public ResponseEntity<List<GameQuery>> fetchAllAvailableGames(@PathVariable UUID playerId) {
         RetrieveAllGamesQuery query = new RetrieveAllGamesQuery(new PlayerId(playerId));
         return ResponseEntity.status(HttpStatus.OK).body(gameQueryUseCase.getAllAvailableGame(query));
     }

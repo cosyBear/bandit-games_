@@ -9,7 +9,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-@Table(catalog = "library")
+@Table(catalog = "library", name = "achievement")
 public class AchievementEntity {
 
     @Id
@@ -23,6 +23,11 @@ public class AchievementEntity {
     private String imageUrl;
 
     private boolean achieved;
+
+    @ManyToOne
+    @JoinColumn(name = "game_id")
+    private GameEntity gameEntity;
+
     public AchievementEntity(){
 
     }

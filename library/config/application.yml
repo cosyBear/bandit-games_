@@ -9,20 +9,22 @@ spring:
   config:
     additional-location: ${SPRING_CONFIG_ADDITIONAL_LOCATION}
   datasource:
-    url: jdbc:mysql://localhost:3306/library
+    url: "jdbc:postgresql://localhost:5434/library"
     username: user
     password: password
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: org.postgresql.Driver
   sql:
     init:
       mode: always
+      show-sql: true
   jpa:
-    open-in-view: true
+    open-in-view: false
     hibernate:
       ddl-auto: create
-    show-sql: false
-    database-platform: org.hibernate.dialect.MySQLDialect
-  logging:
-    level:
-      org.hibernate.SQL: info
-      org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+      show-sql: true
+    defer-datasource-initialization: true
+logging:
+  level:
+    sql: debug
+    org.hibernate.SQL: info
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE

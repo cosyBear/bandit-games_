@@ -20,7 +20,7 @@ public class Mapper {
                 .map(Mapper::mapToDomain)
                 .toList();
 
-        PlayerId playerId = new PlayerId(entity.getPlayer().getPlayerId());
+        PlayerId playerId = new PlayerId(entity.getPlayerEntity().getPlayerId());
         return new Library(
                 new LibraryId(entity.getLibraryId()),
                 gameList,
@@ -37,7 +37,7 @@ public class Mapper {
         List<GameEntity> gameEntities = library.getGames().stream()
                 .map(game -> {
                     GameEntity gameEntity = mapToEntity(game);
-                    gameEntity.setLibrary(libraryEntity); // Set the back-reference
+                    gameEntity.setLibraryEntity(libraryEntity); // Set the back-reference
                     return gameEntity;
                 })
                 .toList();
@@ -49,7 +49,7 @@ public class Mapper {
         playerEntity.setPlayerId(library.getPlayerId().Id());
         playerEntity.setLibrary(libraryEntity); // Set the bidirectional relationship
 
-        libraryEntity.setPlayer(playerEntity);
+        libraryEntity.setPlayerEntity(playerEntity);
         return libraryEntity;
     }
 

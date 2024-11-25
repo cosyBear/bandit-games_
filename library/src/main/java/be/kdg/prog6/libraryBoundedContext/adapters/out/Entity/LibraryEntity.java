@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(catalog = "library")
+@Table(catalog = "library", name = "library")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,9 +20,9 @@ public class LibraryEntity {
     private UUID libraryId;
 
     @OneToOne
-    @JoinColumn(name = "player_id", referencedColumnName = "playerId")
-    private PlayerEntity player;
+    @JoinColumn(name = "player_id")
+    private PlayerEntity playerEntity;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "library")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "libraryEntity")
     private List<GameEntity> games = new ArrayList<>();
 }

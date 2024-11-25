@@ -10,13 +10,14 @@ import java.util.UUID;
 
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor
+@Table(catalog = "library", name = "player")
 public class PlayerEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID playerId;
 
-    @OneToOne(mappedBy = "player", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "playerEntity", cascade = CascadeType.ALL)
     private LibraryEntity library;
 
 

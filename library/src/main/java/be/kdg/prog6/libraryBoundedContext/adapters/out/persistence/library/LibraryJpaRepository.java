@@ -12,18 +12,18 @@ import java.util.UUID;
 public interface LibraryJpaRepository  extends JpaRepository<LibraryEntity, UUID> {
 
 
-    @Query("SELECT l FROM LibraryEntity l LEFT JOIN FETCH l.games WHERE l.player.playerId = :playerId")
+    @Query("SELECT l FROM LibraryEntity l LEFT JOIN FETCH l.games WHERE l.playerEntity.playerId = :playerId")
     LibraryEntity fetchLibraryWithAllAvailableGames(@Param("playerId") UUID playerId);
 
 
     @Query("SELECT l FROM LibraryEntity l LEFT JOIN FETCH l.games g " +
-            "WHERE l.player.playerId = :playerId " +
+            "WHERE l.playerEntity.playerId = :playerId " +
             "AND LOWER(g.gameName) LIKE CONCAT('%', LOWER(:gameName), '%')")
     LibraryEntity fetchLibraryWithGamesByNamePattern(@Param("playerId") UUID playerId, @Param("gameName") String gameName);
 
 
     @Query("SELECT l FROM LibraryEntity l LEFT JOIN FETCH l.games g " +
-            "WHERE l.player.playerId = :playerId AND g.gameType = :gameType")
+            "WHERE l.playerEntity.playerId = :playerId AND g.gameType = :gameType")
     LibraryEntity fetchLibraryWithGamesByCategory(@Param("playerId") UUID playerId, @Param("gameType") GameTypeEntity gameType);
 
 

@@ -25,6 +25,7 @@
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/friends" />
             <option value="$PROJECT_DIR$/library" />
+            <option value="$PROJECT_DIR$/lobby" />
           </set>
         </option>
       </GradleProjectSettings>

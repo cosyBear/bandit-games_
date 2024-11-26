@@ -1,20 +1,13 @@
 #!/bin/bash
 set -e
 
-echo "Running init_db.sh to create library and friends..."
+echo "Running init_db.sh to create library and friends databases..."
 
-# Create first database 'warehouse_db'
-mysql -u root -p${MYSQL_ROOT_PASSWORD} << EOF
-CREATE DATABASE IF NOT EXISTS warehouse_db;
-GRANT ALL PRIVILEGES ON library.* TO '${MYSQL_USER}'@'%';
-FLUSH PRIVILEGES;
-EOF
-
-# Create second database 'water_db'
-mysql -u root -p${MYSQL_ROOT_PASSWORD} << EOF
-CREATE DATABASE IF NOT EXISTS water_db;
-GRANT ALL PRIVILEGES ON friends.* TO '${MYSQL_USER}'@'%';
-FLUSH PRIVILEGES;
-EOF
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
+    CREATE DATABASE library;
+    CREATE DATABASE friends;
+    GRANT ALL PRIVILEGES ON DATABASE library TO $POSTGRES_USER;
+    GRANT ALL PRIVILEGES ON DATABASE friends TO $POSTGRES_USER;
+EOSQL
 
 echo "Finished running init_db.sh"

@@ -13,6 +13,7 @@
         - backend
       volumes:
         - ./postgres/data:/var/lib/postgresql/data
+        - ./postgres/init_db.sh:/docker-entrypoint-initdb.d/init_db.sh:ro
 
     app_rabbitmq:
       image: rabbitmq:3.13.7-management-alpine

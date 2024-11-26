@@ -1,0 +1,61 @@
+image: gradle:8.1-jdk17
+
+before_script:
+  - chmod +x gradlew
+  - GRADLE_USER_HOME="$(pwd)/.gradle"
+  - export GRADLE_USER_HOME
+
+stages:
+  - build
+  - test
+
+variables:
+  MODULES: "application common library friends"
+  TEST_ONLY_MODULES: "friends"
+  DOCKER_HOST: "tcp://docker:2375"
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_DRIVER: overlay2
+
+cache:
+  key: "$CI_COMMIT_REF_NAME"
+  paths:
+    - .gradle/caches/
+    - gradle/wrapper/
+    - buildSrc/.gradle/
+
+build:
+  stage: build
+  script:
+    - echo "Building Changed Modules"
+    - |
+      for MODULE in $MODULES; do
+        if git diff --name-only $CI_COMMIT_BEFORE_SHA $CI_COMMIT_SHA | grep -q "^$MODULE/"; then
+          echo "Building module $MODULE"
+          ./gradlew --no-daemon --build-cache --parallel :$MODULE:build -x test
+        else
+          echo "Skipping module $MODULE"
+        fi
+      done
+  artifacts:
+    paths:
+      - friends/build/libs/
+      - library/build/libs/
+    when: always
+
+test:
+  stage: test
+  image: gradle:8.1-jdk17
+  services:
+    - name: docker:dind
+      command: [ "--tls=false" ]
+  script:
+    - echo "Running tests with Testcontainers"
+    - ./gradlew $TEST_ONLY_MODULES:test jacocoTestReport --no-daemon --max-workers 4 --info
+  artifacts:
+    paths:
+      - $TEST_ONLY_MODULES/build/test-results/
+      - $TEST_ONLY_MODULES/build/reports/jacoco/
+    when: always
+    reports:
+      junit: $TEST_ONLY_MODULES/build/test-results/test/*.xml
+  coverage: '/TOTAL\s+\d+\%\s+/'

@@ -1,19 +1,4 @@
   services:
-#    mysql_app_db:
-#      image: mysql:9.0.1
-#      restart: no
-#      environment:
-#        MYSQL_DATABASE: 'library'
-#        MYSQL_USER: 'user'
-#        MYSQL_PASSWORD: 'password'
-#        MYSQL_ROOT_PASSWORD: 'password'
-#      ports:
-#        - '3306:3306'
-#      networks:
-#        - backend
-#      volumes:
-#        - ./mysql/data:/var/lib/mysql
-
     library_postgres_app_db:
       image: postgres:15.3-alpine
       restart: no
@@ -22,12 +7,25 @@
         POSTGRES_USER: 'user'
         POSTGRES_PASSWORD: 'password'
       ports:
-        - '5434:5432'
+        - '5432:5432'
       networks:
         - backend
       volumes:
         - ./postgres/data:/var/lib/postgresql/data
 
+    friends_postgres_app_db:
+      image: postgres:15.3-alpine
+      restart: no
+      environment:
+        POSTGRES_DB: 'friends'
+        POSTGRES_USER: 'user'
+        POSTGRES_PASSWORD: 'password'
+      ports:
+        - '5433:5432'
+      networks:
+        - backend
+      volumes:
+        - ./postgres/data:/var/lib/postgresql/data
 
     app_rabbitmq:
       image: rabbitmq:3.13.7-management-alpine

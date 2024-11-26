@@ -3,7 +3,26 @@ server:
   servlet:
     context-path: /api
 
-
 spring:
+  sql:
+    init:
+      mode: always
+      logging: debug
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: create-drop
+      show-sql: true
+    defer-datasource-initialization: true
+  datasource:
+    url: "jdbc:postgresql://localhost:5434/friends"
+    username: user
+    password: password
+    driver-class-name: org.postgresql.Driver
   config:
     additional-location: ${SPRING_CONFIG_ADDITIONAL_LOCATION}
+
+logging:
+  level:
+    be.kdg.prog6.friends: debug
+    org.springframework: info

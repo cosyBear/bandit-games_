@@ -1,11 +1,54 @@
 plugins {
     id 'module-config'
+    id 'jacoco'
+}
+
+tasks.withType(org.springframework.boot.gradle.tasks.bundling.BootJar).configureEach {
+    enabled = false
+}
+
+test {
+    finalizedBy jacocoTestReport
 }
 
 
+jacocoTestReport {
+    dependsOn test
+}
+
+tasks.register('unitTest', Test) {
+    useJUnitPlatform()
+    exclude '**/*TestIntegration.class'
+}
+
+tasks.register('integrationTest', Test) {
+    useJUnitPlatform()
+    include '**/*TestIntegration.class'
+}
 
 dependencies {
     implementation project(':common')
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation "org.modelmapper:modelmapper:3.2.0"
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'mysql:mysql-connector-java:8.0.33'
+
+    compileOnly 'org.projectlombok:lombok:1.18.34'
+    annotationProcessor 'org.projectlombok:lombok:1.18.34'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.34'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.34'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.mockito:mockito-core:5.3.1'
+    testImplementation 'com.tngtech.archunit:archunit-junit5:1.3.0'
+    testImplementation 'org.testcontainers:testcontainers:1.19.0'
+    testImplementation 'org.testcontainers:junit-jupiter:1.19.0'
+
+    testImplementation 'org.testcontainers:mysql:1.19.0'
+
+    runtimeOnly 'org.postgresql:postgresql'
+
 }

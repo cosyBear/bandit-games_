@@ -3,17 +3,20 @@ package be.kdg.prog6.libraryBoundedContext.adapters.out.Entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.UUID;
 
 @Entity
 @Getter
 @Setter
-@Table(catalog = "library", name = "achievement")
+@Table(name = "achievement", catalog = "library")
 public class AchievementEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JdbcTypeCode(SqlTypes.VARCHAR)
     private UUID achievementId;
 
     private String achievementName;

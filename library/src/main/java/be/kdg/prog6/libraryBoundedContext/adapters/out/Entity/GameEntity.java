@@ -2,6 +2,8 @@ package be.kdg.prog6.libraryBoundedContext.adapters.out.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,7 @@ public class GameEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JdbcTypeCode(SqlTypes.VARCHAR)
     private UUID gameId;
 
     private String gameName;

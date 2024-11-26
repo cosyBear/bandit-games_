@@ -1,16 +1,18 @@
 package be.kdg.prog6.friends.adapters.out.entity;
 
-import be.kdg.prog6.friends.domain.Address;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.UUID;
 
-@Entity @Table(catalog = "friends", name = "address")
+@Entity @Table(name = "address", catalog = "friends")
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class AddressJpaEntity {
 
     @Id
+    @JdbcTypeCode(SqlTypes.VARCHAR)
     private UUID id;
     private String street;
     private String city;
@@ -19,24 +21,4 @@ public class AddressJpaEntity {
     @OneToOne
     @JoinColumn(name = "player_id")
     private PlayerJpaEntity playerJpaEntity;
-
-    public AddressJpaEntity(UUID id, String street, String city, String country, String houseNumber) {
-        this.id = id;
-        this.street = street;
-        this.city = city;
-        this.country = country;
-        this.houseNumber = houseNumber;
-    }
-
-
-
-    public Address convertToDomain(){
-        return new Address(
-                new Address.AddressId(this.id),
-                this.street,
-                this.city,
-                this.country,
-                this.houseNumber
-        );
-    }
 }

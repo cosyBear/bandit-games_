@@ -15,12 +15,13 @@ spring:
       show-sql: true
     defer-datasource-initialization: true
   datasource:
-    url: "jdbc:postgresql://localhost:5432/bandit_games"
+    url: "jdbc:mysql://localhost:3306/"
     username: user
     password: password
-    driver-class-name: org.postgresql.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
   config:
     additional-location: ${SPRING_CONFIG_ADDITIONAL_LOCATION}
+
 
 logging:
   level:

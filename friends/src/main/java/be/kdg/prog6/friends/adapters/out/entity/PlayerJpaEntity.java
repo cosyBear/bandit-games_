@@ -4,14 +4,17 @@ import be.kdg.prog6.friends.domain.Gender;
 import be.kdg.prog6.friends.domain.Player;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.*;
 
-@Entity @Table(name = "player")
+@Entity @Table(name = "player", catalog = "friends")
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class PlayerJpaEntity {
 
     @Id
+    @JdbcTypeCode(SqlTypes.VARCHAR)
     private UUID id;
     private String nickname;
     private String firstName;

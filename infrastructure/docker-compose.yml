@@ -1,19 +1,20 @@
   services:
 
-    postgres_app_db:
-      image: postgres:15.3-alpine
+    mysql_app_db:
+      image: mysql:9.0.1
       restart: no
       environment:
-        POSTGRES_DB: 'bandit_games'
-        POSTGRES_USER: 'user'
-        POSTGRES_PASSWORD: 'password'
+        MYSQL_DATABASE: 'app_db'
+        MYSQL_USER: 'user'
+        MYSQL_PASSWORD: 'password'
+        MYSQL_ROOT_PASSWORD: 'password'
       ports:
-        - '5432:5432'
+        - '3306:3306'
       networks:
         - backend
       volumes:
-        - ./postgres/data:/var/lib/postgresql/data
-        - ./init_db.sh:/docker-entrypoint-initdb.d/init_db.sh:ro
+        - ./mysql/data:/var/lib/mysql
+
 
     app_rabbitmq:
       image: rabbitmq:3.13.7-management-alpine

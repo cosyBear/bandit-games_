@@ -7,6 +7,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.UUID;
 
@@ -17,12 +19,13 @@ import java.util.UUID;
 @Table(name = "lobby", catalog = "friends")
 public class LobbyJpaEntity {
 
-
     @Id
+    @JdbcTypeCode(SqlTypes.VARCHAR)
     private UUID id;
     @OneToOne
     @JoinColumn(name = "player_id")
     private PlayerJpaEntity playerJpaEntity;
+    @JdbcTypeCode(SqlTypes.VARCHAR)
     private UUID gameId;
 
     public Lobby toDomain() {

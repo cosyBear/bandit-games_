@@ -11,7 +11,8 @@ import java.util.UUID;
 
 @Entity
 @Table(catalog = "library", name = "game")
-@Data  @AllArgsConstructor
+@Data
+@AllArgsConstructor
 public class GameEntity {
 
     @Id
@@ -28,6 +29,7 @@ public class GameEntity {
     private List<AchievementEntity> achievementList = new ArrayList<>();
 
     private String imageUrl;
+    private String backgroundImageUrl;
 
     private boolean favourite;
 
@@ -35,7 +37,7 @@ public class GameEntity {
     @JoinColumn(name = "library_id")
     private LibraryEntity libraryEntity;
 
-    public GameEntity(){
+    public GameEntity() {
 
     }
 

@@ -82,8 +82,9 @@ public class Mapper {
                 entity.getGameName(),
                 GameType.valueOf(entity.getGameType().name()),
                 achievements,
+                entity.isFavourite(),
                 entity.getImageUrl(),
-                entity.isFavourite()
+                entity.getBackgroundImageUrl()
         );
     }
 
@@ -123,7 +124,8 @@ public class Mapper {
                 game.getGameType(),
                 achievementQueryList,
                 game.isFavourite(),
-                game.getImageUrl()
+                game.getImageUrl(),
+                game.getBackgroundImageUrl()
         );
     }
 

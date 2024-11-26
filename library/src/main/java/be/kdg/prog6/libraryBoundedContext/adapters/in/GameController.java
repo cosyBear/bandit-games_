@@ -9,6 +9,7 @@ import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GetGamesByCategoryQu
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.RetrieveAllGamesQuery;
 import be.kdg.prog6.libraryBoundedContext.domain.GameType;
 import be.kdg.prog6.libraryBoundedContext.port.in.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,16 +20,11 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/games")
 @CrossOrigin(origins = "http://localhost:5173")
+@RequiredArgsConstructor
 public class GameController {
 
     private final GameQueryUseCase gameQueryUseCase;
     private final GameUseCase gameUseCase;
-
-    public GameController(GameQueryUseCase gameQueryUseCase, GameUseCase gameUseCase) {
-        this.gameQueryUseCase = gameQueryUseCase;
-        this.gameUseCase = gameUseCase;
-    }
-
 
     @GetMapping("/{playerId}")
     public ResponseEntity<List<GameQuery>> fetchAllAvailableGames(@PathVariable UUID playerId) {
@@ -38,8 +34,8 @@ public class GameController {
 
     @GetMapping("/search")
     public ResponseEntity<List<GameQuery>> fetchGamesByName(
-            @RequestParam UUID playerId,
-            @RequestParam String gameName) {
+            @RequestParam("player") UUID playerId,
+            @RequestParam("game") String gameName) {
 
         FetchGamesByNameQuery query = new FetchGamesByNameQuery(new PlayerId(playerId), gameName);
 

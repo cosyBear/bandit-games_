@@ -4,14 +4,14 @@ import be.kdg.prog6.common.events.util.AchievementAlreadyEarnedException;
 import be.kdg.prog6.common.events.util.AchievementNotFoundException;
 import be.kdg.prog6.common.events.util.GameAlreadyMarkedAsFavoriteException;
 import be.kdg.prog6.libraryBoundedContext.domain.id.GameId;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Game {
     private GameId gameId;
 
@@ -19,15 +19,12 @@ public class Game {
 
     private GameType gameType;
 
-    List<Achievement> achievementList;
+    List<Achievement> achievementList = new ArrayList<>();
 
     private boolean favourite;
 
     private String imageUrl;
-
-    public Game() {
-        achievementList = new ArrayList<>();
-    }
+    private String backgroundImageUrl;
 
     public Game(GameId gameId, String gameName, GameType gameType, List<Achievement> achievementList, String imageUrl, boolean favourite) {
         this.gameId = gameId;

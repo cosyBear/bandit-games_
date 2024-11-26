@@ -1,11 +1,14 @@
 package be.kdg.prog6.libraryBoundedContext.port.in.gameQuery;
 import be.kdg.prog6.libraryBoundedContext.domain.GameType;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
-@Getter
-@Setter
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class GameQuery {
 
     private String gameName;
@@ -17,15 +20,5 @@ public class GameQuery {
     private boolean favourite;
 
     private String imageUrl;
-
-    public GameQuery() {
-    }
-
-    public GameQuery(String gameName, GameType gameType, List<AchievementQuery> achievementList, boolean favourite, String imageUrl) {
-        this.gameName = gameName;
-        this.gameType = gameType;
-        this.achievementList = achievementList;
-        this.favourite = favourite;
-        this.imageUrl = imageUrl;
-    }
+    private String backgroundImageUrl;
 }

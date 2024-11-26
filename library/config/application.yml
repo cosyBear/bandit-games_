@@ -1,9 +1,30 @@
 server:
   port: ${PORT:8091}
   servlet:
-    context-path: /bca
-
+    context-path: /api
 
 spring:
+  main:
+    allow-bean-definition-overriding: true
   config:
     additional-location: ${SPRING_CONFIG_ADDITIONAL_LOCATION}
+  datasource:
+    url: "jdbc:postgresql://localhost:5434/library"
+    username: user
+    password: password
+    driver-class-name: org.postgresql.Driver
+  sql:
+    init:
+      mode: always
+      show-sql: true
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: create
+      show-sql: true
+    defer-datasource-initialization: true
+logging:
+  level:
+    sql: debug
+    org.hibernate.SQL: info
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE

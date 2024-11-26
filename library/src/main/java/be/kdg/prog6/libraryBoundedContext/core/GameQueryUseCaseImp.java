@@ -1,0 +1,66 @@
+package be.kdg.prog6.libraryBoundedContext.core;
+import be.kdg.prog6.common.events.util.GameNotFoundException;
+import be.kdg.prog6.libraryBoundedContext.domain.Game;
+import be.kdg.prog6.libraryBoundedContext.domain.Library;
+import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.FetchGamesByNameQuery;
+import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GetGamesByCategoryQuery;
+import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.RetrieveAllGamesQuery;
+import be.kdg.prog6.libraryBoundedContext.port.out.LibraryLoadPort;
+import be.kdg.prog6.libraryBoundedContext.util.Mapper;
+import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GameQuery;
+import be.kdg.prog6.libraryBoundedContext.port.in.game.GameQueryUseCase;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+@Service
+public class GameQueryUseCaseImp implements GameQueryUseCase {
+
+
+    private final LibraryLoadPort libraryLoadPort;
+
+    private static final Logger logger = LogManager.getLogger(GameQueryUseCaseImp.class);
+
+    public GameQueryUseCaseImp(LibraryLoadPort libraryLoadPort) {
+        this.libraryLoadPort = libraryLoadPort;
+    }
+
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<GameQuery> getAllAvailableGame(RetrieveAllGamesQuery query) {
+
+        return libraryLoadPort.fetchLibraryWithAllAvailableGames(query.playerId()).getGames().stream()
+                .map(Mapper::toQuery)
+                .toList();
+
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<GameQuery> fetchGamesByName(FetchGamesByNameQuery query) {
+        Library library = libraryLoadPort.fetchLibraryWithGamesByNamePattern(query.playerId(), query.gameName());
+        if (library == null || library.getGames().isEmpty()) {
+            throw new GameNotFoundException("No games found matching: " + query.gameName());
+        }
+
+        return library.getGames().stream()
+                .map(Mapper::toQuery)
+                .toList();
+    }
+
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<GameQuery> getGamesByCategory(GetGamesByCategoryQuery query) {
+        Library library  = libraryLoadPort.fetchLibraryWithGamesByCategory(query.playerId(), query.category());
+        return library.getGames().stream()
+                .map(Mapper::toQuery)
+                .toList();
+    }
+
+
+}

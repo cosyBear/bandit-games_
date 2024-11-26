@@ -2,10 +2,13 @@ package be.kdg.prog6.friends.adapters.out;
 
 import be.kdg.prog6.common.exception.EntityNotFoundException;
 import be.kdg.prog6.friends.adapters.out.entity.LobbyJpaEntity;
+import be.kdg.prog6.friends.adapters.out.entity.PlayerJpaEntity;
 import be.kdg.prog6.friends.adapters.out.repository.LobbyJpaRepository;
+import be.kdg.prog6.friends.adapters.out.repository.PlayerJpaRepository;
 import be.kdg.prog6.friends.domain.Lobby;
 import be.kdg.prog6.friends.port.out.LobbyLoadPort;
 import be.kdg.prog6.friends.port.out.LobbySavePort;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -13,36 +16,26 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
+@RequiredArgsConstructor
 public class LobbyDatabaseAdapter implements LobbySavePort, LobbyLoadPort {
 
     private final LobbyJpaRepository lobbyJpaRepository;
-
-    public LobbyDatabaseAdapter(LobbyJpaRepository lobbyJpaRepository) {
-        this.lobbyJpaRepository = lobbyJpaRepository;
-    }
+    private final PlayerJpaRepository playerJpaRepository;
 
     @Override
     public Lobby loadLobbies(UUID playerId) {
-       LobbyJpaEntity lobbyJpaEntity = lobbyJpaRepository.findAllByPlayerId(playerId);
+       final LobbyJpaEntity lobbyJpaEntity = lobbyJpaRepository.findAllByPlayerId(playerId)
+               .orElseThrow(() -> new EntityNotFoundException("Lobby was not found for player " + playerId));
 
-        if (lobbyJpaEntity != null) {
-            return lobbyJpaEntity.toDomain();
-        } else {
-            throw new EntityNotFoundException("Lobby with id " + playerId + " not found");
-        }
+       return lobbyJpaEntity.toDomain();
     }
 
     @Override
     public void save(Lobby domain) {
-        LobbyJpaEntity lobbyJpaEntity = toEntity(domain);
-        lobbyJpaRepository.save(lobbyJpaEntity);
-    }
+        final PlayerJpaEntity playerJpaEntity = playerJpaRepository.findById(domain.getPlayer().getId().id())
+                .orElseThrow(() -> new EntityNotFoundException("Player with id " + domain.getPlayer().getId().id() + " not found"));
 
-    public LobbyJpaEntity toEntity(Lobby domain) {
-        return new LobbyJpaEntity(
-                domain.getLobbyId().id(),
-                domain.getPlayerId(),
-                domain.getGameId()
-        );
+        final LobbyJpaEntity lobbyJpaEntity = LobbyJpaEntity.fromDomain(domain, playerJpaEntity);
+        lobbyJpaRepository.save(lobbyJpaEntity);
     }
 }

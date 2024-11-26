@@ -21,7 +21,7 @@ public class PlayerJpaEntity {
     private AddressJpaEntity addressJpaEntity;
 
     @OneToOne(mappedBy = "playerJpaEntity", orphanRemoval = true, cascade = CascadeType.ALL)
-    private LobbyJpaEntity inviteJpaEntity;
+    private LobbyJpaEntity lobbyJpaEntity;
 
     public PlayerJpaEntity(UUID id, String nickname, String firstName, String lastName, String gender) {
         this.id = id;

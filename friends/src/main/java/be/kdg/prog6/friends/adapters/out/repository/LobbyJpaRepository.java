@@ -5,13 +5,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Optional;
 import java.util.UUID;
 
 public interface LobbyJpaRepository extends JpaRepository<LobbyJpaEntity, UUID> {
 
 
-    @Query("select l from LobbyJpaEntity l where l.player.id = :playerId")
-    LobbyJpaEntity findAllByPlayerId(@Param("playerId") UUID playerId);
+    @Query("select l from LobbyJpaEntity l where l.playerJpaEntity.id = :playerId")
+    Optional<LobbyJpaEntity> findAllByPlayerId(@Param("playerId") UUID playerId);
 
 }
 

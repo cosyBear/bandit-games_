@@ -8,34 +8,32 @@ import be.kdg.prog6.friends.port.in.Query.LobbyQuery;
 import be.kdg.prog6.friends.port.in.Query.LoadLobbiesQuery;
 import be.kdg.prog6.friends.port.in.lobby.LoadLobbiesUseCase;
 import be.kdg.prog6.friends.port.out.LobbyLoadPort;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class LoadFriendsLobbies implements LoadLobbiesUseCase {
 
     private final LoadFriends loadFriends;
     private final LobbyLoadPort lobbyLoadPort;
 
-    public LoadFriendsLobbies(LoadFriends loadFriends, LobbyLoadPort lobbyLoadPort) {
-        this.loadFriends = loadFriends;
-        this.lobbyLoadPort = lobbyLoadPort;
-    }
-
-
     @Override
+    @Transactional(readOnly = true)
     public List<LobbyQuery> fetchFriendsLobbies(LoadLobbiesQuery query) {
 
-        Friends friends  = loadFriends.getAllFriends(query.playerId());
+        Friends friends = loadFriends.getAllFriends(query.playerId());
 
-       List<Lobby> lobbies =  friends.getFriends().stream().map(
-               lobby -> lobbyLoadPort.loadLobbies(lobby.getId().id())
+        List<Lobby> lobbies = friends.getFriends().stream().map(
+                lobby -> lobbyLoadPort.loadLobbies(lobby.getId().id())
 
         ).toList();
 
         return lobbies.stream().map(
-                lobby -> new LobbyQuery(lobby.getLobbyId().id(),lobby.getGameId(),lobby.getPlayerId())
+                lobby -> new LobbyQuery(lobby.getId().id(), lobby.getGameId(), lobby.getPlayer().getId().id())
         ).toList();
     }
 }

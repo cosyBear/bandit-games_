@@ -14,7 +14,7 @@ services:
   #      volumes:
   #        - ./mysql/data:/var/lib/mysql
 
-  library_postgres_app_db:
+  friends_postgres_app_db:
     image: postgres:15.3-alpine
     restart: no
     environment:

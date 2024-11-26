@@ -12,9 +12,9 @@ import java.util.UUID;
 
 public class Lobby {
 
-    private LobbyId lobbyId;
+    private LobbyId id;
     private UUID gameId;
-    private UUID playerId;
+    private Player player;
 
 
 }

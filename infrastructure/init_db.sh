@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-echo "Running init_db.sh to create library and friends databases..."
+echo "Creating additional databases: 'library' and 'friends'..."
 
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
     CREATE DATABASE library;
@@ -10,4 +10,4 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
     GRANT ALL PRIVILEGES ON DATABASE friends TO $POSTGRES_USER;
 EOSQL
 
-echo "Finished running init_db.sh"
+echo "Databases 'library' and 'friends' created successfully."

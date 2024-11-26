@@ -21,9 +21,9 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   config:
     additional-location: ${SPRING_CONFIG_ADDITIONAL_LOCATION}
-
-
 logging:
   level:
     be.kdg.prog6.friends: debug
+    be.kdg.prog6.lobby: info
+    be.kdg.prog6.library: info
     org.springframework: info

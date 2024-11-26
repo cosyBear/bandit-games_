@@ -1,0 +1,12 @@
+
+
+
+
+POST http://localhost:8090/api/friends/adduser
+Content-Type: application/json
+
+{
+  "lobbyId": "95592601-d766-4715-a205-fbd13323eee3",
+  "gameId": "95592601-d766-4715-a205-fbd13323fff3",
+  "playerId": "95592601-d766-4715-a205-fbd13323ccc3"
+}

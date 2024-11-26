@@ -1,23 +1,28 @@
+-- Create the main player
 INSERT INTO player (id, nickname, first_name, last_name, gender)
 VALUES
-    ('95592601-d766-4715-a205-fbd13323ccc3', 'TheAce', 'John', 'Doe', 'MALE'),
-    ('95592621-d766-4715-a205-fbd13323ccc3', 'Grigor', 'John', 'Doe', 'MALE'),
-    ('95592701-d766-4715-a205-fbd13323ccc3', 'Peter', 'John', 'Doe', 'MALE'),
-    ('95592821-d766-4715-a205-fbd13323ccc3', 'John', 'John', 'Doe', 'MALE'),
-    ('95592301-d766-4715-a205-fbd13323ccc3', 'Rumus', 'John', 'Doe', 'MALE'),
-    ('95592121-d766-4715-a205-fbd13323ccc3', 'Victor', 'John', 'Doe', 'MALE'),
-    ('95593601-d766-4715-a205-fbd13323ccc3', 'Alice', 'John', 'Doe', 'MALE'),
-    ('95542621-d766-4715-a205-fbd13323ccc3', 'Luffy', 'John', 'Doe', 'MALE');
+    ('95592601-d766-4715-a205-fbd13323ccc3', 'TheAce', 'John', 'Doe', 'MALE');
 
-insert into friends(player_id, friend_id)
-values
-    ('95592601-d766-4715-a205-fbd13323ccc3', '95592621-d766-4715-a205-fbd13323ccc3'),
-    ('95592601-d766-4715-a205-fbd13323ccc3', '95592701-d766-4715-a205-fbd13323ccc3'),
-    ('95592601-d766-4715-a205-fbd13323ccc3', '95592821-d766-4715-a205-fbd13323ccc3'),
-    ('95592601-d766-4715-a205-fbd13323ccc3', '95592301-d766-4715-a205-fbd13323ccc3');
+-- Create friends (other players)
+INSERT INTO player (id, nickname, first_name, last_name, gender)
+VALUES
+    ('c56a4180-65aa-42ec-a945-5fd21dec0538', 'Grigor', 'Grigor', 'Smith', 'MALE'),
+    ('c56a4181-65aa-42ec-a945-5fd21dec0539', 'Peter', 'Peter', 'Johnson', 'MALE'),
+    ('c56a4182-65aa-42ec-a945-5fd21dec0540', 'Alice', 'Alice', 'Williams', 'FEMALE'),
+    ('c56a4183-65aa-42ec-a945-5fd21dec0541', 'Rumus', 'Rumus', 'Brown', 'MALE');
 
--- Insert Lobbies (linked to players)
+-- Establish friendships (link the main player with friends)
+INSERT INTO friends (player_id, friend_id)
+VALUES
+    ('95592601-d766-4715-a205-fbd13323ccc3', 'c56a4180-65aa-42ec-a945-5fd21dec0538'),
+    ('95592601-d766-4715-a205-fbd13323ccc3', 'c56a4181-65aa-42ec-a945-5fd21dec0539'),
+    ('95592601-d766-4715-a205-fbd13323ccc3', 'c56a4182-65aa-42ec-a945-5fd21dec0540'),
+    ('95592601-d766-4715-a205-fbd13323ccc3', 'c56a4183-65aa-42ec-a945-5fd21dec0541');
+
+-- Create lobbies for the friends with valid game_id UUIDs
 INSERT INTO lobby (id, player_id, game_id)
 VALUES
-    ('e5a9ef12-34f6-4874-bc7c-2c83d678c5e6', '95592601-d766-4715-a205-fbd13323ccc3', 'f6ba1023-45e7-4986-cd7d-3d94e789d6f7'),
-    ('f6bae123-56f8-4a97-ce8e-4ea5f890e7f8', '95592621-d766-4715-a205-fbd13323ccc3', '95592701-d766-4715-a205-fbd13323ccc3');
+    ('1d095e14-8c15-4d2b-a2e5-59e7d8ff7129', 'c56a4180-65aa-42ec-a945-5fd21dec0538', '8fae4d9a-8dfb-4d64-95c3-6c6b234e57a1'),
+    ('1d095e15-8c15-4d2b-a2e5-59e7d8ff7130', 'c56a4181-65aa-42ec-a945-5fd21dec0539', '3b3c99a7-e621-401e-89b6-b44f99c12d20'),
+    ('1d095e16-8c15-4d2b-a2e5-59e7d8ff7131', 'c56a4182-65aa-42ec-a945-5fd21dec0540', 'db21cf77-7ed2-4b8c-9aa9-2ac5b20f4a63'),
+    ('1d095e17-8c15-4d2b-a2e5-59e7d8ff7132', 'c56a4183-65aa-42ec-a945-5fd21dec0541', 'a6b95a3f-4095-40c6-aefd-7f6e5fba6011');

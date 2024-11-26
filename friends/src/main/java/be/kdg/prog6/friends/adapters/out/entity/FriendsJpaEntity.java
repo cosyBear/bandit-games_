@@ -5,8 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor @NoArgsConstructor @Data
-@Entity @Table(name="friends", catalog = "friends")
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Entity
+@Table(name="friends", catalog = "friends")
 public class FriendsJpaEntity {
     @EmbeddedId
     private FriendsId id;

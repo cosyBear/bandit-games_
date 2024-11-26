@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/application/integration5.application.main.iml" filepath="$PROJECT_DIR$/.idea/modules/application/integration5.application.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/friends/integration5.friends.main.iml" filepath="$PROJECT_DIR$/.idea/modules/friends/integration5.friends.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/integration5.library.main.iml" filepath="$PROJECT_DIR$/.idea/modules/library/integration5.library.main.iml" />
     </modules>

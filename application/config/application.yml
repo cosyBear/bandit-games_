@@ -15,7 +15,7 @@ spring:
       show-sql: true
     defer-datasource-initialization: true
   datasource:
-    url: "jdbc:postgresql://localhost:5434/friends"
+    url: "jdbc:postgresql://localhost:5432/bandit_games"
     username: user
     password: password
     driver-class-name: org.postgresql.Driver

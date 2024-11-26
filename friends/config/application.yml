@@ -5,5 +5,7 @@ server:
 
 
 spring:
+  main:
+    allow-bean-definition-overriding: true
   config:
     additional-location: ${SPRING_CONFIG_ADDITIONAL_LOCATION}

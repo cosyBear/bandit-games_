@@ -6,11 +6,11 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Entity @Table(name = "player")
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class PlayerJpaEntity {
+
     @Id
     private UUID id;
     private String nickname;
@@ -19,6 +19,9 @@ public class PlayerJpaEntity {
     private String gender;
     @OneToOne(mappedBy = "playerJpaEntity", orphanRemoval = true, cascade = CascadeType.ALL)
     private AddressJpaEntity addressJpaEntity;
+
+    @OneToOne(mappedBy = "playerJpaEntity", orphanRemoval = true, cascade = CascadeType.ALL)
+    private LobbyJpaEntity inviteJpaEntity;
 
     public PlayerJpaEntity(UUID id, String nickname, String firstName, String lastName, String gender) {
         this.id = id;

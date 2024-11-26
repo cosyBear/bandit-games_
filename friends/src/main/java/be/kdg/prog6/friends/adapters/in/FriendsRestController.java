@@ -5,8 +5,11 @@ import be.kdg.prog6.friends.domain.Friends;
 import be.kdg.prog6.friends.domain.Player;
 import be.kdg.prog6.friends.port.in.AddFriend;
 import be.kdg.prog6.friends.port.in.LoadFriends;
+import be.kdg.prog6.friends.port.in.Query.LoadLobbiesQuery;
+import be.kdg.prog6.friends.port.in.Query.LobbyQuery;
 import be.kdg.prog6.friends.port.in.RemoveFriend;
 import be.kdg.prog6.friends.port.in.command.AddFriendCommand;
+import be.kdg.prog6.friends.port.in.lobby.LoadLobbiesUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -24,6 +27,7 @@ public class FriendsRestController {
     private final AddFriend addFriend;
     private final LoadFriends loadFriends;
     private final RemoveFriend removeFriend;
+    private final LoadLobbiesUseCase loadLobbiesUseCase;
 
     @PostMapping
     public ResponseEntity<PlayerDto> addNewFriend(
@@ -69,5 +73,12 @@ public class FriendsRestController {
         removeFriend.removeFriend(friendId, playerId);
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+
+    @GetMapping
+    public ResponseEntity<List<LobbyQuery>> getLobby(LoadLobbiesQuery query) {
+
+        return ResponseEntity.ok().body(loadLobbiesUseCase.fetchFriendsLobbies(query));
     }
 }

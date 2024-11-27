@@ -19,7 +19,7 @@ public class MessagingTopology {
 
 
     private static String LobbyCreatedExchange = "LobbyCreatedExchange";
-    private static String LobbyCreatedQueue = "LobbyExchange";
+    private static String LobbyCreatedQueue = "LobbyCreatedQueue";
     private static String LobbyCreatedRoutingKey = "LobbyCreatedRoutingKey";
 
     private static final String RABBITMQ_USERNAME = "myuser";

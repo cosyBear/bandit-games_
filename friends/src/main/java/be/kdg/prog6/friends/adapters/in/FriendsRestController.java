@@ -7,7 +7,6 @@ import be.kdg.prog6.friends.port.in.AddFriend;
 import be.kdg.prog6.friends.port.in.LoadFriends;
 import be.kdg.prog6.friends.port.in.RemoveFriend;
 import be.kdg.prog6.friends.port.in.command.AddFriendCommand;
-import be.kdg.prog6.friends.port.in.lobby.LobbyCreatedUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -25,7 +24,6 @@ public class FriendsRestController {
     private final AddFriend addFriend;
     private final LoadFriends loadFriends;
     private final RemoveFriend removeFriend;
-    private final LobbyCreatedUseCase created ;
 
     @PostMapping
     public ResponseEntity<PlayerDto> addNewFriend(

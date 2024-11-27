@@ -1,0 +1,7 @@
+POST http://localhost:8090/api/lobbies
+content-type: application/json
+
+{
+  "gameID": "8fae4d9a-8dfb-4d64-95c3-6c6b234e57a1",
+  "lobbyAdminId": "95592601-d766-4715-a205-fbd13323ccc3"
+}

@@ -9,6 +9,8 @@ import be.kdg.prog6.friends.port.out.LobbySavePort;
 import be.kdg.prog6.friends.port.out.PlayerPort;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Service;
 public class LobbyCreatedUseCaseImp implements LobbyCreatedUseCase {
 
 
+    private static final Logger log = LoggerFactory.getLogger(LobbyCreatedUseCaseImp.class);
     private final LobbySavePort lobbySavePort;
     private final PlayerPort playerPort;
 
@@ -29,6 +32,7 @@ public class LobbyCreatedUseCaseImp implements LobbyCreatedUseCase {
 
         Lobby lobby = new Lobby(command.lobbyId(), command.gameId(), player);
 
+        log.info("lobby is being saved");
         lobbySavePort.save(lobby);
 
     }

@@ -4,3 +4,5 @@ include 'application'
 include 'common'
 include 'library'
 include 'friends'
+include 'lobby'
+

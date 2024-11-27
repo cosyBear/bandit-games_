@@ -1,0 +1,142 @@
+2. Player Invites Friends
+Trigger: The player sees a list of friends (retrieved from the Friends Context) and selects players to invite.
+Action:
+For each invited friend, the frontend sends an HTTP request to the Friends Context to create an invite.
+Payload:
+json
+Copy code
+{
+  "lobbyId": "UUID",
+  "gameId": "UUID",
+  "senderId": "UUID",
+  "receiverId": "UUID"
+}
+
+Logic in the Friends Context:
+Validate the invite:
+Check if the receiverId exists.
+(Optional) Validate if the sender and receiver are friends.
+Create an Invitation record with status = PENDING.
+Notify the invited players (e.g., via WebSocket, push notification, or email).
+
+
+3. Invited Player Accepts the Invite
+Trigger: The invited player clicks "Accept Invite" in their UI.
+Action:
+The frontend sends an HTTP request to the Friends Context to accept the invite.
+Payload:
+json
+Copy code
+{
+  "invitationId": "UUID",
+  "receiverId": "UUID"
+}
+Logic in the Friends Context:
+Validate the request:
+Check that the invitationId exists.
+Ensure the invite is for the receiverId and is still PENDING.
+Update the Invitation status to ACCEPTED.
+Publish a PlayerAcceptedInviteEvent to notify other contexts.
+
+
+
+
+########################lobnby bounde context
+
+4. Player Added to the Lobby
+Trigger: The Lobby Context listens for the PlayerAcceptedInviteEvent.
+Payload of the Event:
+json
+Copy code
+{
+  "lobbyId": "UUID",
+  "playerId": "UUID"
+}
+Logic in the Lobby Context:
+Retrieve the lobby with the given lobbyId.
+Add the player (playerId) to the lobby (if there’s capacity).
+Persist the updated lobby in the database.
+(Optional) Notify the lobby admin or other players that a new player has joined.
+
+
+
+
+
+
+
+Yes, your proposed flow is clear, well-structured, and follows Domain-Driven Design (DDD) principles. Let’s refine and outline the steps for clarity and ensure each bounded context plays its role effectively.
+
+1. Player Starts the Game
+Trigger: The player clicks the "Start Game" button in the UI.
+Action:
+An HTTP request is sent to the Lobby Context to create a new lobby.
+The Lobby Context creates a new lobby entity and persists it in the database.
+The lobby details (e.g., lobbyId, gameId) are returned to the frontend.
+2. Player Invites Friends
+Trigger: The player sees a list of friends (retrieved from the Friends Context) and selects players to invite.
+Action:
+For each invited friend, the frontend sends an HTTP request to the Friends Context to create an invite.
+Payload:
+json
+Copy code
+{
+  "lobbyId": "UUID",
+  "gameId": "UUID",
+  "senderId": "UUID",
+  "receiverId": "UUID"
+}
+Logic in the Friends Context:
+Validate the invite:
+Check if the receiverId exists.
+(Optional) Validate if the sender and receiver are friends.
+Create an Invitation record with status = PENDING.
+Notify the invited players (e.g., via WebSocket, push notification, or email).
+3. Invited Player Accepts the Invite
+Trigger: The invited player clicks "Accept Invite" in their UI.
+Action:
+The frontend sends an HTTP request to the Friends Context to accept the invite.
+Payload:
+json
+Copy code
+{
+  "invitationId": "UUID",
+  "receiverId": "UUID"
+}
+Logic in the Friends Context:
+Validate the request:
+Check that the invitationId exists.
+Ensure the invite is for the receiverId and is still PENDING.
+Update the Invitation status to ACCEPTED.
+Publish a PlayerAcceptedInviteEvent to notify other contexts.
+4. Player Added to the Lobby
+Trigger: The Lobby Context listens for the PlayerAcceptedInviteEvent.
+Payload of the Event:
+json
+Copy code
+{
+  "lobbyId": "UUID",
+  "playerId": "UUID"
+}
+Logic in the Lobby Context:
+Retrieve the lobby with the given lobbyId.
+Add the player (playerId) to the lobby (if there’s capacity).
+Persist the updated lobby in the database.
+(Optional) Notify the lobby admin or other players that a new player has joined.
+5. Start the Game
+Trigger: When the lobby reaches the required number of players or when the lobby admin clicks "Start Game."
+
+Action:
+
+Publish a LobbyReadyEvent to the Game Context.
+Payload:
+json
+Copy code
+{
+  "lobbyId": "UUID",
+  "gameId": "UUID",
+  "playerIds": ["UUID1", "UUID2", "UUID3"]
+}
+Logic in the Game Context:
+
+Initialize the game with the provided players and lobby information.
+Notify players that the game has started.

@@ -8,25 +8,20 @@ import be.kdg.prog6.lobby.port.in.Query.LobbyCreateQuery;
 import be.kdg.prog6.lobby.port.in.command.CreateLobbyCommand;
 import be.kdg.prog6.lobby.port.out.LobbyCreatedEventPublisher;
 import be.kdg.prog6.lobby.port.out.LobbySavePort;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
 @Service
-@Slf4j
+@Slf4j @RequiredArgsConstructor
 public class CreateLobbyUseCaseImp implements CreateLobbyUseCase {
 
 
     private final LobbySavePort lobbySavePort;
 
     private final LobbyCreatedEventPublisher lobbyCreatedEventPublisher;
-
-    public CreateLobbyUseCaseImp(LobbySavePort lobbySavePort, LobbyCreatedEventPublisher lobbyCreatedEventPublisher) {
-        this.lobbySavePort = lobbySavePort;
-        this.lobbyCreatedEventPublisher = lobbyCreatedEventPublisher;
-    }
-
 
     @Override
     public LobbyCreateQuery createLobby(CreateLobbyCommand lobbyCommand) {

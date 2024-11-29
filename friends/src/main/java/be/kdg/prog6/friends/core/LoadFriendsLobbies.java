@@ -9,6 +9,7 @@ import be.kdg.prog6.friends.port.in.Query.LoadLobbiesQuery;
 import be.kdg.prog6.friends.port.in.lobby.LoadLobbiesUseCase;
 import be.kdg.prog6.friends.port.out.LobbyLoadPort;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -18,9 +19,9 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class LoadFriendsLobbies implements LoadLobbiesUseCase {
 
-    private static final Logger log = LoggerFactory.getLogger(LoadFriendsLobbies.class);
     private final LoadFriends loadFriends;
     private final LobbyLoadPort lobbyLoadPort;
 

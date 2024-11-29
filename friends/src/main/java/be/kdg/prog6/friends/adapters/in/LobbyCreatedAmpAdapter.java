@@ -1,5 +1,4 @@
-package be.kdg.prog6.friends.adapters.out;
-
+package be.kdg.prog6.friends.adapters.in;
 
 import be.kdg.prog6.common.domain.LobbyStatus;
 import be.kdg.prog6.friends.adapters.dto.LobbyCreatedDto;
@@ -11,15 +10,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
-
-@Slf4j
-@RequiredArgsConstructor
 @Component
+@RequiredArgsConstructor
+@Slf4j
 public class LobbyCreatedAmpAdapter {
 
-
     private final LobbyCreatedUseCase lobbyCreatedUseCase;
-
 
     @RabbitListener(queues = "LobbyCreatedQueue")
     public void LobbyCreated(LobbyCreatedDto dto) {
@@ -30,6 +26,4 @@ public class LobbyCreatedAmpAdapter {
         lobbyCreatedUseCase.lobbyCreated(command);
 
     }
-
-
 }

@@ -13,7 +13,7 @@ PATCH http://localhost:8090/api/lobbies/joinLobby
 content-type: application/json
 
 {
-  "lobbyId": "86811afe-d594-4640-b8f4-94639b774fe3",
+  "lobbyId": "b0cd7d73-412e-4b7f-aa46-05ed48948f0f",
   "guestId": "8fae4d9a-8dfb-4d64-95c3-6c6b234e57a1"
 }
 

@@ -1,4 +1,4 @@
-package be.kdg.prog6.friends.adapters.out;
+package be.kdg.prog6.friends.adapters.in;
 
 
 import be.kdg.prog6.common.domain.LobbyStatus;

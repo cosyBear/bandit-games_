@@ -15,8 +15,3 @@ public interface LobbyJpaRepository extends JpaRepository<LobbyJpaEntity, UUID> 
     Optional<LobbyJpaEntity> findAllByPlayerId(@Param("playerId") UUID playerId);
 
 }
-
-// get a list of friends for me
-// for each friend get there lobby
-// save this list and return it to me
-// so i can see all the lobbies for my friends

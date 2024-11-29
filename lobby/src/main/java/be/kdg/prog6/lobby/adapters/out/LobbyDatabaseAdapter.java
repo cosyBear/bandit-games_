@@ -6,7 +6,7 @@ import be.kdg.prog6.lobby.domain.Lobby;
 import be.kdg.prog6.lobby.domain.ids.LobbyId;
 import be.kdg.prog6.lobby.port.out.LobbyLoadPort;
 import be.kdg.prog6.lobby.port.out.LobbySavePort;
-import be.kdg.prog6.lobby.util.LobbyDontExistException;
+import be.kdg.prog6.common.events.util.LobbyDontExistException;
 import be.kdg.prog6.lobby.util.Mapper;
 import org.springframework.stereotype.Component;
 

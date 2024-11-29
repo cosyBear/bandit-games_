@@ -1,9 +1,9 @@
 package be.kdg.prog6.lobby.domain;
 
 
+import be.kdg.prog6.common.domain.LobbyStatus;
 import be.kdg.prog6.lobby.domain.ids.LobbyId;
-import be.kdg.prog6.lobby.util.LobbyIsFullException;
-import lombok.AllArgsConstructor;
+import be.kdg.prog6.common.events.util.LobbyIsFullException;
 import lombok.Data;
 
 import java.time.LocalDateTime;

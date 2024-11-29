@@ -1,0 +1,10 @@
+GET http://localhost:8090/api/friends/95592601-d766-4715-a205-fbd13323ccc3/lobbies
+content-type: application/json
+
+
+
+
+###
+
+
+

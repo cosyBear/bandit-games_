@@ -1,4 +1,4 @@
-package be.kdg.prog6.lobby.domain;
+package be.kdg.prog6.common.domain;
 
 public enum LobbyStatus {
 

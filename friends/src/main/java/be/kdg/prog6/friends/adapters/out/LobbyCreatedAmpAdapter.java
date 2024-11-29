@@ -1,6 +1,7 @@
 package be.kdg.prog6.friends.adapters.out;
 
 
+import be.kdg.prog6.common.domain.LobbyStatus;
 import be.kdg.prog6.friends.adapters.dto.LobbyCreatedDto;
 import be.kdg.prog6.friends.domain.LobbyId;
 import be.kdg.prog6.friends.port.in.command.LobbyCreatedCommand;
@@ -24,7 +25,7 @@ public class LobbyCreatedAmpAdapter {
     public void LobbyCreated(LobbyCreatedDto dto) {
 
 
-        LobbyCreatedCommand command = new LobbyCreatedCommand(new LobbyId(dto.lobbyId()), dto.gameId(), dto.playerId());
+        LobbyCreatedCommand command = new LobbyCreatedCommand(new LobbyId(dto.lobbyId()), dto.gameId(), dto.playerId(), LobbyStatus.valueOf(dto.lobbyStatus()));
         log.info("lobby event received  : {}", command);
         lobbyCreatedUseCase.lobbyCreated(command);
 

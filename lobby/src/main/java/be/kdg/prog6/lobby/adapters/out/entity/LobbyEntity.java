@@ -13,7 +13,6 @@ import java.util.UUID;
 public class LobbyEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID lobbyId;
 
     private UUID gameId;

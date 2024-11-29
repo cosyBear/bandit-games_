@@ -3,7 +3,7 @@ package be.kdg.prog6.lobby.util;
 import be.kdg.prog6.lobby.adapters.out.entity.LobbyEntity;
 import be.kdg.prog6.lobby.adapters.out.entity.LobbyStatusEntity;
 import be.kdg.prog6.lobby.domain.Lobby;
-import be.kdg.prog6.lobby.domain.LobbyStatus;
+import be.kdg.prog6.common.domain.LobbyStatus;
 import be.kdg.prog6.lobby.domain.ids.LobbyId;
 import be.kdg.prog6.lobby.port.in.Query.LobbyUpdateQuery;
 

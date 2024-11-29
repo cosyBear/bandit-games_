@@ -20,12 +20,12 @@ VALUES
     ('95592601-d766-4715-a205-fbd13323ccc3', 'c56a4183-65aa-42ec-a945-5fd21dec0541');
 
 -- Create lobbies for the friends with valid game_id UUIDs
-INSERT INTO friends.lobby (id, player_id, game_id)
+INSERT INTO friends.lobby (id, player_id, game_id , lobby_status)
 VALUES
-    ('1d095e14-8c15-4d2b-a2e5-59e7d8ff7129', 'c56a4180-65aa-42ec-a945-5fd21dec0538', '8fae4d9a-8dfb-4d64-95c3-6c6b234e57a1'),
-    ('1d095e15-8c15-4d2b-a2e5-59e7d8ff7130', 'c56a4181-65aa-42ec-a945-5fd21dec0539', '3b3c99a7-e621-401e-89b6-b44f99c12d20'),
-    ('1d095e16-8c15-4d2b-a2e5-59e7d8ff7131', 'c56a4182-65aa-42ec-a945-5fd21dec0540', 'db21cf77-7ed2-4b8c-9aa9-2ac5b20f4a63'),
-    ('1d095e17-8c15-4d2b-a2e5-59e7d8ff7132', 'c56a4183-65aa-42ec-a945-5fd21dec0541', 'a6b95a3f-4095-40c6-aefd-7f6e5fba6011');
+    ('1d095e14-8c15-4d2b-a2e5-59e7d8ff7129', 'c56a4180-65aa-42ec-a945-5fd21dec0538', '8fae4d9a-8dfb-4d64-95c3-6c6b234e57a1', "Created"),
+    ('1d095e15-8c15-4d2b-a2e5-59e7d8ff7130', 'c56a4181-65aa-42ec-a945-5fd21dec0539', '3b3c99a7-e621-401e-89b6-b44f99c12d20', "Created"),
+    ('1d095e16-8c15-4d2b-a2e5-59e7d8ff7131', 'c56a4182-65aa-42ec-a945-5fd21dec0540', 'db21cf77-7ed2-4b8c-9aa9-2ac5b20f4a63', "Created"),
+    ('1d095e17-8c15-4d2b-a2e5-59e7d8ff7132', 'c56a4183-65aa-42ec-a945-5fd21dec0541', 'a6b95a3f-4095-40c6-aefd-7f6e5fba6011', "Created");
 
 
 -- Library

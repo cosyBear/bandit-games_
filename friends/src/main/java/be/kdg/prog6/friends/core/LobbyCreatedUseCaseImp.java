@@ -4,7 +4,6 @@ import be.kdg.prog6.friends.domain.Lobby;
 import be.kdg.prog6.friends.domain.Player;
 import be.kdg.prog6.friends.port.in.lobby.LobbyCreatedUseCase;
 import be.kdg.prog6.friends.port.in.command.LobbyCreatedCommand;
-import be.kdg.prog6.friends.port.out.LobbyLoadPort;
 import be.kdg.prog6.friends.port.out.LobbySavePort;
 import be.kdg.prog6.friends.port.out.PlayerPort;
 import jakarta.transaction.Transactional;
@@ -30,7 +29,7 @@ public class LobbyCreatedUseCaseImp implements LobbyCreatedUseCase {
 
         final Player player = playerPort.findById(command.playerId());
 
-        Lobby lobby = new Lobby(command.lobbyId(), command.gameId(), player);
+        Lobby lobby = new Lobby(command.lobbyId(), command.gameId(), player , command.status());
 
         log.info("lobby is being saved");
         lobbySavePort.save(lobby);

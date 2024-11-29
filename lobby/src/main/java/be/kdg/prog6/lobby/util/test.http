@@ -1,3 +1,5 @@
+
+### Create lobby
 POST http://localhost:8090/api/lobbies
 content-type: application/json
 
@@ -5,3 +7,13 @@ content-type: application/json
   "gameID": "8fae4d9a-8dfb-4d64-95c3-6c6b234e57a1",
   "lobbyAdminId": "95592601-d766-4715-a205-fbd13323ccc3"
 }
+
+### join lobby
+PATCH http://localhost:8090/api/lobbies/joinLobby
+content-type: application/json
+
+{
+  "lobbyId": "86811afe-d594-4640-b8f4-94639b774fe3",
+  "guestId": "8fae4d9a-8dfb-4d64-95c3-6c6b234e57a1"
+}
+

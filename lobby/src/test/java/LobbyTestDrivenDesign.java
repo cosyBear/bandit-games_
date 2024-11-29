@@ -1,11 +1,9 @@
 import be.kdg.prog6.lobby.domain.Lobby;
-import be.kdg.prog6.lobby.domain.LobbyStatus;
+import be.kdg.prog6.common.domain.LobbyStatus;
 import be.kdg.prog6.lobby.domain.ids.LobbyId;
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.util.Assert;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

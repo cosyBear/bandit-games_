@@ -1,8 +1,9 @@
 package be.kdg.prog6.friends.adapters.out.entity;
 
+import be.kdg.prog6.common.domain.LobbyStatus;
 import be.kdg.prog6.friends.domain.Lobby;
 import be.kdg.prog6.friends.domain.LobbyId;
-import be.kdg.prog6.friends.domain.Player;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,15 +29,19 @@ public class LobbyJpaEntity {
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private UUID gameId;
 
+    @Enumerated(EnumType.STRING)
+    private LobbyStatus lobbyStatus;
+
     public Lobby toDomain() {
-        return new Lobby(new LobbyId(this.getId()), this.gameId, this.playerJpaEntity.convertToDomain());
+        return new Lobby(new LobbyId(this.getId()), this.gameId, this.playerJpaEntity.convertToDomain(), this.lobbyStatus);
     }
 
-    public static LobbyJpaEntity fromDomain(Lobby lobby, PlayerJpaEntity playerJpaEntity) {
+    public static LobbyJpaEntity fromDomain(Lobby lobby, PlayerJpaEntity playerJpaEntity, LobbyStatus lobbyStatus) {
         return new LobbyJpaEntity(
                 lobby.getId().id(),
                 playerJpaEntity,
-                lobby.getGameId()
+                lobby.getGameId(),
+                lobbyStatus
         );
     }
 }

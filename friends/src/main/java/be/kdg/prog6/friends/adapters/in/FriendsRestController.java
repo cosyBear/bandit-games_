@@ -1,10 +1,13 @@
 package be.kdg.prog6.friends.adapters.in;
 
 import be.kdg.prog6.friends.adapters.dto.PlayerDto;
+import be.kdg.prog6.friends.core.LoadFriendsLobbies;
 import be.kdg.prog6.friends.domain.Friends;
 import be.kdg.prog6.friends.domain.Player;
 import be.kdg.prog6.friends.port.in.AddFriend;
 import be.kdg.prog6.friends.port.in.LoadFriends;
+import be.kdg.prog6.friends.port.in.Query.LoadLobbiesQuery;
+import be.kdg.prog6.friends.port.in.Query.LobbyQuery;
 import be.kdg.prog6.friends.port.in.RemoveFriend;
 import be.kdg.prog6.friends.port.in.command.AddFriendCommand;
 import lombok.RequiredArgsConstructor;
@@ -19,11 +22,11 @@ import java.util.UUID;
 @RequiredArgsConstructor @Slf4j
 @RestController
 @RequestMapping("/friends")
-@CrossOrigin(origins = "http://localhost:5173")
 public class FriendsRestController {
     private final AddFriend addFriend;
     private final LoadFriends loadFriends;
     private final RemoveFriend removeFriend;
+    private final LoadFriendsLobbies loadFriendsLobbies;
 
     @PostMapping
     public ResponseEntity<PlayerDto> addNewFriend(
@@ -69,6 +72,13 @@ public class FriendsRestController {
         removeFriend.removeFriend(friendId, playerId);
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @GetMapping("/{playerId}/lobbies")
+    public ResponseEntity<List<LobbyQuery>> showMyFriendsLobbies(@PathVariable final UUID playerId) {
+        LoadLobbiesQuery loadLobbiesQuery = new LoadLobbiesQuery(playerId);
+        return ResponseEntity.status(HttpStatus.OK).body(loadFriendsLobbies.fetchFriendsLobbies(loadLobbiesQuery));
+
     }
 
 

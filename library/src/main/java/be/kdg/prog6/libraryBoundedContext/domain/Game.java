@@ -26,6 +26,8 @@ public class Game {
     private String imageUrl;
     private String backgroundImageUrl;
 
+
+
     public Game(GameId gameId, String gameName, GameType gameType, List<Achievement> achievementList, String imageUrl, boolean favourite) {
         this.gameId = gameId;
         this.gameName = gameName;

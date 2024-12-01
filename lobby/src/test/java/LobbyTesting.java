@@ -22,7 +22,7 @@ import static org.mockito.ArgumentMatchers.any;
 
 @SpringBootTest(classes = LobbyBondedContextApplication.class)
 @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
-public class LobbyTestUseCase {
+public class LobbyTesting {
 
 
     private LobbyId lobbyId = new LobbyId(UUID.fromString("582e8f3e-54c6-4f34-b67f-df3059b9b47a"));

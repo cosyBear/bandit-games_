@@ -23,8 +23,8 @@ public interface LibraryJpaRepository  extends JpaRepository<LibraryEntity, UUID
 
 
     @Query("SELECT l FROM LibraryEntity l LEFT JOIN FETCH l.games g " +
-            "WHERE l.playerEntity.playerId = :playerId AND g.gameType = :gameType")
-    LibraryEntity fetchLibraryWithGamesByCategory(@Param("playerId") UUID playerId, @Param("gameType") GameTypeEntity gameType);
+            "WHERE l.playerEntity.playerId = :playerId AND LOWER(g.gameType) LIKE CONCAT('%', LOWER(:gameType), '%')")
+    LibraryEntity fetchLibraryWithGamesByCategory(@Param("playerId") UUID playerId, @Param("gameType") String gameType);
 
 
 

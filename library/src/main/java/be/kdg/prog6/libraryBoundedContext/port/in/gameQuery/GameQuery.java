@@ -12,6 +12,7 @@ import java.util.List;
 public class GameQuery {
 
     private String gameName;
+    private String description;
 
     private GameType gameType;
 

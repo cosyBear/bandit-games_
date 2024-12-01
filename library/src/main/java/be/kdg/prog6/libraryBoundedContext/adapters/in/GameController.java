@@ -48,10 +48,10 @@ public class GameController {
 
     @GetMapping("category")
     public ResponseEntity<List<GameQuery>> fetchGamesByCategory(
-            @RequestParam UUID playerId,
-            @RequestParam String category) {
+            @RequestParam("player") UUID playerId,
+            @RequestParam("category") String category) {
 
-        GetGamesByCategoryQuery query = new GetGamesByCategoryQuery(new PlayerId(playerId), GameType.valueOf(category));
+        GetGamesByCategoryQuery query = new GetGamesByCategoryQuery(new PlayerId(playerId), category);
 
         List<GameQuery> results = gameQueryUseCase.getGamesByCategory(query);
 

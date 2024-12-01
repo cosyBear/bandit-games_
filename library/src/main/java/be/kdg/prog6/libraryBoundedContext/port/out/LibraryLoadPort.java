@@ -13,5 +13,5 @@ public interface LibraryLoadPort {
 
     Library fetchLibraryWithGamesByNamePattern(PlayerId playerId, String gameName);
 
-    Library fetchLibraryWithGamesByCategory(PlayerId playerId, GameType category);
+    Library fetchLibraryWithGamesByCategory(PlayerId playerId, String category);
 }

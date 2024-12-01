@@ -62,7 +62,7 @@ public class Mapper {
         GameEntity gameEntity = new GameEntity();
         gameEntity.setGameId(game.getGameId().id());
         gameEntity.setGameName(game.getGameName());
-        gameEntity.setGameType(GameTypeEntity.valueOf(game.getGameType().name()));
+        gameEntity.setGameType(game.getGameType().name());
         gameEntity.setAchievementList(achievementEntities);
         gameEntity.setImageUrl(game.getImageUrl());
         gameEntity.setFavourite(game.isFavourite());
@@ -80,7 +80,8 @@ public class Mapper {
         return new Game(
                 new GameId(entity.getGameId()),
                 entity.getGameName(),
-                GameType.valueOf(entity.getGameType().name()),
+                entity.getDescription(),
+                GameType.valueOf(entity.getGameType()),
                 achievements,
                 entity.isFavourite(),
                 entity.getImageUrl(),
@@ -121,6 +122,7 @@ public class Mapper {
 
         return new GameQuery(
                 game.getGameName(),
+                game.getDescription(),
                 game.getGameType(),
                 achievementQueryList,
                 game.isFavourite(),

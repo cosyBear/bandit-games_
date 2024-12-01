@@ -22,6 +22,7 @@ import java.util.UUID;
 @RequiredArgsConstructor @Slf4j
 @RestController
 @RequestMapping("/friends")
+@CrossOrigin(origins = "http://localhost:5173")
 public class FriendsRestController {
     private final AddFriend addFriend;
     private final LoadFriends loadFriends;

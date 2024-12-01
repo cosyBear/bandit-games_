@@ -121,6 +121,7 @@ public class Mapper {
                 .toList();
 
         return new GameQuery(
+                game.getGameId().id(),
                 game.getGameName(),
                 game.getDescription(),
                 game.getGameType(),

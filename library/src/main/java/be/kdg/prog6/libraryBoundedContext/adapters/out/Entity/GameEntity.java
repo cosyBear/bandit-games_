@@ -13,6 +13,7 @@ import java.util.UUID;
 @Table(catalog = "library", name = "game")
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class GameEntity {
 
     @Id
@@ -35,10 +36,6 @@ public class GameEntity {
     @ManyToOne()
     @JoinColumn(name = "library_id")
     private LibraryEntity libraryEntity;
-
-    public GameEntity() {
-
-    }
 
 
     public GameEntity(UUID uuid, String gameName, GameTypeEntity gameTypeEntity, List<AchievementEntity> achievementEntities, String imageUrl, boolean favourite) {

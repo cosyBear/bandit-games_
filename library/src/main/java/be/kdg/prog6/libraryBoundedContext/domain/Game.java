@@ -14,7 +14,6 @@ import java.util.List;
 @NoArgsConstructor
 public class Game {
     private GameId gameId;
-
     private String gameName;
     private String description;
 
@@ -44,11 +43,8 @@ public class Game {
         this.favourite = favourite;
     }
 
-    public void markAsFavorite() {
-        if (this.favourite) {
-            throw new GameAlreadyMarkedAsFavoriteException("Game is already marked as favorite.");
-        }
-        this.favourite = true;
+    public void toggleFavorite() {
+        this.favourite = !this.favourite;
     }
 
     public boolean isGameMarkedAsFavorite() {

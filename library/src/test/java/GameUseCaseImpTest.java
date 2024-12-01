@@ -1,5 +1,4 @@
 import be.kdg.prog6.common.events.util.AchievementAlreadyEarnedException;
-import be.kdg.prog6.common.events.util.AchievementNotFoundException;
 import be.kdg.prog6.common.events.util.GameAlreadyMarkedAsFavoriteException;
 import be.kdg.prog6.common.events.util.GameNotFoundException;
 import be.kdg.prog6.libraryBoundedContext.LibraryBoundedContextApplication;
@@ -18,7 +17,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -127,7 +125,7 @@ class GameUseCaseImpTest {
         Library library = TestLibraryData.createLibraryWithChessMaster();
 
         // Simulate the game is already marked as favorite
-        library.findGameById(gameId).markAsFavorite();
+        library.findGameById(gameId).toggleFavorite();
 
         when(libraryLoadPort.fetchLibraryWithGamesByNamePattern(playerId, gameName))
                 .thenReturn(library);

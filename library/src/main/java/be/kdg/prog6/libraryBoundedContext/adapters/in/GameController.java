@@ -7,9 +7,9 @@ import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.FetchGamesByNameQuer
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GameQuery;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GetGamesByCategoryQuery;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.RetrieveAllGamesQuery;
-import be.kdg.prog6.libraryBoundedContext.domain.GameType;
 import be.kdg.prog6.libraryBoundedContext.port.in.*;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +21,7 @@ import java.util.UUID;
 @RequestMapping("/games")
 @CrossOrigin(origins = "http://localhost:5173")
 @RequiredArgsConstructor
+@Slf4j
 public class GameController {
 
     private final GameQueryUseCase gameQueryUseCase;
@@ -61,7 +62,7 @@ public class GameController {
 
 
     @PatchMapping("/{playerId}/{gameId}/favorite")
-    public ResponseEntity<GameQuery> makeGameAsFavorite(
+    public ResponseEntity<GameQuery> toggleGameFavorite(
             @PathVariable UUID playerId,
             @PathVariable UUID gameId,
             @RequestParam String gameName) {

@@ -3,41 +3,28 @@ package be.kdg.prog6.libraryBoundedContext.domain;
 import be.kdg.prog6.libraryBoundedContext.domain.id.GameId;
 import be.kdg.prog6.libraryBoundedContext.domain.id.LibraryId;
 import be.kdg.prog6.libraryBoundedContext.domain.id.PlayerId;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Library {
 
     private LibraryId libraryId;
     private List<Game> games = new ArrayList<>();
     private PlayerId playerId;
 
-
-    public Library(LibraryId libraryId, List<Game> games, PlayerId playerId) {
-        this.libraryId = libraryId;
-        this.games = games;
-        this.playerId = playerId;
-    }
-
-    public Library() {
-        this.games = new ArrayList<Game>();
-    }
-
     public Library(LibraryId libraryId, List<Game> games) {
         this.libraryId = libraryId;
         this.games = games;
     }
 
-
-    public Game markGameAsFavorite(GameId gameId) {
+    public Game toggleFavouriteForGame(GameId gameId) {
         Game game = findGameById(gameId);
-        game.markAsFavorite();
+        game.toggleFavorite();
         return game;
     }
 

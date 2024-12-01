@@ -12,23 +12,20 @@ import be.kdg.prog6.libraryBoundedContext.util.Mapper;
 import be.kdg.prog6.libraryBoundedContext.domain.Game;
 import be.kdg.prog6.common.events.util.GameNotFoundException;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class GameUseCaseImp implements GameUseCase {
-
-    private static final Logger logger = LogManager.getLogger(GameUseCaseImp.class);
 
     private final LibraryLoadPort libraryLoadPort;
     private final LibrarySavePort librarySavePort;
-
-    public GameUseCaseImp(LibraryLoadPort libraryLoadPort, LibrarySavePort librarySavePort) {
-        this.libraryLoadPort = libraryLoadPort;
-        this.librarySavePort = librarySavePort;
-    }
 
     @Transactional
     @Override
@@ -36,14 +33,14 @@ public class GameUseCaseImp implements GameUseCase {
 
         Library library = libraryLoadPort.fetchLibraryWithGamesByNamePattern(command.playerId(), command.gameName());
         if (library == null) {
-            logger.error("Library not found or game not found for player: {}", command.playerId());
+            log.error("Library not found or game not found for player: {}", command.playerId());
             throw new GameNotFoundException("Game not found with name: " + command.gameName());
         }
 
-        Game game = library.markGameAsFavorite(new GameId(command.gameId()));
+        Game game = library.toggleFavouriteForGame(new GameId(command.gameId()));
 
         librarySavePort.save(library);
-        logger.info("Game marked as favorite: ");
+        log.info("Game marked as favorite: ");
 
         return Mapper.toQuery(game);
     }
@@ -54,7 +51,7 @@ public class GameUseCaseImp implements GameUseCase {
     public GameQuery givePlayerAnAchievement(EarnAchievementCommand command) {
         Library library = libraryLoadPort.fetchLibraryWithGamesByNamePattern(command.playerId(), command.gameName());
         if (library == null) {
-            logger.error("Library not found for player: {}", command.playerId());
+            log.error("Library not found for player: {}", command.playerId());
             throw new LibraryNotFoundException("Library not found for player ID: {}" + command.playerId());
         }
 

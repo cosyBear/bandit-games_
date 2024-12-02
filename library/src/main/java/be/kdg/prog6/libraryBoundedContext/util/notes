@@ -1,0 +1,50 @@
+
+
+
+so when we go to the store front
+we dont want the player to by the same game.
+
+
+
+so the goal of  the library is used  to  show what  games that the player have
+
+what about all the other game that the player dont have ?
+one way to solve it is just by creating a library that holds all the games
+so that when the player buy a game we just add it to his list of games  or mark the game as owned ?
+
+so the game maybe should have like does own_game Attributes  . ........
+
+or split the it own bounded context
+
+
+=======================================================
+
+so we have a like a Global library for all the games
+
+so one library with  all the games in the store
+
+and each player has his own library
+
+when a player buys the game we  just add it to the player library.
+
+
+======================================================================
+game class
+
+    // add a review list for this game
+    //also add rating for the game
+    // so you can show it in the most recommended  games list
+
+    // add game description
+    // add ame rules
+
+    //cant give discrption without buying it
+    //also when adding a game the review should be null
+
+    // also think about how you going to create a game for the developer
+    // maybe make a developer bounded context
+    // where you add games and delete games
+
+
+========================================================================
+

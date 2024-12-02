@@ -1,4 +1,5 @@
 import be.kdg.prog6.common.events.util.AchievementAlreadyEarnedException;
+import be.kdg.prog6.common.events.util.AchievementNotFoundException;
 import be.kdg.prog6.common.events.util.GameAlreadyMarkedAsFavoriteException;
 import be.kdg.prog6.common.events.util.GameNotFoundException;
 import be.kdg.prog6.libraryBoundedContext.LibraryBoundedContextApplication;
@@ -17,6 +18,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -28,6 +32,8 @@ import static org.mockito.Mockito.*;
 
 @AutoConfigureMockMvc
 @SpringBootTest(classes = LibraryBoundedContextApplication.class)
+@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
+
 class GameUseCaseImpTest {
 
 
@@ -57,7 +63,7 @@ class GameUseCaseImpTest {
     @Test
     void markGameAsFavourite() {
         // Arrange
-        GameCommand command = new GameCommand(playerId, gameName, gameId.gameId());
+        GameCommand command = new GameCommand(playerId, gameName, gameId.id());
 
         // Act
         GameQuery result = sut.markGameAsFavourite(command);
@@ -78,7 +84,7 @@ class GameUseCaseImpTest {
         EarnAchievementCommand command = new EarnAchievementCommand(
                 playerId,
                 gameName,
-                gameId.gameId(),
+                gameId.id(),
                 "First Blood"
         );
 
@@ -121,11 +127,11 @@ class GameUseCaseImpTest {
     @Test
     void markGameAsFavourite_GameAlreadyMarked_ShouldThrowException() {
         // Arrange
-        GameCommand command = new GameCommand(playerId, gameName, gameId.gameId());
+        GameCommand command = new GameCommand(playerId, gameName, gameId.id());
         Library library = TestLibraryData.createLibraryWithChessMaster();
 
         // Simulate the game is already marked as favorite
-        library.findGameById(gameId).toggleFavorite();
+        library.findGameById(gameId).markAsFavorite();
 
         when(libraryLoadPort.fetchLibraryWithGamesByNamePattern(playerId, gameName))
                 .thenReturn(library);
@@ -148,7 +154,7 @@ class GameUseCaseImpTest {
         EarnAchievementCommand command = new EarnAchievementCommand(
                 playerId,
                 gameName,
-                gameId.gameId(),
+                gameId.id(),
                 "First Blood"
         );
 

@@ -67,7 +67,9 @@ services:
 networks:
   kc:
     name: kc-network
+    external: true
     driver: bridge
+
   backend:
     name: back-network
     driver: bridge

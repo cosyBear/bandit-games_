@@ -16,12 +16,14 @@ public class Game {
     private GameId gameId;
 
     private String gameName;
+    private String  description;
 
     private GameType gameType;
 
     List<Achievement> achievementList = new ArrayList<>();
 
     private boolean favourite;
+
 
     private String imageUrl;
     private String backgroundImageUrl;

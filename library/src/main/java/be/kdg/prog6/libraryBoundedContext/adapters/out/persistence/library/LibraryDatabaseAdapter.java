@@ -53,10 +53,10 @@ public class LibraryDatabaseAdapter implements LibraryLoadPort, LibrarySavePort 
     }
 
     @Override
-    public Library fetchLibraryWithGamesByCategory(PlayerId playerId, GameType category) {
+    public Library fetchLibraryWithGamesByCategory(PlayerId playerId, String category) {
         try {
             LibraryEntity libraryEntity = Optional.ofNullable(
-                    libraryJpaRepository.fetchLibraryWithGamesByCategory(playerId.Id(), GameTypeEntity.valueOf(category.toString()))
+                    libraryJpaRepository.fetchLibraryWithGamesByCategory(playerId.Id(), category)
             ).orElseThrow(() -> new LibraryNotFoundException("No games found in category '" + category + "' for Player ID: " + playerId));
 
             return Mapper.mapDomainLibrary(libraryEntity);

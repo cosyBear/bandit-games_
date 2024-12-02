@@ -22,8 +22,7 @@ public class GameEntity {
 
     private String gameName;
 
-    @Enumerated(EnumType.STRING)
-    private GameTypeEntity gameType;
+    private String gameType;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "gameEntity")
     private List<AchievementEntity> achievementList = new ArrayList<>();
@@ -32,6 +31,9 @@ public class GameEntity {
     private String backgroundImageUrl;
 
     private boolean favourite;
+
+    private String description;
+
 
     @ManyToOne()
     @JoinColumn(name = "library_id")
@@ -45,7 +47,7 @@ public class GameEntity {
     public GameEntity(UUID uuid, String gameName, GameTypeEntity gameTypeEntity, List<AchievementEntity> achievementEntities, String imageUrl, boolean favourite) {
         this.gameId = uuid;
         this.gameName = gameName;
-        this.gameType = gameTypeEntity;
+        this.gameType = gameTypeEntity.toString();
         this.achievementList = achievementEntities;
         this.imageUrl = imageUrl;
         this.favourite = favourite;

@@ -5,4 +5,4 @@ import be.kdg.prog6.libraryBoundedContext.domain.id.PlayerId;
 
 import java.util.UUID;
 
-public record GetGamesByCategoryQuery(PlayerId playerId, GameType category) {}
+public record GetGamesByCategoryQuery(PlayerId playerId, String category) {}

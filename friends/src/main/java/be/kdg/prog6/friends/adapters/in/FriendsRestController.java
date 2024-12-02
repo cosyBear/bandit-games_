@@ -22,12 +22,13 @@ import java.util.UUID;
 @RequiredArgsConstructor @Slf4j
 @RestController
 @RequestMapping("/friends")
+@CrossOrigin(origins = "http://localhost:5173")
 public class FriendsRestController {
     private final AddFriend addFriend;
     private final LoadFriends loadFriends;
     private final RemoveFriend removeFriend;
     private final LoadFriendsLobbies loadFriendsLobbies;
-
+    
     @PostMapping
     public ResponseEntity<PlayerDto> addNewFriend(
             @RequestBody AddFriendCommand command

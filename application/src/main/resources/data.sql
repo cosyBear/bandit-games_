@@ -41,29 +41,35 @@ VALUES
     ('456e7891-e89b-12d3-a456-426614174000', '123e4567-e89b-12d3-a456-426614174000');
 
 -- Insert Games and associate with Libraries
-INSERT INTO library.game (game_id, game_name, game_type, image_url, favourite, library_id, background_image_url)
+INSERT INTO library.game (game_id, game_name, game_type, image_url, favourite, library_id, background_image_url, description)
 VALUES
-    ('e7a1c1d2-f18e-4e6a-b3a5-6dba403b62a1', 'Chess Master 1', 'BOARD_GAME', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220'),
-    ('a2b7c0e4-3d11-4b5b-8297-3e45fc173c81', 'Need for Speed 1', 'RACING', 'https://placehold.co/100x80', true, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220'),
-    ('f2d3b5c6-9a21-4d87-b6a1-8cb17de38145', 'Fortnite Battle 1', 'SHOOTER', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220'),
-    ('d4f7e6a9-213a-4b8c-9f47-5a01e24c90b2', 'Minecraft Builder 1', 'SANDBOX', 'https://placehold.co/100x80', true, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220'),
-    ('b1f5a7d9-14c8-43ba-a71d-0f62d9e39124', 'Portal Puzzle 1', 'PUZZLE', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220'),
-    ('f2d3b5c6-9a21-4d87-b6a1-8cb18de38145', 'Fortnite Battle 2', 'SHOOTER', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220'),
-    ('d4f7e6a9-213a-4b8c-9f47-5a02e24c90b2', 'Minecraft Builder 2', 'SANDBOX', 'https://placehold.co/100x80', true, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220'),
-    ('b1f5a7d9-14c8-43ba-a71d-0f63d9e39124', 'Portal Puzzle 2', 'PUZZLE', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220'),
-    ('f2d3b5c6-9a21-4d87-b6a1-8cb17de38245', 'Fortnite Battle 3', 'SHOOTER', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220'),
-    ('d4f7e6a9-213a-4b8c-9f47-5a01e24c93b2', 'Minecraft Builder 3', 'SANDBOX', 'https://placehold.co/100x80', true, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220'),
-    ('b1f5a7d9-14c8-43ba-a71d-0f62d9e39724', 'Portal Puzzle 3', 'PUZZLE', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220');
-
-
+    ('e7a1c1d2-f18e-4e6a-b3a5-6dba403b62a1', 'Chess Master 1', 'BOARD_GAME', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'A timeless strategy board game that sharpens critical thinking and tactical planning.'),
+    ('a2b7c0e4-3d11-4b5b-8297-3e45fc173c81', 'Need for Speed 1', 'RACING', 'https://placehold.co/100x80', true, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'High-speed racing with customizable cars and thrilling escape missions.'),
+    ('f2d3b5c6-9a21-4d87-b6a1-8cb17de38145', 'Fortnite Battle 1', 'SHOOTER', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'An action-packed battle royale featuring vibrant visuals and unique building mechanics.'),
+    ('d4f7e6a9-213a-4b8c-9f47-5a01e24c90b2', 'Minecraft Builder 1', 'SANDBOX', 'https://placehold.co/100x80', true, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'An open-world sandbox game that inspires creativity and exploration.'),
+    ('b1f5a7d9-14c8-43ba-a71d-0f62d9e39124', 'Portal Puzzle 1', 'PUZZLE', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'Innovative puzzle-solving using physics and portals to challenge your wits.'),
+    ('f2d3b5c6-9a21-4d87-b6a1-8cb18de38145', 'Fortnite Battle 2', 'SHOOTER', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'Join a fast-paced battle royale with exciting new weapons and tactics.'),
+    ('d4f7e6a9-213a-4b8c-9f47-5a02e24c90b2', 'Minecraft Builder 2', 'SANDBOX', 'https://placehold.co/100x80', true, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'Expand your imagination and create intricate worlds in an expansive sandbox.'),
+    ('b1f5a7d9-14c8-43ba-a71d-0f63d9e39124', 'Portal Puzzle 2', 'PUZZLE', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'Master challenging puzzles with clever use of physics-based portals.'),
+    ('f2d3b5c6-9a21-4d87-b6a1-8cb17de38245', 'Fortnite Battle 3', 'SHOOTER', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'Compete in dynamic battles with new arenas and intense gameplay modes.'),
+    ('d4f7e6a9-213a-4b8c-9f47-5a01e24c93b2', 'Minecraft Builder 3', 'SANDBOX', 'https://placehold.co/100x80', true, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'Unleash your creativity and construct extraordinary wonders in this sandbox adventure.'),
+    ('b1f5a7d9-14c8-43ba-a71d-0f62d9e39724', 'Portal Puzzle 3', 'PUZZLE', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'Solve intricate puzzles with advanced portal mechanics and strategic thinking.');
 
 -- Insert Achievements and associate with Games
 INSERT INTO library.achievement (achievement_id, achievement_name, achievement_description, image_url, achieved, game_id)
 VALUES
     ('c7a4f9d3-8e12-4b7c-8a96-7b94e2836c74', 'First Blood', 'Win your first match', 'https://example.com/images/achievement1.png', false, 'e7a1c1d2-f18e-4e6a-b3a5-6dba403b62a1'),
     ('ea8f1c32-9b4c-4d5e-93a6-2a67f845b1c3', 'Grandmaster', 'Win 10 matches in a row', 'https://example.com/images/achievement2.png', true, 'e7a1c1d2-f18e-4e6a-b3a5-6dba403b62a1'),
-    ('f17b9c65-21ea-4a93-b46c-8e217f49c8a3', 'Speed Racer', 'Complete a lap in under 2 minutes', 'https://example.com/images/achievement3.png', true, 'a2b7c0e4-3d11-4b5b-8297-3e45fc173c81'),
-    ('ab4c81e7-f23a-4e5d-a83b-5c74b12f90d7', 'Champion Driver', 'Win 5 consecutive races', 'https://example.com/images/achievement4.png', false, 'a2b7c0e4-3d11-4b5b-8297-3e45fc173c81'),
+    ('a7f4c9d2-5b12-4c8b-b896-7f94e2837e64', 'Nitro Master', 'Use nitro boost 50 times in races', 'https://example.com/images/achievement11.png', false, 'a2b7c0e4-3d11-4b5b-8297-3e45fc173c81'),
+    ('b3a8c1f7-6c42-4e9b-b7a9-3d12e785f1c4', 'Drift King', 'Perform 100 successful drifts', 'https://example.com/images/achievement12.png', true, 'a2b7c0e4-3d11-4b5b-8297-3e45fc173c81'),
+    ('c8f7e4a1-9b31-4e6c-a3b9-e4f16d72b8c7', 'Speed Demon', 'Reach a top speed of 200 mph', 'https://example.com/images/achievement13.png', false, 'a2b7c0e4-3d11-4b5b-8297-3e45fc173c81'),
+    ('d9b5f3a7-8e41-4c9b-a2c6-f7b12a84d3e9', 'Race Strategist', 'Win a race without using nitro', 'https://example.com/images/achievement14.png', true, 'a2b7c0e4-3d11-4b5b-8297-3e45fc173c81'),
+    ('e2b4f9a8-3c42-4b7c-b8a7-e6d12f83b9a5', 'Ultimate Racer', 'Win 20 races in career mode', 'https://example.com/images/achievement15.png', false, 'a2b7c0e4-3d11-4b5b-8297-3e45fc173c81'),
+    ('f1c8a7e4-2d93-4b7a-b8e9-e4f31b92d7c5', 'Flawless Victory', 'Win a race without taking any damage', 'https://example.com/images/achievement16.png', true, 'a2b7c0e4-3d11-4b5b-8297-3e45fc173c81'),
+    ('a5f3e9c8-6b21-4d8a-a3e9-f3a16b84c9e8', 'Checkpoint Hero', 'Finish a checkpoint race with 10 seconds remaining', 'https://example.com/images/achievement17.png', false, 'a2b7c0e4-3d11-4b5b-8297-3e45fc173c81'),
+    ('b7e9a4f3-8c31-4e6b-a9c6-f4b32e71a9f7', 'Perfect Drift', 'Achieve a perfect drift score in a race', 'https://example.com/images/achievement18.png', true, 'a2b7c0e4-3d11-4b5b-8297-3e45fc173c81'),
+    ('c3b8f4e1-9d21-4a6b-b7c9-e6a12f83c5d7', 'Time Trial Ace', 'Beat the developer time on a time trial track', 'https://example.com/images/achievement19.png', false, 'a2b7c0e4-3d11-4b5b-8297-3e45fc173c81'),
+    ('d8f9a7c2-4b11-4e8a-b3c6-f7e12a91c9f5', 'Collector', 'Unlock all cars in the game', 'https://example.com/images/achievement20.png', true, 'a2b7c0e4-3d11-4b5b-8297-3e45fc173c81'),
     ('9e8f7c61-4b3a-4d7b-a1c6-f3a12b84c7e9', 'Survivor', 'Survive 10 minutes', 'https://example.com/images/achievement5.png', true, 'f2d3b5c6-9a21-4d87-b6a1-8cb17de38145'),
     ('b5c17a8e-4d32-4e7b-a9c8-f4a27b65e3d9', 'Sharp Shooter', 'Eliminate 10 opponents', 'https://example.com/images/achievement6.png', false, 'f2d3b5c6-9a21-4d87-b6a1-8cb17de38145'),
     ('f23a84d7-b19e-4b3c-a5c9-e4a12b76e9f3', 'Builder Extraordinaire', 'Build a massive castle', 'https://example.com/images/achievement7.png', true, 'd4f7e6a9-213a-4b8c-9f47-5a01e24c90b2'),

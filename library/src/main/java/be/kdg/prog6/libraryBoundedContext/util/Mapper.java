@@ -66,6 +66,7 @@ public class Mapper {
         gameEntity.setAchievementList(achievementEntities);
         gameEntity.setImageUrl(game.getImageUrl());
         gameEntity.setFavourite(game.isFavourite());
+        gameEntity.setDescription(game.getDescription());
 
         // IMPORTANT: The `library` field will be set by `mapEntityLibrary`.
         return gameEntity;

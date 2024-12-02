@@ -43,20 +43,17 @@ VALUES
 -- Insert Games and associate with Libraries
 INSERT INTO library.game (game_id, game_name, game_type, image_url, favourite, library_id, background_image_url, description)
 VALUES
-    ('e7a1c1d2-f18e-4e6a-b3a5-6dba403b62a1', 'Chess Master 1', 'BOARD_GAME', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'A strategic board game requiring critical thinking and planning.'),
-    ('a2b7c0e4-3d11-4b5b-8297-3e45fc173c81', 'Need for Speed 1', 'RACING', 'https://placehold.co/100x80', true, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'An adrenaline-pumping racing game with customizable cars and tracks.'),
-    ('f2d3b5c6-9a21-4d87-b6a1-8cb17de38145', 'Fortnite Battle 1', 'SHOOTER', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'A battle royale shooter with vibrant visuals and building mechanics.'),
-    ('d4f7e6a9-213a-4b8c-9f47-5a01e24c90b2', 'Minecraft Builder 1', 'SANDBOX', 'https://placehold.co/100x80', true, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'A sandbox game focused on creativity and building in an open world.'),
-    ('b1f5a7d9-14c8-43ba-a71d-0f62d9e39124', 'Portal Puzzle 1', 'PUZZLE', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'A puzzle-solving game using physics and portals to advance levels.'),
-    ('f2d3b5c6-9a21-4d87-b6a1-8cb18de38145', 'Fortnite Battle 2', 'SHOOTER', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'Join an epic battle royale with unique weapons and fast-paced action.'),
-    ('d4f7e6a9-213a-4b8c-9f47-5a02e24c90b2', 'Minecraft Builder 2', 'SANDBOX', 'https://placehold.co/100x80', true, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'Explore, build, and survive in a limitless world of creativity.'),
-    ('b1f5a7d9-14c8-43ba-a71d-0f63d9e39124', 'Portal Puzzle 2', 'PUZZLE', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'Challenging puzzles that require clever use of portals and physics.'),
-    ('f2d3b5c6-9a21-4d87-b6a1-8cb17de38245', 'Fortnite Battle 3', 'SHOOTER', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'A dynamic shooter game with vibrant battlefields and fierce competition.'),
-    ('d4f7e6a9-213a-4b8c-9f47-5a01e24c93b2', 'Minecraft Builder 3', 'SANDBOX', 'https://placehold.co/100x80', true, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'Unleash your imagination and construct wonders in a sandbox world.'),
-    ('b1f5a7d9-14c8-43ba-a71d-0f62d9e39724', 'Portal Puzzle 3', 'PUZZLE', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'Solve complex puzzles with innovative use of portals and strategy.');
-
-
-
+    ('e7a1c1d2-f18e-4e6a-b3a5-6dba403b62a1', 'Chess Master 1', 'BOARD_GAME', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'A timeless strategy board game that sharpens critical thinking and tactical planning.'),
+    ('a2b7c0e4-3d11-4b5b-8297-3e45fc173c81', 'Need for Speed 1', 'RACING', 'https://placehold.co/100x80', true, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'High-speed racing with customizable cars and thrilling escape missions.'),
+    ('f2d3b5c6-9a21-4d87-b6a1-8cb17de38145', 'Fortnite Battle 1', 'SHOOTER', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'An action-packed battle royale featuring vibrant visuals and unique building mechanics.'),
+    ('d4f7e6a9-213a-4b8c-9f47-5a01e24c90b2', 'Minecraft Builder 1', 'SANDBOX', 'https://placehold.co/100x80', true, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'An open-world sandbox game that inspires creativity and exploration.'),
+    ('b1f5a7d9-14c8-43ba-a71d-0f62d9e39124', 'Portal Puzzle 1', 'PUZZLE', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'Innovative puzzle-solving using physics and portals to challenge your wits.'),
+    ('f2d3b5c6-9a21-4d87-b6a1-8cb18de38145', 'Fortnite Battle 2', 'SHOOTER', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'Join a fast-paced battle royale with exciting new weapons and tactics.'),
+    ('d4f7e6a9-213a-4b8c-9f47-5a02e24c90b2', 'Minecraft Builder 2', 'SANDBOX', 'https://placehold.co/100x80', true, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'Expand your imagination and create intricate worlds in an expansive sandbox.'),
+    ('b1f5a7d9-14c8-43ba-a71d-0f63d9e39124', 'Portal Puzzle 2', 'PUZZLE', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'Master challenging puzzles with clever use of physics-based portals.'),
+    ('f2d3b5c6-9a21-4d87-b6a1-8cb17de38245', 'Fortnite Battle 3', 'SHOOTER', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'Compete in dynamic battles with new arenas and intense gameplay modes.'),
+    ('d4f7e6a9-213a-4b8c-9f47-5a01e24c93b2', 'Minecraft Builder 3', 'SANDBOX', 'https://placehold.co/100x80', true, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'Unleash your creativity and construct extraordinary wonders in this sandbox adventure.'),
+    ('b1f5a7d9-14c8-43ba-a71d-0f62d9e39724', 'Portal Puzzle 3', 'PUZZLE', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'Solve intricate puzzles with advanced portal mechanics and strategic thinking.');
 
 -- Insert Achievements and associate with Games
 INSERT INTO library.achievement (achievement_id, achievement_name, achievement_description, image_url, achieved, game_id)

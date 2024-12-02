@@ -13,7 +13,6 @@ import java.util.UUID;
 @Table(catalog = "library", name = "game")
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class GameEntity {
 
     @Id
@@ -22,9 +21,9 @@ public class GameEntity {
     private UUID gameId;
 
     private String gameName;
-    private String description;
 
     private String gameType;
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "gameEntity")
     private List<AchievementEntity> achievementList = new ArrayList<>();
 
@@ -33,9 +32,16 @@ public class GameEntity {
 
     private boolean favourite;
 
+    private String description;
+
+
     @ManyToOne()
     @JoinColumn(name = "library_id")
     private LibraryEntity libraryEntity;
+
+    public GameEntity() {
+
+    }
 
 
     public GameEntity(UUID uuid, String gameName, GameTypeEntity gameTypeEntity, List<AchievementEntity> achievementEntities, String imageUrl, boolean favourite) {

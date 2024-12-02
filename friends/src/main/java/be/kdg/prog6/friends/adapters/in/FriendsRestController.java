@@ -28,7 +28,7 @@ public class FriendsRestController {
     private final LoadFriends loadFriends;
     private final RemoveFriend removeFriend;
     private final LoadFriendsLobbies loadFriendsLobbies;
-
+    
     @PostMapping
     public ResponseEntity<PlayerDto> addNewFriend(
             @RequestBody AddFriendCommand command

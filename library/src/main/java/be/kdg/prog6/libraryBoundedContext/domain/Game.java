@@ -14,8 +14,9 @@ import java.util.List;
 @NoArgsConstructor
 public class Game {
     private GameId gameId;
+
     private String gameName;
-    private String description;
+    private String  description;
 
     private GameType gameType;
 
@@ -23,8 +24,11 @@ public class Game {
 
     private boolean favourite;
 
+
     private String imageUrl;
     private String backgroundImageUrl;
+
+
 
     public Game(GameId gameId, String gameName, GameType gameType, List<Achievement> achievementList, String imageUrl, boolean favourite) {
         this.gameId = gameId;
@@ -43,8 +47,11 @@ public class Game {
         this.favourite = favourite;
     }
 
-    public void toggleFavorite() {
-        this.favourite = !this.favourite;
+    public void markAsFavorite() {
+        if (this.favourite) {
+            throw new GameAlreadyMarkedAsFavoriteException("Game is already marked as favorite.");
+        }
+        this.favourite = true;
     }
 
     public boolean isGameMarkedAsFavorite() {

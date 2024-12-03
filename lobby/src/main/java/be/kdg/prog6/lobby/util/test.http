@@ -14,7 +14,7 @@ POST http://localhost:8090/api/lobbies/037a8d14-1c03-4d09-9477-f9f41c033a97/requ
 content-type: application/json
 
 {
-  "guestId": "a90b9d53-9a0d-4bcd-9672-679351a90f1a"
+  "guestId": "c56a4182-65aa-42ec-a945-5fd21dec0540"
 }
 
 

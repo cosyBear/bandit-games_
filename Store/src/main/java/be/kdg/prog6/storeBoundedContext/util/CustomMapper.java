@@ -43,7 +43,6 @@ public class CustomMapper {
         return gameEntity;
     }
 
-    // Convert Achievement to AchievementEntity
     public static AchievementEntity toAchievementEntity(Achievement achievement, GameEntity gameEntity) {
         AchievementEntity achievementEntity = new AchievementEntity();
         achievementEntity.setAchievementId(achievement.getAchievementId().achievementId());

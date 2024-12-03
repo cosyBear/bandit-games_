@@ -33,4 +33,21 @@ public class RequestAccessEntity {
     @ManyToOne
     @JoinColumn(name = "lobby_id", nullable = false)
     private LobbyEntity lobby;
+
+    @Override
+    public int hashCode() {
+        // Exclude the `lobby` field to prevent circular reference
+        return java.util.Objects.hash(requestId, guestPlayerId, requestStatus);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RequestAccessEntity that = (RequestAccessEntity) o;
+        return java.util.Objects.equals(requestId, that.requestId) &&
+                java.util.Objects.equals(guestPlayerId, that.guestPlayerId) &&
+                java.util.Objects.equals(requestStatus, that.requestStatus);
+    }
+
 }

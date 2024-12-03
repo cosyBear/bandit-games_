@@ -10,11 +10,11 @@ content-type: application/json
 
 
 ### Create request access
-POST http://localhost:8090/api/lobbies/037a8d14-1c03-4d09-9477-f9f41c033a97/requests
+POST http://localhost:8090/api/lobbies/cfddae8c-a1b7-4870-bbd4-990a46b2cd0c/requests
 content-type: application/json
 
 {
-  "guestId": "c56a4182-65aa-42ec-a945-5fd21dec0540"
+  "guestId": "c56a4183-65aa-42ec-a945-5fd21dec0541"
 }
 
 
@@ -24,7 +24,8 @@ PATCH http://localhost:8090/api/lobbies/joinLobby
 content-type: application/json
 
 {
-  "lobbyId": "5ee4575f-6845-41fc-817a-f28d08503a00",
-  "guestId": "8fae4d9a-8dfb-4d64-95c3-6c6b234e57a1"
+  "LobbyId": "cfddae8c-a1b7-4870-bbd4-990a46b2cd0c",
+  "guestId": "c56a4183-65aa-42ec-a945-5fd21dec0541",
+  "status": "ACCEPTED"
 }
 

@@ -17,6 +17,7 @@ dependencies {
     implementation project(':library')
     implementation project(':friends')
     implementation project(':lobby')
+    implementation project(':Store')
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-amqp'

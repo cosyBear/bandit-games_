@@ -1,13 +1,14 @@
 package be.kdg.prog6.libraryBoundedContext.adapters.in;
 
 import be.kdg.prog6.libraryBoundedContext.domain.id.PlayerId;
+import be.kdg.prog6.libraryBoundedContext.port.in.command.EarnAchievementCommand;
+import be.kdg.prog6.libraryBoundedContext.port.in.command.GameCommand;
 import be.kdg.prog6.libraryBoundedContext.port.in.game.GameQueryUseCase;
 import be.kdg.prog6.libraryBoundedContext.port.in.game.GameUseCase;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.FetchGamesByNameQuery;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GameQuery;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GetGamesByCategoryQuery;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.RetrieveAllGamesQuery;
-import be.kdg.prog6.libraryBoundedContext.port.in.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

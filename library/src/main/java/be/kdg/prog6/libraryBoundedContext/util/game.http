@@ -1,27 +1,35 @@
 ### Test: Fetch All Available Games
-GET http://localhost:8091/api/games/all?playerId=123e4567-e89b-12d3-a456-426614174000
+GET http://localhost:8090/api/games/123e4567-e89b-12d3-a456-426614174000
 Accept: application/json
+
+
 
 ### Test: Fetch Games by Name
-GET http://localhost:8091/api/games/search?playerId=123e4567-e89b-12d3-a456-426614174000&gameName=Chess%20Master
+GET http://localhost:8090/api/games/search?playerId=123e4567-e89b-12d3-a456-426614174000&game=Chess%20Master
 Accept: application/json
+
 
 ### Test: Fetch Games by Category
-GET http://localhost:8091/api/games/category?playerId=123e4567-e89b-12d3-a456-426614174000&category=RACING
+GET http://localhost:8090/api/games/category?playerId=123e4567-e89b-12d3-a456-426614174000&category=RACING
 Accept: application/json
 
+
+
 ### Test: Mark Game as Favorite
-PATCH http://localhost:8091/api/games/123e4567-e89b-12d3-a456-426614174000/f2d3b5c6-9a21-4d87-b6a1-8cb17de38145/favorite?gameName=Fortnite%20Battle
+PATCH http://localhost:8090/api/games/123e4567-e89b-12d3-a456-426614174000/f2d3b5c6-9a21-4d87-b6a1-8cb17de38145/favorite?gameName=Fortnite%20Battle
 Content-Type: application/json
 Accept: application/json
 
+
 ### Test: Mark Game as Favorite
 
-PATCH http://localhost:8091/api/games/123e4567-e89b-12d3-a456-426614174000/e7a1c1d2-f18e-4e6a-b3a5-6dba403b62a1/favorite?gameName=Chess%20Master
+PATCH http://localhost:8090/api/games/123e4567-e89b-12d3-a456-426614174000/e7a1c1d2-f18e-4e6a-b3a5-6dba403b62a1/favorite?gameName=Chess%20Master
 Content-Type: application/json
 Accept: application/json
+
+
 
 ### Test: Earn Achievement
-POST http://localhost:8091/api/games/123e4567-e89b-12d3-a456-426614174000/games/a2b7c0e4-3d11-4b5b-8297-3e45fc173c81/achievements?gameName=Need%20for%20Speed&achievementName=Champion%20Driver
+POST http://localhost:8090/api/games/123e4567-e89b-12d3-a456-426614174000/games/a2b7c0e4-3d11-4b5b-8297-3e45fc173c81/achievements?gameName=Need%20for%20Speed&achievementName=Champion%20Driver
 Content-Type: application/json
 Accept: application/json

@@ -27,4 +27,12 @@ FLUSH PRIVILEGES;
 EOF
 
 
+
+mysql -u root -p"${MYSQL_ROOT_PASSWORD}" <<EOF
+CREATE DATABASE IF NOT EXISTS store;
+GRANT ALL PRIVILEGES ON store.* TO '${MYSQL_USER}'@'%';
+FLUSH PRIVILEGES;
+EOF
+
+
 echo "Databases initialized successfully!"

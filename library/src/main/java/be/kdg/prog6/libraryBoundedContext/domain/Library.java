@@ -24,7 +24,7 @@ public class Library {
 
     public Game toggleFavouriteForGame(GameId gameId) {
         Game game = findGameById(gameId);
-        game.toggleFavorite();
+        game.markAsFavorite();
         return game;
     }
 

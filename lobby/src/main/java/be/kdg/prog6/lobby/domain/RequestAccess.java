@@ -13,11 +13,9 @@ import java.util.UUID;
 @NoArgsConstructor
 public class RequestAccess {
 
-
+    private UUID requestId;
     private UUID guestPlayerId;
     private RequestStatus requestStatus;
-
-
 
 
 }

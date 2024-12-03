@@ -30,10 +30,7 @@ public class LobbyEntity {
     private LobbyStatusEntity lobbyStatusEntity;
     private LocalDateTime createdAt;
 
-    @ElementCollection
-    @CollectionTable(
-            joinColumns = @JoinColumn(name = "lobby_id")
-    )
+    @OneToMany(mappedBy = "lobby", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<RequestAccessEntity> requests = new HashSet<>();
 
 

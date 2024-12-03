@@ -52,7 +52,7 @@ public class Lobby {
 
 
     public void createRequestAccess(UUID guestPlayerId) {
-        this.accessRequests.add(new RequestAccess( guestPlayerId, RequestStatus.CREATED));
+        this.accessRequests.add(new RequestAccess( UUID.randomUUID(),  guestPlayerId, RequestStatus.CREATED));
     }
 
     public static Lobby createLobby(LobbyId lobbyId, UUID gameId, UUID lobbyAdmin) {

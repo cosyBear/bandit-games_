@@ -36,11 +36,12 @@ public class ShowLobbyRequestAccessQueryUseCaseImp implements ShowLobbyRequestAc
         }
 
         List<RequestQuery> requestQueryList = queryList.stream()
-                .map(requestAccess -> Mapper.RequestToQuery(requestAccess, command.lobbyId()))
+                .map(requestAccess -> Mapper.requestToQuery(requestAccess, command.lobbyId())) // Correct method name
                 .toList();
 
         log.info("All the requests for lobby {}: {}", command.lobbyId(), requestQueryList);
         return requestQueryList;
     }
+
 
 }

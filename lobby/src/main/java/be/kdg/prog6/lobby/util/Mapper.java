@@ -12,8 +12,10 @@ import be.kdg.prog6.lobby.port.in.Query.RequestQuery;
 
 import java.util.stream.Collectors;
 
-public class Mapper {
 
+
+
+public class Mapper {
 
     public static Lobby toDomain(LobbyEntity entity) {
         return new Lobby(
@@ -29,9 +31,8 @@ public class Mapper {
         );
     }
 
-    // Map from Domain Lobby to LobbyEntity
     public static LobbyEntity mapToEntity(Lobby domain) {
-        return new LobbyEntity(
+        LobbyEntity entity = new LobbyEntity(
                 domain.getLobbyId().lobbyId(),
                 domain.getGameId(),
                 domain.getLobbyAdmin(),
@@ -39,28 +40,31 @@ public class Mapper {
                 LobbyStatusEntity.valueOf(domain.getLobbyStatus().toString()),
                 domain.getCreatedAt(),
                 domain.getAccessRequests().stream()
-                        .map(Mapper::toEntityRequestAccess)
+                        .map(request -> toEntityRequestAccess(request, domain))
                         .collect(Collectors.toSet())
         );
+
+        entity.getRequests().forEach(request -> request.setLobby(entity));
+
+        return entity;
     }
 
-    // Map from Domain RequestAccess to RequestAccessEntity
-    public static RequestAccessEntity toEntityRequestAccess(RequestAccess request) {
-        return new RequestAccessEntity(
-                request.getGuestPlayerId(),
-                request.getRequestStatus()
-        );
+    public static RequestAccessEntity toEntityRequestAccess(RequestAccess request, Lobby domain) {
+        RequestAccessEntity entity = new RequestAccessEntity();
+        entity.setGuestPlayerId(request.getGuestPlayerId());
+        entity.setRequestStatus(request.getRequestStatus());
+        return entity;
     }
 
-    // Map from RequestAccessEntity to Domain RequestAccess
     public static RequestAccess toDomainRequestAccess(RequestAccessEntity entity) {
         return new RequestAccess(
+                entity.getRequestId(),
                 entity.getGuestPlayerId(),
                 entity.getRequestStatus()
         );
     }
 
-    public static RequestQuery RequestToQuery(RequestAccess domain, LobbyId lobbyId) {
+    public static RequestQuery requestToQuery(RequestAccess domain, LobbyId lobbyId) {
         return new RequestQuery(
                 lobbyId,
                 domain.getGuestPlayerId(),
@@ -68,13 +72,14 @@ public class Mapper {
         );
     }
 
-
     public static LobbyUpdateQuery mapToUpdateQuery(Lobby domain) {
-
-        return new LobbyUpdateQuery(domain.getLobbyId().lobbyId(), domain.getGameId(), domain.getLobbyAdmin(), domain.getGuestPlayer(),
-                domain.getCreatedAt(), domain.getLobbyStatus().toString());
-
+        return new LobbyUpdateQuery(
+                domain.getLobbyId().lobbyId(),
+                domain.getGameId(),
+                domain.getLobbyAdmin(),
+                domain.getGuestPlayer(),
+                domain.getCreatedAt(),
+                domain.getLobbyStatus().toString()
+        );
     }
-
-
 }

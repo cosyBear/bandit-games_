@@ -4,5 +4,5 @@ import be.kdg.prog6.lobby.domain.ids.LobbyId;
 
 import java.util.UUID;
 
-public record AddGuestToLobbyCommand(LobbyId lobbyId, UUID guestPlayerId) {
+public record CreateRequestAccessCommand(LobbyId lobbyId , UUID playerId){
 }

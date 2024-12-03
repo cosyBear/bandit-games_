@@ -8,6 +8,7 @@ import be.kdg.prog6.lobby.port.in.Query.LobbyCreateQuery;
 import be.kdg.prog6.lobby.port.in.command.CreateLobbyCommand;
 import be.kdg.prog6.lobby.port.out.LobbyCreatedEventPublisher;
 import be.kdg.prog6.lobby.port.out.LobbySavePort;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,7 @@ public class CreateLobbyUseCaseImp implements CreateLobbyUseCase {
     private final LobbyCreatedEventPublisher lobbyCreatedEventPublisher;
 
     @Override
+    @Transactional
     public LobbyCreateQuery createLobby(CreateLobbyCommand lobbyCommand) {
         Lobby lobby = Lobby.createLobby(new LobbyId(UUID.randomUUID()), lobbyCommand.gameID(), lobbyCommand.lobbyAdminId());
         log.info("lobby  lobby_id {}", lobby.getLobbyId());

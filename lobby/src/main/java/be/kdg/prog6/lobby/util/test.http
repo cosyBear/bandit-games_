@@ -8,6 +8,17 @@ content-type: application/json
   "lobbyAdminId": "95592601-d766-4715-a205-fbd13323ccc3"
 }
 
+
+### Create request access
+POST http://localhost:8090/api/lobbies/037a8d14-1c03-4d09-9477-f9f41c033a97/requests
+content-type: application/json
+
+{
+  "guestId": "a90b9d53-9a0d-4bcd-9672-679351a90f1a"
+}
+
+
+
 ### join lobby
 PATCH http://localhost:8090/api/lobbies/joinLobby
 content-type: application/json

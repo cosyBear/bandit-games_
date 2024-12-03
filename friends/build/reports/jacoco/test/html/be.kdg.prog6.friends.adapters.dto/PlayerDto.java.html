@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlayerDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">friends</a> &gt; <a href="index.source.html" class="el_package">be.kdg.prog6.friends.adapters.dto</a> &gt; <span class="el_source">PlayerDto.java</span></div><h1>PlayerDto.java</h1><pre class="source lang-java linenums">package be.kdg.prog6.friends.adapters.dto;
+
+import be.kdg.prog6.friends.domain.Gender;
+import be.kdg.prog6.friends.domain.Player;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class PlayerDto {
+
+    private UUID id;
+    private String nickname;
+    private String firstName;
+    private String lastName;
+    private Gender gender;
+<span class="nc" id="L24">    private Set&lt;PlayerDto&gt; friends = new HashSet&lt;&gt;();</span>
+
+<span class="nc" id="L26">    public PlayerDto(UUID id, String nickname, String firstName, String lastName, Gender gender) {</span>
+<span class="nc" id="L27">        this.id = id;</span>
+<span class="nc" id="L28">        this.nickname = nickname;</span>
+<span class="nc" id="L29">        this.firstName = firstName;</span>
+<span class="nc" id="L30">        this.lastName = lastName;</span>
+<span class="nc" id="L31">        this.gender = gender;</span>
+<span class="nc" id="L32">    }</span>
+
+
+    public static PlayerDto convertToDTO(Player player) {
+<span class="nc" id="L36">        return new PlayerDto(</span>
+<span class="nc" id="L37">                player.getId().id(),</span>
+<span class="nc" id="L38">                player.getNickname(),</span>
+<span class="nc" id="L39">                player.getFirstName(),</span>
+<span class="nc" id="L40">                player.getLastName(),</span>
+<span class="nc" id="L41">                player.getGender()</span>
+        );
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

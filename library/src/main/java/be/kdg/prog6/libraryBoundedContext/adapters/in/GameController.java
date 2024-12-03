@@ -64,12 +64,11 @@ public class GameController {
     @PatchMapping("/{playerId}/{gameId}/favorite")
     public ResponseEntity<GameQuery> toggleGameFavorite(
             @PathVariable UUID playerId,
-            @PathVariable UUID gameId,
-            @RequestParam String gameName) {
+            @PathVariable UUID gameId) {
 
-        GameCommand command = new GameCommand(new PlayerId(playerId), gameName, gameId);
+        GameCommand command = new GameCommand(new PlayerId(playerId), gameId);
 
-        GameQuery updatedGame = gameUseCase.markGameAsFavourite(command);
+        GameQuery updatedGame = gameUseCase.toggleGameFavourite(command);
 
         return ResponseEntity.status(HttpStatus.OK).body(updatedGame);
     }

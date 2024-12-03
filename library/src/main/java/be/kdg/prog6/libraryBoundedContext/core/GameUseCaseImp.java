@@ -29,15 +29,15 @@ public class GameUseCaseImp implements GameUseCase {
 
     @Transactional
     @Override
-    public GameQuery markGameAsFavourite(GameCommand command) {
+    public GameQuery toggleGameFavourite(GameCommand command) {
 
-        Library library = libraryLoadPort.fetchLibraryWithGamesByNamePattern(command.playerId(), command.gameName());
+        Library library = libraryLoadPort.fetchLibraryWithGameById(command.playerId(), command.gameId());
         if (library == null) {
             log.error("Library not found or game not found for player: {}", command.playerId());
-            throw new GameNotFoundException("Game not found with name: " + command.gameName());
+            throw new GameNotFoundException("Game not found with id: " + command.gameId());
         }
 
-        Game game = library.toggleFavouriteForGame(new GameId(command.gameId()));
+        Game game = library.toggleFavouriteForGame();
 
         librarySavePort.save(library);
         log.info("Game marked as favorite: ");

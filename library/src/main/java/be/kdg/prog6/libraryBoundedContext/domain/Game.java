@@ -2,7 +2,6 @@ package be.kdg.prog6.libraryBoundedContext.domain;
 
 import be.kdg.prog6.common.events.util.AchievementAlreadyEarnedException;
 import be.kdg.prog6.common.events.util.AchievementNotFoundException;
-import be.kdg.prog6.common.events.util.GameAlreadyMarkedAsFavoriteException;
 import be.kdg.prog6.libraryBoundedContext.domain.id.GameId;
 import lombok.*;
 
@@ -47,11 +46,8 @@ public class Game {
         this.favourite = favourite;
     }
 
-    public void markAsFavorite() {
-        if (this.favourite) {
-            throw new GameAlreadyMarkedAsFavoriteException("Game is already marked as favorite.");
-        }
-        this.favourite = true;
+    public void toggleFavorite() {
+        this.favourite = !this.favourite;
     }
 
     public boolean isGameMarkedAsFavorite() {

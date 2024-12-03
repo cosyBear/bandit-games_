@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">5</div>
+<div class="counter">4</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.042s</div>
+<div class="counter">0.098s</div>
 <p>duration</p>
 </div>
 </td>
@@ -82,7 +82,7 @@
 </thead>
 <tr>
 <td class="success">givePlayerAnAchievement()</td>
-<td class="success">0.003s</td>
+<td class="success">0.004s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -92,17 +92,12 @@
 </tr>
 <tr>
 <td class="success">markGameAsFavourite()</td>
-<td class="success">0.006s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">markGameAsFavourite_GameAlreadyMarked_ShouldThrowException()</td>
-<td class="success">0.003s</td>
+<td class="success">0.009s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">markGameAsFavourite_GameNotFound_ShouldThrowException()</td>
-<td class="success">0.027s</td>
+<td class="success">0.082s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -119,22 +114,22 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.1.1)
 
-2024-12-01T08:09:48.791+01:00  INFO 22129 --- [    Test worker] GameUseCaseImpTest                       : Starting GameUseCaseImpTest using Java 21.0.5 with PID 22129 (started by ali in /home/ali/IdeaProjects/bandit-games_REAL/library)
-2024-12-01T08:09:48.792+01:00  INFO 22129 --- [    Test worker] GameUseCaseImpTest                       : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2024-12-01T08:09:50.223+01:00  INFO 22129 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2024-12-01T08:09:50.223+01:00  INFO 22129 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2024-12-01T08:09:50.229+01:00  INFO 22129 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
-2024-12-01T08:09:50.234+01:00  INFO 22129 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 10 ms
-2024-12-01T08:09:50.258+01:00  INFO 22129 --- [    Test worker] GameUseCaseImpTest                       : Started GameUseCaseImpTest in 1.598 seconds (process running for 2.075)
-2024-12-01T08:09:50.326+01:00 ERROR 22129 --- [    Test worker] b.k.p.l.core.GameUseCaseImp              : Library not found or game not found for player: PlayerId[Id=123e4567-e89b-12d3-a456-426614174000]
-2024-12-01T08:09:50.334+01:00  INFO 22129 --- [    Test worker] b.k.p.l.core.GameUseCaseImp              : Game marked as favorite: 
+2024-12-03T12:40:39.528+01:00  INFO 15824 --- [    Test worker] GameUseCaseImpTest                       : Starting GameUseCaseImpTest using Java 21.0.3 with PID 15824 (started by Leonid in D:\KDG project\Integration 5\library)
+2024-12-03T12:40:39.529+01:00  INFO 15824 --- [    Test worker] GameUseCaseImpTest                       : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2024-12-03T12:40:41.516+01:00  INFO 15824 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-12-03T12:40:41.518+01:00  INFO 15824 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-12-03T12:40:41.526+01:00  INFO 15824 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-12-03T12:40:41.535+01:00  INFO 15824 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 15 ms
+2024-12-03T12:40:41.580+01:00  INFO 15824 --- [    Test worker] GameUseCaseImpTest                       : Started GameUseCaseImpTest in 2.194 seconds (process running for 2.804)
+2024-12-03T12:40:41.731+01:00 ERROR 15824 --- [    Test worker] b.k.p.l.core.GameUseCaseImp              : Library not found or game not found for player: PlayerId[Id=123e4567-e89b-12d3-a456-426614174000]
+2024-12-03T12:40:41.747+01:00  INFO 15824 --- [    Test worker] b.k.p.l.core.GameUseCaseImp              : Game marked as favorite: 
 </pre>
 </span>
 </div>
 <div id="tab2" class="tab">
 <h2>Standard error</h2>
 <span class="code">
-<pre>WARNING: A Java agent has been loaded dynamically (/home/ali/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.14.5/20f4e9b9d0ffb953657bfa4b92c0cceb27907d58/byte-buddy-agent-1.14.5.jar)
+<pre>WARNING: A Java agent has been loaded dynamically (C:\Users\Leonid\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.14.5\20f4e9b9d0ffb953657bfa4b92c0cceb27907d58\byte-buddy-agent-1.14.5.jar)
 WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
 WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
 WARNING: Dynamic loading of agents will be disallowed by default in a future release
@@ -149,7 +144,7 @@ WARNING: Dynamic loading of agents will be disallowed by default in a future rel
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.4</a> at Dec 1, 2024, 8:09:50 AM</p>
+<a href="http://www.gradle.org">Gradle 8.4</a> at 3 Dec 2024, 12:40:41</p>
 </div>
 </div>
 </body>

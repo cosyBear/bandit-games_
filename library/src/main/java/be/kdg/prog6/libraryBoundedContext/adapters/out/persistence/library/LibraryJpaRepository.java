@@ -32,7 +32,7 @@ public interface LibraryJpaRepository  extends JpaRepository<LibraryEntity, UUID
     @Query("""
             SELECT l FROM LibraryEntity l
             LEFT JOIN FETCH l.games g
-            WHERE l.playerEntity.playerId = :playerId AND g.gameId = :gameId
+            WHERE g.gameId = :gameId
             """)
-    Optional<LibraryEntity> fetchLibraryWithGameById(UUID playerId, UUID gameId);
+    Optional<LibraryEntity> fetchLibraryWithGameById(UUID gameId);
 }

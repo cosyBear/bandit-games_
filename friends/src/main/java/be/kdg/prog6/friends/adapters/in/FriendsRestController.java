@@ -40,7 +40,7 @@ public class FriendsRestController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @GetMapping("/{playerId}")
+    @GetMapping("/{playerId}/all")
     public ResponseEntity<List<PlayerDto>> getAllFriends(
             @PathVariable("playerId") UUID playerId
     ) {
@@ -48,6 +48,17 @@ public class FriendsRestController {
 
         final List<PlayerDto> response = friends.getFriends()
                 .stream().map(PlayerDto::convertToDTO).toList();
+
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/{playerId}")
+    public ResponseEntity<PlayerDto> findPlayer(
+            @PathVariable("playerId") UUID playerId
+    ) {
+        final Player player = loadFriends.findPlayer(playerId);
+
+        final PlayerDto response = PlayerDto.convertToDTO(player);
 
         return ResponseEntity.ok(response);
     }

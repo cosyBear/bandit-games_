@@ -46,6 +46,13 @@ public class GameController {
 
     }
 
+    @GetMapping("/details/{gameId}")
+    public ResponseEntity<GameQuery> fetchGameDetails(@PathVariable UUID gameId) {
+        final GameQuery gameQuery = gameQueryUseCase.findGameById(gameId);
+
+        return ResponseEntity.status(HttpStatus.OK).body(gameQuery);
+    }
+
 
     @GetMapping("category")
     public ResponseEntity<List<GameQuery>> fetchGamesByCategory(
@@ -94,7 +101,6 @@ public class GameController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(updatedGame);
     }
-
 
 
 }

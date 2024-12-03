@@ -9,25 +9,22 @@ import be.kdg.prog6.libraryBoundedContext.port.out.LibraryLoadPort;
 import be.kdg.prog6.libraryBoundedContext.util.Mapper;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GameQuery;
 import be.kdg.prog6.libraryBoundedContext.port.in.game.GameQueryUseCase;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
+@Slf4j
+@RequiredArgsConstructor
 public class GameQueryUseCaseImp implements GameQueryUseCase {
 
-
     private final LibraryLoadPort libraryLoadPort;
-
-    private static final Logger logger = LogManager.getLogger(GameQueryUseCaseImp.class);
-
-    public GameQueryUseCaseImp(LibraryLoadPort libraryLoadPort) {
-        this.libraryLoadPort = libraryLoadPort;
-    }
-
 
     @Override
     @Transactional(readOnly = true)
@@ -60,6 +57,14 @@ public class GameQueryUseCaseImp implements GameQueryUseCase {
         return library.getGames().stream()
                 .map(Mapper::toQuery)
                 .toList();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public GameQuery findGameById(UUID gameId) {
+        final Game game = libraryLoadPort.fetchLibraryWithGameById(gameId).getGames().getFirst();
+
+        return Mapper.toQuery(game);
     }
 
 

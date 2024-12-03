@@ -31,7 +31,7 @@ public class GameUseCaseImp implements GameUseCase {
     @Override
     public GameQuery toggleGameFavourite(GameCommand command) {
 
-        Library library = libraryLoadPort.fetchLibraryWithGameById(command.playerId(), command.gameId());
+        Library library = libraryLoadPort.fetchLibraryWithGameById(command.gameId());
         if (library == null) {
             log.error("Library not found or game not found for player: {}", command.playerId());
             throw new GameNotFoundException("Game not found with id: " + command.gameId());

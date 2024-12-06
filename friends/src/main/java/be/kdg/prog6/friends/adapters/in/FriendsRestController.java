@@ -12,6 +12,7 @@ import be.kdg.prog6.friends.port.in.RemoveFriend;
 import be.kdg.prog6.friends.port.in.command.AddFriendCommand;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class FriendsRestController {
     private final LoadFriends loadFriends;
     private final RemoveFriend removeFriend;
     private final LoadFriendsLobbies loadFriendsLobbies;
-    
+
     @PostMapping
     public ResponseEntity<PlayerDto> addNewFriend(
             @RequestBody AddFriendCommand command

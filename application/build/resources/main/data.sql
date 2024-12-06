@@ -139,3 +139,26 @@ VALUES
     ('e7a2f9b1-4c32-4d9b-a8c9-f6a31b97e2f3', 'Portal Solver', 'Complete all levels', 'https://example.com/images/achievement9.png', 'b1f5a7d9-14c8-43ba-a71d-0f62d9e39124'),
     ('c7f3b12e-4a93-4e7c-a9b8-e3f62b41c9a8', 'Speed Runner', 'Complete the game in under 1 hour', 'https://example.com/images/achievement10.png', 'b1f5a7d9-14c8-43ba-a71d-0f62d9e39124');
 
+
+
+-- Insert new games into store
+INSERT INTO store.game (
+    game_id, game_name, game_type, image_url, background_image_url, description, price, rating,
+    minimum_operating_system, minimum_processor, minimum_memory_ingb, minimum_graphics_card, minimum_storage_ingb, minimum_directxversion,
+    recommended_operating_system, recommended_processor, recommended_memory_ingb, recommended_graphics_card, recommended_storage_ingb, recommended_directxversion
+)
+VALUES
+    (
+        'f7a1c1d2-4f18-4e6a-b3a5-7dba403b62a1', 'Space Explorer', 'ADVENTURE',
+        'https://placehold.co/100x80', 'https://placehold.co/1400x220',
+        'An epic journey through the stars, exploring unknown planets and encountering alien civilizations.', 39.99, 4.9,
+        'Windows 10', 'Intel Core i5', 8, 'NVIDIA GTX 1060', 10, 'DirectX 11',
+        'Windows 11', 'Intel Core i7', 16, 'NVIDIA RTX 2060', 20, 'DirectX 12'
+    ),
+    (
+        'a3a4c1d2-2f12-4e6a-b3a5-7dba503b63a2', 'Zombie Survival', 'SHOOTER',
+        'https://placehold.co/100x80', 'https://placehold.co/1400x220',
+        'Fight your way through hordes of zombies in this intense survival game. Customize your weapons and tactics to survive.', 29.99, 4.8,
+        'Windows 7', 'Intel Core i3', 4, 'Intel HD Graphics', 10, 'DirectX 10',
+        'Windows 10', 'Intel Core i7', 8, 'NVIDIA GTX 1050', 15, 'DirectX 11'
+    );

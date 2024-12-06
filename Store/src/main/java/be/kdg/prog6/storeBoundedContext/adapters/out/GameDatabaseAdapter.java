@@ -32,7 +32,7 @@ public class GameDatabaseAdapter implements GameLoadPort, StoreSavePort {
     @Override
     public Store loadAllAvailGames() {
 
-        Set<Game> games = gameJpaRepository.findAll()
+        Set<Game> games = gameJpaRepository.getAllGame()
                 .stream()
                 .map(CustomMapper::toGame)
                 .collect(Collectors.toSet());

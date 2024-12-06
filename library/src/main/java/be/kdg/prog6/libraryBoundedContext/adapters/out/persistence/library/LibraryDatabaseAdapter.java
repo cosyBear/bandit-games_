@@ -29,6 +29,18 @@ public class LibraryDatabaseAdapter implements LibraryLoadPort, LibrarySavePort 
     }
 
     @Override
+    public Library getLibraryForPlayer(PlayerId playerId) {
+        LibraryEntity library = libraryJpaRepository.loadLibraryByPlayerId(playerId.Id());
+
+        if (library == null) {
+            throw new EntityNotFoundException("library  for player with ID {" + playerId.Id() + "}  dont exist ");
+        }
+
+        return Mapper.mapDomainLibrary(library);
+
+    }
+
+    @Override
     public Library fetchLibraryWithAllAvailableGames(PlayerId playerId) {
         try {
             LibraryEntity libraryEntity = Optional.ofNullable(

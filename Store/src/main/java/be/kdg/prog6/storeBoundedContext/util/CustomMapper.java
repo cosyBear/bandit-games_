@@ -43,7 +43,6 @@ public class CustomMapper {
         return gameEntity;
     }
 
-    // Convert Achievement to AchievementEntity
     public static AchievementEntity toAchievementEntity(Achievement achievement, GameEntity gameEntity) {
         AchievementEntity achievementEntity = new AchievementEntity();
         achievementEntity.setAchievementId(achievement.getAchievementId().achievementId());
@@ -104,7 +103,6 @@ public class CustomMapper {
         );
     }
 
-    // Convert SystemRequirementsEntity to SystemRequirements
     public static SystemRequirements toSystemRequirements(SystemRequirementsEntity systemRequirementsEntity) {
         return new SystemRequirements(
                 systemRequirementsEntity.getMinimumOperatingSystem(),
@@ -144,7 +142,6 @@ public class CustomMapper {
         return gameQuery;
     }
 
-    // Convert Achievement to AchievementQuery
     private static AchievementQuery toAchievementQuery(Achievement achievement) {
         return new AchievementQuery(
                 achievement.getAchievementName(),
@@ -153,7 +150,6 @@ public class CustomMapper {
         );
     }
 
-    // Convert SystemRequirements to SystemRequirementsQuery
     private static SystemRequirementsQuery toSystemRequirementsQuery(SystemRequirements systemRequirements) {
         return new SystemRequirementsQuery(
                 systemRequirements.getMinimumOperatingSystem(),

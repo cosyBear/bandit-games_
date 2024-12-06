@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Entity
+@Entity(name = "LibraryGameEntity")
 @Table(catalog = "library", name = "game")
 @Data
 @AllArgsConstructor
@@ -38,6 +38,8 @@ public class GameEntity {
     @ManyToOne()
     @JoinColumn(name = "library_id")
     private LibraryEntity libraryEntity;
+
+
 
     public GameEntity() {
 

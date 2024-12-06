@@ -3,7 +3,8 @@ package be.kdg.prog6.libraryBoundedContext.core;
 import be.kdg.prog6.common.events.util.LibraryNotFoundException;
 import be.kdg.prog6.libraryBoundedContext.domain.Library;
 import be.kdg.prog6.libraryBoundedContext.domain.id.GameId;
-import be.kdg.prog6.libraryBoundedContext.port.in.*;
+import be.kdg.prog6.libraryBoundedContext.port.in.command.EarnAchievementCommand;
+import be.kdg.prog6.libraryBoundedContext.port.in.command.GameCommand;
 import be.kdg.prog6.libraryBoundedContext.port.in.game.GameUseCase;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GameQuery;
 import be.kdg.prog6.libraryBoundedContext.port.out.LibraryLoadPort;
@@ -14,8 +15,6 @@ import be.kdg.prog6.common.events.util.GameNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 

@@ -23,8 +23,8 @@ public class Game {
 
     private boolean favourite;
 
-
     private String imageUrl;
+
     private String backgroundImageUrl;
 
 

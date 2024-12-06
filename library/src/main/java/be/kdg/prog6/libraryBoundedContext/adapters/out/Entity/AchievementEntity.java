@@ -1,16 +1,14 @@
 package be.kdg.prog6.libraryBoundedContext.adapters.out.Entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 import java.util.UUID;
 
-@Entity
-@Getter
-@Setter
+@Entity(name = "LibraryAchievementEntity")
+@Data
 @Table(name = "achievement", catalog = "library")
 public class AchievementEntity {
 

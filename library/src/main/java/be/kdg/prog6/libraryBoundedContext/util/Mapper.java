@@ -7,13 +7,18 @@ import be.kdg.prog6.libraryBoundedContext.domain.id.AchievementId;
 import be.kdg.prog6.libraryBoundedContext.domain.id.GameId;
 import be.kdg.prog6.libraryBoundedContext.domain.id.LibraryId;
 import be.kdg.prog6.libraryBoundedContext.domain.id.PlayerId;
-import be.kdg.prog6.libraryBoundedContext.port.in.*;
+import be.kdg.prog6.libraryBoundedContext.port.in.command.AchievementCommand;
+import be.kdg.prog6.libraryBoundedContext.port.in.command.CreateGameCommand;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.AchievementQuery;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GameQuery;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Mapper {
+
+
 
     public static Library mapDomainLibrary(LibraryEntity entity) {
         List<Game> gameList = entity.getGames().stream()
@@ -28,7 +33,6 @@ public class Mapper {
         );
     }
 
-    // Map Library (Domain) to LibraryEntity
     public static LibraryEntity mapEntityLibrary(Library library) {
         LibraryEntity libraryEntity = new LibraryEntity();
         libraryEntity.setLibraryId(library.getLibraryId().libraryId());
@@ -68,11 +72,9 @@ public class Mapper {
         gameEntity.setFavourite(game.isFavourite());
         gameEntity.setDescription(game.getDescription());
 
-        // IMPORTANT: The `library` field will be set by `mapEntityLibrary`.
         return gameEntity;
     }
 
-    // Map GameEntity to Game (Domain)
     public static Game mapToDomain(GameEntity entity) {
         List<Achievement> achievements = entity.getAchievementList().stream()
                 .map(Mapper::mapToDomain)
@@ -122,7 +124,6 @@ public class Mapper {
                 .toList();
 
         return new GameQuery(
-                game.getGameId().id(),
                 game.getGameName(),
                 game.getDescription(),
                 game.getGameType(),

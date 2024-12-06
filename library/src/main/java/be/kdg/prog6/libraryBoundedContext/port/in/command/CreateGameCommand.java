@@ -1,4 +1,4 @@
-package be.kdg.prog6.libraryBoundedContext.port.in;
+package be.kdg.prog6.libraryBoundedContext.port.in.command;
 
 import java.util.List;
 

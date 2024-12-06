@@ -62,7 +62,7 @@ public class GameQueryUseCaseImp implements GameQueryUseCase {
     @Override
     @Transactional(readOnly = true)
     public GameQuery findGameById(UUID gameId) {
-        final Game game = libraryLoadPort.fetchLibraryWithGameById(gameId).getGames().getFirst();
+        final Game game = libraryLoadPort.fetchLibraryWithGameById(gameId).getGames().stream().findFirst().get();
 
         return Mapper.toQuery(game);
     }

@@ -22,14 +22,15 @@ public class Library {
         this.games = games;
     }
 
+
     public Game toggleFavouriteForGame(GameId gameId) {
         Game game = findGameById(gameId);
         game.markAsFavorite();
         return game;
     }
 
-    public boolean containsGame(GameId gameId) {
-        return games.stream().anyMatch(game -> game.getGameId().equals(gameId));
+    public boolean containsGame(String gameName) {
+        return games.stream().anyMatch(game -> game.getGameName().equals(gameName));
     }
 
     public Game findGameById(GameId gameId) {
@@ -57,16 +58,10 @@ public class Library {
 
 
     public void addGame(Game game) {
-        if (containsGame(game.getGameId())) {
-            throw new IllegalStateException("Game with ID " + game.getGameId() + " already exists in the library.");
-        }
         games.add(game);
     }
 
     public void removeGame(Game game) {
-        if (!containsGame(game.getGameId())) {
-            throw new IllegalArgumentException("Game with ID " + game.getGameId() + " does not exist in the library.");
-        }
         games.remove(game);
     }
 

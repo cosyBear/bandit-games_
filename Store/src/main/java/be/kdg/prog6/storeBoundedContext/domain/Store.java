@@ -32,19 +32,13 @@ public class Store {
         }
     }
 
+    public boolean containsGame(String gameName){
+        return availableGames.stream().anyMatch(game -> game.getGameName().equals(gameName));
+    }
+
 
     public Set<Game> listAllGames() {
         return new HashSet<>(availableGames);
     }
 
-    public void purchaseGame(Game game) {
-        if (containsGame(game.getGameId())) {
-            throw new IllegalStateException("Game with ID " + game.getGameId() + " already exists in the library.");
-        }
-        this.addGame(game);
-    }
-
-    public boolean containsGame(GameId gameId) {
-        return availableGames.stream().anyMatch(game -> game.getGameId().equals(gameId));
-    }
 }

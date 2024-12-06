@@ -3,8 +3,10 @@ package be.kdg.prog6.libraryBoundedContext.core;
 import be.kdg.prog6.common.events.util.LibraryNotFoundException;
 import be.kdg.prog6.libraryBoundedContext.domain.Library;
 import be.kdg.prog6.libraryBoundedContext.domain.id.GameId;
+import be.kdg.prog6.libraryBoundedContext.domain.id.PlayerId;
 import be.kdg.prog6.libraryBoundedContext.port.in.command.EarnAchievementCommand;
 import be.kdg.prog6.libraryBoundedContext.port.in.command.GameCommand;
+import be.kdg.prog6.libraryBoundedContext.port.in.command.PlayerGameOwnershipCommand;
 import be.kdg.prog6.libraryBoundedContext.port.in.game.GameUseCase;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GameQuery;
 import be.kdg.prog6.libraryBoundedContext.port.out.LibraryLoadPort;
@@ -16,6 +18,11 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -60,6 +67,21 @@ public class GameUseCaseImp implements GameUseCase {
         return Mapper.toQuery(game);
     }
 
+    @Override
+    @Transactional
+    public Map<Boolean, String> hasPlayerPurchasedGame(List<PlayerGameOwnershipCommand> command) {
+
+        PlayerId playerId = command.getFirst().playerId();
+        Library library = libraryLoadPort.getLibraryForPlayer(playerId);
+
+
+        return command.stream()
+                .collect(Collectors.toMap(
+                        item -> library.containsGame(item.gameName()),
+                        item -> item.gameName(),
+                        (existing, replacement) -> existing + ", " + replacement
+                ));
+    }
 
 
 }

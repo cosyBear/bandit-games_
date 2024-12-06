@@ -1,8 +1,10 @@
 package be.kdg.prog6.libraryBoundedContext.adapters.in;
 
+import be.kdg.prog6.libraryBoundedContext.adapters.in.dto.PlayerGameOwnershipCommandDto;
 import be.kdg.prog6.libraryBoundedContext.domain.id.PlayerId;
 import be.kdg.prog6.libraryBoundedContext.port.in.command.EarnAchievementCommand;
 import be.kdg.prog6.libraryBoundedContext.port.in.command.GameCommand;
+import be.kdg.prog6.libraryBoundedContext.port.in.command.PlayerGameOwnershipCommand;
 import be.kdg.prog6.libraryBoundedContext.port.in.game.GameQueryUseCase;
 import be.kdg.prog6.libraryBoundedContext.port.in.game.GameUseCase;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.FetchGamesByNameQuery;
@@ -15,7 +17,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -97,6 +101,20 @@ public class GameController {
         return ResponseEntity.status(HttpStatus.CREATED).body(updatedGame);
     }
 
+
+
+    @PostMapping("/ownership")
+    public ResponseEntity<Map<Boolean, String>> PlayerOwnGame(@RequestBody List<PlayerGameOwnershipCommandDto> dtos) {
+
+        log.info("checking if player owns the games ");
+        List<PlayerGameOwnershipCommand> commandsList = new ArrayList<>();
+
+        for (PlayerGameOwnershipCommandDto dto : dtos) {
+            commandsList.add(new PlayerGameOwnershipCommand(new PlayerId(dto.playerId()), dto.gameName()));
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(gameUseCase.hasPlayerPurchasedGame(commandsList));
+
+    }
 
 
 }

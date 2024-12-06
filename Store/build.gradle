@@ -1,0 +1,39 @@
+plugins {
+    id 'module-config'
+}
+
+dependencies {
+    implementation project(':common')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok:1.18.36'
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'mysql:mysql-connector-java:8.0.33'
+    testCompileOnly 'org.projectlombok:lombok:1.18.36'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.36'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.mockito:mockito-core:5.4.0'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:3.1.4'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30' // If using Lombok
+    compileOnly 'org.projectlombok:lombok:1.18.30' // If using Lombok
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+    implementation 'com.stripe:stripe-java:22.0.0' // Check for the latest version
+
+
+}
+
+
+test {
+    useJUnitPlatform()
+}

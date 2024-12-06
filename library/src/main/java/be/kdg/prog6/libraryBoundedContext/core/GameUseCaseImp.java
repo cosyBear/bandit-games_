@@ -71,7 +71,7 @@ public class GameUseCaseImp implements GameUseCase {
     @Transactional
     public Map<Boolean, String> hasPlayerPurchasedGame(List<PlayerGameOwnershipCommand> command) {
 
-        PlayerId playerId = command.getFirst().playerId();
+        PlayerId playerId = command.stream().findFirst().get().playerId();
         Library library = libraryLoadPort.getLibraryForPlayer(playerId);
 
 

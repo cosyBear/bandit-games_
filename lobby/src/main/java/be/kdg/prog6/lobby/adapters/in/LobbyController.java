@@ -15,6 +15,7 @@ import be.kdg.prog6.lobby.port.in.Query.LobbyUpdateQuery;
 import be.kdg.prog6.lobby.port.in.Query.RequestQuery;
 import be.kdg.prog6.lobby.port.in.ShowLobbyRequestAccessQueryUseCase;
 import be.kdg.prog6.lobby.port.in.command.*;
+import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Request;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/lobbies")
+@CrossOrigin(origins = "http://localhost:5173")
 public class LobbyController {
 
 

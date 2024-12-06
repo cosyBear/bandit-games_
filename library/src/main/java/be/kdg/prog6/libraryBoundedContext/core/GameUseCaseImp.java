@@ -37,7 +37,7 @@ public class GameUseCaseImp implements GameUseCase {
             throw new GameNotFoundException("Game not found with id: " + command.gameId());
         }
 
-        Game game = library.toggleFavouriteForGame();
+        Game game = library.toggleFavouriteForGame(new GameId(command.gameId()));
 
         librarySavePort.save(library);
         log.info("Game marked as favorite: ");

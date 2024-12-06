@@ -24,17 +24,4 @@ public class GameQuery {
 
     private String imageUrl;
     private String backgroundImageUrl;
-
-    public GameQuery(UUID id, String gameName, String description, GameType gameType, List<AchievementQuery> achievementQueryList, boolean favourite, String imageUrl, String backgroundImageUrl) {
-
-        this.gameName = gameName;
-        this.description = description;
-        this.gameType = gameType;
-        this.achievementList = achievementQueryList;
-        this.favourite = favourite;
-        this.imageUrl = imageUrl;
-        this.backgroundImageUrl = backgroundImageUrl;
-
-
-    }
 }

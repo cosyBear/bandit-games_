@@ -14,8 +14,7 @@ EOF
 # Create 'friends' database
 mysql -u root -p"${MYSQL_ROOT_PASSWORD}" <<EOF
 CREATE DATABASE IF NOT EXISTS friends;
-GRANT ALL PRIVILEGES ON friends.* TO '${MYSQL_USER}'@'%';
-FLUSH PRIVILEGES;
+exFLUSH PRIVILEGES;
 EOF
 
 

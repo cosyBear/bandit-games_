@@ -22,8 +22,8 @@ public class Library {
         this.games = games;
     }
 
-    public Game toggleFavouriteForGame() {
-        Game game = games.getFirst();
+    public Game toggleFavouriteForGame(GameId gameId) {
+        Game game = findGameById(gameId);
         game.toggleFavorite();
         return game;
     }

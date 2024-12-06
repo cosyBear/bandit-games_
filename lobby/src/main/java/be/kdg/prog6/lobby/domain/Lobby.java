@@ -7,6 +7,9 @@ import be.kdg.prog6.common.events.util.LobbyIsFullException;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -19,6 +22,8 @@ public class Lobby {
     private LocalDateTime createdAt;
     private LobbyStatus lobbyStatus;
     private static Integer maxPlayer = 2;
+
+    private Set<RequestAccess> accessRequests = new HashSet<>();
 
     public Lobby(LobbyId lobbyId, UUID gameId, UUID lobbyAdmin, LobbyStatus lobbyStatus) {
         this.lobbyId = lobbyId;
@@ -37,7 +42,18 @@ public class Lobby {
         this.lobbyStatus = lobbyStatus;
     }
 
-    //ToDo leave and join the lobby
+    public <R> Lobby(LobbyId lobbyId, UUID gameId, UUID lobbyAdmin, UUID guestPlayer, LocalDateTime createdAt, LobbyStatus lobbyStatus, Set<RequestAccess> accessRequests) {
+
+        this(lobbyId, gameId, lobbyAdmin, guestPlayer, createdAt, lobbyStatus);
+        this.accessRequests = accessRequests;
+
+
+    }
+
+
+    public void createRequestAccess(UUID guestPlayerId) {
+        this.accessRequests.add(new RequestAccess( UUID.randomUUID(),  guestPlayerId, RequestStatus.CREATED));
+    }
 
     public static Lobby createLobby(LobbyId lobbyId, UUID gameId, UUID lobbyAdmin) {
         if (gameId == null || lobbyAdmin == null) {
@@ -47,6 +63,21 @@ public class Lobby {
         lobby.updateLobbyStatusBasedOnState();
         return lobby;
     }
+
+    public String handleRequestAccess(UUID guestPlayerId, RequestStatus status) {
+        for (RequestAccess request : accessRequests) {
+            if (request.getGuestPlayerId().equals(guestPlayerId)) {
+                request.setRequestStatus(status);
+                if (status == RequestStatus.ACCEPTED) {
+                    addGuestPlayerToLobby(guestPlayerId);
+                    return "request Accepted";
+                }
+                return "request rejected ";
+            }
+        }
+        throw new IllegalArgumentException("No request found for player: " + guestPlayerId);
+    }
+
 
     public void addGuestPlayerToLobby(UUID guestPlayer) {
         if (isLobbyFull()) {
@@ -63,7 +94,7 @@ public class Lobby {
     }
 
 
-    public void leaveLobby(UUID guestPlayer){
+    public void leaveLobby(UUID guestPlayer) {
         this.guestPlayer = null;
     }
 

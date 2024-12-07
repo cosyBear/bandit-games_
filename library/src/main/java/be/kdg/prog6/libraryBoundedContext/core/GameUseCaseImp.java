@@ -4,6 +4,7 @@ import be.kdg.prog6.common.events.util.LibraryNotFoundException;
 import be.kdg.prog6.libraryBoundedContext.domain.Library;
 import be.kdg.prog6.libraryBoundedContext.domain.id.GameId;
 import be.kdg.prog6.libraryBoundedContext.domain.id.PlayerId;
+import be.kdg.prog6.libraryBoundedContext.port.in.command.AddGameCommand;
 import be.kdg.prog6.libraryBoundedContext.port.in.command.EarnAchievementCommand;
 import be.kdg.prog6.libraryBoundedContext.port.in.command.GameCommand;
 import be.kdg.prog6.libraryBoundedContext.port.in.command.PlayerGameOwnershipCommand;
@@ -81,6 +82,21 @@ public class GameUseCaseImp implements GameUseCase {
                         item -> item.gameName(),
                         (existing, replacement) -> existing + ", " + replacement
                 ));
+    }
+
+    @Override
+    public void addGameToPlayerLibrary(AddGameCommand command) {
+
+        Library library = libraryLoadPort.getLibraryForPlayer(command.playerId());
+
+        for (Game game : library.getGames()) {
+            library.addGame(game);
+        }
+
+        librarySavePort.save(library);
+        log.info("games has been added and saved to the player  library: {}", library);
+
+
     }
 
 

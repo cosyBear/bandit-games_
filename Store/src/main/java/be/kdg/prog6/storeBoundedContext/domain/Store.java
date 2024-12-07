@@ -26,6 +26,11 @@ public class Store {
     }
 
 
+    public Game getGameByName(String gameName) {
+        return availableGames.stream().filter(game -> game.getGameName().equals(gameName)).findFirst().orElse(null);
+    }
+
+
     public void addGame(Game game) {
         if (!availableGames.add(game)) {
             throw new IllegalStateException("Game with ID " + game.getGameId() + " already exists in the store.");

@@ -15,6 +15,7 @@ public class Game {
     private GameId gameId;
 
     private String gameName;
+
     private String  description;
 
     private GameType gameType;

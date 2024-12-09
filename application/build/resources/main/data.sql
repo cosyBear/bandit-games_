@@ -33,12 +33,12 @@ VALUES
 -- Insert Players
 INSERT INTO library.player (player_id)
 VALUES
-    ('123e4567-e89b-12d3-a456-426614174000'); -- Add any necessary Player ID(s)
+    ('95592601-d766-4715-a205-fbd13323ccc3'); -- Add any necessary Player ID(s)
 
 -- Insert Libraries and associate with Players
 INSERT INTO library.library (library_id, player_id)
 VALUES
-    ('456e7891-e89b-12d3-a456-426614174000', '123e4567-e89b-12d3-a456-426614174000');
+    ('456e7891-e89b-12d3-a456-426614174000', '95592601-d766-4715-a205-fbd13323ccc3');
 
 -- Insert Games and associate with Libraries
 INSERT INTO library.game (game_id, game_name, game_type, image_url, favourite, library_id, background_image_url, description)
@@ -76,7 +76,6 @@ VALUES
     ('b8f7c32e-4d93-4e2b-a1c9-f5a73b86c1e2', 'Explorer', 'Find the rare cave', 'https://example.com/images/achievement8.png', false, 'd4f7e6a9-213a-4b8c-9f47-5a01e24c90b2'),
     ('e7a2f9b1-4c32-4d9b-a8c9-f6a31b97e2f3', 'Portal Solver', 'Complete all levels', 'https://example.com/images/achievement9.png', true, 'b1f5a7d9-14c8-43ba-a71d-0f62d9e39124'),
     ('c7f3b12e-4a93-4e7c-a9b8-e3f62b41c9a8', 'Speed Runner', 'Complete the game in under 1 hour', 'https://example.com/images/achievement10.png', false, 'b1f5a7d9-14c8-43ba-a71d-0f62d9e39124');
-
 
 
 INSERT INTO store.game (

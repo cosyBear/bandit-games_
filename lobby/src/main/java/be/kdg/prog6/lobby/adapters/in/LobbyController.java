@@ -13,6 +13,7 @@ import be.kdg.prog6.lobby.port.in.Query.LobbyCreateQuery;
 import be.kdg.prog6.lobby.port.in.Query.LobbyUpdateQuery;
 import be.kdg.prog6.lobby.port.in.Query.RequestQuery;
 import be.kdg.prog6.lobby.port.in.command.*;
+import be.kdg.prog6.lobby.port.out.LobbySsePort;
 import be.kdg.prog6.lobby.util.Mapper;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Request;
@@ -21,6 +22,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.util.List;
 import java.util.UUID;
@@ -38,8 +40,11 @@ public class LobbyController {
     private final JoinLobbyUseCase joinLobbyUseCase;
     private final LeaveLobbyUseCase leaveLobbyUseCase;
     private final CreateRequestAccessUseCase createRequestAccessUseCase;
-    private final ShowLobbyRequestAccessQueryUseCase  showLobbyRequestAccessQueryUseCase;
+    private final ShowLobbyRequestAccessQueryUseCase showLobbyRequestAccessQueryUseCase;
     private final LoadLobbyUseCase loadLobbyUseCase;
+
+
+    private final LobbySsePort lobbySsePort;
 
 
     @PostMapping
@@ -59,7 +64,6 @@ public class LobbyController {
 
         return ResponseEntity.status(HttpStatus.OK).body(updateQuery);
     }
-
 
 
     @PatchMapping
@@ -85,7 +89,7 @@ public class LobbyController {
 
 
     @GetMapping("/{lobbyId}/request")
-    public ResponseEntity<List<RequestQuery>> showAllRequestForLobby(@PathVariable("lobbyId") UUID lobbyId){
+    public ResponseEntity<List<RequestQuery>> showAllRequestForLobby(@PathVariable("lobbyId") UUID lobbyId) {
 
         return ResponseEntity.status(HttpStatus.OK).body(showLobbyRequestAccessQueryUseCase.
                 showAllLobbyRequests(new ShowLobbyRequestsQuery(new LobbyId(lobbyId))));
@@ -95,12 +99,14 @@ public class LobbyController {
     @PatchMapping("/joinLobby")
     public ResponseEntity<String> addGuestPlayerTOLobby(@RequestBody RequestAccessDto dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(joinLobbyUseCase.requestAccessToJoinLobby(
-                new RequestAccessCommand(new LobbyId(dto.lobbyId()) , dto.guestId(), RequestStatus.valueOf(dto.status()))));
+                new RequestAccessCommand(new LobbyId(dto.lobbyId()), dto.guestId(), RequestStatus.valueOf(dto.status()))));
     }
 
 
-
-
+    @GetMapping("/events")
+    public SseEmitter subscribeToEvents() {
+        return lobbySsePort.createEmitter();
+    }
 
 
 }

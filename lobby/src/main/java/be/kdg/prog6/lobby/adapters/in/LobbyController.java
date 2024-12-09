@@ -94,7 +94,6 @@ public class LobbyController {
 
     @PatchMapping("/joinLobby")
     public ResponseEntity<String> addGuestPlayerTOLobby(@RequestBody RequestAccessDto dto) {
-
         return ResponseEntity.status(HttpStatus.CREATED).body(joinLobbyUseCase.requestAccessToJoinLobby(
                 new RequestAccessCommand(new LobbyId(dto.lobbyId()) , dto.guestId(), RequestStatus.valueOf(dto.status()))));
     }

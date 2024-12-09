@@ -12,6 +12,7 @@ import be.kdg.prog6.friends.port.in.RemoveFriend;
 import be.kdg.prog6.friends.port.in.command.AddFriendCommand;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class FriendsRestController {
     private final LoadFriends loadFriends;
     private final RemoveFriend removeFriend;
     private final LoadFriendsLobbies loadFriendsLobbies;
-    
+
     @PostMapping
     public ResponseEntity<PlayerDto> addNewFriend(
             @RequestBody AddFriendCommand command
@@ -40,7 +41,7 @@ public class FriendsRestController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @GetMapping("/{playerId}")
+    @GetMapping("/{playerId}/all")
     public ResponseEntity<List<PlayerDto>> getAllFriends(
             @PathVariable("playerId") UUID playerId
     ) {
@@ -48,6 +49,17 @@ public class FriendsRestController {
 
         final List<PlayerDto> response = friends.getFriends()
                 .stream().map(PlayerDto::convertToDTO).toList();
+
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/{playerId}")
+    public ResponseEntity<PlayerDto> findPlayer(
+            @PathVariable("playerId") UUID playerId
+    ) {
+        final Player player = loadFriends.findPlayer(playerId);
+
+        final PlayerDto response = PlayerDto.convertToDTO(player);
 
         return ResponseEntity.ok(response);
     }

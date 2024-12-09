@@ -1,20 +1,25 @@
 package be.kdg.prog6.libraryBoundedContext.adapters.in;
 
+import be.kdg.prog6.libraryBoundedContext.adapters.in.dto.PlayerGameOwnershipCommandDto;
 import be.kdg.prog6.libraryBoundedContext.domain.id.PlayerId;
+import be.kdg.prog6.libraryBoundedContext.port.in.command.EarnAchievementCommand;
+import be.kdg.prog6.libraryBoundedContext.port.in.command.GameCommand;
+import be.kdg.prog6.libraryBoundedContext.port.in.command.PlayerGameOwnershipCommand;
 import be.kdg.prog6.libraryBoundedContext.port.in.game.GameQueryUseCase;
 import be.kdg.prog6.libraryBoundedContext.port.in.game.GameUseCase;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.FetchGamesByNameQuery;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GameQuery;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GetGamesByCategoryQuery;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.RetrieveAllGamesQuery;
-import be.kdg.prog6.libraryBoundedContext.port.in.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -46,6 +51,13 @@ public class GameController {
 
     }
 
+    @GetMapping("/details/{gameId}")
+    public ResponseEntity<GameQuery> fetchGameDetails(@PathVariable UUID gameId) {
+        final GameQuery gameQuery = gameQueryUseCase.findGameById(gameId);
+
+        return ResponseEntity.status(HttpStatus.OK).body(gameQuery);
+    }
+
 
     @GetMapping("category")
     public ResponseEntity<List<GameQuery>> fetchGamesByCategory(
@@ -64,12 +76,11 @@ public class GameController {
     @PatchMapping("/{playerId}/{gameId}/favorite")
     public ResponseEntity<GameQuery> toggleGameFavorite(
             @PathVariable UUID playerId,
-            @PathVariable UUID gameId,
-            @RequestParam String gameName) {
+            @PathVariable UUID gameId) {
 
-        GameCommand command = new GameCommand(new PlayerId(playerId), gameName, gameId);
+        GameCommand command = new GameCommand(new PlayerId(playerId), gameId);
 
-        GameQuery updatedGame = gameUseCase.markGameAsFavourite(command);
+        GameQuery updatedGame = gameUseCase.toggleGameFavourite(command);
 
         return ResponseEntity.status(HttpStatus.OK).body(updatedGame);
     }
@@ -96,6 +107,20 @@ public class GameController {
         return ResponseEntity.status(HttpStatus.CREATED).body(updatedGame);
     }
 
+
+
+    @PostMapping("/ownership")
+    public ResponseEntity<Map<Boolean, String>> PlayerOwnGame(@RequestBody List<PlayerGameOwnershipCommandDto> dtos) {
+
+        log.info("checking if player owns the games ");
+        List<PlayerGameOwnershipCommand> commandsList = new ArrayList<>();
+
+        for (PlayerGameOwnershipCommandDto dto : dtos) {
+            commandsList.add(new PlayerGameOwnershipCommand(new PlayerId(dto.playerId()), dto.gameName()));
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(gameUseCase.hasPlayerPurchasedGame(commandsList));
+
+    }
 
 
 }

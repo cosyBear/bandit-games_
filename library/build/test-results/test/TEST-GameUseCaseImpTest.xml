@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="GameUseCaseImpTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2024-12-01T07:09:50" hostname="archlinux" time="0.046">
+<testsuite name="GameUseCaseImpTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2024-12-03T11:40:41" hostname="DESKTOP-S6298MU" time="0.102">
   <properties/>
-  <testcase name="markGameAsFavourite_GameNotFound_ShouldThrowException()" classname="GameUseCaseImpTest" time="0.027"/>
-  <testcase name="markGameAsFavourite()" classname="GameUseCaseImpTest" time="0.006"/>
-  <testcase name="markGameAsFavourite_GameAlreadyMarked_ShouldThrowException()" classname="GameUseCaseImpTest" time="0.003"/>
-  <testcase name="givePlayerAnAchievement()" classname="GameUseCaseImpTest" time="0.003"/>
+  <testcase name="markGameAsFavourite_GameNotFound_ShouldThrowException()" classname="GameUseCaseImpTest" time="0.082"/>
+  <testcase name="markGameAsFavourite()" classname="GameUseCaseImpTest" time="0.009"/>
+  <testcase name="givePlayerAnAchievement()" classname="GameUseCaseImpTest" time="0.004"/>
   <testcase name="givePlayerAnAchievement_AchievementAlreadyEarned_ShouldThrowException()" classname="GameUseCaseImpTest" time="0.003"/>
   <system-out><![CDATA[
   .   ____          _            __ _ _
@@ -15,17 +14,17 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.1.1)
 
-2024-12-01T08:09:48.791+01:00  INFO 22129 --- [    Test worker] GameUseCaseImpTest                       : Starting GameUseCaseImpTest using Java 21.0.5 with PID 22129 (started by ali in /home/ali/IdeaProjects/bandit-games_REAL/library)
-2024-12-01T08:09:48.792+01:00  INFO 22129 --- [    Test worker] GameUseCaseImpTest                       : No active profile set, falling back to 1 default profile: "default"
-2024-12-01T08:09:50.223+01:00  INFO 22129 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2024-12-01T08:09:50.223+01:00  INFO 22129 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2024-12-01T08:09:50.229+01:00  INFO 22129 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
-2024-12-01T08:09:50.234+01:00  INFO 22129 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 10 ms
-2024-12-01T08:09:50.258+01:00  INFO 22129 --- [    Test worker] GameUseCaseImpTest                       : Started GameUseCaseImpTest in 1.598 seconds (process running for 2.075)
-2024-12-01T08:09:50.326+01:00 ERROR 22129 --- [    Test worker] b.k.p.l.core.GameUseCaseImp              : Library not found or game not found for player: PlayerId[Id=123e4567-e89b-12d3-a456-426614174000]
-2024-12-01T08:09:50.334+01:00  INFO 22129 --- [    Test worker] b.k.p.l.core.GameUseCaseImp              : Game marked as favorite: 
+2024-12-03T12:40:39.528+01:00  INFO 15824 --- [    Test worker] GameUseCaseImpTest                       : Starting GameUseCaseImpTest using Java 21.0.3 with PID 15824 (started by Leonid in D:\KDG project\Integration 5\library)
+2024-12-03T12:40:39.529+01:00  INFO 15824 --- [    Test worker] GameUseCaseImpTest                       : No active profile set, falling back to 1 default profile: "default"
+2024-12-03T12:40:41.516+01:00  INFO 15824 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-12-03T12:40:41.518+01:00  INFO 15824 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-12-03T12:40:41.526+01:00  INFO 15824 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-12-03T12:40:41.535+01:00  INFO 15824 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 15 ms
+2024-12-03T12:40:41.580+01:00  INFO 15824 --- [    Test worker] GameUseCaseImpTest                       : Started GameUseCaseImpTest in 2.194 seconds (process running for 2.804)
+2024-12-03T12:40:41.731+01:00 ERROR 15824 --- [    Test worker] b.k.p.l.core.GameUseCaseImp              : Library not found or game not found for player: PlayerId[Id=123e4567-e89b-12d3-a456-426614174000]
+2024-12-03T12:40:41.747+01:00  INFO 15824 --- [    Test worker] b.k.p.l.core.GameUseCaseImp              : Game marked as favorite: 
 ]]></system-out>
-  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (/home/ali/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.14.5/20f4e9b9d0ffb953657bfa4b92c0cceb27907d58/byte-buddy-agent-1.14.5.jar)
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (C:\Users\Leonid\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.14.5\20f4e9b9d0ffb953657bfa4b92c0cceb27907d58\byte-buddy-agent-1.14.5.jar)
 WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
 WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
 WARNING: Dynamic loading of agents will be disallowed by default in a future release

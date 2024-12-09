@@ -1,0 +1,42 @@
+make a class  in tje  friends bounded
+
+so when a player want to join a lobby
+he make a httpq reuest we make a object  out of this class
+than we would save it to the database the owener of the lobby can say yes or no
+
+yes we update the state of the object to apcted or what not
+
+
+
+
+
+
+////////////////
+so what i would do create like Request Access
+the player has a list of that
+
+it conatins the lobby id the guestID, and  PlayerId , and Status.
+
+so when he click join lobby i would create a object
+ and save it to that player
+
+that i would show the player his list of request
+ acsses with status notVerfied or what not
+
+if he say or no i make a htttp request
+
+if he accpeted i would make a htrtp call to the
+
+lobby bounded context to add the player ot lobby.
+
+
+
+
+
+///////////////////////////////////
+
+what you need to do tomorrow is fix the error you get wen you run the http test for the new request stuff
+
+than test everything if it still work like the evnt and so on
+
+than work on the webStore

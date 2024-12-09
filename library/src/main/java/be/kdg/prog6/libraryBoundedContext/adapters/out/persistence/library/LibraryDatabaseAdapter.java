@@ -3,6 +3,7 @@ package be.kdg.prog6.libraryBoundedContext.adapters.out.persistence.library;
 import be.kdg.prog6.common.events.util.DatabaseException;
 import be.kdg.prog6.common.events.util.InvalidCategoryException;
 import be.kdg.prog6.common.events.util.LibraryNotFoundException;
+import be.kdg.prog6.common.exception.EntityNotFoundException;
 import be.kdg.prog6.libraryBoundedContext.adapters.out.Entity.GameTypeEntity;
 import be.kdg.prog6.libraryBoundedContext.adapters.out.Entity.LibraryEntity;
 import be.kdg.prog6.libraryBoundedContext.domain.GameType;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.dao.DataAccessException;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class LibraryDatabaseAdapter implements LibraryLoadPort, LibrarySavePort {
@@ -24,6 +26,18 @@ public class LibraryDatabaseAdapter implements LibraryLoadPort, LibrarySavePort 
 
     public LibraryDatabaseAdapter(LibraryJpaRepository libraryJpaRepository) {
         this.libraryJpaRepository = libraryJpaRepository;
+    }
+
+    @Override
+    public Library getLibraryForPlayer(PlayerId playerId) {
+        LibraryEntity library = libraryJpaRepository.loadLibraryByPlayerId(playerId.Id());
+
+        if (library == null) {
+            throw new EntityNotFoundException("library  for player with ID {" + playerId.Id() + "}  dont exist ");
+        }
+
+        return Mapper.mapDomainLibrary(library);
+
     }
 
     @Override
@@ -65,6 +79,14 @@ public class LibraryDatabaseAdapter implements LibraryLoadPort, LibrarySavePort 
         } catch (DataAccessException e) {
             throw new DatabaseException("Failed to fetch games by category '" + category + "' for Player ID: " + playerId, e);
         }
+    }
+
+    @Override
+    public Library fetchLibraryWithGameById(UUID gameId) {
+        final LibraryEntity libraryEntity = libraryJpaRepository.fetchLibraryWithGameById(gameId)
+                .orElseThrow(() -> new EntityNotFoundException("Library with game id" + gameId + " not found"));
+
+        return Mapper.mapDomainLibrary(libraryEntity);
     }
 
     @Override

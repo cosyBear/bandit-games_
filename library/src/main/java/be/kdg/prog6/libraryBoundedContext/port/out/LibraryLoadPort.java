@@ -9,9 +9,11 @@ import java.util.UUID;
 public interface LibraryLoadPort {
 
 
+    Library getLibraryForPlayer(PlayerId playerId);
     Library fetchLibraryWithAllAvailableGames(PlayerId playerId);
 
     Library fetchLibraryWithGamesByNamePattern(PlayerId playerId, String gameName);
 
     Library fetchLibraryWithGamesByCategory(PlayerId playerId, String category);
+    Library fetchLibraryWithGameById(UUID gameId);
 }

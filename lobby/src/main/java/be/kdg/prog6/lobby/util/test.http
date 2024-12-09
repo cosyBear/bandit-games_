@@ -8,12 +8,24 @@ content-type: application/json
   "lobbyAdminId": "95592601-d766-4715-a205-fbd13323ccc3"
 }
 
+
+### Create request access
+POST http://localhost:8090/api/lobbies/cfddae8c-a1b7-4870-bbd4-990a46b2cd0c/requests
+content-type: application/json
+
+{
+  "guestId": "c56a4183-65aa-42ec-a945-5fd21dec0541"
+}
+
+
+
 ### join lobby
 PATCH http://localhost:8090/api/lobbies/joinLobby
 content-type: application/json
 
 {
-  "lobbyId": "5ee4575f-6845-41fc-817a-f28d08503a00",
-  "guestId": "8fae4d9a-8dfb-4d64-95c3-6c6b234e57a1"
+  "LobbyId": "cfddae8c-a1b7-4870-bbd4-990a46b2cd0c",
+  "guestId": "c56a4183-65aa-42ec-a945-5fd21dec0541",
+  "status": "ACCEPTED"
 }
 

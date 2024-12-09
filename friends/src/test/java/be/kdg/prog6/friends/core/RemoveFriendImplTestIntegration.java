@@ -29,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @Slf4j
 @RequiredArgsConstructor
 @Transactional
-class RemoveFriendImplTestIntegration extends AbstractDatabaseTest {
+class RemoveFriendImplTestIntegration extends AbstractDatabaseAndRabbitTest {
 
 
     @Autowired

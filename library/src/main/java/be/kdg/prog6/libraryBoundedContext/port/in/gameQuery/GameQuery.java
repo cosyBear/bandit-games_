@@ -5,11 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class GameQuery {
+    private UUID id;
 
     private String gameName;
     private String description;
@@ -22,4 +24,8 @@ public class GameQuery {
 
     private String imageUrl;
     private String backgroundImageUrl;
+
+
+
+
 }

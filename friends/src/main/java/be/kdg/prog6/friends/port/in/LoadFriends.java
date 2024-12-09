@@ -9,4 +9,5 @@ import java.util.UUID;
 public interface LoadFriends {
     Friends getAllFriends(UUID playerId);
     Friends searchForFriend(String nickName);
+    Player findPlayer(UUID playerId);
 }

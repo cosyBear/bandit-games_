@@ -1,5 +1,4 @@
 import be.kdg.prog6.common.events.util.AchievementAlreadyEarnedException;
-import be.kdg.prog6.common.events.util.AchievementNotFoundException;
 import be.kdg.prog6.common.events.util.GameAlreadyMarkedAsFavoriteException;
 import be.kdg.prog6.common.events.util.GameNotFoundException;
 import be.kdg.prog6.libraryBoundedContext.LibraryBoundedContextApplication;
@@ -7,8 +6,8 @@ import be.kdg.prog6.libraryBoundedContext.domain.Achievement;
 import be.kdg.prog6.libraryBoundedContext.domain.Library;
 import be.kdg.prog6.libraryBoundedContext.domain.id.GameId;
 import be.kdg.prog6.libraryBoundedContext.domain.id.PlayerId;
-import be.kdg.prog6.libraryBoundedContext.port.in.EarnAchievementCommand;
-import be.kdg.prog6.libraryBoundedContext.port.in.GameCommand;
+import be.kdg.prog6.libraryBoundedContext.port.in.command.EarnAchievementCommand;
+import be.kdg.prog6.libraryBoundedContext.port.in.command.GameCommand;
 import be.kdg.prog6.libraryBoundedContext.port.in.game.GameUseCase;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GameQuery;
 import be.kdg.prog6.libraryBoundedContext.port.out.LibraryLoadPort;
@@ -20,7 +19,6 @@ import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -54,6 +52,9 @@ class GameUseCaseImpTest {
     void setUp() {
         Library library = TestLibraryData.createLibraryWithChessMaster();
 
+        when(libraryLoadPort.fetchLibraryWithGameById(playerId, gameId.id()))
+                .thenReturn(library);
+
         when(libraryLoadPort.fetchLibraryWithGamesByNamePattern(playerId, gameName))
                 .thenReturn(library);
 
@@ -63,10 +64,10 @@ class GameUseCaseImpTest {
     @Test
     void markGameAsFavourite() {
         // Arrange
-        GameCommand command = new GameCommand(playerId, gameName, gameId.id());
+        GameCommand command = new GameCommand(playerId, gameId.id());
 
         // Act
-        GameQuery result = sut.markGameAsFavourite(command);
+        GameQuery result = sut.toggleGameFavourite(command);
 
         // Assert
         ArgumentCaptor<Library> libraryCaptor = ArgumentCaptor.forClass(Library.class);
@@ -111,41 +112,45 @@ class GameUseCaseImpTest {
     @Test
     void markGameAsFavourite_GameNotFound_ShouldThrowException() {
         // Arrange
-        GameCommand command = new GameCommand(playerId, "Nonexistent Game", UUID.randomUUID());
+        final UUID randomId = UUID.randomUUID();
 
-        when(libraryLoadPort.fetchLibraryWithGamesByNamePattern(playerId, "Nonexistent Game"))
+        GameCommand command = new GameCommand(playerId, randomId);
+
+        when(libraryLoadPort.fetchLibraryWithGameById(playerId, randomId))
                 .thenReturn(null);
 
         // Act & Assert
         Exception exception = assertThrows(GameNotFoundException.class, () -> {
-            sut.markGameAsFavourite(command);
+            sut.toggleGameFavourite(command);
         });
 
-        assertEquals("Game not found with name: Nonexistent Game", exception.getMessage());
+        assertEquals("Game not found with id: " + randomId, exception.getMessage());
     }
 
-    @Test
-    void markGameAsFavourite_GameAlreadyMarked_ShouldThrowException() {
-        // Arrange
-        GameCommand command = new GameCommand(playerId, gameName, gameId.id());
-        Library library = TestLibraryData.createLibraryWithChessMaster();
+    //TODO: remove because markGameAsFavourite is now toggle game favorite, so state can change and there is no need in GameAlreadyMarkedAsFavoriteException exception
 
-        // Simulate the game is already marked as favorite
-        library.findGameById(gameId).markAsFavorite();
-
-        when(libraryLoadPort.fetchLibraryWithGamesByNamePattern(playerId, gameName))
-                .thenReturn(library);
-
-        // Act & Assert
-        Exception exception = assertThrows(GameAlreadyMarkedAsFavoriteException.class, () -> {
-            sut.markGameAsFavourite(command);
-        });
-
-        String expectedMessage = "Game is already marked as favorite";
-        String actualMessage = exception.getMessage();
-
-        assertTrue(actualMessage.contains(expectedMessage));
-    }
+//    @Test
+//    void markGameAsFavourite_GameAlreadyMarked_ShouldThrowException() {
+//        // Arrange
+//        GameCommand command = new GameCommand(playerId, gameId.id());
+//        Library library = TestLibraryData.createLibraryWithChessMaster();
+//
+//        // Simulate the game is already marked as favorite
+//        library.findGameById(gameId).toggleFavorite();
+//
+//        when(libraryLoadPort.fetchLibraryWithGamesByNamePattern(playerId, gameName))
+//                .thenReturn(library);
+//
+//        // Act & Assert
+//        Exception exception = assertThrows(GameAlreadyMarkedAsFavoriteException.class, () -> {
+//            sut.toggleGameFavourite(command);
+//        });
+//
+//        String expectedMessage = "Game is already marked as favorite";
+//        String actualMessage = exception.getMessage();
+//
+//        assertTrue(actualMessage.contains(expectedMessage));
+//    }
 
 
     @Test

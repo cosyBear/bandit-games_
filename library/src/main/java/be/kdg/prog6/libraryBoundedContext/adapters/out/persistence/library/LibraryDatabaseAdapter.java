@@ -12,9 +12,11 @@ import be.kdg.prog6.libraryBoundedContext.domain.id.PlayerId;
 import be.kdg.prog6.libraryBoundedContext.port.out.LibraryLoadPort;
 import be.kdg.prog6.libraryBoundedContext.port.out.LibrarySavePort;
 import be.kdg.prog6.libraryBoundedContext.util.Mapper;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -28,17 +30,7 @@ public class LibraryDatabaseAdapter implements LibraryLoadPort, LibrarySavePort 
         this.libraryJpaRepository = libraryJpaRepository;
     }
 
-    @Override
-    public Library getLibraryForPlayer(PlayerId playerId) {
-        LibraryEntity library = libraryJpaRepository.loadLibraryByPlayerId(playerId.Id());
 
-        if (library == null) {
-            throw new EntityNotFoundException("library  for player with ID {" + playerId.Id() + "}  dont exist ");
-        }
-
-        return Mapper.mapDomainLibrary(library);
-
-    }
 
     @Override
     public Library fetchLibraryWithAllAvailableGames(PlayerId playerId) {
@@ -88,6 +80,7 @@ public class LibraryDatabaseAdapter implements LibraryLoadPort, LibrarySavePort 
 
         return Mapper.mapDomainLibrary(libraryEntity);
     }
+
 
     @Override
     public void save(Library library) {

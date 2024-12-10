@@ -23,7 +23,6 @@ import java.util.UUID;
 import com.stripe.model.checkout.Session;
 
 @Slf4j
-
 @RestController
 @RequestMapping("/stripe")
 public class StripeWebhookController {
@@ -60,15 +59,19 @@ public class StripeWebhookController {
         log.info("Payment Intent succeeded");
 
         PaymentIntent paymentIntent = (PaymentIntent) event.getData().getObject();
+        log.info("Received metadata from Stripe: {}", paymentIntent.getMetadata());
 
         String gameName = paymentIntent.getMetadata().get("gameName");
-        UUID playerId = UUID.fromString(paymentIntent.getMetadata().get("playerId"));
+        String playerIdStr = paymentIntent.getMetadata().get("playerId");
 
-        if ( gameName == null) {
-            log.error("Missing required metadata fields: player_id or game_name");
+
+        if (gameName == null || playerIdStr == null) {
+            log.error("Missing required metadata fields: playerId or gameName");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Missing required metadata fields");
         }
+
         try {
+            UUID playerId = UUID.fromString(playerIdStr);
 
             AddGameToLibraryCommand gameCommand = new AddGameToLibraryCommand(playerId, gameName);
             List<AddGameToLibraryCommand> gameCommands = Collections.singletonList(gameCommand);
@@ -76,12 +79,11 @@ public class StripeWebhookController {
             addGameToLibraryUseCase.addGamesToLibrary(gameCommands);
 
             return ResponseEntity.ok("Games added to the library successfully");
-
         } catch (IllegalArgumentException e) {
             log.error("Invalid UUID format for playerId", e);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid playerId format");
         }
     }
+
+
 }
-
-

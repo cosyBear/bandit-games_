@@ -20,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -73,7 +74,7 @@ public class GameUseCaseImp implements GameUseCase {
     public Map<Boolean, String> hasPlayerPurchasedGame(List<PlayerGameOwnershipCommand> command) {
 
         PlayerId playerId = command.stream().findFirst().get().playerId();
-        Library library = libraryLoadPort.getLibraryForPlayer(playerId);
+        Library library = libraryLoadPort.fetchLibraryWithAllAvailableGames(playerId);
 
 
         return command.stream()
@@ -85,13 +86,16 @@ public class GameUseCaseImp implements GameUseCase {
     }
 
     @Override
+    @Transactional
     public void addGameToPlayerLibrary(AddGameCommand command) {
 
-        Library library = libraryLoadPort.getLibraryForPlayer(command.playerId());
+        Library library = libraryLoadPort.fetchLibraryWithAllAvailableGames(command.playerId());
 
-        for (Game game : library.getGames()) {
-            library.addGame(game);
-        }
+        List<Game> mutableGames = new ArrayList<>(library.getGames());
+        mutableGames.addAll(command.games());
+
+        library.setGames(mutableGames);
+
 
         librarySavePort.save(library);
         log.info("games has been added and saved to the player  library: {}", library);

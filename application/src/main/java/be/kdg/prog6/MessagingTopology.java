@@ -104,6 +104,7 @@ public class MessagingTopology {
         return new Queue(addGameQueue);
     }
 
+    @Bean
     public Binding addGameBinding(Queue addGameQueue, @Qualifier("addGameExchange") DirectExchange addGameExchange) {
         return BindingBuilder.bind(addGameQueue).to(addGameExchange).with(addGameRoutingKey);
     }

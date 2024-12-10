@@ -15,7 +15,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -36,35 +38,40 @@ public class AddGameToLibraryUseCaseImp implements AddGameToLibraryUseCase {
     @Transactional
     public void addGamesToLibrary(List<AddGameToLibraryCommand> commandList) {
 
+        if (commandList.isEmpty()) {
+            throw new IllegalArgumentException("Command list cannot be empty");
+        }
+
+        UUID playerId = commandList.get(0).playerId();
+        String gameNamesString = commandList.get(0).gameName();
+
         Store store = gameLoadPort.loadAllAvailGames();
-        List<Game> gamesList = commandList.stream()
-                .map(item -> store.getGameByName(item.gameName()))
+        List<Game> gamesList = Arrays.stream(gameNamesString.split(",\\s*"))
+                .map(store::getGameByName)
                 .toList();
 
-            List<GameEvent> gameEvents = gamesList.stream().map(
-                item -> {
-                    List<AchievementEvent> achievementEvents = item.getAchievementList().stream()
-                            .map(achievementEvent -> new AchievementEvent(
-                                    achievementEvent.getAchievementId().achievementId(),
-                                    achievementEvent.getAchievementName(),
-                                    achievementEvent.getAchievementDescription(),
-                                    achievementEvent.getImageUrl(),
-                                    false
-                            ))
-                            .toList();
+        // Transform games into game events
+        List<GameEvent> gameEvents = gamesList.stream()
+                .map(game -> new GameEvent(
+                        game.getGameId().id(),
+                        game.getGameName(),
+                        game.getGameType().toString(),
+                        game.getAchievementList().stream()
+                                .map(achievement -> new AchievementEvent(
+                                        achievement.getAchievementId().achievementId(),
+                                        achievement.getAchievementName(),
+                                        achievement.getAchievementDescription(),
+                                        achievement.getImageUrl(),
+                                        false
+                                ))
+                                .toList(),
+                        game.getImageUrl(),
+                        game.getBackgroundImageUrl(),
+                        game.getDescription(),
+                        false
+                ))
+                .toList();
 
-                    return new GameEvent(
-                            item.getGameId().id(),
-                            item.getGameName(),
-                            item.getGameType().toString(),
-                            achievementEvents,
-                            item.getImageUrl(),
-                            item.getBackgroundImageUrl(),
-                            item.getDescription(),
-                            false
-                    );
-                }
-        ).toList();
 
         AddGameToLibraryEvent addGameToLibraryEvent = new AddGameToLibraryEvent(gameEvents , commandList.getFirst().playerId());
 

@@ -41,15 +41,12 @@ public class StripeWebhookController {
         String sigHeader = request.getHeader("Stripe-Signature");
 
         try {
-            // Verify the webhook signature with the signing secret
             Event event = Webhook.constructEvent(payload, sigHeader, stripeSigningSecret);
 
-            // Handle only 'payment_intent.succeeded' event
             if ("payment_intent.succeeded".equals(event.getType())) {
                 return handlePaymentIntentSucceeded(event);
             }
 
-            // If the event type is not 'payment_intent.succeeded', return a success message without processing.
             log.warn("Unhandled event type: {}", event.getType());
             return ResponseEntity.ok("Event type unhandled");
 
@@ -62,24 +59,20 @@ public class StripeWebhookController {
     private ResponseEntity<String> handlePaymentIntentSucceeded(Event event) {
         log.info("Payment Intent succeeded");
 
-        // Extract the payment intent object from the event
         PaymentIntent paymentIntent = (PaymentIntent) event.getData().getObject();
 
-        String gameName = paymentIntent.getMetadata().get("name");
+        String gameName = paymentIntent.getMetadata().get("gameName");
+        UUID playerId = UUID.fromString(paymentIntent.getMetadata().get("playerId"));
 
         if ( gameName == null) {
             log.error("Missing required metadata fields: player_id or game_name");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Missing required metadata fields");
         }
-
         try {
-            UUID playerId = UUID.fromString("123e4567-e89b-12d3-a456-426614174000");
 
-            // Create the AddGameToLibraryCommand and call the use case
             AddGameToLibraryCommand gameCommand = new AddGameToLibraryCommand(playerId, gameName);
             List<AddGameToLibraryCommand> gameCommands = Collections.singletonList(gameCommand);
 
-            // Call the use case to add games to the library
             addGameToLibraryUseCase.addGamesToLibrary(gameCommands);
 
             return ResponseEntity.ok("Games added to the library successfully");

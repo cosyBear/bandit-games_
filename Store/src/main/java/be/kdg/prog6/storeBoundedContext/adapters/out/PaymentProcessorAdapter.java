@@ -15,6 +15,8 @@ import org.springframework.web.reactive.function.client.WebClient;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
 import com.stripe.model.checkout.Session;
 
 
@@ -24,6 +26,7 @@ import com.stripe.model.checkout.Session;
 public class PaymentProcessorAdapter implements PaymentProcessorPort {
 
     private final WebClient webClient;
+
     @Value("${stripe.api.key}")
     private String stripeApiKey;
 
@@ -55,7 +58,7 @@ public class PaymentProcessorAdapter implements PaymentProcessorPort {
         }
 
 
-        // Map PurchaseCommand to Stripe Line Items
+
         List<Map<String, Object>> lineItems = purchaseCommands.stream()
                 .map(command -> Map.of(
                         "price_data", Map.of(
@@ -65,11 +68,21 @@ public class PaymentProcessorAdapter implements PaymentProcessorPort {
                                 ),
                                 "unit_amount", (int) (command.gamePrice() * 100)
                         ),
+
                         "quantity", 1
                 ))
                 .toList();
 
         try {
+
+            Map<String, String> metaData = new HashMap<>();
+
+            purchaseCommands.forEach(command -> {
+                metaData.put("gameName", command.gameName());
+                metaData.put("playerId", command.playerId().toString());
+            });
+
+
             Stripe.apiKey = stripeApiKey;
 
             Map<String, Object> sessionParams = new HashMap<>();
@@ -78,6 +91,7 @@ public class PaymentProcessorAdapter implements PaymentProcessorPort {
             sessionParams.put("payment_method_types", List.of("card"));
             sessionParams.put("line_items", lineItems);
             sessionParams.put("mode", "payment");
+            sessionParams.put("metadata", metaData);
             Session session = com.stripe.model.checkout.Session.create(sessionParams);
 
             return session.getUrl();

@@ -31,10 +31,6 @@ public class CustomMapper {
         gameEntity.setPrice(game.getPrice());
         gameEntity.setRating(game.getRating());
 
-        if (game.getSystemRequirements() != null) {
-            gameEntity.setSystemRequirements(toSystemRequirementsEntity(game.getSystemRequirements()));
-        }
-
         List<AchievementEntity> achievementEntities = game.getAchievementList().stream()
                 .map(achievement -> toAchievementEntity(achievement, gameEntity))
                 .collect(Collectors.toList());
@@ -81,8 +77,7 @@ public class CustomMapper {
                 gameEntity.getBackgroundImageUrl(),
                 gameEntity.getDescription(),
                 gameEntity.getPrice(),
-                gameEntity.getRating(),
-                gameEntity.getSystemRequirements() != null ? toSystemRequirements(gameEntity.getSystemRequirements()) : null
+                gameEntity.getRating()
         );
 
         List<Achievement> achievements = gameEntity.getAchievementList().stream()
@@ -123,16 +118,14 @@ public class CustomMapper {
     // Convert Game to GameQuery
     public static GameQuery toGameQuery(Game game) {
         GameQuery gameQuery = new GameQuery();
+        gameQuery.setId(game.getGameId().id());
         gameQuery.setGameName(game.getGameName());
         gameQuery.setDescription(game.getDescription());
         gameQuery.setGameType(game.getGameType());
         gameQuery.setImageUrl(game.getImageUrl());
         gameQuery.setBackgroundImageUrl(game.getBackgroundImageUrl());
         gameQuery.setPrice(game.getPrice());
-
-        if (game.getSystemRequirements() != null) {
-            gameQuery.setSystemRequirements(toSystemRequirementsQuery(game.getSystemRequirements()));
-        }
+        gameQuery.setRating(game.getRating());
 
         List<AchievementQuery> achievementQueries = game.getAchievementList().stream()
                 .map(CustomMapper::toAchievementQuery)

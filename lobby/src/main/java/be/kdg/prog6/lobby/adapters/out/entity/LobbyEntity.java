@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -19,12 +21,16 @@ import java.util.UUID;
 public class LobbyEntity {
 
     @Id
+    @JdbcTypeCode(SqlTypes.VARCHAR)
     private UUID lobbyId;
 
+    @JdbcTypeCode(SqlTypes.VARCHAR)
     private UUID gameId;
 
+    @JdbcTypeCode(SqlTypes.VARCHAR)
     private UUID lobbyAdmin;
 
+    @JdbcTypeCode(SqlTypes.VARCHAR)
     private UUID guestPlayer;
     @Enumerated(EnumType.STRING)
     private LobbyStatusEntity lobbyStatusEntity;

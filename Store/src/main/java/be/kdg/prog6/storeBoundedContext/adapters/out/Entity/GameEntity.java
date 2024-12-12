@@ -33,12 +33,6 @@ public class GameEntity {
     private double price;
     private double rating;
 
-
-    @Embedded
-    private SystemRequirementsEntity systemRequirements;
-
-
-
     @Override
     public int hashCode() {
         return gameId != null ? gameId.hashCode() : 0;

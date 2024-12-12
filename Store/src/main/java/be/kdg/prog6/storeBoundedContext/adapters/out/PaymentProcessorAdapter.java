@@ -31,11 +31,12 @@ public class PaymentProcessorAdapter implements PaymentProcessorPort {
     @Override
     public String processPayment(List<PurchaseCommand> purchaseCommands) {
 
-
+        // TODO: single item
         List<PurchaseRequestCommand> requests = purchaseCommands.stream()
                 .map(command -> new PurchaseRequestCommand( command.playerId(), command.gameName()))
                 .toList();
 
+        // TODO: change to boolean
         //checking if the player dont own the game ....
         Map<Boolean, String> response = webClient.post()
                 .uri("http://localhost:8090/api/games/ownership")
@@ -45,16 +46,19 @@ public class PaymentProcessorAdapter implements PaymentProcessorPort {
                 })
                 .block();
 
+        //
         List<String> ownedGames = response.entrySet().stream()
                 .filter(Map.Entry::getKey)
                 .map(Map.Entry::getValue)
                 .toList();
 
+        // TODO: if response is true throw exception
         if (!ownedGames.isEmpty()) {
             throw new GameAlreadyOwnedException("Player already owns the following games: " + String.join(", ", ownedGames));
         }
 
 
+        // TODO: change to MAP
         // Map PurchaseCommand to Stripe Line Items
         List<Map<String, Object>> lineItems = purchaseCommands.stream()
                 .map(command -> Map.of(

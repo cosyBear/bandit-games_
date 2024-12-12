@@ -109,6 +109,7 @@ public class GameController {
 
 
 
+    // TODo: change to boolean
     @PostMapping("/ownership")
     public ResponseEntity<Map<Boolean, String>> PlayerOwnGame(@RequestBody List<PlayerGameOwnershipCommandDto> dtos) {
 

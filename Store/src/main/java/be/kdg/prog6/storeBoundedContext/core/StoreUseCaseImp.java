@@ -32,20 +32,6 @@ public class StoreUseCaseImp implements StoreUseCase {
         Store store = gameLoadPort.loadAllAvailGames();
 
 
-        SystemRequirements systemRequirements = new SystemRequirements(
-                command.systemRequirementsCommand().minimumOperatingSystem(),
-                command.systemRequirementsCommand().minimumProcessor(),
-                command.systemRequirementsCommand().minimumMemoryInGB(),
-                command.systemRequirementsCommand().minimumGraphicsCard(),
-                command.systemRequirementsCommand().minimumStorageInGB(),
-                command.systemRequirementsCommand().minimumDirectXVersion(),
-                command.systemRequirementsCommand().recommendedOperatingSystem(),
-                command.systemRequirementsCommand().recommendedProcessor(),
-                command.systemRequirementsCommand().recommendedMemoryInGB(),
-                command.systemRequirementsCommand().recommendedGraphicsCard(),
-                command.systemRequirementsCommand().recommendedStorageInGB(),
-                command.systemRequirementsCommand().recommendedDirectXVersion()
-        );
 
         Game game = new Game(
                 new GameId(UUID.randomUUID()),
@@ -55,8 +41,7 @@ public class StoreUseCaseImp implements StoreUseCase {
                 command.backgroundImageUrl(),
                 command.description(),
                 command.price(),
-                0.0,
-                systemRequirements
+                0.0
         );
 
         List<Achievement> achievements = command.achievements().stream()

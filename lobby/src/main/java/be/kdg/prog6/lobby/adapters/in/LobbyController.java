@@ -76,8 +76,6 @@ public class LobbyController {
     }
 
 
-
- // call the
     @PostMapping("/{lobbyId}/requests")
     public ResponseEntity<String> createRequestAccess(
             @PathVariable("lobbyId") UUID lobbyId,

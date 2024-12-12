@@ -15,17 +15,14 @@ public class Game {
     private GameId gameId;
     private String gameName;
     private GameType gameType;
-    List<Achievement> achievementList = new ArrayList<>();
-
     private String imageUrl;
-
     private String backgroundImageUrl;
     private String description;
     private double price;
     private double rating;
-    private SystemRequirements systemRequirements;
+    List<Achievement> achievementList = new ArrayList<>();
 
-    public Game(GameId gameId, String gameName, GameType gameType, String imageUrl, String backgroundImageUrl, String description, double price, double rating, SystemRequirements systemRequirements ) {
+    public Game(GameId gameId, String gameName, GameType gameType, String imageUrl, String backgroundImageUrl, String description, double price, double rating) {
         this.gameId = gameId;
         this.gameName = gameName;
         this.gameType = gameType;
@@ -35,8 +32,6 @@ public class Game {
         this.description = description;
         this.price = price;
         this.rating = rating;
-        this.systemRequirements = systemRequirements;
-
     }
 
     @Override

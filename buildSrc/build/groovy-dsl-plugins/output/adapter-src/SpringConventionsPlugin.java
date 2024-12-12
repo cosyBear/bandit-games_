@@ -7,8 +7,10 @@ import org.gradle.internal.resource.StringTextResource;
 /**
  * Precompiled spring-conventions script plugin.
  **/
+@SuppressWarnings("DefaultPackage")
 public class SpringConventionsPlugin implements org.gradle.api.Plugin<org.gradle.api.internal.project.ProjectInternal> {
     private static final String MIN_SUPPORTED_GRADLE_VERSION = "5.0";
+    @Override
     public void apply(org.gradle.api.internal.project.ProjectInternal target) {
         assertSupportedByCurrentGradleVersion();
         try {

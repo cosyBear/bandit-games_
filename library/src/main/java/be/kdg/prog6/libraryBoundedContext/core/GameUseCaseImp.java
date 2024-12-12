@@ -71,18 +71,13 @@ public class GameUseCaseImp implements GameUseCase {
 
     @Override
     @Transactional
-    public Map<Boolean, String> hasPlayerPurchasedGame(List<PlayerGameOwnershipCommand> command) {
+    public Boolean hasPlayerPurchasedGame(PlayerGameOwnershipCommand command) {
 
-        PlayerId playerId = command.stream().findFirst().get().playerId();
+        PlayerId playerId = command.playerId();
         Library library = libraryLoadPort.fetchLibraryWithAllAvailableGames(playerId);
 
 
-        return command.stream()
-                .collect(Collectors.toMap(
-                        item -> library.containsGame(item.gameName()),
-                        item -> item.gameName(),
-                        (existing, replacement) -> existing + ", " + replacement
-                ));
+        return library.containsGame(command.gameName());
     }
 
     @Override

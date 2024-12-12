@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface PaymentProcessorPort {
 
-    String processPayment(List<PurchaseCommand> purchaseCommands);
+    String processPayment(PurchaseCommand command);
 
 
 

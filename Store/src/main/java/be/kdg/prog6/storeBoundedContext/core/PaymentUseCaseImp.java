@@ -25,20 +25,17 @@ public class PaymentUseCaseImp implements PaymentUseCase {
 
     @Override
     @Transactional
-    public String handlePayment(List<PurchaseCommand> purchaseCommands) {
+    public String handlePayment(PurchaseCommand command) {
 
         log.info("processing payment");
         Store store = gameLoadPort.loadAllAvailGames();
 
-        boolean allGamesExist = purchaseCommands.stream()
-                .allMatch(purchaseCommand -> store.containsGame(purchaseCommand.gameName())); // Ensure all games exist
+        boolean gameExists = store.containsGame(command.gameName());
 
-        if (!allGamesExist) {
+        if (!gameExists) {
             throw new GameNotFoundException("One or more games are not available in the store.");
         }
 
-        return processorPayment.processPayment(purchaseCommands);
-
-
+        return processorPayment.processPayment(command);
     }
 }

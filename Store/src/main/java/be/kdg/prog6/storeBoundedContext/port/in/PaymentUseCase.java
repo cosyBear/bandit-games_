@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface PaymentUseCase {
 
-    String handlePayment(List<PurchaseCommand> purchaseCommands);
+    String handlePayment(PurchaseCommand command);
 
 }

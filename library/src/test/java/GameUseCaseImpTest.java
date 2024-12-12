@@ -52,7 +52,7 @@ class GameUseCaseImpTest {
     void setUp() {
         Library library = TestLibraryData.createLibraryWithChessMaster();
 
-        when(libraryLoadPort.fetchLibraryWithGameById(playerId, gameId.id()))
+        when(libraryLoadPort.fetchLibraryWithGameById(gameId.id()))
                 .thenReturn(library);
 
         when(libraryLoadPort.fetchLibraryWithGamesByNamePattern(playerId, gameName))
@@ -116,7 +116,7 @@ class GameUseCaseImpTest {
 
         GameCommand command = new GameCommand(playerId, randomId);
 
-        when(libraryLoadPort.fetchLibraryWithGameById(playerId, randomId))
+        when(libraryLoadPort.fetchLibraryWithGameById(randomId))
                 .thenReturn(null);
 
         // Act & Assert

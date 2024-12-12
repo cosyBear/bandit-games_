@@ -15,7 +15,7 @@ public interface GameUseCase {
 
     GameQuery givePlayerAnAchievement(EarnAchievementCommand command);
 
-    Map<Boolean, String> hasPlayerPurchasedGame(List<PlayerGameOwnershipCommand> command);
+    Boolean hasPlayerPurchasedGame(PlayerGameOwnershipCommand command);
 
     void addGameToPlayerLibrary(AddGameCommand command);
 

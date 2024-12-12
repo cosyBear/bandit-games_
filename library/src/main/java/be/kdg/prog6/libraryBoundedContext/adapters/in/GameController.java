@@ -111,15 +111,10 @@ public class GameController {
 
     // TODo: change to boolean
     @PostMapping("/ownership")
-    public ResponseEntity<Map<Boolean, String>> PlayerOwnGame(@RequestBody List<PlayerGameOwnershipCommandDto> dtos) {
+    public ResponseEntity<Boolean> PlayerOwnGame(@RequestBody PlayerGameOwnershipCommandDto dto) {
+        final PlayerGameOwnershipCommand command = new PlayerGameOwnershipCommand(new PlayerId(dto.playerId()), dto.gameName());
 
-        log.info("checking if player owns the games ");
-        List<PlayerGameOwnershipCommand> commandsList = new ArrayList<>();
-
-        for (PlayerGameOwnershipCommandDto dto : dtos) {
-            commandsList.add(new PlayerGameOwnershipCommand(new PlayerId(dto.playerId()), dto.gameName()));
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(gameUseCase.hasPlayerPurchasedGame(commandsList));
+        return ResponseEntity.status(HttpStatus.OK).body(gameUseCase.hasPlayerPurchasedGame(command));
 
     }
 

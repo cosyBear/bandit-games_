@@ -1,6 +1,7 @@
 package be.kdg.prog6.storeBoundedContext.adapters.out;
 
 import be.kdg.prog6.common.exception.GameAlreadyOwnedException;
+import be.kdg.prog6.storeBoundedContext.adapters.out.web.GamesWebClient;
 import be.kdg.prog6.storeBoundedContext.domain.PurchaseRequestCommand;
 import be.kdg.prog6.storeBoundedContext.port.in.PurchaseCommand;
 import be.kdg.prog6.storeBoundedContext.port.out.PaymentProcessorPort;
@@ -9,50 +10,34 @@ import com.stripe.model.checkout.Session;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Component
 @Slf4j
 @RequiredArgsConstructor
 public class PaymentProcessorAdapter implements PaymentProcessorPort {
 
-    private final WebClient webClient;
-
     @Value("${stripe.api.key}")
     private String stripeApiKey;
 
+    private final GamesWebClient gamesWebClient;
+
     @Override
-    public String processPayment(List<PurchaseCommand> purchaseCommands) {
+    public String processPayment(PurchaseCommand command) {
         // Step 1: Check if the player already owns the games
-        List<PurchaseRequestCommand> requests = purchaseCommands.stream()
-                .map(command -> new PurchaseRequestCommand(command.playerId(), command.gameName()))
-                .toList();
+        final PurchaseRequestCommand request = new PurchaseRequestCommand(command.playerId(), command.gameName());
 
-        Map<Boolean, String> response = webClient.post()
-                .uri("http://localhost:8090/api/games/ownership")
-                .bodyValue(requests)
-                .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<Map<Boolean, String>>() {
-                })
-                .block();
+        final Boolean response = gamesWebClient.checkOwnership(request);
 
-        List<String> ownedGames = response.entrySet().stream()
-                .filter(Map.Entry::getKey)
-                .map(Map.Entry::getValue)
-                .toList();
-
-        if (!ownedGames.isEmpty()) {
-            throw new GameAlreadyOwnedException("Player already owns the following games: " + String.join(", ", ownedGames));
+        if (response) {
+            throw new GameAlreadyOwnedException("Player already owns the following games: " + command.gameName());
         }
 
         // Step 2: Create line items for Stripe checkout session
-        List<Map<String, Object>> lineItems = purchaseCommands.stream()
-                .map(command -> Map.of(
+        Map<String, Object> lineItem =
+                Map.of(
                         "price_data", Map.of(
                                 "currency", "usd",
                                 "product_data", Map.of(
@@ -61,18 +46,15 @@ public class PaymentProcessorAdapter implements PaymentProcessorPort {
                                 "unit_amount", (int) (command.gamePrice() * 100)
                         ),
                         "quantity", 1
-                ))
-                .toList();
+                );
 
         try {
             // Step 3: Build metadata for multiple games
             Map<String, String> metaData = new HashMap<>();
 
-            String gameNames = purchaseCommands.stream()
-                    .map(PurchaseCommand::gameName)
-                    .collect(Collectors.joining(", "));
+            String gameNames = command.gameName();
 
-            UUID playerId = purchaseCommands.get(0).playerId(); // Assuming all commands share the same playerId
+            UUID playerId = command.playerId();
 
             metaData.put("gameName", gameNames);
             metaData.put("playerId", playerId.toString());
@@ -89,7 +71,7 @@ public class PaymentProcessorAdapter implements PaymentProcessorPort {
             sessionParams.put("success_url", "https://yourdomain.com/success");
             sessionParams.put("cancel_url", "https://yourdomain.com/cancel");
             sessionParams.put("payment_method_types", List.of("card"));
-            sessionParams.put("line_items", lineItems);
+            sessionParams.put("line_items", lineItem);
             sessionParams.put("mode", "payment");
             sessionParams.put("payment_intent_data", paymentIntentData);
 

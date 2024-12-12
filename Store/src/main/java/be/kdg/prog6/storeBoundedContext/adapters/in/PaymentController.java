@@ -27,15 +27,10 @@ public class PaymentController {
 
 
     @PostMapping("/checkOut")
-    public ResponseEntity<String> handleCheckout(@RequestBody List<PurchaseDto> dto) {
+    public ResponseEntity<String> handleCheckout(@RequestBody PurchaseDto dto) {
+        final PurchaseCommand command = new PurchaseCommand(dto.gameName(), dto.gamePrice(), dto.playerId());
 
-        List<PurchaseCommand> commandsList = new ArrayList<>();
-
-        for (PurchaseDto purchaseDto : dto) {
-            commandsList.add( new PurchaseCommand(purchaseDto.gameName(), purchaseDto.gamePrice(), purchaseDto.playerId()));
-        }
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(paymentUseCase.handlePayment(commandsList));
+        return ResponseEntity.status(HttpStatus.CREATED).body(paymentUseCase.handlePayment(command));
 
     }
 

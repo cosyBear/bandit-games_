@@ -11,12 +11,13 @@ import be.kdg.prog6.lobby.port.out.LobbySavePort;
 import be.kdg.prog6.lobby.port.out.LobbySsePort;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class JoinLobbyUseCaseImp implements JoinLobbyUseCase {
 
 

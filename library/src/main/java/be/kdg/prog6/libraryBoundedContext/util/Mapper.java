@@ -68,6 +68,7 @@ public class Mapper {
         gameEntity.setGameName(game.getGameName());
         gameEntity.setGameType(game.getGameType().name());
         gameEntity.setAchievementList(achievementEntities);
+        gameEntity.setBackgroundImageUrl(game.getBackgroundImageUrl());
         gameEntity.setImageUrl(game.getImageUrl());
         gameEntity.setFavourite(game.isFavourite());
         gameEntity.setDescription(game.getDescription());

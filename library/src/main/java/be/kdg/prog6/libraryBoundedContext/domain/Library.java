@@ -60,6 +60,9 @@ public class Library {
     public void addGame(Game game) {
         games.add(game);
     }
+    public void addListOfGames(List<Game> games) {
+        this.games.addAll(games);
+    }
 
     public void removeGame(Game game) {
         games.remove(game);

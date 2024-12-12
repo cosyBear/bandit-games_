@@ -50,7 +50,6 @@ public class MessagingTopology {
     }
 
 
-
     @Bean
     public Binding lobbyCreatedBinding(Queue lobbyCreatedQueue, @Qualifier("lobbyCreatedExchange") DirectExchange lobbyCreatedExchange) {
         return BindingBuilder.bind(lobbyCreatedQueue)
@@ -87,6 +86,27 @@ public class MessagingTopology {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         return new Jackson2JsonMessageConverter(objectMapper);
+    }
+
+
+    private static final String addGameExchange = "AddGameExchange";
+    private static final String addGameQueue = "AddGameQueue";
+    private static final String addGameRoutingKey = "addGame";
+
+
+    @Bean("addGameExchange")
+    DirectExchange addGameExchange() {
+        return new DirectExchange(addGameExchange);
+    }
+
+    @Bean
+    Queue addGameQueue() {
+        return new Queue(addGameQueue);
+    }
+
+    @Bean
+    public Binding addGameBinding(Queue addGameQueue, @Qualifier("addGameExchange") DirectExchange addGameExchange) {
+        return BindingBuilder.bind(addGameQueue).to(addGameExchange).with(addGameRoutingKey);
     }
 
 

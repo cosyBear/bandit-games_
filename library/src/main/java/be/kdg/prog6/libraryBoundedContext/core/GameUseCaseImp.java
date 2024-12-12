@@ -4,6 +4,7 @@ import be.kdg.prog6.common.events.util.LibraryNotFoundException;
 import be.kdg.prog6.libraryBoundedContext.domain.Library;
 import be.kdg.prog6.libraryBoundedContext.domain.id.GameId;
 import be.kdg.prog6.libraryBoundedContext.domain.id.PlayerId;
+import be.kdg.prog6.libraryBoundedContext.port.in.command.AddGameCommand;
 import be.kdg.prog6.libraryBoundedContext.port.in.command.EarnAchievementCommand;
 import be.kdg.prog6.libraryBoundedContext.port.in.command.GameCommand;
 import be.kdg.prog6.libraryBoundedContext.port.in.command.PlayerGameOwnershipCommand;
@@ -19,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -72,7 +74,7 @@ public class GameUseCaseImp implements GameUseCase {
     public Map<Boolean, String> hasPlayerPurchasedGame(List<PlayerGameOwnershipCommand> command) {
 
         PlayerId playerId = command.stream().findFirst().get().playerId();
-        Library library = libraryLoadPort.getLibraryForPlayer(playerId);
+        Library library = libraryLoadPort.fetchLibraryWithAllAvailableGames(playerId);
 
 
         return command.stream()
@@ -81,6 +83,24 @@ public class GameUseCaseImp implements GameUseCase {
                         item -> item.gameName(),
                         (existing, replacement) -> existing + ", " + replacement
                 ));
+    }
+
+    @Override
+    @Transactional
+    public void addGameToPlayerLibrary(AddGameCommand command) {
+
+        Library library = libraryLoadPort.fetchLibraryWithAllAvailableGames(command.playerId());
+
+        List<Game> mutableGames = new ArrayList<>(library.getGames());
+        mutableGames.addAll(command.games());
+
+        library.setGames(mutableGames);
+
+
+        librarySavePort.save(library);
+        log.info("games has been added and saved to the player  library: {}", library);
+
+
     }
 
 

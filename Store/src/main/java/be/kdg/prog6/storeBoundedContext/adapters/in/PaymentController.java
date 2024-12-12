@@ -35,9 +35,7 @@ public class PaymentController {
             commandsList.add( new PurchaseCommand(purchaseDto.gameName(), purchaseDto.gamePrice(), purchaseDto.playerId()));
         }
 
-
         return ResponseEntity.status(HttpStatus.CREATED).body(paymentUseCase.handlePayment(commandsList));
-
 
     }
 

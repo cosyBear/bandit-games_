@@ -2,6 +2,7 @@ package be.kdg.prog6.libraryBoundedContext.adapters.out.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
@@ -13,6 +14,7 @@ import java.util.UUID;
 @Table(catalog = "library", name = "game")
 @Data
 @AllArgsConstructor
+@BatchSize(size = 10) // Adjust the batch size as needed
 public class GameEntity {
 
     @Id

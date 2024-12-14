@@ -30,5 +30,10 @@ public class LoadFriendsImpl implements LoadFriends {
     public Friends searchForFriend(String nickName) {
 <span class="nc" id="L31">        return playerPort.searchForFriend(nickName);</span>
     }
+
+    @Override
+    public Player findPlayer(UUID playerId) {
+<span class="nc" id="L36">        return playerPort.findById(playerId);</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

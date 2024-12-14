@@ -8,7 +8,19 @@ plugins {
 
 
 bootJar {
-    mainClass = 'be.kdg.CompleteApplication'
+    mainClass = 'be.kdg.prog6.CompleteApplication'
+}
+
+bootBuildImage {
+    builder = "paketobuildpacks/builder-jammy-base:latest"
+    imageName = "banditgamesacr.azurecr.io/integration5:latest"
+    publish = true
+    docker {
+        publishRegistry {
+            username = "banditgamesacr"
+            password = "hPiPyFbw+fRYQej4Mh4djyEZh+/FHRxaAghMJKN5ZJ+ACRAEQA1O"
+        }
+    }
 }
 
 

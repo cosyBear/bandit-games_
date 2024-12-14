@@ -25,7 +25,7 @@ public class MessagingTopology {
     private static final String RABBITMQ_USERNAME = "myuser";
     private static final String RABBITMQ_PASSWORD = "mypassword";
     private static final String RABBITMQ_VIRTUAL_HOST = "/";
-    private static final String RABBITMQ_HOST = "localhost";
+    private static final String RABBITMQ_HOST = "rabbitmq-container";
 
 
     @Bean

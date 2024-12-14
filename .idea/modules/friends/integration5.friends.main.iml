@@ -6,13 +6,15 @@
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
           <factory-entry name="entityManagerFactory" />
+          <factory-entry name="integration5.friends.main" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
-    <exclude-output />
-    <orderEntry type="sourceFolder" forTests="false" />
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$/../../../friends/build/generated/sources/annotationProcessor/java/main">
+      <sourceFolder url="file://$MODULE_DIR$/../../../friends/build/generated/sources/annotationProcessor/java/main" isTestSource="false" generated="true" />
+    </content>
   </component>
 </module>

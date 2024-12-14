@@ -13,7 +13,6 @@ services:
       - backend
     volumes:
       - ./mysql/data:/var/lib/mysql
-      - ./init_db.sh:/docker-entrypoint-initdb.d/init_db.sh
 
   app_rabbitmq:
     image: rabbitmq:3.13.7-management-alpine
@@ -42,33 +41,33 @@ services:
       MYSQL_PASSWORD: password
     ports:
       - '3307:3306'
-    networks:
-      - kc
+#    networks:
+#      - kc
 
-  idp_keycloak:
-    image: quay.io/keycloak/keycloak:25.0.5
-    environment:
-      - KEYCLOAK_ADMIN=admin
-      - KEYCLOAK_ADMIN_PASSWORD=admin
-      - KC_DB=mysql
-      - KC_DB_URL_HOST=idp_mysql
-      - KC_DB_URL_DATABASE=keycloak
-      - KC_DB_USERNAME=keycloak
-      - KC_DB_PASSWORD=password
-    command: start-dev
-    ports:
-      - "8180:8080"
-    depends_on:
-      - idp_mysql
-    networks:
-      - kc
+#  idp_keycloak:
+#    image: quay.io/keycloak/keycloak:25.0.5
+#    environment:
+#      - KEYCLOAK_ADMIN=admin
+#      - KEYCLOAK_ADMIN_PASSWORD=admin
+#      - KC_DB=mysql
+#      - KC_DB_URL_HOST=idp_mysql
+#      - KC_DB_URL_DATABASE=keycloak
+#      - KC_DB_USERNAME=keycloak
+#      - KC_DB_PASSWORD=password
+#    command: start-dev
+#    ports:
+#      - "8180:8080"
+#    depends_on:
+#      - idp_mysql
+#    networks:
+#      - kc
 
 
 networks:
-  kc:
-    name: kc-network
-    driver: bridge
-    external: true
+#  kc:
+#    name: kc-network
+#    driver: bridge
+#    external: true
 
   backend:
     name: back-network

@@ -1,33 +1,37 @@
-server:
-  port: ${PORT:8090}
-  servlet:
-    context-path: /api
-
-stripe:
-  api:
-    key: "sk_test_51QT0WL2NZGipqhsDvQvShmF49rAzpZjwdHC5AYVyxzb2rN6m8TSrbFEnIjyT7BQ7DEu8nzzvKAYc0w5uM8I5SYr500A4mBS7EN"
-
-spring:
-  sql:
-    init:
-      mode: always
-      logging: debug
-  jpa:
-    open-in-view: true
-    hibernate:
-      ddl-auto: create-drop
-      show-sql: true
-    defer-datasource-initialization: true
-  datasource:
-    url: "jdbc:mysql://localhost:3306/"
-    username: user
-    password: password
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  config:
-    additional-location: ${SPRING_CONFIG_ADDITIONAL_LOCATION}
-
-
-logging:
-  level:
-    be.kdg.prog6.friends: debug
-    org.springframework: info
+#server:
+#  port: ${PORT:8090}
+#  servlet:
+#    context-path: /api
+#
+#stripe:
+#  api:
+#    key: "sk_test_51QT0WL2NZGipqhsDvQvShmF49rAzpZjwdHC5AYVyxzb2rN6m8TSrbFEnIjyT7BQ7DEu8nzzvKAYc0w5uM8I5SYr500A4mBS7EN"
+#
+#spring:
+#  sql:
+#    init:
+#      mode: always
+#      logging: debug
+#  jpa:
+#    open-in-view: true
+#    hibernate:
+#      ddl-auto: create-drop
+#      show-sql: true
+#    defer-datasource-initialization: true
+#  datasource:
+#    url: "jdbc:mysql://banditgames-mysql-server.mysql.database.azure.com:3306/store?useSSL=true&requireSSL=true&verifyServerCertificate=true"
+#    username: admin_bandit
+#    password: "Strongpassword!123"
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    hikari:
+#      data-source-properties:
+#        sslMode: VERIFY_CA
+#        trustCertificateKeyStoreUrl:
+#  config:
+#    additional-location: ${SPRING_CONFIG_ADDITIONAL_LOCATION}
+#
+#
+#logging:
+#  level:
+#    be.kdg.prog6.friends: debug
+#    org.springframework: info

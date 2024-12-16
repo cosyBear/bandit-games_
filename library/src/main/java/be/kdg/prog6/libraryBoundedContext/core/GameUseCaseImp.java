@@ -87,7 +87,7 @@ public class GameUseCaseImp implements GameUseCase {
         Library library = libraryLoadPort.fetchLibraryWithAllAvailableGames(command.playerId());
 
         List<Game> mutableGames = new ArrayList<>(library.getGames());
-        mutableGames.addAll(command.games());
+        mutableGames.add(command.game());
 
         library.setGames(mutableGames);
 

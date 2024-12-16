@@ -33,50 +33,43 @@ public class AddGameToLibraryUseCaseImp implements AddGameToLibraryUseCase {
     }
 
 
-
     @Override
     @Transactional
-    public void addGamesToLibrary(List<AddGameToLibraryCommand> commandList) {
+    public void addGamesToLibrary(AddGameToLibraryCommand command) {
 
-        if (commandList.isEmpty()) {
+        if (command == null) {
             throw new IllegalArgumentException("Command list cannot be empty");
         }
 
-        UUID playerId = commandList.get(0).playerId();
-        String gameNamesString = commandList.get(0).gameName();
+        UUID playerId = command.playerId();
+        String gameName = command.gameName();
 
         Store store = gameLoadPort.loadAllAvailGames();
-        List<Game> gamesList = Arrays.stream(gameNamesString.split(",\\s*"))
-                .map(store::getGameByName)
-                .toList();
+        Game game = store.getGameByName(gameName);
 
         // Transform games into game events
-        List<GameEvent> gameEvents = gamesList.stream()
-                .map(game -> new GameEvent(
-                        game.getGameId().id(),
-                        game.getGameName(),
-                        game.getGameType().toString(),
-                        game.getAchievementList().stream()
-                                .map(achievement -> new AchievementEvent(
-                                        achievement.getAchievementId().achievementId(),
-                                        achievement.getAchievementName(),
-                                        achievement.getAchievementDescription(),
-                                        achievement.getImageUrl(),
-                                        false
-                                ))
-                                .toList(),
-                        game.getImageUrl(),
-                        game.getBackgroundImageUrl(),
-                        game.getDescription(),
-                        false
-                ))
-                .toList();
+        GameEvent gameEvents = new GameEvent(
+                game.getGameId().id(),
+                game.getGameName(),
+                game.getGameType().toString(),
+                game.getAchievementList().stream()
+                        .map(achievement -> new AchievementEvent(
+                                achievement.getAchievementId().achievementId(),
+                                achievement.getAchievementName(),
+                                achievement.getAchievementDescription(),
+                                achievement.getImageUrl(),
+                                false
+                        ))
+                        .toList(),
+                game.getImageUrl(),
+                game.getBackgroundImageUrl(),
+                game.getDescription(),
+                false);
 
 
-        AddGameToLibraryEvent addGameToLibraryEvent = new AddGameToLibraryEvent(gameEvents , commandList.getFirst().playerId());
+        AddGameToLibraryEvent addGameToLibraryEvent = new AddGameToLibraryEvent(gameEvents, command.playerId());
 
         addGameEventPublisher.publishAddGameToLibrary(addGameToLibraryEvent);
-
     }
 
 

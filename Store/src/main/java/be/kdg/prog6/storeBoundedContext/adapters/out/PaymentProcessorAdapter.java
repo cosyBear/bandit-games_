@@ -68,10 +68,10 @@ public class PaymentProcessorAdapter implements PaymentProcessorPort {
             Stripe.apiKey = stripeApiKey;
 
             Map<String, Object> sessionParams = new HashMap<>();
-            sessionParams.put("success_url", "https://yourdomain.com/success");
+            sessionParams.put("success_url", "http://localhost:5173/success?session_id={CHECKOUT_SESSION_ID}");
             sessionParams.put("cancel_url", "https://yourdomain.com/cancel");
             sessionParams.put("payment_method_types", List.of("card"));
-            sessionParams.put("line_items", lineItem);
+            sessionParams.put("line_items", List.of(lineItem));
             sessionParams.put("mode", "payment");
             sessionParams.put("payment_intent_data", paymentIntentData);
 

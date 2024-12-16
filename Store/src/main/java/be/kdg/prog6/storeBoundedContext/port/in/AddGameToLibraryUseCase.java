@@ -7,7 +7,7 @@ import java.util.List;
 public interface AddGameToLibraryUseCase {
 
 
-    void addGamesToLibrary(List<AddGameToLibraryCommand> commandList);
+    void addGamesToLibrary(AddGameToLibraryCommand commandList);
 
 
 

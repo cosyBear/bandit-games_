@@ -21,16 +21,20 @@ public class Mapper {
 
 
     public static Library mapDomainLibrary(LibraryEntity entity) {
-        List<Game> gameList = entity.getGames().stream()
-                .map(Mapper::mapToDomain)
-                .toList();
+        if(entity.getLibraryId() != null) {
+            List<Game> gameList = entity.getGames().stream()
+                    .map(Mapper::mapToDomain)
+                    .toList();
 
-        PlayerId playerId = new PlayerId(entity.getPlayerEntity().getPlayerId());
-        return new Library(
-                new LibraryId(entity.getLibraryId()),
-                gameList,
-                playerId
-        );
+            PlayerId playerId = new PlayerId(entity.getPlayerEntity().getPlayerId());
+            return new Library(
+                    new LibraryId(entity.getLibraryId()),
+                    gameList,
+                    playerId
+            );
+        } else {
+            return new Library();
+        }
     }
 
     public static LibraryEntity mapEntityLibrary(Library library) {

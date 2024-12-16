@@ -74,7 +74,7 @@ public class StripeWebhookController {
             UUID playerId = UUID.fromString(playerIdStr);
 
             AddGameToLibraryCommand gameCommand = new AddGameToLibraryCommand(playerId, gameName);
-            List<AddGameToLibraryCommand> gameCommands = Collections.singletonList(gameCommand);
+            AddGameToLibraryCommand gameCommands = gameCommand;
 
             addGameToLibraryUseCase.addGamesToLibrary(gameCommands);
 

@@ -37,7 +37,7 @@ public class LibraryDatabaseAdapter implements LibraryLoadPort, LibrarySavePort 
         try {
             LibraryEntity libraryEntity = Optional.ofNullable(
                     libraryJpaRepository.fetchLibraryWithAllAvailableGames(playerId.Id())
-            ).orElseThrow(() -> new LibraryNotFoundException("Library not found for Player ID: " + playerId));
+            ).orElse(new LibraryEntity());
 
             return Mapper.mapDomainLibrary(libraryEntity);
         } catch (DataAccessException e) {

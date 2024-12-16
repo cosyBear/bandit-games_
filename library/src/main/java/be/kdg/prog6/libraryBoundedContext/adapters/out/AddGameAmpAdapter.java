@@ -37,30 +37,29 @@ public class AddGameAmpAdapter {
 
         PlayerId playerId = new PlayerId(event.PlayerId());
 
-        List<Game> gameList = event.gameEvent().stream().map(gameEvent -> {
-            List<Achievement> achievements = gameEvent.achievementList().stream().map(achievementEvent -> {
-                return new Achievement(
-                        new AchievementId(achievementEvent.achievementId()),
-                        achievementEvent.achievementName(),
-                        achievementEvent.achievementDescription(),
-                        achievementEvent.imageUrl(),
-                        achievementEvent.achieved()
-                );
-            }).toList();
-
-            return new Game(
-                    new GameId(gameEvent.id()),
-                    gameEvent.gameName(),
-                    gameEvent.description(),
-                    GameType.valueOf(gameEvent.gameType()),
-                    achievements,
-                    gameEvent.favourite(),
-                    gameEvent.imageUrl(),
-                    gameEvent.backgroundImageUrl()
+        Game game = null;
+        List<Achievement> achievements = event.gameEvent().achievementList().stream().map(achievementEvent -> {
+            return new Achievement(
+                    new AchievementId(achievementEvent.achievementId()),
+                    achievementEvent.achievementName(),
+                    achievementEvent.achievementDescription(),
+                    achievementEvent.imageUrl(),
+                    achievementEvent.achieved()
             );
         }).toList();
 
-        AddGameCommand addGameCommand = new AddGameCommand(gameList, playerId);
+        game = new Game(
+                new GameId(event.gameEvent().id()),
+                event.gameEvent().gameName(),
+                event.gameEvent().description(),
+                GameType.valueOf(event.gameEvent().gameType()),
+                achievements,
+                event.gameEvent().favourite(),
+                event.gameEvent().imageUrl(),
+                event.gameEvent().backgroundImageUrl()
+        );
+
+        AddGameCommand addGameCommand = new AddGameCommand(game, playerId);
 
         gameUseCase.addGameToPlayerLibrary(addGameCommand);
 

@@ -4,6 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public record AddGameToLibraryEvent (List<GameEvent> gameEvent, UUID PlayerId ){
+public record AddGameToLibraryEvent (GameEvent gameEvent, UUID PlayerId ){
 }
 

@@ -5,5 +5,5 @@ import be.kdg.prog6.libraryBoundedContext.domain.id.PlayerId;
 
 import java.util.List;
 
-public record AddGameCommand(List<Game> games , PlayerId playerId) {
+public record AddGameCommand(Game game , PlayerId playerId) {
 }

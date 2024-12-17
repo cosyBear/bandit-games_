@@ -13,12 +13,12 @@ bootJar {
 
 bootBuildImage {
     builder = "paketobuildpacks/builder-jammy-base:latest"
-    imageName = "banditgamesacr.azurecr.io/integration5:latest"
+    imageName = "acrbanditgames.azurecr.io/integration5:latest"
     publish = true
     docker {
         publishRegistry {
-            username = "banditgamesacr"
-            password = "hPiPyFbw+fRYQej4Mh4djyEZh+/FHRxaAghMJKN5ZJ+ACRAEQA1O"
+            username = System.getenv("IMAGE_USERNAME")
+            password = System.getenv("IMAGE_PASSWORD")
         }
     }
 }

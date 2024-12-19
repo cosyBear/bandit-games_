@@ -19,7 +19,9 @@ spring:
       show-sql: true
     defer-datasource-initialization: true
   datasource:
- #  url: "jdbc:mysql://banditgames-mysql-server.mysql.database.azure.com:3306/library?useSSL=true&trustCertificateKeyStoreUrl=classpath:DigiCertGlobalRootCA.crt.pem"
+#    url: "jdbc:mysql://banditgames-mysql-server.mysql.database.azure.com:3306/library?useSSL=true&trustCertificateKeyStoreUrl=classpath:DigiCertGlobalRootCA.crt.pem"
+#    username: admin_bandit
+#    password: Strongpassword!123
     url: "jdbc:mysql://localhost:3306/"
     username: user
     password: password

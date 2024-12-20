@@ -17,8 +17,10 @@ bootBuildImage {
     publish = true
     docker {
         publishRegistry {
-            username = System.getenv("IMAGE_USERNAME")
-            password = System.getenv("IMAGE_PASSWORD")
+//            username = System.getenv("IMAGE_USERNAME")
+//            password = System.getenv("IMAGE_PASSWORD")
+            username = "acrbanditgames"
+            password = "D9BYZfH0d9bhQHvlv/WzWp95QxWHrsDT93dminmCrl+ACRD+9ZyV"
         }
     }
 }

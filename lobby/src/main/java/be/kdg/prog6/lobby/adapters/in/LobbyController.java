@@ -21,6 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
@@ -48,6 +49,8 @@ public class LobbyController {
 
 
     @PostMapping
+    @PreAuthorize("hasAuthority('LobbyManagement')")
+
     public ResponseEntity<LobbyCreateQuery> createLobby(@RequestBody CreateLobbyDto dto) {
 
         CreateLobbyCommand command = new CreateLobbyCommand(dto.gameID(), dto.lobbyAdminId());
@@ -57,6 +60,8 @@ public class LobbyController {
     }
 
     @GetMapping("/{lobbyId}")
+    @PreAuthorize("hasAuthority('LobbyManagement')")
+
     public ResponseEntity<LobbyUpdateQuery> getLobbyDetails(@PathVariable("lobbyId") UUID lobbyId) {
         final Lobby lobby = loadLobbyUseCase.findLobbyById(lobbyId);
 
@@ -67,6 +72,8 @@ public class LobbyController {
 
 
     @PatchMapping
+    @PreAuthorize("hasAuthority('LobbyManagement')")
+
     public ResponseEntity<LobbyUpdateQuery> leaveLobby(@RequestBody LeaveLobbyDto dto) {
 
         LeaveLobbyCommand command = new LeaveLobbyCommand(new LobbyId(dto.lobbyId()), dto.guestPlayerId());
@@ -77,6 +84,8 @@ public class LobbyController {
 
 
     @PostMapping("/{lobbyId}/requests")
+    @PreAuthorize("hasAuthority('LobbyManagement')")
+
     public ResponseEntity<String> createRequestAccess(
             @PathVariable("lobbyId") UUID lobbyId,
             @RequestBody CreateRequestAccessDto dto
@@ -89,6 +98,7 @@ public class LobbyController {
 
 
     @GetMapping("/{lobbyId}/request")
+    @PreAuthorize("hasAuthority('LobbyManagement')")
     public ResponseEntity<List<RequestQuery>> showAllRequestForLobby(@PathVariable("lobbyId") UUID lobbyId) {
 
         return ResponseEntity.status(HttpStatus.OK).body(showLobbyRequestAccessQueryUseCase.
@@ -97,11 +107,11 @@ public class LobbyController {
 
 
     @PatchMapping("/joinLobby")
+    @PreAuthorize("hasAuthority('LobbyManagement')")
     public ResponseEntity<String> addGuestPlayerTOLobby(@RequestBody RequestAccessDto dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(joinLobbyUseCase.requestAccessToJoinLobby(
                 new RequestAccessCommand(new LobbyId(dto.lobbyId()), dto.guestId(), RequestStatus.valueOf(dto.status()))));
     }
-
 
     @GetMapping("/events")
     public SseEmitter subscribeToEvents() {

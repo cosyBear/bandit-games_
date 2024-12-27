@@ -5,3 +5,18 @@ plugins {
 tasks.withType(org.springframework.boot.gradle.tasks.bundling.BootJar).configureEach {
     enabled = false
 }
+
+
+
+dependencies {
+
+    implementation 'org.springframework.boot:spring-boot-starter-security' // Spring Security
+    implementation 'org.springframework.boot:spring-boot-starter-web' // Spring Web for REST APIs
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server' // For JWT-based security with OAuth2
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client' // Optional, if you have OAuth2 clients
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test' // For testing secured endpoints
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+
+}

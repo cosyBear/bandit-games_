@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -33,12 +34,14 @@ public class GameController {
     private final GameUseCase gameUseCase;
 
     @GetMapping("/{playerId}")
+    @PreAuthorize("hasAuthority('GameAndEvents')") // Use hasAuthority instead of hasRole
     public ResponseEntity<List<GameQuery>> fetchAllAvailableGames(@PathVariable UUID playerId) {
         RetrieveAllGamesQuery query = new RetrieveAllGamesQuery(new PlayerId(playerId));
         return ResponseEntity.status(HttpStatus.OK).body(gameQueryUseCase.getAllAvailableGame(query));
     }
 
     @GetMapping("/search")
+    @PreAuthorize("hasAuthority('GameAndEvents')")
     public ResponseEntity<List<GameQuery>> fetchGamesByName(
             @RequestParam("player") UUID playerId,
             @RequestParam("game") String gameName) {
@@ -52,6 +55,7 @@ public class GameController {
     }
 
     @GetMapping("/details/{gameId}")
+    @PreAuthorize("hasAuthority('GameAndEvents')")
     public ResponseEntity<GameQuery> fetchGameDetails(@PathVariable UUID gameId) {
         final GameQuery gameQuery = gameQueryUseCase.findGameById(gameId);
 
@@ -60,6 +64,7 @@ public class GameController {
 
 
     @GetMapping("category")
+    @PreAuthorize("hasAuthority('GameAndEvents')")
     public ResponseEntity<List<GameQuery>> fetchGamesByCategory(
             @RequestParam("player") UUID playerId,
             @RequestParam("category") String category) {
@@ -74,6 +79,7 @@ public class GameController {
 
 
     @PatchMapping("/{playerId}/{gameId}/favorite")
+    @PreAuthorize("hasAuthority('GameAndEvents')")
     public ResponseEntity<GameQuery> toggleGameFavorite(
             @PathVariable UUID playerId,
             @PathVariable UUID gameId) {
@@ -86,37 +92,41 @@ public class GameController {
     }
 
 
-// TODO change this to event...
-
-    @PostMapping("/{playerId}/games/{gameId}/achievements")
-    public ResponseEntity<GameQuery> earnAchievement(
-            @PathVariable UUID playerId,
-            @PathVariable UUID gameId,
-            @RequestParam String gameName,
-            @RequestParam String achievementName) {
-
-        EarnAchievementCommand command = new EarnAchievementCommand(
-                new PlayerId(playerId),
-                gameName,
-                gameId,
-                achievementName
-        );
-
-        GameQuery updatedGame = gameUseCase.givePlayerAnAchievement(command);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(updatedGame);
-    }
 
 
-
-    // TODo: change to boolean
     @PostMapping("/ownership")
+    @PreAuthorize("hasAuthority('GameAndEvents')")
     public ResponseEntity<Boolean> PlayerOwnGame(@RequestBody PlayerGameOwnershipCommandDto dto) {
         final PlayerGameOwnershipCommand command = new PlayerGameOwnershipCommand(new PlayerId(dto.playerId()), dto.gameName());
 
         return ResponseEntity.status(HttpStatus.OK).body(gameUseCase.hasPlayerPurchasedGame(command));
 
     }
+
+
+
+
+// TODO change this to event...
+
+//    @PostMapping("/{playerId}/games/{gameId}/achievements")
+//    @PreAuthorize("hasRole('Player')")
+//    public ResponseEntity<GameQuery> earnAchievement(
+//            @PathVariable UUID playerId,
+//            @PathVariable UUID gameId,
+//            @RequestParam String gameName,
+//            @RequestParam String achievementName) {
+//
+//        EarnAchievementCommand command = new EarnAchievementCommand(
+//                new PlayerId(playerId),
+//                gameName,
+//                gameId,
+//                achievementName
+//        );
+//
+//        GameQuery updatedGame = gameUseCase.givePlayerAnAchievement(command);
+//
+//        return ResponseEntity.status(HttpStatus.CREATED).body(updatedGame);
+//    }
 
 
 }

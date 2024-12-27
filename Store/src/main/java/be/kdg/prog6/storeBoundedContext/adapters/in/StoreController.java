@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,25 +32,26 @@ public class StoreController {
 
     @GetMapping
     public ResponseEntity<List<GameQuery>> getAllGame() {
-
         return ResponseEntity.status(HttpStatus.OK).body(loadStoreUseCase.viewAllGames());
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('dev')")
     public ResponseEntity<String> addGame(@RequestBody CreateGameCommand command) {
-
         return ResponseEntity.status(HttpStatus.CREATED).body(storeUseCase.addGameToStore(command));
     }
 
+
+    //TODO change the domain so we know who create the game so only he can delete it.
+    //TODO now anyone can delete any game if they have a dev role !!!!!must change it
     @DeleteMapping("/game/{id}")
+    @PreAuthorize("hasAuthority('dev')")
     public ResponseEntity<String> deleteGame(@PathVariable("id") UUID id) {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(storeUseCase.removeGameFromStore(new RemoveGameCommand(id)));
     }
 
-
     @GetMapping("/{gameId}/details")
     public ResponseEntity<GameQuery> getGameDetails(@PathVariable("gameId") UUID id) {
-
         return ResponseEntity.status(HttpStatus.OK).body(loadStoreUseCase.viewGameDetails(new GameId(id)));
     }
 

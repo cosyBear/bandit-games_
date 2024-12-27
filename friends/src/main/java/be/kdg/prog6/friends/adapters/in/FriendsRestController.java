@@ -12,9 +12,9 @@ import be.kdg.prog6.friends.port.in.RemoveFriend;
 import be.kdg.prog6.friends.port.in.command.AddFriendCommand;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,6 +31,7 @@ public class FriendsRestController {
     private final LoadFriendsLobbies loadFriendsLobbies;
 
     @PostMapping
+    @PreAuthorize("hasAuthority('FriendsManagement')")
     public ResponseEntity<PlayerDto> addNewFriend(
             @RequestBody AddFriendCommand command
     ) {
@@ -42,6 +43,7 @@ public class FriendsRestController {
     }
 
     @GetMapping("/{playerId}/all")
+    @PreAuthorize("hasAuthority('FriendsManagement')")
     public ResponseEntity<List<PlayerDto>> getAllFriends(
             @PathVariable("playerId") UUID playerId
     ) {
@@ -54,6 +56,7 @@ public class FriendsRestController {
     }
 
     @GetMapping("/{playerId}")
+    @PreAuthorize("hasAuthority('FriendsManagement')")
     public ResponseEntity<PlayerDto> findPlayer(
             @PathVariable("playerId") UUID playerId
     ) {
@@ -65,6 +68,7 @@ public class FriendsRestController {
     }
 
     @GetMapping("/nickname")
+    @PreAuthorize("hasAuthority('FriendsManagement')")
     public ResponseEntity<List<PlayerDto>> searchByNickname(
             @RequestParam("searchTerm") final String nickname
     ) {
@@ -78,6 +82,7 @@ public class FriendsRestController {
 
 
     @DeleteMapping("/{playerId}/friends/{friendId}")
+    @PreAuthorize("hasAuthority('FriendsManagement')")
     public ResponseEntity<Void> removeFriend(
             @PathVariable("playerId") final UUID playerId,
             @PathVariable("friendId") final UUID friendId
@@ -88,6 +93,7 @@ public class FriendsRestController {
     }
 
     @GetMapping("/{playerId}/lobbies")
+    @PreAuthorize("hasAuthority('FriendsManagement')")
     public ResponseEntity<List<LobbyQuery>> showMyFriendsLobbies(@PathVariable final UUID playerId) {
         LoadLobbiesQuery loadLobbiesQuery = new LoadLobbiesQuery(playerId);
         return ResponseEntity.status(HttpStatus.OK).body(loadFriendsLobbies.fetchFriendsLobbies(loadLobbiesQuery));

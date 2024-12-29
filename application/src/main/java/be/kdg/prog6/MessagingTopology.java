@@ -25,8 +25,7 @@ public class MessagingTopology {
     private static final String RABBITMQ_USERNAME = "myuser";
     private static final String RABBITMQ_PASSWORD = "mypassword";
     private static final String RABBITMQ_VIRTUAL_HOST = "/";
-    private static final String RABBITMQ_HOST = "rabbitmq-container.livelymushroom-dcbf4550.northeurope.azurecontainerapps.io";
-
+    private static final String RABBITMQ_HOST = "rabbitmq-container.internal.livelymushroom-dcbf4550.northeurope.azurecontainerapps.io";
 
     @Bean
     public ConnectionFactory connectionFactory() {

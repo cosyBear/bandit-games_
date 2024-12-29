@@ -14,6 +14,13 @@ services:
     volumes:
       - ./mysql/data:/var/lib/mysql
 
+  application_service:
+    image: acrbanditgames.azurecr.io/integration5:latest
+    ports:
+      - '8099:8090'
+    networks:
+      - backend
+
 #  app_rabbitmq:
 #    image: rabbitmq:3.13.7-management-alpine
 #    environment:
@@ -30,17 +37,17 @@ services:
 
 
 
-  idp_mysql:
-    image: mysql:9.0.1
-    volumes:
-      - ./idp_mysql_data:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: keycloak
-      MYSQL_USER: keycloak
-      MYSQL_PASSWORD: password
-    ports:
-      - '3307:3306'
+#  idp_mysql:
+#    image: mysql:9.0.1
+#    volumes:
+#      - ./idp_mysql_data:/var/lib/mysql
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root
+#      MYSQL_DATABASE: keycloak
+#      MYSQL_USER: keycloak
+#      MYSQL_PASSWORD: password
+#    ports:
+#      - '3307:3306'
 #    networks:
 #      - kc
 

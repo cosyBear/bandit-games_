@@ -34,7 +34,7 @@ public class GameController {
     private final GameUseCase gameUseCase;
 
     @GetMapping("/{playerId}")
-    @PreAuthorize("hasAuthority('GameAndEvents')") // Use hasAuthority instead of hasRole
+    @PreAuthorize("hasAuthority('GameAndEvents')")
     public ResponseEntity<List<GameQuery>> fetchAllAvailableGames(@PathVariable UUID playerId) {
         RetrieveAllGamesQuery query = new RetrieveAllGamesQuery(new PlayerId(playerId));
         return ResponseEntity.status(HttpStatus.OK).body(gameQueryUseCase.getAllAvailableGame(query));

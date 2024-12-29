@@ -25,10 +25,8 @@ import java.util.UUID;
 @CrossOrigin(origins = "http://localhost:5173")
 public class StoreController {
 
-
     private final LoadStoreUseCase loadStoreUseCase;
     private final StoreUseCase storeUseCase;
-
 
     @GetMapping
     public ResponseEntity<List<GameQuery>> getAllGame() {
@@ -41,9 +39,6 @@ public class StoreController {
         return ResponseEntity.status(HttpStatus.CREATED).body(storeUseCase.addGameToStore(command));
     }
 
-
-    //TODO change the domain so we know who create the game so only he can delete it.
-    //TODO now anyone can delete any game if they have a dev role !!!!!must change it
     @DeleteMapping("/game/{id}")
     @PreAuthorize("hasAuthority('dev')")
     public ResponseEntity<String> deleteGame(@PathVariable("id") UUID id) {

@@ -1,0 +1,28 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: statistics
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: FULL
+
+logging:
+  level:
+    org.springframework.cloud.openfeign: DEBUG
+    be.kdg.prog6.statistics: DEBUG
+
+predictionService:
+  url: http://localhost:8000
+
+chatbotService:
+  url: http://localhost:8000
+
+recommendationService:
+  url: http://localhost:8000

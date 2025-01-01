@@ -1,5 +1,4 @@
 import be.kdg.prog6.common.events.util.AchievementAlreadyEarnedException;
-import be.kdg.prog6.common.events.util.GameAlreadyMarkedAsFavoriteException;
 import be.kdg.prog6.common.events.util.GameNotFoundException;
 import be.kdg.prog6.libraryBoundedContext.LibraryBoundedContextApplication;
 import be.kdg.prog6.libraryBoundedContext.domain.Achievement;

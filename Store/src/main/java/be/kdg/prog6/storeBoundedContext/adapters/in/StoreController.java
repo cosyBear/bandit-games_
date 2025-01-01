@@ -22,7 +22,6 @@ import java.util.UUID;
 @RequestMapping("/store")
 @RequiredArgsConstructor
 @Slf4j
-@CrossOrigin(origins = "http://localhost:5173")
 public class StoreController {
 
     private final LoadStoreUseCase loadStoreUseCase;

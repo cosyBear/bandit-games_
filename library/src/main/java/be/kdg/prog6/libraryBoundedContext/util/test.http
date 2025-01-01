@@ -16,3 +16,9 @@ GET http://localhost:8090/api/games/123e4567-e89b-12d3-a456-426614174000
 Accept: application/json
 Authorization: Bearer {{access_token}}
 
+
+
+### Test: Export User Data
+GET http://localhost:8090/api/games/userData?playerId=95592601-d766-4715-a205-fbd13323ccc3&playerName=JohnDoe
+Accept: application/json
+Authorization: Bearer {{access_token}}

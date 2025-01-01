@@ -44,7 +44,9 @@ public class AddGameAmpAdapter {
                     achievementEvent.achievementName(),
                     achievementEvent.achievementDescription(),
                     achievementEvent.imageUrl(),
-                    achievementEvent.achieved()
+                    achievementEvent.achieved(),
+                    new GameId(event.gameEvent().id())
+
             );
         }).toList();
 

@@ -1,10 +1,12 @@
 package be.kdg.prog6.libraryBoundedContext.adapters.in;
 
+import be.kdg.prog6.libraryBoundedContext.adapters.in.dto.ExportDataDto;
 import be.kdg.prog6.libraryBoundedContext.adapters.in.dto.PlayerGameOwnershipCommandDto;
 import be.kdg.prog6.libraryBoundedContext.domain.id.PlayerId;
-import be.kdg.prog6.libraryBoundedContext.port.in.command.EarnAchievementCommand;
+import be.kdg.prog6.libraryBoundedContext.port.in.command.ExportUserDataCommand;
 import be.kdg.prog6.libraryBoundedContext.port.in.command.GameCommand;
 import be.kdg.prog6.libraryBoundedContext.port.in.command.PlayerGameOwnershipCommand;
+import be.kdg.prog6.libraryBoundedContext.port.in.game.ExportUserData;
 import be.kdg.prog6.libraryBoundedContext.port.in.game.GameQueryUseCase;
 import be.kdg.prog6.libraryBoundedContext.port.in.game.GameUseCase;
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.FetchGamesByNameQuery;
@@ -13,25 +15,38 @@ import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.GetGamesByCategoryQu
 import be.kdg.prog6.libraryBoundedContext.port.in.gameQuery.RetrieveAllGamesQuery;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/games")
-@CrossOrigin(origins = "http://localhost:5173")
 @RequiredArgsConstructor
 @Slf4j
 public class GameController {
 
     private final GameQueryUseCase gameQueryUseCase;
     private final GameUseCase gameUseCase;
+    private final ExportUserData exportUserData;
+
+
+    @GetMapping("/userData")
+    @PreAuthorize("hasAuthority('GameAndEvents')")
+    public ResponseEntity<byte[]> exportLibrary(@RequestParam UUID playerId , @RequestParam String playerName) {
+        byte[] fileContent = exportUserData.exportUserData(new ExportUserDataCommand(new PlayerId(playerId),playerName));
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"library_export.csv\"");
+        headers.add(HttpHeaders.CONTENT_TYPE, "text/csv");
+
+        return new ResponseEntity<>(fileContent, headers, HttpStatus.OK);
+    }
+
 
     @GetMapping("/{playerId}")
     @PreAuthorize("hasAuthority('GameAndEvents')")
@@ -92,8 +107,6 @@ public class GameController {
     }
 
 
-
-
     @PostMapping("/ownership")
     @PreAuthorize("hasAuthority('GameAndEvents')")
     public ResponseEntity<Boolean> PlayerOwnGame(@RequestBody PlayerGameOwnershipCommandDto dto) {
@@ -104,29 +117,6 @@ public class GameController {
     }
 
 
-
-
-// TODO change this to event...
-
-//    @PostMapping("/{playerId}/games/{gameId}/achievements")
-//    @PreAuthorize("hasRole('Player')")
-//    public ResponseEntity<GameQuery> earnAchievement(
-//            @PathVariable UUID playerId,
-//            @PathVariable UUID gameId,
-//            @RequestParam String gameName,
-//            @RequestParam String achievementName) {
-//
-//        EarnAchievementCommand command = new EarnAchievementCommand(
-//                new PlayerId(playerId),
-//                gameName,
-//                gameId,
-//                achievementName
-//        );
-//
-//        GameQuery updatedGame = gameUseCase.givePlayerAnAchievement(command);
-//
-//        return ResponseEntity.status(HttpStatus.CREATED).body(updatedGame);
-//    }
 
 
 }

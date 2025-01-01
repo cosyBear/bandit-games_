@@ -158,3 +158,56 @@ VALUES
         'https://placehold.co/100x80', 'https://placehold.co/1400x220',
         'Fight your way through hordes of zombies in this intense survival game. Customize your weapons and tactics to survive.', 29.99, 4.8
     );
+
+
+
+
+
+
+INSERT INTO library.game (
+    game_id,
+    game_name,
+    game_type,
+    image_url,
+    favourite,
+    library_id,
+    background_image_url,
+    description
+)
+VALUES (
+           '5789e55e-08ad-4917-8aea-6863b6825413', -- New game ID for Checkers
+           'Checkers',
+           'BOARD_GAME',
+           'https://placehold.co/100x80',
+           false,
+           '456e7891-e89b-12d3-a456-426614174000', -- Existing library ID
+           'https://placehold.co/1400x220',
+           'A classic board game for strategy and tactics.'
+       );
+
+-- Insert achievements for the "Checkers" game into the library.achievement table
+INSERT INTO library.achievement (
+    achievement_id,
+    achievement_name,
+    achievement_description,
+    image_url,
+    achieved,
+    game_id
+)
+VALUES
+    (
+        '3f3f5659-8536-4b53-9fa2-547f22da47c7', -- Achievement ID for "First Move"
+        'First Move',
+        'Awarded for making your first move in the game.',
+        'https://example.com/images/achievement_first_move.png',
+        false,
+        '5789e55e-08ad-4917-8aea-6863b6825413' -- Associated with Checkers game ID
+    ),
+    (
+        'e95a1823-1628-4217-b283-7f1ba76fd9d0', -- Achievement ID for "Killed First Pawn"
+        'Killed First Pawn',
+        'Awarded for capturing the first pawn.',
+        'https://example.com/images/achievement_killed_first_pawn.png',
+        false,
+        '5789e55e-08ad-4917-8aea-6863b6825413' -- Associated with Checkers game ID
+    );

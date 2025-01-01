@@ -4,19 +4,15 @@ import be.kdg.prog6.common.events.util.DatabaseException;
 import be.kdg.prog6.common.events.util.InvalidCategoryException;
 import be.kdg.prog6.common.events.util.LibraryNotFoundException;
 import be.kdg.prog6.common.exception.EntityNotFoundException;
-import be.kdg.prog6.libraryBoundedContext.adapters.out.Entity.GameTypeEntity;
 import be.kdg.prog6.libraryBoundedContext.adapters.out.Entity.LibraryEntity;
-import be.kdg.prog6.libraryBoundedContext.domain.GameType;
 import be.kdg.prog6.libraryBoundedContext.domain.Library;
 import be.kdg.prog6.libraryBoundedContext.domain.id.PlayerId;
 import be.kdg.prog6.libraryBoundedContext.port.out.LibraryLoadPort;
 import be.kdg.prog6.libraryBoundedContext.port.out.LibrarySavePort;
 import be.kdg.prog6.libraryBoundedContext.util.Mapper;
-import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
 
 import org.springframework.dao.DataAccessException;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 import java.util.UUID;

@@ -5,6 +5,5 @@ include 'common'
 include 'library'
 include 'friends'
 include 'lobby'
+include 'store'
 include 'statistics'
-
-

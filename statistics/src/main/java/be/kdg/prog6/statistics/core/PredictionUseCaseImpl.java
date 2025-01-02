@@ -4,6 +4,7 @@ import be.kdg.prog6.statistics.domain.Prediction;
 import be.kdg.prog6.statistics.ports.in.PredictionUseCase;
 import be.kdg.prog6.statistics.ports.in.command.PredictionCommand;
 import be.kdg.prog6.statistics.ports.out.PredictionServicePort;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -11,12 +12,9 @@ import java.util.Map;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class PredictionUseCaseImpl implements PredictionUseCase {
     private final PredictionServicePort predictionServicePort;
-
-    public PredictionUseCaseImpl(PredictionServicePort predictionServicePort) {
-        this.predictionServicePort = predictionServicePort;
-    }
 
     @Override
     public Prediction predict(PredictionCommand command) {

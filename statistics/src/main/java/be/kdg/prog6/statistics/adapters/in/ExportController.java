@@ -3,6 +3,7 @@ package be.kdg.prog6.statistics.adapters.in;
 import be.kdg.prog6.statistics.domain.ExportData;
 import be.kdg.prog6.statistics.ports.in.command.ExportCommand;
 import be.kdg.prog6.statistics.ports.in.ExportPlayerStatisticsUseCase;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,13 +11,9 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/export")
+@RequiredArgsConstructor
 public class ExportController {
     private final ExportPlayerStatisticsUseCase exportUseCase;
-
-    public ExportController(ExportPlayerStatisticsUseCase exportUseCase) {
-        this.exportUseCase = exportUseCase;
-    }
-
     @PostMapping("/player-statistics")
     public ResponseEntity<byte[]> exportPlayerStatistics() {
         ExportCommand command = new ExportCommand(UUID.randomUUID());

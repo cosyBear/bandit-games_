@@ -3,6 +3,7 @@ package be.kdg.prog6.statistics.adapters.in;
 import be.kdg.prog6.statistics.domain.Prediction;
 import be.kdg.prog6.statistics.ports.in.PredictionUseCase;
 import be.kdg.prog6.statistics.ports.in.command.PredictionCommand;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,12 +11,9 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/predictions")
+@RequiredArgsConstructor
 public class PredictionController {
     private final PredictionUseCase predictionUseCase;
-
-    public PredictionController(PredictionUseCase predictionUseCase) {
-        this.predictionUseCase = predictionUseCase;
-    }
 
     @PostMapping("/{type}")
     public ResponseEntity<Prediction> predict(

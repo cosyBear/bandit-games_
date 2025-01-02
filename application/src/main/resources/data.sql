@@ -26,7 +26,7 @@ VALUES
 -- Create lobbies for the friends with valid game_id UUIDs
 INSERT INTO friends.lobby (id, player_id, game_id , lobby_status)
 VALUES
-    ('1d095e14-8c15-4d2b-a2e5-59e7d8ff7129', '95592601-d766-4715-a205-fbd13323ccc3', 'a2b7c0e4-3d11-4b5b-8297-3e45fc173c81', "Created"),
+--     ('1d095e14-8c15-4d2b-a2e5-59e7d8ff7129', '95592601-d766-4715-a205-fbd13323ccc3', 'a2b7c0e4-3d11-4b5b-8297-3e45fc173c81', "Created"),
     ('1d095e15-8c15-4d2b-a2e5-59e7d8ff7130', 'c56a4181-65aa-42ec-a945-5fd21dec0539', 'e7a1c1d2-f18e-4e6a-b3a5-6dba403b62a1', "Created"),
     ('1d095e16-8c15-4d2b-a2e5-59e7d8ff7131', 'c56a4182-65aa-42ec-a945-5fd21dec0540', 'f2d3b5c6-9a21-4d87-b6a1-8cb17de38145', "Created"),
     ('1d095e17-8c15-4d2b-a2e5-59e7d8ff7132', 'c56a4183-65aa-42ec-a945-5fd21dec0541', 'd4f7e6a9-213a-4b8c-9f47-5a01e24c90b2', "Created");

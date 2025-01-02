@@ -5,7 +5,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "chatbotService", url = "http://chatbox.westeurope.cloud-app.azure.com:8000")
+@FeignClient(name = "chatbotService", url = "http://chatbox.westeurope.cloudapp.azure.com:8000")
 public interface ChatbotFeignClient {
     @PostMapping("/chatbot")
     String getRawResponse(@RequestBody ChatbotQuery payload);

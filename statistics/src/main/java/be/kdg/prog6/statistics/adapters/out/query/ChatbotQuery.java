@@ -1,5 +1,12 @@
 package be.kdg.prog6.statistics.adapters.out.query;
 
 
-public record ChatbotQuery(String userInput, String context) {}
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public record ChatbotQuery(
+        @JsonProperty("user_input")
+        String userInput,
+        @JsonProperty("context")
+        String context
+) {}
 

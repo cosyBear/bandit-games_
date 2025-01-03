@@ -72,11 +72,9 @@ sonarqube-check:
   script:
     - ./gradlew sonarqube
   allow_failure: true
-  rules:
-    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
-    - if: $CI_COMMIT_BRANCH == 'master'
-    - if: $CI_COMMIT_BRANCH == 'main'
-    - if: $CI_COMMIT_BRANCH == 'develop'
+#  rules:
+#    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+#    - if: $CI_COMMIT_BRANCH == 'main'
 
 sonarqube-vulnerability-report:
   image: gradle:8.2.0-jdk17-jammy

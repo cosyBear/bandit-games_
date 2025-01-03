@@ -14,9 +14,10 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ExportController {
     private final ExportPlayerStatisticsUseCase exportUseCase;
+
     @PostMapping("/player-statistics")
-    public ResponseEntity<byte[]> exportPlayerStatistics() {
-        ExportCommand command = new ExportCommand(UUID.randomUUID());
+    public ResponseEntity<byte[]> exportPlayerStatistics(@RequestParam UUID userId) {
+        ExportCommand command = new ExportCommand(userId);
 
         ExportData exportData = exportUseCase.exportAllStatistics(command);
 

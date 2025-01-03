@@ -1,6 +1,5 @@
 import be.kdg.prog6.statistics.core.ExportPlayerStatisticsUseCaseImpl;
 import be.kdg.prog6.statistics.domain.ExportData;
-
 import be.kdg.prog6.statistics.ports.in.command.ExportCommand;
 import be.kdg.prog6.statistics.ports.out.ExportServicePort;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,18 +34,18 @@ class ExportPlayerStatisticsUseCaseImplTest {
         ExportCommand command = new ExportCommand(userId);
         ExportData expectedData = new ExportData(
                 "content".getBytes(),
-                "player_statistics.csv",
+                "player_statistics_" + userId + ".csv",
                 "CSV",
                 LocalDateTime.now()
         );
 
-        when(exportServicePort.exportPlayerStatistics()).thenReturn(expectedData);
+        when(exportServicePort.exportPlayerStatistics(userId)).thenReturn(expectedData);
 
         // Act
         ExportData actualData = exportUseCase.exportAllStatistics(command);
 
         // Assert
         assertEquals(expectedData, actualData);
-        verify(exportServicePort, times(1)).exportPlayerStatistics();
+        verify(exportServicePort, times(1)).exportPlayerStatistics(userId);
     }
 }

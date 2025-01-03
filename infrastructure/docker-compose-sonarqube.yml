@@ -1,0 +1,20 @@
+services:
+  sonarqube:
+    image: sonarqube:latest
+    ports:
+      - "9000:9000"
+    environment:
+      - SONARQUBE_JDBC_URL=jdbc:postgresql://db:5432/sonar
+    networks:
+      - sonarqube-network
+
+  db:
+    image: postgres:alpine
+    environment:
+      - POSTGRES_PASSWORD=sonar
+    networks:
+      - sonarqube-network
+
+networks:
+  sonarqube-network:
+    driver: bridge

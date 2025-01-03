@@ -28,11 +28,9 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   config:
     additional-location: ${SPRING_CONFIG_ADDITIONAL_LOCATION}
-  rabbitmq:
-    connection-timeout: 60000
-    requested-heartbeat: 30
 
 logging:
   level:
     be.kdg.prog6.friends: debug
     org.springframework: info
+

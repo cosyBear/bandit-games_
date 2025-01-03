@@ -33,3 +33,4 @@ logging:
   level:
     be.kdg.prog6.friends: debug
     org.springframework: info
+

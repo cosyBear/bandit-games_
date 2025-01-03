@@ -17,7 +17,7 @@ services:
   application_service:
     image: acrbanditgames.azurecr.io/integration5:latest
     ports:
-      - '8099:8090'
+      - '8090:8090'
     networks:
       - backend
 

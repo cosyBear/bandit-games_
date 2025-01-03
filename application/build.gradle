@@ -17,7 +17,7 @@ dependencies {
     implementation project(':library')
     implementation project(':friends')
     implementation project(':lobby')
-    implementation project(':Store')
+    implementation project(':store')
 
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2'
     implementation 'com.fasterxml.jackson.core:jackson-databind'

@@ -11,6 +11,8 @@ sonar {
         property "sonar.projectKey", "bandit"
         property "sonar.projectName", "bandit"
         property "sonar.qualitygate.wait", true
+//        property "sonar.login", System.getenv("SONAR_LOGIN") ?: "admin"
+//        property "sonar.password", System.getenv("SONAR_PASSWORD") ?: "Testadmin!1s"
     }
 }
 

@@ -70,7 +70,7 @@ sonarqube-check:
   image: gradle:8.2.0-jdk17-jammy
   stage: sonarqube-check
   script:
-    - ./gradlew sonarqube
+    - ./gradlew sonar
   allow_failure: true
 #  rules:
 #    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
@@ -80,7 +80,7 @@ sonarqube-vulnerability-report:
   image: gradle:8.2.0-jdk17-jammy
   stage: sonarqube-vulnerability-report
   script:
-    - 'curl -u "${SONAR_TOKEN}:" "${SONAR_HOST_URL}/api/issues/gitlab_sast_export?projectKey=bandit&branch=${CI_COMMIT_BRANCH}&pullRequest=${CI_MERGE_REQUEST_IID}" -o gl-sast-sonar-report.json'
+    - 'curl -u "${SONAR_TOKEN}:" "${SONAR_HOST_URL}/api/issues/gitlab_sast_export?projectKey=kdg-ti_integration-5_2024-2025_team8_bandit-games_d0e14ee5-4e21-4165-bea0-ff78251053bb&branch=${CI_COMMIT_BRANCH}&pullRequest=${CI_MERGE_REQUEST_IID}" -o gl-sast-sonar-report.json'
   allow_failure: true
 #  rules:
 #    - if: $CI_PIPELINE_SOURCE == 'merge_request_event''

@@ -1,6 +1,7 @@
 package be.kdg.prog6.statistics.core;
 
 import be.kdg.prog6.statistics.domain.Prediction;
+import be.kdg.prog6.statistics.domain.PredictionType;
 import be.kdg.prog6.statistics.ports.in.PredictionUseCase;
 import be.kdg.prog6.statistics.ports.in.command.PredictionCommand;
 import be.kdg.prog6.statistics.ports.out.PredictionServicePort;
@@ -20,11 +21,11 @@ public class PredictionUseCaseImpl implements PredictionUseCase {
     public Prediction predict(PredictionCommand command) {
         Map<String, Object> result;
 
-        switch (command.predictionType().toLowerCase()) {
-            case "churn" -> result = predictionServicePort.predictChurn(command.playerData());
-            case "engagement" -> result = predictionServicePort.predictEngagement(command.playerData());
-            case "win-probability" -> result = predictionServicePort.predictWinProbability(command.playerData());
-            case "classification" -> result = predictionServicePort.classifyPlayer(command.playerData());
+        switch (command.predictionType()) {
+            case CHURN -> result = predictionServicePort.predictChurn(command.playerData());
+            case ENGAGEMENT -> result = predictionServicePort.predictEngagement(command.playerData());
+            case WIN_PROBABILITY -> result = predictionServicePort.predictWinProbability(command.playerData());
+            case PLAYER_CLASSIFICATION -> result = predictionServicePort.classifyPlayer(command.playerData());
             default -> throw new IllegalArgumentException("Unsupported prediction type: " + command.predictionType());
         }
 
@@ -35,5 +36,4 @@ public class PredictionUseCaseImpl implements PredictionUseCase {
                 LocalDateTime.now()
         );
     }
-
 }

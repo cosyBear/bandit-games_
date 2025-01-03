@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -14,12 +15,12 @@ public class ExportServiceAdapter implements ExportServicePort {
   private final ExportFeignClient feignClient;
 
   @Override
-  public ExportData exportPlayerStatistics() {
-    byte[] fileContent = feignClient.exportPlayerStatistics();
+  public ExportData exportPlayerStatistics(UUID userId) {
+    byte[] fileContent = feignClient.exportPlayerStatistics(userId);
 
     return new ExportData(
             fileContent,
-            "player_statistics.csv",
+            "player_statistics_" + userId + ".csv",
             "CSV",
             LocalDateTime.now()
     );

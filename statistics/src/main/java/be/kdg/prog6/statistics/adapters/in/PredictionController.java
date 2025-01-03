@@ -1,6 +1,7 @@
 package be.kdg.prog6.statistics.adapters.in;
 
 import be.kdg.prog6.statistics.domain.Prediction;
+import be.kdg.prog6.statistics.domain.PredictionType;
 import be.kdg.prog6.statistics.ports.in.PredictionUseCase;
 import be.kdg.prog6.statistics.ports.in.command.PredictionCommand;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,9 @@ public class PredictionController {
             @PathVariable("type") String predictionType,
             @RequestBody Map<String, Object> playerData
     ) {
-        PredictionCommand command = new PredictionCommand(predictionType, playerData);
+        PredictionType type = PredictionType.valueOf(predictionType.toUpperCase());
+
+        PredictionCommand command = new PredictionCommand(type, playerData);
         Prediction prediction = predictionUseCase.predict(command);
         return ResponseEntity.ok(prediction);
     }

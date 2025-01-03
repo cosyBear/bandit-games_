@@ -11,9 +11,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Prediction {
-    //should it be a record?
     private UUID playerId;
-    private String predictionType;
+    private PredictionType predictionType;
     private double value;
     private LocalDateTime predictedAt;
 }

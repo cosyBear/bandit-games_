@@ -14,6 +14,6 @@ public class ExportPlayerStatisticsUseCaseImpl implements ExportPlayerStatistics
 
     @Override
     public ExportData exportAllStatistics(ExportCommand command) {
-        return exportServicePort.exportPlayerStatistics();
+        return exportServicePort.exportPlayerStatistics(command.userId());
     }
 }

@@ -82,7 +82,14 @@ sonarqube-vulnerability-report:
   stage: sonarqube-vulnerability-report
   script:
     - 'curl -u "${SONAR_TOKEN}:" "${SONAR_HOST_URL}/api/issues/gitlab_sast_export?projectKey=kdg-ti_integration-5_2024-2025_team8_bandit-games_17b67429-0d5b-4402-bb91-cedb7ad0888e&branch=${CI_COMMIT_BRANCH}&pullRequest=${CI_MERGE_REQUEST_IID}" -o gl-sast-sonar-report.json'
-    - allow_failure: true
+  allow_failure: true
+  artifacts:
+    paths:
+      - gl-sast-sonar-report.json
+    expire_in: 1 day
+    reports:
+      sast: gl-sast-sonar-report.json
+
 #  rules:
 #    - if: $CI_PIPELINE_SOURCE == 'merge_request_event''
 #    - if: $CI_COMMIT_BRANCH == 'main'

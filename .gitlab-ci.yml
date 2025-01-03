@@ -70,7 +70,7 @@ sonarqube-check:
   image: gradle:8.2.0-jdk17-jammy
   stage: sonarqube-check
   script:
-    - ./gradlew sonar
+    - gradle sonar
   allow_failure: true
 #  rules:
 #    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'

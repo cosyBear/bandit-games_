@@ -22,6 +22,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
@@ -50,9 +52,14 @@ public class LobbyController {
     @PostMapping
     @PreAuthorize("hasAuthority('LobbyManagement')")
 
-    public ResponseEntity<LobbyCreateQuery> createLobby(@RequestBody CreateLobbyDto dto) {
+    public ResponseEntity<LobbyCreateQuery> createLobby(@AuthenticationPrincipal Jwt jwt , @RequestBody CreateLobbyDto dto) {
 
-        CreateLobbyCommand command = new CreateLobbyCommand(dto.gameID(), dto.lobbyAdminId());
+
+        String userId = jwt.getClaimAsString("UserId");
+
+        UUID lobbyAdminId = UUID.fromString(userId);
+
+        CreateLobbyCommand command = new CreateLobbyCommand(dto.gameID(),lobbyAdminId);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(createLobbyUseCase.createLobby(command));
 
@@ -60,7 +67,6 @@ public class LobbyController {
 
     @GetMapping("/{lobbyId}")
     @PreAuthorize("hasAuthority('LobbyManagement')")
-
     public ResponseEntity<LobbyUpdateQuery> getLobbyDetails(@PathVariable("lobbyId") UUID lobbyId) {
         final Lobby lobby = loadLobbyUseCase.findLobbyById(lobbyId);
 

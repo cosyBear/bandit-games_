@@ -19,6 +19,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,8 +39,12 @@ public class GameController {
 
     @GetMapping("/userData")
     @PreAuthorize("hasAuthority('GameAndEvents')")
-    public ResponseEntity<byte[]> exportLibrary(@RequestParam UUID playerId , @RequestParam String playerName) {
-        byte[] fileContent = exportUserData.exportUserData(new ExportUserDataCommand(new PlayerId(playerId),playerName));
+    public ResponseEntity<byte[]> exportLibrary(@AuthenticationPrincipal Jwt jwt, @RequestParam String playerName) {
+        String userId = jwt.getClaimAsString("UserId");
+
+        UUID playerId = UUID.fromString(userId);
+
+        byte[] fileContent = exportUserData.exportUserData(new ExportUserDataCommand(new PlayerId(playerId), playerName));
 
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"library_export.csv\"");
@@ -47,19 +53,28 @@ public class GameController {
         return new ResponseEntity<>(fileContent, headers, HttpStatus.OK);
     }
 
-
-    @GetMapping("/{playerId}")
+    @GetMapping("hallo")
     @PreAuthorize("hasAuthority('GameAndEvents')")
-    public ResponseEntity<List<GameQuery>> fetchAllAvailableGames(@PathVariable UUID playerId) {
+    public ResponseEntity<List<GameQuery>> fetchAllAvailableGames(@AuthenticationPrincipal Jwt jwt) {
+        String userId = jwt.getClaimAsString("UserId");
+
+        UUID playerId = UUID.fromString(userId);
+
         RetrieveAllGamesQuery query = new RetrieveAllGamesQuery(new PlayerId(playerId));
+
         return ResponseEntity.status(HttpStatus.OK).body(gameQueryUseCase.getAllAvailableGame(query));
     }
+
 
     @GetMapping("/search")
     @PreAuthorize("hasAuthority('GameAndEvents')")
     public ResponseEntity<List<GameQuery>> fetchGamesByName(
-            @RequestParam("player") UUID playerId,
+            @AuthenticationPrincipal Jwt jwt,
             @RequestParam("game") String gameName) {
+
+        String userId = jwt.getClaimAsString("UserId");
+
+        UUID playerId = UUID.fromString(userId);
 
         FetchGamesByNameQuery query = new FetchGamesByNameQuery(new PlayerId(playerId), gameName);
 
@@ -81,8 +96,12 @@ public class GameController {
     @GetMapping("category")
     @PreAuthorize("hasAuthority('GameAndEvents')")
     public ResponseEntity<List<GameQuery>> fetchGamesByCategory(
-            @RequestParam("player") UUID playerId,
+            @AuthenticationPrincipal Jwt jwt,
             @RequestParam("category") String category) {
+
+        String userId = jwt.getClaimAsString("UserId");
+
+        UUID playerId = UUID.fromString(userId);
 
         GetGamesByCategoryQuery query = new GetGamesByCategoryQuery(new PlayerId(playerId), category);
 
@@ -93,12 +112,14 @@ public class GameController {
     }
 
 
-    @PatchMapping("/{playerId}/{gameId}/favorite")
+    @PatchMapping("/{gameId}/favorite")
     @PreAuthorize("hasAuthority('GameAndEvents')")
-    public ResponseEntity<GameQuery> toggleGameFavorite(
-            @PathVariable UUID playerId,
+    public ResponseEntity<GameQuery> toggleGameFavorite( @AuthenticationPrincipal Jwt jwt,
             @PathVariable UUID gameId) {
 
+        String userId = jwt.getClaimAsString("UserId");
+
+        UUID playerId = UUID.fromString(userId);
         GameCommand command = new GameCommand(new PlayerId(playerId), gameId);
 
         GameQuery updatedGame = gameUseCase.toggleGameFavourite(command);
@@ -109,14 +130,16 @@ public class GameController {
 
     @PostMapping("/ownership")
     @PreAuthorize("hasAuthority('GameAndEvents')")
-    public ResponseEntity<Boolean> PlayerOwnGame(@RequestBody PlayerGameOwnershipCommandDto dto) {
-        final PlayerGameOwnershipCommand command = new PlayerGameOwnershipCommand(new PlayerId(dto.playerId()), dto.gameName());
+    public ResponseEntity<Boolean> PlayerOwnGame( @AuthenticationPrincipal Jwt jwt, @RequestBody PlayerGameOwnershipCommandDto dto) {
+        String userId = jwt.getClaimAsString("UserId");
+
+        UUID playerId = UUID.fromString(userId);
+
+        final PlayerGameOwnershipCommand command = new PlayerGameOwnershipCommand(new PlayerId(playerId), dto.gameName());
 
         return ResponseEntity.status(HttpStatus.OK).body(gameUseCase.hasPlayerPurchasedGame(command));
 
     }
-
-
 
 
 }

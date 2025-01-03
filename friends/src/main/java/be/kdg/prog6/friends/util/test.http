@@ -1,9 +1,18 @@
+
+#### Get access token for 'manager'
+POST http://localhost:8180/realms/bandit-games/protocol/openid-connect/token HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+client_id=bandit-games-backend&client_secret=caMobJWsVRLMwIqYsdBo7EdDJzdgpi3d&username=player&password=player&grant_type=password&scope=openid
+
+> {%
+    client.global.set("access_token", response.body.access_token);
+%}
+
+###
 GET http://localhost:8090/api/friends/95592601-d766-4715-a205-fbd13323ccc3/lobbies
-content-type: application/json
-
-
-
-
+Accept: application/json
+Authorization: Bearer {{access_token}}
 ###
 
 

@@ -8,8 +8,8 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.36/5a30490a6e14977d97d9c73c924c1f1b5311ea95/lombok-1.18.36.jar" />
         </processorPath>
         <module name="integration5.library.main" />
+        <module name="integration5.store.test" />
         <module name="integration5.lobby.test" />
-        <module name="integration5.Store.test" />
         <module name="integration5.library.test" />
         <module name="integration5.lobby.main" />
       </profile>
@@ -27,10 +27,13 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.mapstruct/mapstruct-processor/1.5.5.Final/897f6f115930b936287bef552bf5fe28cc64717d/mapstruct-processor-1.5.5.Final.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.30/f195ee86e6c896ea47a1d39defbe20eb59cd149d/lombok-1.18.30.jar" />
         </processorPath>
-        <module name="integration5.Store.main" />
+        <module name="integration5.store.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="17">
+      <module name="integration5.statistics" target="21" />
+      <module name="integration5.statistics.main" target="21" />
+      <module name="integration5.statistics.test" target="21" />
       <module name="template.buildSrc" target="20" />
       <module name="template.buildSrc.main" target="20" />
       <module name="template.buildSrc.test" target="20" />

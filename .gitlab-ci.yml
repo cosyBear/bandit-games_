@@ -72,9 +72,9 @@ sonarcloud-check:
     key: "${CI_JOB_NAME}"
     paths:
       - .sonar/cache
-    script:
-      - ./gradlew clean build -x test
-      - ./gradlew sonarqube
+  script:
+   - ./gradlew clean build -x test
+   - ./gradlew sonarqube
 
 
 build-deploy:

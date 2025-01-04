@@ -42,4 +42,9 @@ dependencies {
     testImplementation 'org.springframework.security:spring-security-test'
 
     runtimeOnly 'com.mysql:mysql-connector-j'
+    configurations.all {
+        resolutionStrategy {
+            force 'org.apache.commons:commons-compress:1.27.1'
+        }
+    }
 }

@@ -73,7 +73,7 @@ sonarcloud-check:
     paths:
       - .sonar/cache
   script:
-    - ./gradlew sonar --stacktrace --debug
+    - ./gradlew sonar --stacktrace
 
 
 build-deploy:

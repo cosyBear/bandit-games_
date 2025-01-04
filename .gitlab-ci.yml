@@ -66,12 +66,15 @@ test:
   coverage: '/TOTAL\s+\d+\%\s+/'
 
 sonarcloud-check:
+  stage: test
   image: gradle:jdk17
   cache:
     key: "${CI_JOB_NAME}"
     paths:
       - .sonar/cache
-  script: gradle sonar
+    script:
+      - ./gradlew clean build -x test
+      - ./gradlew sonarqube
 
 
 build-deploy:

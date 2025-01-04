@@ -8,10 +8,8 @@ plugins {
 
 sonar {
     properties {
-        property "sonar.projectName", "bandit-games"
-        property "sonar.projectKey", "kdg-ti_integration-5_2024-2025_team8_bandit-games_AZQtO8VjgPzVZymtKNTe"
-        property "sonar.qualitygate.wait", true
-        property "sonar.login", System.getenv("SONAR_TOKEN")  // Automatically use the SONAR_TOKEN environment variable
+        property "sonar.projectKey", "kdg-ti_bandit-games"
+        property "sonar.organization", "team8-1"
     }
 }
 
@@ -25,10 +23,8 @@ bootBuildImage {
     publish = true
     docker {
         publishRegistry {
-//            username = System.getenv("IMAGE_USERNAME")
-//            password = System.getenv("IMAGE_PASSWORD")
-            username = "acrbanditgames"
-            password = "D9BYZfH0d9bhQHvlv/WzWp95QxWHrsDT93dminmCrl+ACRD+9ZyV"
+            username = System.getenv("IMAGE_USERNAME")
+            password = System.getenv("IMAGE_PASSWORD")
         }
     }
 }

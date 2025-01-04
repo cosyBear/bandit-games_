@@ -8,9 +8,7 @@ before_script:
 stages:
   - build
   - test
-  - sonarqube-start  # Moved SonarQube start to a separate stage
-  - sonarqube-check
-  - sonarqube-vulnerability-report
+
   - build-deploy
   - deploy
 
@@ -67,34 +65,14 @@ test:
       junit: $TEST_ONLY_MODULES/build/test-results/test/*.xml
   coverage: '/TOTAL\s+\d+\%\s+/'
 
-sonarqube-start:
-  image: docker:latest
-  stage: sonarqube-start  # Added as a new stage to start SonarQube
-  services:
-    - name: docker:dind
-      alias: docker
-  script:
-    - echo "Starting SonarQube using Docker Compose"
-    - docker pull sonarqube:latest  # Pull SonarQube image
-    - docker run -d -p 9000:9000 --name sonarqube sonarqube:latest  # Start SonarQube container
-    - echo "Waiting for SonarQube to be ready"
+sonarcloud-check:
+  image: gradle:jdk17
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - .sonar/cache
+  script: gradle sonarqube
 
-sonarqube-check:
-  image: gradle:8.2.0-jdk17-jammy
-  stage: sonarqube-check
-  script:
-    - gradle sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=${SONAR_TOKEN}  # Run SonarQube analysis
-
-sonarqube-vulnerability-report:
-  image: gradle:8.2.0-jdk17-jammy
-  stage: sonarqube-vulnerability-report
-  script:
-    - 'curl -u "${SONAR_TOKEN}:" "${SONAR_HOST_URL}/api/issues/gitlab_sast_export?projectKey=kdg-ti_integration-5_2024-2025_team8_bandit-games_17b67429-0d5b-4402-bb91-cedb7ad0888e&branch=${CI_COMMIT_BRANCH}&pullRequest=${CI_MERGE_REQUEST_IID}" -o gl-sast-sonar-report.json'
-  allow_failure: true
-  artifacts:
-    expire_in: 1 day
-    reports:
-      sast: gl-sast-sonar-report.json
 
 build-deploy:
   stage: build-deploy

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="LobbyTesting" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-01-03T17:07:11" hostname="JOSIE" time="0.051">
+<testsuite name="LobbyTesting" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-01-03T19:47:21" hostname="JOSIE" time="0.043">
   <properties/>
-  <testcase name="shouldInitializeLobbyWithCorrectValuesWithOutGuestPlayer()" classname="LobbyTesting" time="0.035"/>
-  <testcase name="shouldThrowExceptionWhenAddingPlayerToFullLobby()" classname="LobbyTesting" time="0.006"/>
-  <testcase name="shouldSaveLobbyAfterAddingPlayer()" classname="LobbyTesting" time="0.007"/>
+  <testcase name="shouldInitializeLobbyWithCorrectValuesWithOutGuestPlayer()" classname="LobbyTesting" time="0.029"/>
+  <testcase name="shouldThrowExceptionWhenAddingPlayerToFullLobby()" classname="LobbyTesting" time="0.005"/>
+  <testcase name="shouldSaveLobbyAfterAddingPlayer()" classname="LobbyTesting" time="0.006"/>
   <system-out><![CDATA[
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -13,10 +13,10 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.1.1)
 
-2025-01-03T18:07:09.392+01:00  INFO 21656 --- [    Test worker] LobbyTesting                             : Starting LobbyTesting using Java 21.0.5 with PID 21656 (started by josia in C:\Users\josia\IdeaProjects\bandit-games\lobby)
-2025-01-03T18:07:09.394+01:00  INFO 21656 --- [    Test worker] LobbyTesting                             : No active profile set, falling back to 1 default profile: "default"
-2025-01-03T18:07:11.295+01:00  INFO 21656 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
-2025-01-03T18:07:11.329+01:00  INFO 21656 --- [    Test worker] LobbyTesting                             : Started LobbyTesting in 2.146 seconds (process running for 2.816)
+2025-01-03T20:47:19.134+01:00  INFO 7320 --- [    Test worker] LobbyTesting                             : Starting LobbyTesting using Java 21.0.5 with PID 7320 (started by josia in C:\Users\josia\IdeaProjects\bandit-games\lobby)
+2025-01-03T20:47:19.135+01:00  INFO 7320 --- [    Test worker] LobbyTesting                             : No active profile set, falling back to 1 default profile: "default"
+2025-01-03T20:47:21.002+01:00  INFO 7320 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2025-01-03T20:47:21.038+01:00  INFO 7320 --- [    Test worker] LobbyTesting                             : Started LobbyTesting in 2.098 seconds (process running for 2.735)
 ]]></system-out>
   <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (C:\Users\josia\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.14.5\20f4e9b9d0ffb953657bfa4b92c0cceb27907d58\byte-buddy-agent-1.14.5.jar)
 WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning

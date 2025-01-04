@@ -1,0 +1,5 @@
+be.kdg.prog6.MessagingTopology#joinLobbyExchange()Lorg/springframework/amqp/core/DirectExchange;
+false
+35901a2fd43ca458a1850e7a85460f15
+org.springframework.amqp.core.DirectExchange#<init>(Ljava/lang/String;)V
+org.springframework.amqp.core.DirectExchange#instance-init#

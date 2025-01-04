@@ -1,0 +1,5 @@
+be.kdg.prog6.MessagingTopology#joinLobbyQueue()Lorg/springframework/amqp/core/Queue;
+false
+66d9468b94a715f583d518baa6be624b
+org.springframework.amqp.core.Queue#<init>(Ljava/lang/String;)V
+org.springframework.amqp.core.Queue#instance-init#

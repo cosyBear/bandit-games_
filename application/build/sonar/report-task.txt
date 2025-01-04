@@ -1,0 +1,7 @@
+organization=team8-1
+projectKey=kdg-ti_bandit-games
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.58807
+dashboardUrl=https://sonarcloud.io/dashboard?id=kdg-ti_bandit-games
+ceTaskId=AZQxedp8768UrkA1Tzbw
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZQxedp8768UrkA1Tzbw

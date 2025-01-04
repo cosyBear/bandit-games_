@@ -67,14 +67,14 @@ test:
 
 sonarcloud-check:
   stage: test
-  image: gradle:jdk17
+  image: gradle:jdk21
   cache:
     key: "${CI_JOB_NAME}"
     paths:
       - .sonar/cache
   script:
     - ./gradlew clean build -x test
-    - ./gradlew sonar --stacktrace --info
+    - ./gradlew sonar
 
 
 build-deploy:

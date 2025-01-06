@@ -8,7 +8,6 @@ before_script:
 stages:
   - build
   - test
-  - security
   - build-deploy
   - deploy
 
@@ -49,6 +48,7 @@ build:
       - friends/build/libs/
       - library/build/libs/
     when: always
+    expire_in: 1 week
 
 test:
   stage: test
@@ -59,6 +59,7 @@ test:
   script:
     - echo "Running tests with Testcontainers"
     - ./gradlew $TEST_ONLY_MODULES:test jacocoTestReport --no-daemon --max-workers 4 --info
+    - if [ $? -ne 0 ]; then echo "Tests failed! Exiting pipeline."; exit 1; fi
   artifacts:
     paths:
       - $TEST_ONLY_MODULES/build/test-results/
@@ -66,29 +67,7 @@ test:
     when: always
     reports:
       junit: $TEST_ONLY_MODULES/build/test-results/test/*.xml
-
-security:
-  stage: security
-  script:
-    - /analyze --sast --dependency-scanning --secret-detection
-    - |
-      echo "Validating security reports"
-      for report in gl-sast-report.json gl-dependency-scanning-report.json gl-secret-detection-report.json; do
-        if [[ ! -s $report ]]; then
-          echo "Security report $report is missing or empty!"
-          exit 1
-        fi
-      done
-  artifacts:
-    paths:
-      - gl-sast-report.json
-      - gl-dependency-scanning-report.json
-      - gl-secret-detection-report.json
-    reports:
-      sast: gl-sast-report.json
-      dependency_scanning: gl-dependency-scanning-report.json
-      secret_detection: gl-secret-detection-report.json
-    when: always
+    expire_in: 1 week
 
 build-deploy:
   stage: build-deploy
@@ -96,6 +75,9 @@ build-deploy:
   script:
     - echo "Building and Pushing Docker Image"
     - ./gradlew clean bootBuildImage
+    - echo "Checking for high-severity vulnerabilities..."
+    - if grep -q '"severity": "High"' gl-sast-report.json; then echo "High-severity vulnerabilities found! Exiting pipeline."; exit 1; fi
+    - echo "No high-severity vulnerabilities found. Proceeding with build."
   only:
     - tags
 

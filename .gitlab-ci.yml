@@ -8,7 +8,6 @@ before_script:
 stages:
   - build
   - test
-
   - build-deploy
   - deploy
 
@@ -18,8 +17,11 @@ variables:
   DOCKER_HOST: "tcp://docker:2375"
   DOCKER_TLS_CERTDIR: ""
   DOCKER_DRIVER: overlay2
-  SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
-  GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
+
+include:
+  - template: Security/SAST.gitlab-ci.yml
+  - template: Security/Dependency-Scanning.gitlab-ci.yml
+  - template: Security/Container-Scanning.gitlab-ci.yml
 
 cache:
   key: "$CI_COMMIT_REF_NAME"
@@ -56,23 +58,13 @@ test:
   script:
     - echo "Running tests with Testcontainers"
     - ./gradlew $TEST_ONLY_MODULES:test jacocoTestReport --no-daemon --max-workers 4 --info
-    # Extract coverage from JaCoCo XML report
-    - |
-      COVERAGE=$(grep 'line-coverage="' $TEST_ONLY_MODULES/build/reports/jacoco/test/jacocoTestReport.xml | 
-                  sed -E 's/.*line-coverage="([0-9.]+)".*/\1/')
-      echo "Total Coverage: ${COVERAGE}%"
-    - echo "${COVERAGE}" > coverage.txt
   artifacts:
     paths:
       - $TEST_ONLY_MODULES/build/test-results/
       - $TEST_ONLY_MODULES/build/reports/jacoco/
-      - coverage.txt
     when: always
     reports:
       junit: $TEST_ONLY_MODULES/build/test-results/test/*.xml
-  coverage: '/\d+(\.\d+)?/'  
-
-
 
 
 build-deploy:

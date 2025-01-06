@@ -58,8 +58,8 @@ test:
     - ./gradlew $TEST_ONLY_MODULES:test jacocoTestReport --no-daemon --max-workers 4 --info
     # Extract coverage from JaCoCo XML report
     - |
-      COVERAGE=$(grep -oP 'line-coverage="[0-9.]+"' $TEST_ONLY_MODULES/build/reports/jacoco/test/jacocoTestReport.xml | 
-                  grep -oP '[0-9.]+')
+      COVERAGE=$(grep 'line-coverage="' $TEST_ONLY_MODULES/build/reports/jacoco/test/jacocoTestReport.xml | 
+                  sed -E 's/.*line-coverage="([0-9.]+)".*/\1/')
       echo "Total Coverage: ${COVERAGE}%"
     - echo "${COVERAGE}" > coverage.txt
   artifacts:
@@ -70,7 +70,8 @@ test:
     when: always
     reports:
       junit: $TEST_ONLY_MODULES/build/test-results/test/*.xml
-  coverage: '/Total Coverage:\s+\K\d+(\.\d+)?/'  # Match coverage from the extracted log
+  coverage: '/\d+(\.\d+)?/'  
+
 
 
 

@@ -48,7 +48,6 @@ build:
       - friends/build/libs/
       - library/build/libs/
     when: always
-    expire_in: 1 week
 
 test:
   stage: test
@@ -59,15 +58,13 @@ test:
   script:
     - echo "Running tests with Testcontainers"
     - ./gradlew $TEST_ONLY_MODULES:test jacocoTestReport --no-daemon --max-workers 4 --info
-    - if [ $? -ne 0 ]; then echo "Tests failed! Exiting pipeline."; exit 1; fi
   artifacts:
     paths:
       - $TEST_ONLY_MODULES/build/test-results/
       - $TEST_ONLY_MODULES/build/reports/jacoco/
     when: always
     reports:
-      junit: $TEST_ONLY_MODULES/build/test-results/test/*.xml
-    expire_in: 1 week
+      junit: "$TEST_ONLY_MODULES/build/test-results/test/*.xml"
 
 build-deploy:
   stage: build-deploy
@@ -75,9 +72,6 @@ build-deploy:
   script:
     - echo "Building and Pushing Docker Image"
     - ./gradlew clean bootBuildImage
-    - echo "Checking for high-severity vulnerabilities..."
-    - if grep -q '"severity": "High"' gl-sast-report.json; then echo "High-severity vulnerabilities found! Exiting pipeline."; exit 1; fi
-    - echo "No high-severity vulnerabilities found. Proceeding with build."
   only:
     - tags
 

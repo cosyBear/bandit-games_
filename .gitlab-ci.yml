@@ -71,12 +71,7 @@ sonarcloud-check:
   cache:
     key: "${CI_JOB_NAME}"
   script:
-    - gradle sonarqube \
-      -Dsonar.projectKey="integration5" \
-      -Dsonar.organization="team8-1" \
-      -Dsonar.host.url=$SONAR_HOST_URL \
-      -Dsonar.login=$SONAR_TOKEN
-
+    - gradle sonarqube -Dsonar.projectKey="integration5" -Dsonar.organization="team8-1" -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN
 
 build-deploy:
   stage: build-deploy

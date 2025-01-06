@@ -67,7 +67,7 @@ test:
 
 sonarcloud-check:
   stage: test
-  image: gradle:8.11.0-jdk17
+  image: gradle:8.10.0-jdk21
   cache:
     key: "${CI_JOB_NAME}"
   script:

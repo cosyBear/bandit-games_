@@ -21,6 +21,7 @@ variables:
 include:
   - template: Security/SAST.gitlab-ci.yml
   - template: Security/Dependency-Scanning.gitlab-ci.yml
+  - template: Security/Secret-Detection.gitlab-ci.yml
   - template: Security/Container-Scanning.gitlab-ci.yml
 
 cache:
@@ -66,6 +67,40 @@ test:
     reports:
       junit: $TEST_ONLY_MODULES/build/test-results/test/*.xml
 
+sast:
+  stage: security
+  needs: []
+  variables:
+    SAST_EXCLUDED_PATHS: "test/"
+  artifacts:
+    reports:
+      sast: gl-sast-report.json
+
+dependency_scanning:
+  stage: security
+  needs: []
+  artifacts:
+    reports:
+      dependency_scanning: gl-dependency-scanning-report.json
+
+secret_detection:
+  stage: security
+  needs: []
+  artifacts:
+    reports:
+      secret_detection: gl-secret-detection-report.json
+
+container_scanning:
+  stage: security
+  needs: []
+  services:
+    - name: docker:dind
+      command: [ "--tls=false" ]
+  variables:
+    DOCKER_DRIVER: overlay2
+  artifacts:
+    reports:
+      container_scanning: gl-container-scanning-report.json
 
 build-deploy:
   stage: build-deploy

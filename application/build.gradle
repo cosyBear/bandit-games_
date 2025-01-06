@@ -10,6 +10,12 @@ allprojects {
         mavenCentral()
     }
 }
+jacocoTestReport {
+    reports {
+        xml.required = true
+        html.required = true
+    }
+}
 
 bootJar {
     mainClass = 'be.kdg.prog6.CompleteApplication'

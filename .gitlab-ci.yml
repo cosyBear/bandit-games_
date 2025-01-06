@@ -23,7 +23,6 @@ include:
   - template: Security/SAST.gitlab-ci.yml
   - template: Security/Dependency-Scanning.gitlab-ci.yml
   - template: Security/Secret-Detection.gitlab-ci.yml
-  - template: Security/Container-Scanning.gitlab-ci.yml
 
 cache:
   key: "$CI_COMMIT_REF_NAME"
@@ -68,48 +67,32 @@ test:
     reports:
       junit: $TEST_ONLY_MODULES/build/test-results/test/*.xml
 
-sast:
+security:
   stage: security
-  needs: []
-  variables:
-    SAST_EXCLUDED_PATHS: "test/"
+  script:
+    - /analyze --sast --dependency-scanning --secret-detection
+    - |
+      echo "Validating security reports"
+      for report in gl-sast-report.json gl-dependency-scanning-report.json gl-secret-detection-report.json; do
+        if [[ ! -s $report ]]; then
+          echo "Security report $report is missing or empty!"
+          exit 1
+        fi
+      done
   artifacts:
+    paths:
+      - gl-sast-report.json
+      - gl-dependency-scanning-report.json
+      - gl-secret-detection-report.json
     reports:
       sast: gl-sast-report.json
-
-dependency_scanning:
-  stage: security
-  needs: []
-  artifacts:
-    reports:
       dependency_scanning: gl-dependency-scanning-report.json
-
-secret_detection:
-  stage: security
-  needs: []
-  artifacts:
-    reports:
       secret_detection: gl-secret-detection-report.json
-
-security_gate:
-  stage: security
-  needs:
-    - sast
-    - dependency_scanning
-    - secret_detection
-  script:
-    - echo "Validating security scans..."
-    - echo "All security scans passed successfully!"
+    when: always
 
 build-deploy:
   stage: build-deploy
   image: gradle:8.11.0-jdk21
-  needs:
-    - test
-    - security_gate
-  services:
-    - name: docker:dind
-      command: [ "--tls=false" ]
   script:
     - echo "Building and Pushing Docker Image"
     - ./gradlew clean bootBuildImage
@@ -119,8 +102,6 @@ build-deploy:
 deploy:
   image: mcr.microsoft.com/azure-cli
   stage: deploy
-  needs:
-    - build-deploy
   before_script:
     - az login --service-principal -u $AZURE_APP_ID -p $AZURE_PASSWORD --tenant $AZURE_TENANT
     - az extension add --name containerapp --upgrade

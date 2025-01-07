@@ -1,12 +1,17 @@
+import be.kdg.prog6.statistics.StatisticsBoundedContextApplication;
+import be.kdg.prog6.statistics.core.ExportPlayerStatisticsUseCaseImpl;
 import be.kdg.prog6.statistics.core.PredictionUseCaseImpl;
 import be.kdg.prog6.statistics.domain.Prediction;
 import be.kdg.prog6.statistics.ports.in.command.PredictionCommand;
 import be.kdg.prog6.statistics.ports.out.PredictionServicePort;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -15,7 +20,8 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
+@ContextConfiguration(classes = {PredictionUseCaseImpl.class})
 class PredictionUseCaseImplTest {
     private PredictionUseCaseImpl predictionUseCase;
 

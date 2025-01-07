@@ -1,3 +1,5 @@
+import be.kdg.prog6.statistics.StatisticsBoundedContextApplication;
+import be.kdg.prog6.statistics.adapters.in.ChatbotController;
 import be.kdg.prog6.statistics.core.ExportPlayerStatisticsUseCaseImpl;
 import be.kdg.prog6.statistics.domain.ExportData;
 
@@ -5,9 +7,13 @@ import be.kdg.prog6.statistics.ports.in.command.ExportCommand;
 import be.kdg.prog6.statistics.ports.out.ExportServicePort;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -15,7 +21,8 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
+@ContextConfiguration(classes = {ExportPlayerStatisticsUseCaseImpl.class})
 class ExportPlayerStatisticsUseCaseImplTest {
     private ExportPlayerStatisticsUseCaseImpl exportUseCase;
 
@@ -49,4 +56,6 @@ class ExportPlayerStatisticsUseCaseImplTest {
         assertEquals(expectedData, actualData);
         verify(exportServicePort, times(1)).exportPlayerStatistics();
     }
+
+
 }

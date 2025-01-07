@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-<span class="nc" id="L17">@Slf4j</span>
+<span class="fc" id="L17">@Slf4j</span>
 public class RemoveFriendImpl implements RemoveFriend {
     private final PlayerPort playerPort;
     private final FriendsPort friendsPort;
@@ -22,13 +22,13 @@ public class RemoveFriendImpl implements RemoveFriend {
     @Override
     @Transactional
     public void removeFriend(UUID friendId, UUID playerId) {
-<span class="nc" id="L25">        final Friends friends = friendsPort.findAll(playerId);</span>
+<span class="fc" id="L25">        final Friends friends = friendsPort.findAll(playerId);</span>
 
-<span class="nc" id="L27">        final Player friend = playerPort.findById(friendId);</span>
+<span class="fc" id="L27">        final Player friend = playerPort.findById(friendId);</span>
 
-<span class="nc" id="L29">        friends.removeFriend(friend);</span>
+<span class="fc" id="L29">        friends.removeFriend(friend);</span>
 
-<span class="nc" id="L31">        friendsPort.deleteFriend(friends, playerId);</span>
-<span class="nc" id="L32">    }</span>
+<span class="fc" id="L31">        friendsPort.deleteFriend(friends, playerId);</span>
+<span class="fc" id="L32">    }</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

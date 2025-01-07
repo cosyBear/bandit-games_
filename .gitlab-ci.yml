@@ -1,4 +1,4 @@
-image: gradle:8.1-jdk17
+image: gradle:8.11.0-jdk21
 
 before_script:
   - chmod +x gradlew
@@ -8,6 +8,8 @@ before_script:
 stages:
   - build
   - test
+  - build-deploy
+  - deploy
 
 variables:
   MODULES: "application common library friends"
@@ -15,6 +17,11 @@ variables:
   DOCKER_HOST: "tcp://docker:2375"
   DOCKER_TLS_CERTDIR: ""
   DOCKER_DRIVER: overlay2
+
+include:
+  - template: Security/SAST.gitlab-ci.yml
+  - template: Security/Dependency-Scanning.gitlab-ci.yml
+  - template: Security/Secret-Detection.gitlab-ci.yml
 
 cache:
   key: "$CI_COMMIT_REF_NAME"
@@ -57,5 +64,25 @@ test:
       - $TEST_ONLY_MODULES/build/reports/jacoco/
     when: always
     reports:
-      junit: $TEST_ONLY_MODULES/build/test-results/test/*.xml
-  coverage: '/TOTAL\s+\d+\%\s+/'
+      junit: "$TEST_ONLY_MODULES/build/test-results/test/*.xml"
+
+build-deploy:
+  stage: build-deploy
+  image: gradle:8.11.0-jdk21
+  script:
+    - echo "Building and Pushing Docker Image"
+    - ./gradlew clean bootBuildImage
+  only:
+    - tags
+
+deploy:
+  image: mcr.microsoft.com/azure-cli
+  stage: deploy
+  before_script:
+    - az login --service-principal -u $AZURE_APP_ID -p $AZURE_PASSWORD --tenant $AZURE_TENANT
+    - az extension add --name containerapp --upgrade
+  script:
+    - echo "Deploying Azure Container App"
+    - az containerapp up --name bandit-backend --resource-group rg-banditgames --location northeurope --environment banditgames-environment --target-port 8090 --ingress external --image "acrbanditgames.azurecr.io/integration5:latest"
+  only:
+    - tags

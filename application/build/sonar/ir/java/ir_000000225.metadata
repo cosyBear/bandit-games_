@@ -1,0 +1,6 @@
+be.kdg.prog6.MessagingTopology#lobbyCreatedBinding(Lorg/springframework/amqp/core/Queue;Lorg/springframework/amqp/core/DirectExchange;)Lorg/springframework/amqp/core/Binding;
+false
+c01d1ea9dc73d007a875830b4f039a7b
+org.springframework.amqp.core.BindingBuilder#bind(Lorg/springframework/amqp/core/Queue;)Lorg/springframework/amqp/core/BindingBuilder$DestinationConfigurer;
+org.springframework.amqp.core.BindingBuilder$DestinationConfigurer#to(Lorg/springframework/amqp/core/DirectExchange;)Lorg/springframework/amqp/core/BindingBuilder$DirectExchangeRoutingKeyConfigurer;
+org.springframework.amqp.core.BindingBuilder$DirectExchangeRoutingKeyConfigurer#with(Ljava/lang/String;)Lorg/springframework/amqp/core/Binding;

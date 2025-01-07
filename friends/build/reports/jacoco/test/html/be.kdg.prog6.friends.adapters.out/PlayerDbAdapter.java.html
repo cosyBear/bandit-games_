@@ -16,17 +16,17 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-<span class="nc" id="L19">@Slf4j</span>
+<span class="fc" id="L19">@Slf4j</span>
 @Repository
 public class PlayerDbAdapter implements PlayerPort {
     private final PlayerJpaRepository playerJpaRepository;
 
     @Override
     public Player findById(UUID uuid) {
-<span class="nc" id="L26">        final PlayerJpaEntity playerJpaEntity = playerJpaRepository.findById(uuid)</span>
-<span class="nc" id="L27">                .orElseThrow(() -&gt; new EntityNotFoundException(&quot;Player was not found&quot;));</span>
+<span class="fc" id="L26">        final PlayerJpaEntity playerJpaEntity = playerJpaRepository.findById(uuid)</span>
+<span class="pc" id="L27">                .orElseThrow(() -&gt; new EntityNotFoundException(&quot;Player was not found&quot;));</span>
 
-<span class="nc" id="L29">        return playerJpaEntity.convertToDomain();</span>
+<span class="fc" id="L29">        return playerJpaEntity.convertToDomain();</span>
     }
     @Override
     public Friends searchForFriend(String nickName) {
@@ -35,4 +35,4 @@ public class PlayerDbAdapter implements PlayerPort {
 <span class="nc" id="L35">        return new Friends(playerJpaEntities.stream().map(PlayerJpaEntity::convertToDomain).collect(Collectors.toSet()));</span>
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

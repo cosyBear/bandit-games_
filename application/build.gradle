@@ -5,12 +5,33 @@ plugins {
     id 'java'
 }
 
-
-
-bootJar {
-    mainClass = 'be.kdg.CompleteApplication'
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+jacocoTestReport {
+    reports {
+        xml.required = true
+        html.required = true
+    }
 }
 
+bootJar {
+    mainClass = 'be.kdg.prog6.CompleteApplication'
+}
+
+bootBuildImage {
+    builder = "paketobuildpacks/builder-jammy-base:latest"
+    imageName = "acrbanditgames.azurecr.io/integration5:latest"
+    publish = true
+    docker {
+        publishRegistry {
+            username = System.getenv("IMAGE_USERNAME")
+            password = System.getenv("IMAGE_PASSWORD")
+        }
+    }
+}
 
 dependencies {
     implementation project(":common")
@@ -22,6 +43,7 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'org.apache.commons:commons-compress:1.26.0'
     testImplementation 'org.springframework.security:spring-security-test'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.0.4'
 

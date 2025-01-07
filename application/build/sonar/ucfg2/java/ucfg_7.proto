@@ -1,0 +1,56 @@
+
+rbe.kdg.prog6.MessagingTopology#jsonMessageConverter()Lorg/springframework/amqp/support/converter/MessageConverter;p
+fC:/Users/josia/IdeaProjects/bandit-games/application/src/main/java/be/kdg/prog6/MessagingTopology.javaU U(0"1*”
+1V$ V(6lj
+V( V(41
+%0+com.fasterxml.jackson.databind.ObjectMapper"+com.fasterxml.jackson.databind.ObjectMapper›
+˜
+V$ V(6
+%1"5com.fasterxml.jackson.databind.ObjectMapper#<init>()V*O
+
+__unknown_file (3
+1
+%0+com.fasterxml.jackson.databind.ObjectMapper¡
+ž
+V V(7;
+objectMapper+com.fasterxml.jackson.databind.ObjectMapper"__id*O
+
+__unknown_file (3
+1
+%0+com.fasterxml.jackson.databind.ObjectMapper~|
+W( W(6:
+%24com.fasterxml.jackson.datatype.jsr310.JavaTimeModule"4com.fasterxml.jackson.datatype.jsr310.JavaTimeModule­
+ª
+W$ W(8
+%3">com.fasterxml.jackson.datatype.jsr310.JavaTimeModule#<init>()V*X
+
+__unknown_file (<
+:
+%24com.fasterxml.jackson.datatype.jsr310.JavaTimeModuleÁ¾
+W W(91
+%4+com.fasterxml.jackson.databind.ObjectMapper"com.fasterxml.jackson.databind.ObjectMapper#registerModule(Lcom/fasterxml/jackson/databind/Module;)Lcom/fasterxml/jackson/databind/ObjectMapper;*Y
+
+__unknown_file (=
+;
+objectMapper+com.fasterxml.jackson.databind.ObjectMapper*X
+
+__unknown_file (<
+:
+%24com.fasterxml.jackson.datatype.jsr310.JavaTimeModule27registerModule(Lcom/fasterxml/jackson/databind/Module;)¥¢
+X X(/M
+%5Gorg.springframework.amqp.support.converter.Jackson2JsonMessageConverter"Gorg.springframework.amqp.support.converter.Jackson2JsonMessageConverterÛ
+Ø
+X X(=
+%6"~org.springframework.amqp.support.converter.Jackson2JsonMessageConverter#<init>(Lcom/fasterxml/jackson/databind/ObjectMapper;)V*k
+
+__unknown_file (O
+M
+%5Gorg.springframework.amqp.support.converter.Jackson2JsonMessageConverter*Y
+
+__unknown_file (=
+;
+objectMapper+com.fasterxml.jackson.databind.ObjectMapper"[
+X X(>O
+M
+%5Gorg.springframework.amqp.support.converter.Jackson2JsonMessageConverterB" 
+be.kdg.prog6.MessagingTopologyH

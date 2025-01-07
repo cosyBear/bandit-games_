@@ -21,20 +21,20 @@ public class Player {
 <span class="fc" id="L21">    public record PlayerId(UUID id) {</span>
     }
 
-<span class="nc" id="L24">    public Player(PlayerId id, String nickname, String firstName, String lastName, Gender gender) {</span>
-<span class="nc" id="L25">        this.id = id;</span>
-<span class="nc" id="L26">        this.nickname = nickname;</span>
-<span class="nc" id="L27">        this.firstName = firstName;</span>
-<span class="nc" id="L28">        this.lastName = lastName;</span>
-<span class="nc" id="L29">        this.gender = gender;</span>
-<span class="nc" id="L30">    }</span>
+<span class="fc" id="L24">    public Player(PlayerId id, String nickname, String firstName, String lastName, Gender gender) {</span>
+<span class="fc" id="L25">        this.id = id;</span>
+<span class="fc" id="L26">        this.nickname = nickname;</span>
+<span class="fc" id="L27">        this.firstName = firstName;</span>
+<span class="fc" id="L28">        this.lastName = lastName;</span>
+<span class="fc" id="L29">        this.gender = gender;</span>
+<span class="fc" id="L30">    }</span>
 
     @Override
     public boolean equals(Object o) {
-<span class="nc bnc" id="L34" title="All 2 branches missed.">        if (this == o) return true;</span>
-<span class="nc bnc" id="L35" title="All 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
-<span class="nc" id="L36">        Player player = (Player) o;</span>
-<span class="nc" id="L37">        return Objects.equals(id, player.id);</span>
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">        if (this == o) return true;</span>
+<span class="pc bpc" id="L35" title="2 of 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="fc" id="L36">        Player player = (Player) o;</span>
+<span class="fc" id="L37">        return Objects.equals(id, player.id);</span>
     }
 
     @Override
@@ -42,4 +42,4 @@ public class Player {
 <span class="fc" id="L42">        return Objects.hash(id);</span>
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

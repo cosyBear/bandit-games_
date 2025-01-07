@@ -26,22 +26,22 @@ public class PlayerJpaEntity {
     @OneToOne(mappedBy = &quot;playerJpaEntity&quot;, orphanRemoval = true, cascade = CascadeType.ALL)
     private LobbyJpaEntity lobbyJpaEntity;
 
-<span class="nc" id="L29">    public PlayerJpaEntity(UUID id, String nickname, String firstName, String lastName, String gender) {</span>
-<span class="nc" id="L30">        this.id = id;</span>
-<span class="nc" id="L31">        this.nickname = nickname;</span>
-<span class="nc" id="L32">        this.firstName = firstName;</span>
-<span class="nc" id="L33">        this.lastName = lastName;</span>
-<span class="nc" id="L34">        this.gender = gender;</span>
-<span class="nc" id="L35">    }</span>
+<span class="fc" id="L29">    public PlayerJpaEntity(UUID id, String nickname, String firstName, String lastName, String gender) {</span>
+<span class="fc" id="L30">        this.id = id;</span>
+<span class="fc" id="L31">        this.nickname = nickname;</span>
+<span class="fc" id="L32">        this.firstName = firstName;</span>
+<span class="fc" id="L33">        this.lastName = lastName;</span>
+<span class="fc" id="L34">        this.gender = gender;</span>
+<span class="fc" id="L35">    }</span>
 
     public Player convertToDomain() {
-<span class="nc" id="L38">        return new Player(</span>
+<span class="fc" id="L38">        return new Player(</span>
                 new Player.PlayerId(this.id),
                 this.nickname,
                 this.firstName,
                 this.lastName,
-<span class="nc" id="L43">                Gender.valueOf(this.gender)</span>
+<span class="fc" id="L43">                Gender.valueOf(this.gender)</span>
         );
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

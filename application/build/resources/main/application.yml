@@ -22,30 +22,15 @@ spring:
     url: "jdbc:mysql://banditgames-mysql-server.mysql.database.azure.com:3306/library?useSSL=true&trustCertificateKeyStoreUrl=classpath:DigiCertGlobalRootCA.crt.pem"
     username: admin_bandit
     password: Strongpassword!123
+#    url: "jdbc:mysql://mysql_app_db:3306/"
+#    username: user
+#    password: password
     driver-class-name: com.mysql.cj.jdbc.Driver
   config:
     additional-location: ${SPRING_CONFIG_ADDITIONAL_LOCATION}
-
 
 logging:
   level:
     be.kdg.prog6.friends: debug
     org.springframework: info
 
-
-predictionService:
-  url: http://localhost:8000
-
-chatbotService:
-  url: http://localhost:8000
-
-recommendationService:
-  url: http://localhost:8000
-
-feign:
-  client:
-    config:
-      default:
-        connectTimeout: 5000
-        readTimeout: 5000
-        loggerLevel: FULL

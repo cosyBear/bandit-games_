@@ -9,7 +9,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/integration5.library.main.iml" filepath="$PROJECT_DIR$/.idea/modules/library/integration5.library.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/integration5.library.test.iml" filepath="$PROJECT_DIR$/.idea/modules/library/integration5.library.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lobby/integration5.lobby.main.iml" filepath="$PROJECT_DIR$/.idea/modules/lobby/integration5.lobby.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/store/integration5.store.main.iml" filepath="$PROJECT_DIR$/.idea/modules/store/integration5.store.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lobby/integration5.lobby.test.iml" filepath="$PROJECT_DIR$/.idea/modules/lobby/integration5.lobby.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Store/integration5.store.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Store/integration5.store.main.iml" />
     </modules>
   </component>
 </project>

@@ -12,8 +12,8 @@ stages:
   - deploy
 
 variables:
-  MODULES: "application common library friends"
-  TEST_ONLY_MODULES: "friends"
+  MODULES: "application common library friends lobby statistics Store"
+  TEST_ONLY_MODULES: "friends library lobby statistics"
   DOCKER_HOST: "tcp://docker:2375"
   DOCKER_TLS_CERTDIR: ""
   DOCKER_DRIVER: overlay2

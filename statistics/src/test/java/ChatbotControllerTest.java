@@ -1,42 +1,36 @@
-
 import be.kdg.prog6.statistics.adapters.in.ChatbotController;
 import be.kdg.prog6.statistics.domain.ChatbotResponse;
-import be.kdg.prog6.statistics.ports.in.command.ChatbotCommand;
 import be.kdg.prog6.statistics.ports.in.ChatbotUseCase;
-import org.junit.jupiter.api.BeforeEach;
+import be.kdg.prog6.statistics.ports.in.command.ChatbotCommand;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@SpringBootTest
+@WebMvcTest(controllers = ChatbotController.class)
+@ContextConfiguration(classes = {ChatbotController.class})
 class ChatbotControllerTest {
+
+    @Autowired
     private MockMvc mockMvc;
 
-    @Mock
+    @MockBean
     private ChatbotUseCase chatbotUseCase;
-
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-        ChatbotController chatbotController = new ChatbotController(chatbotUseCase);
-        mockMvc = MockMvcBuilders.standaloneSetup(chatbotController).build();
-    }
 
     @Test
     void testGetChatbotResponse() throws Exception {
         // Arrange
-        UUID userId = UUID.randomUUID();
         String userInput = "What are the rules for chess?";
         String context = "Game rules";
 

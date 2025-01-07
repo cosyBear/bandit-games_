@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ChatbotUseCaseImplTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-01-07T15:39:02" hostname="Teas-MacBook-Pro.local" time="0.019">
+  <properties/>
+  <testcase name="testGetResponseWithException()" classname="ChatbotUseCaseImplTest" time="0.016"/>
+  <testcase name="testGetResponseWithEmptyInput()" classname="ChatbotUseCaseImplTest" time="0.001"/>
+  <testcase name="testGetResponse()" classname="ChatbotUseCaseImplTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

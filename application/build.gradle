@@ -38,7 +38,7 @@ dependencies {
     implementation project(':library')
     implementation project(':friends')
     implementation project(':lobby')
-    implementation project(':store')
+    implementation project(':Store')
     implementation project(':statistics')
 
     implementation 'org.springframework.boot:spring-boot-starter-web'

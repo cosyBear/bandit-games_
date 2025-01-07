@@ -45,8 +45,13 @@ build:
       done
   artifacts:
     paths:
-      - friends/build/libs/
+      - application/build/libs/
+      - common/build/libs/
       - library/build/libs/
+      - friends/build/libs/
+      - lobby/build/libs/
+      - statistics/build/libs/
+      - Store/build/libs/
     when: always
 
 test:
@@ -57,14 +62,29 @@ test:
       command: [ "--tls=false" ]
   script:
     - echo "Running tests with Testcontainers"
-    - ./gradlew $TEST_ONLY_MODULES:test jacocoTestReport --no-daemon --max-workers 4 --info
+    - |
+      for MODULE in $TEST_ONLY_MODULES; do
+        if git diff --name-only $CI_COMMIT_BEFORE_SHA $CI_COMMIT_SHA | grep -q "^$MODULE/"; then
+          echo "Running tests for module $MODULE"
+          ./gradlew --no-daemon --max-workers 4 --info :$MODULE:test :$MODULE:jacocoTestReport
+        else
+          echo "Skipping tests for module $MODULE"
+        fi
+      done
   artifacts:
     paths:
-      - $TEST_ONLY_MODULES/build/test-results/
-      - $TEST_ONLY_MODULES/build/reports/jacoco/
+      - friends/build/test-results/
+      - library/build/test-results/
+      - lobby/build/test-results/
+      - statistics/build/test-results/
+      - friends/build/reports/jacoco/
+      - library/build/reports/jacoco/
+      - lobby/build/reports/jacoco/
+      - statistics/build/reports/jacoco/
     when: always
     reports:
-      junit: "$TEST_ONLY_MODULES/build/test-results/test/*.xml"
+      junit: "*/build/test-results/test/*.xml"
+
 
 build-deploy:
   stage: build-deploy

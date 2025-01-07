@@ -37,6 +37,7 @@ public class GameController {
     private final ExportUserData exportUserData;
 
 
+
     @GetMapping("/userData")
     @PreAuthorize("hasAuthority('GameAndEvents')")
     public ResponseEntity<byte[]> exportLibrary(@AuthenticationPrincipal Jwt jwt, @RequestParam String playerName) {
@@ -140,6 +141,9 @@ public class GameController {
         return ResponseEntity.status(HttpStatus.OK).body(gameUseCase.hasPlayerPurchasedGame(command));
 
     }
+
+
+
 
 
 }

@@ -62,11 +62,8 @@ test:
   image: eclipse-temurin:21-jdk
   services:
     - name: docker:dind
+      alias: docker
       command: [ "--tls=false" ]
-  before_script:
-    - echo "Setting up Docker for Testcontainers"
-    - apk add --no-cache docker bash # Ensure Docker CLI and bash are available in the container
-    - docker info # Confirm Docker is accessible
   script:
     - echo "Running tests with Testcontainers"
     - |

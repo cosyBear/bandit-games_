@@ -9,6 +9,7 @@
         </processorPath>
         <module name="integration5.library.main" />
         <module name="integration5.lobby.main" />
+        <module name="integration5.store.test" />
         <module name="integration5.lobby.test" />
         <module name="integration5.statistics.main" />
         <module name="integration5.library.test" />

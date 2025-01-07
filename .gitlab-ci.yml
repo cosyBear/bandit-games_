@@ -17,6 +17,9 @@ variables:
   DOCKER_HOST: "tcp://docker:2375"
   DOCKER_TLS_CERTDIR: ""
   DOCKER_DRIVER: overlay2
+  TESTCONTAINERS_RYUK_DISABLED: "true"
+  TESTCONTAINERS_HOST_OVERRIDE: "localhost"
+  TESTCONTAINERS_REUSE_ENABLE: "true"
 
 include:
   - template: Security/SAST.gitlab-ci.yml
@@ -60,6 +63,10 @@ test:
   services:
     - name: docker:dind
       command: [ "--tls=false" ]
+  before_script:
+    - echo "Setting up Docker for Testcontainers"
+    - apk add --no-cache docker bash # Ensure Docker CLI and bash are available in the container
+    - docker info # Confirm Docker is accessible
   script:
     - echo "Running tests with Testcontainers"
     - |

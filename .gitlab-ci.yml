@@ -59,21 +59,17 @@ build:
 
 test:
   stage: test
-  image: eclipse-temurin:21-jdk
+  image: josie9/integration5:bandit
   services:
     - name: docker:dind
       alias: docker
-      command: [ "--tls=false" ]
+      command: ["--tls=false"]
   script:
     - echo "Running tests with Testcontainers"
     - |
       for MODULE in $TEST_ONLY_MODULES; do
-        if git diff --name-only $CI_COMMIT_BEFORE_SHA $CI_COMMIT_SHA | grep -q "^$MODULE/"; then
-          echo "Running tests for module $MODULE"
-          ./gradlew --no-daemon --max-workers 4 --info :$MODULE:test :$MODULE:jacocoTestReport
-        else
-          echo "Skipping tests for module $MODULE"
-        fi
+        echo "Running tests for module $MODULE"
+        ./gradlew --no-daemon --max-workers 4 --info :$MODULE:test :$MODULE:jacocoTestReport
       done
   artifacts:
     paths:
@@ -88,6 +84,7 @@ test:
     when: always
     reports:
       junit: "*/build/test-results/test/*.xml"
+
 
 
 build-deploy:

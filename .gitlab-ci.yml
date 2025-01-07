@@ -48,39 +48,22 @@ build:
       done
   artifacts:
     paths:
-      - application/build/libs/
-      - common/build/libs/
-      - library/build/libs/
-      - friends/build/libs/
-      - lobby/build/libs/
-      - statistics/build/libs/
-      - Store/build/libs/
+      - $MODULES/build/libs/
     when: always
 
 test:
   stage: test
-  image: josie9/integration5:bandit
+  image: eclipse-temurin:21-jdk
   services:
     - name: docker:dind
-      alias: docker
-      command: ["--tls=false"]
+      command: [ "--tls=false" ]
   script:
     - echo "Running tests with Testcontainers"
-    - |
-      for MODULE in $TEST_ONLY_MODULES; do
-        echo "Running tests for module $MODULE"
-        ./gradlew --no-daemon --max-workers 4 --info :$MODULE:test :$MODULE:jacocoTestReport
-      done
+    - ./gradlew $TEST_ONLY_MODULES:test jacocoTestReport --no-daemon --max-workers 4 --info
   artifacts:
     paths:
-      - friends/build/test-results/
-      - library/build/test-results/
-      - lobby/build/test-results/
-      - statistics/build/test-results/
-      - friends/build/reports/jacoco/
-      - library/build/reports/jacoco/
-      - lobby/build/reports/jacoco/
-      - statistics/build/reports/jacoco/
+      - $TEST_ONLY_MODULES/build/test-results/
+      - $TEST_ONLY_MODULES/build/reports/jacoco/
     when: always
     reports:
       junit: "*/build/test-results/test/*.xml"

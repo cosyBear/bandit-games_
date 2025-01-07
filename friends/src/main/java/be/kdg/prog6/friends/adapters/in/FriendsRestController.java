@@ -1,5 +1,6 @@
 package be.kdg.prog6.friends.adapters.in;
 
+import be.kdg.prog6.friends.adapters.dto.AddFriendDto;
 import be.kdg.prog6.friends.adapters.dto.PlayerDto;
 import be.kdg.prog6.friends.core.LoadFriendsLobbies;
 import be.kdg.prog6.friends.domain.Friends;
@@ -12,18 +13,20 @@ import be.kdg.prog6.friends.port.in.RemoveFriend;
 import be.kdg.prog6.friends.port.in.command.AddFriendCommand;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
-@RequiredArgsConstructor @Slf4j
+@RequiredArgsConstructor
+@Slf4j
 @RestController
 @RequestMapping("/friends")
-@CrossOrigin(origins = "http://localhost:5173")
 public class FriendsRestController {
     private final AddFriend addFriend;
     private final LoadFriends loadFriends;
@@ -31,20 +34,30 @@ public class FriendsRestController {
     private final LoadFriendsLobbies loadFriendsLobbies;
 
     @PostMapping
+    @PreAuthorize("hasAuthority('FriendsManagement')")
     public ResponseEntity<PlayerDto> addNewFriend(
-            @RequestBody AddFriendCommand command
-    ) {
-        final Player player = addFriend.addFriend(command);
+            @AuthenticationPrincipal Jwt jwt,
+            @RequestBody AddFriendDto dto) {
+        String userId = jwt.getClaimAsString("UserId");
+
+        UUID playerId = UUID.fromString(userId);
+
+        final Player player = addFriend.addFriend(new AddFriendCommand(playerId, dto.friendId()));
 
         final PlayerDto response = PlayerDto.convertToDTO(player);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @GetMapping("/{playerId}/all")
+    @GetMapping("/all")
+    @PreAuthorize("hasAuthority('FriendsManagement')")
     public ResponseEntity<List<PlayerDto>> getAllFriends(
-            @PathVariable("playerId") UUID playerId
+            @AuthenticationPrincipal Jwt jwt
     ) {
+        String userId = jwt.getClaimAsString("UserId");
+
+        UUID playerId = UUID.fromString(userId);
+
         final Friends friends = loadFriends.getAllFriends(playerId);
 
         final List<PlayerDto> response = friends.getFriends()
@@ -54,7 +67,8 @@ public class FriendsRestController {
     }
 
     @GetMapping("/{playerId}")
-    public ResponseEntity<PlayerDto> findPlayer(
+    @PreAuthorize("hasAnyAuthority('FriendsManagement', 'dev')")
+    public ResponseEntity<PlayerDto> getFriend(
             @PathVariable("playerId") UUID playerId
     ) {
         final Player player = loadFriends.findPlayer(playerId);
@@ -64,7 +78,24 @@ public class FriendsRestController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping
+    @PreAuthorize("hasAuthority('FriendsManagement')")
+    public ResponseEntity<PlayerDto> findPlayer(
+            @AuthenticationPrincipal Jwt jwt
+    ) {
+        String userId = jwt.getClaimAsString("UserId");
+
+        UUID playerId = UUID.fromString(userId);
+
+        final Player player = loadFriends.findPlayer(playerId);
+
+        final PlayerDto response = PlayerDto.convertToDTO(player);
+
+        return ResponseEntity.ok(response);
+    }
+
     @GetMapping("/nickname")
+    @PreAuthorize("hasAnyAuthority('FriendsManagement', 'dev')")
     public ResponseEntity<List<PlayerDto>> searchByNickname(
             @RequestParam("searchTerm") final String nickname
     ) {
@@ -77,18 +108,26 @@ public class FriendsRestController {
     }
 
 
-    @DeleteMapping("/{playerId}/friends/{friendId}")
+    @DeleteMapping("/{friendId}")
+    @PreAuthorize("hasAuthority('FriendsManagement')")
     public ResponseEntity<Void> removeFriend(
-            @PathVariable("playerId") final UUID playerId,
+            @AuthenticationPrincipal Jwt jwt,
             @PathVariable("friendId") final UUID friendId
     ) {
+        String userId = jwt.getClaimAsString("UserId");
+
+        UUID playerId = UUID.fromString(userId);
         removeFriend.removeFriend(friendId, playerId);
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @GetMapping("/{playerId}/lobbies")
-    public ResponseEntity<List<LobbyQuery>> showMyFriendsLobbies(@PathVariable final UUID playerId) {
+    @GetMapping("/lobbies")
+    @PreAuthorize("hasAuthority('FriendsManagement')")
+    public ResponseEntity<List<LobbyQuery>> showMyFriendsLobbies(@AuthenticationPrincipal Jwt jwt) {
+        String userId = jwt.getClaimAsString("UserId");
+
+        UUID playerId = UUID.fromString(userId);
         LoadLobbiesQuery loadLobbiesQuery = new LoadLobbiesQuery(playerId);
         return ResponseEntity.status(HttpStatus.OK).body(loadFriendsLobbies.fetchFriendsLobbies(loadLobbiesQuery));
 

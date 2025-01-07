@@ -28,6 +28,14 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   config:
     additional-location: ${SPRING_CONFIG_ADDITIONAL_LOCATION}
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: "http://localhost:8180/realms/bandit-games/protocol/openid-connect/certs"
+          issuer-uri: http://localhost:8180/realms/bandit-games
+
+
 
 
 logging:
@@ -35,3 +43,4 @@ logging:
     be.kdg.prog6.friends: debug
     org.springframework: info
     org.springframework.security: debug
+

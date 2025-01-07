@@ -1,5 +1,4 @@
 import be.kdg.prog6.common.events.util.AchievementAlreadyEarnedException;
-import be.kdg.prog6.common.events.util.GameAlreadyMarkedAsFavoriteException;
 import be.kdg.prog6.common.events.util.GameNotFoundException;
 import be.kdg.prog6.libraryBoundedContext.LibraryBoundedContextApplication;
 import be.kdg.prog6.libraryBoundedContext.domain.Achievement;
@@ -127,30 +126,6 @@ class GameUseCaseImpTest {
         assertEquals("Game not found with id: " + randomId, exception.getMessage());
     }
 
-    //TODO: remove because markGameAsFavourite is now toggle game favorite, so state can change and there is no need in GameAlreadyMarkedAsFavoriteException exception
-
-//    @Test
-//    void markGameAsFavourite_GameAlreadyMarked_ShouldThrowException() {
-//        // Arrange
-//        GameCommand command = new GameCommand(playerId, gameId.id());
-//        Library library = TestLibraryData.createLibraryWithChessMaster();
-//
-//        // Simulate the game is already marked as favorite
-//        library.findGameById(gameId).toggleFavorite();
-//
-//        when(libraryLoadPort.fetchLibraryWithGamesByNamePattern(playerId, gameName))
-//                .thenReturn(library);
-//
-//        // Act & Assert
-//        Exception exception = assertThrows(GameAlreadyMarkedAsFavoriteException.class, () -> {
-//            sut.toggleGameFavourite(command);
-//        });
-//
-//        String expectedMessage = "Game is already marked as favorite";
-//        String actualMessage = exception.getMessage();
-//
-//        assertTrue(actualMessage.contains(expectedMessage));
-//    }
 
 
     @Test

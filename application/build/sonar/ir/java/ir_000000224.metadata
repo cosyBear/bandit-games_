@@ -1,5 +1,0 @@
-be.kdg.prog6.MessagingTopology#lobbyCreatedQueue()Lorg/springframework/amqp/core/Queue;
-false
-035c5fe5c274d0a994ea2a531a90cdd3
-org.springframework.amqp.core.Queue#<init>(Ljava/lang/String;)V
-org.springframework.amqp.core.Queue#instance-init#

@@ -120,7 +120,7 @@ public class LobbyController {
     }
 
 
-    @PostMapping("/lobbies/{lobbyId}/start")
+    @PostMapping("/{lobbyId}/start")
     @PreAuthorize("hasAnyAuthority('GameAndEvents')")
     public ResponseEntity<StartGameQuery> startGame(@PathVariable("lobbyId") UUID lobbyId) {
         return ResponseEntity.status(HttpStatus.OK).body(startGame.startGame(new StartGameCommand(lobbyId)));

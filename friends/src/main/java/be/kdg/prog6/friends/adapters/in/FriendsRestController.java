@@ -66,6 +66,18 @@ public class FriendsRestController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/{playerId}")
+    @PreAuthorize("hasAnyAuthority('FriendsManagement', 'dev')")
+    public ResponseEntity<PlayerDto> getFriend(
+            @PathVariable("playerId") UUID playerId
+    ) {
+        final Player player = loadFriends.findPlayer(playerId);
+
+        final PlayerDto response = PlayerDto.convertToDTO(player);
+
+        return ResponseEntity.ok(response);
+    }
+
     @GetMapping
     @PreAuthorize("hasAuthority('FriendsManagement')")
     public ResponseEntity<PlayerDto> findPlayer(
@@ -83,7 +95,7 @@ public class FriendsRestController {
     }
 
     @GetMapping("/nickname")
-    @PreAuthorize("hasAuthority('FriendsManagement')")
+    @PreAuthorize("hasAnyAuthority('FriendsManagement', 'dev')")
     public ResponseEntity<List<PlayerDto>> searchByNickname(
             @RequestParam("searchTerm") final String nickname
     ) {

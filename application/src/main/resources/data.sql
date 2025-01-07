@@ -62,7 +62,6 @@ VALUES
     ('e7a1c1d2-f18e-4e6a-b3a5-6dba403b62a1', 'Chess Master 1', 'BOARD_GAME', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'A timeless strategy board game that sharpens critical thinking and tactical planning.'),
     ('a2b7c0e4-3d11-4b5b-8297-3e45fc173c81', 'Need for Speed 1', 'RACING', 'https://placehold.co/100x80', true, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'High-speed racing with customizable cars and thrilling escape missions.'),
     ('f2d3b5c6-9a21-4d87-b6a1-8cb17de38145', 'Fortnite Battle 1', 'SHOOTER', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'An action-packed battle royale featuring vibrant visuals and unique building mechanics.'),
-    ('d4f7e6a9-213a-4b8c-9f47-5a01e24c90b2', 'Minecraft Builder 1', 'SANDBOX', 'https://placehold.co/100x80', true, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'An open-world sandbox game that inspires creativity and exploration.'),
     ('b1f5a7d9-14c8-43ba-a71d-0f62d9e39124', 'Portal Puzzle 1', 'PUZZLE', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'Innovative puzzle-solving using physics and portals to challenge your wits.'),
     ('f2d3b5c6-9a21-4d87-b6a1-8cb18de38145', 'Fortnite Battle 2', 'SHOOTER', 'https://placehold.co/100x80', false, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'Join a fast-paced battle royale with exciting new weapons and tactics.'),
     ('d4f7e6a9-213a-4b8c-9f47-5a02e24c90b2', 'Minecraft Builder 2', 'SANDBOX', 'https://placehold.co/100x80', true, '456e7891-e89b-12d3-a456-426614174000', 'https://placehold.co/1400x220', 'Expand your imagination and create intricate worlds in an expansive sandbox.'),
@@ -88,8 +87,6 @@ VALUES
     ('d8f9a7c2-4b11-4e8a-b3c6-f7e12a91c9f5', 'Collector', 'Unlock all cars in the game', 'https://example.com/images/achievement20.png', true, 'a2b7c0e4-3d11-4b5b-8297-3e45fc173c81'),
     ('9e8f7c61-4b3a-4d7b-a1c6-f3a12b84c7e9', 'Survivor', 'Survive 10 minutes', 'https://example.com/images/achievement5.png', true, 'f2d3b5c6-9a21-4d87-b6a1-8cb17de38145'),
     ('b5c17a8e-4d32-4e7b-a9c8-f4a27b65e3d9', 'Sharp Shooter', 'Eliminate 10 opponents', 'https://example.com/images/achievement6.png', false, 'f2d3b5c6-9a21-4d87-b6a1-8cb17de38145'),
-    ('f23a84d7-b19e-4b3c-a5c9-e4a12b76e9f3', 'Builder Extraordinaire', 'Build a massive castle', 'https://example.com/images/achievement7.png', true, 'd4f7e6a9-213a-4b8c-9f47-5a01e24c90b2'),
-    ('b8f7c32e-4d93-4e2b-a1c9-f5a73b86c1e2', 'Explorer', 'Find the rare cave', 'https://example.com/images/achievement8.png', false, 'd4f7e6a9-213a-4b8c-9f47-5a01e24c90b2'),
     ('e7a2f9b1-4c32-4d9b-a8c9-f6a31b97e2f3', 'Portal Solver', 'Complete all levels', 'https://example.com/images/achievement9.png', true, 'b1f5a7d9-14c8-43ba-a71d-0f62d9e39124'),
     ('c7f3b12e-4a93-4e7c-a9b8-e3f62b41c9a8', 'Speed Runner', 'Complete the game in under 1 hour', 'https://example.com/images/achievement10.png', false, 'b1f5a7d9-14c8-43ba-a71d-0f62d9e39124');
 

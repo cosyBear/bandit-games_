@@ -17,9 +17,6 @@ variables:
   DOCKER_HOST: "tcp://docker:2375"
   DOCKER_TLS_CERTDIR: ""
   DOCKER_DRIVER: overlay2
-  TESTCONTAINERS_RYUK_DISABLED: "true"
-  TESTCONTAINERS_HOST_OVERRIDE: "localhost"
-  TESTCONTAINERS_REUSE_ENABLE: "true"
 
 include:
   - template: Security/SAST.gitlab-ci.yml
@@ -48,7 +45,13 @@ build:
       done
   artifacts:
     paths:
-      - $MODULES/build/libs/
+      - application/build/libs/
+      - common/build/libs/
+      - library/build/libs/
+      - friends/build/libs/
+      - lobby/build/libs/
+      - statistics/build/libs/
+      - Store/build/libs/
     when: always
 
 test:
@@ -62,8 +65,14 @@ test:
     - ./gradlew $TEST_ONLY_MODULES:test jacocoTestReport --no-daemon --max-workers 4 --info
   artifacts:
     paths:
-      - $TEST_ONLY_MODULES/build/test-results/
-      - $TEST_ONLY_MODULES/build/reports/jacoco/
+      - friends/build/test-results/
+      - library/build/test-results/
+      - lobby/build/test-results/
+      - statistics/build/test-results/
+      - friends/build/reports/jacoco/
+      - library/build/reports/jacoco/
+      - lobby/build/reports/jacoco/
+      - statistics/build/reports/jacoco/
     when: always
     reports:
       junit: "*/build/test-results/test/*.xml"

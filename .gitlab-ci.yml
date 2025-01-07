@@ -64,8 +64,8 @@ test:
     - echo "Running tests with Testcontainers"
     - |
       for MODULE in $TEST_ONLY_MODULES; do
-        echo "Running tests for module $TEST_ONLY_MODULES"
-        ./gradlew --no-daemon --max-workers 4 --info :$TEST_ONLY_MODULES:test :$TEST_ONLY_MODULES:jacocoTestReport
+        echo "Running tests for module $MODULE"
+        ./gradlew --no-daemon --max-workers 4 --info :$MODULE:test :$MODULE:jacocoTestReport
       done
   artifacts:
     paths:
@@ -80,8 +80,6 @@ test:
     when: always
     reports:
       junit: "*/build/test-results/test/*.xml"
-
-
 
 build-deploy:
   stage: build-deploy

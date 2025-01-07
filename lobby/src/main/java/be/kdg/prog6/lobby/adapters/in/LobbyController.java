@@ -93,10 +93,13 @@ public class LobbyController {
 
     public ResponseEntity<String> createRequestAccess(
             @PathVariable("lobbyId") UUID lobbyId,
-            @RequestBody CreateRequestAccessDto dto
+            @AuthenticationPrincipal Jwt jwt
     ) {
+        String userId = jwt.getClaimAsString("UserId");
 
-        CreateRequestAccessCommand createRequestAccessCommand = new CreateRequestAccessCommand(new LobbyId(lobbyId), dto.guestId());
+        UUID playerId = UUID.fromString(userId);
+
+        CreateRequestAccessCommand createRequestAccessCommand = new CreateRequestAccessCommand(new LobbyId(lobbyId), playerId);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(createRequestAccessUseCase.createRequest(createRequestAccessCommand));
     }

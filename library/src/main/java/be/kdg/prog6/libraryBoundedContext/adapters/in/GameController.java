@@ -53,7 +53,7 @@ public class GameController {
         return new ResponseEntity<>(fileContent, headers, HttpStatus.OK);
     }
 
-    @GetMapping("hallo")
+    @GetMapping
     @PreAuthorize("hasAuthority('GameAndEvents')")
     public ResponseEntity<List<GameQuery>> fetchAllAvailableGames(@AuthenticationPrincipal Jwt jwt) {
         String userId = jwt.getClaimAsString("UserId");
@@ -93,7 +93,7 @@ public class GameController {
     }
 
 
-    @GetMapping("category")
+    @GetMapping("/category")
     @PreAuthorize("hasAuthority('GameAndEvents')")
     public ResponseEntity<List<GameQuery>> fetchGamesByCategory(
             @AuthenticationPrincipal Jwt jwt,

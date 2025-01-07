@@ -20,16 +20,16 @@ public class EarnAchievementAmp {
     private final GameUseCase gameUseCase;
 
 
-    @RabbitListener(queues = "AwardPlayerAchievementQueue")
-    public void earnAchievement(GameAchievementEvent gameEvent) {
-
-        log.info("Achievement recvied ");
-        EarnAchievementCommand achievementCommand = new EarnAchievementCommand(new PlayerId(gameEvent.playerId()),
-                gameEvent.gameName(), gameEvent.gameId(), gameEvent.AchievementName());
-
-        gameUseCase.givePlayerAnAchievement(achievementCommand);
-
-    }
+//    @RabbitListener(queues = "AwardPlayerAchievementQueue")
+//    public void earnAchievement(GameAchievementEvent gameEvent) {
+//
+//        log.info("Achievement recvied ");
+//        EarnAchievementCommand achievementCommand = new EarnAchievementCommand(new PlayerId(gameEvent.playerId()),
+//                gameEvent.gameName(), gameEvent.gameId(), gameEvent.AchievementName());
+//
+//        gameUseCase.givePlayerAnAchievement(achievementCommand);
+//
+//    }
 
 
 }

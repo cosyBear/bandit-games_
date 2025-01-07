@@ -66,11 +66,15 @@ public class FriendsRestController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/{playerId}")
+    @GetMapping
     @PreAuthorize("hasAuthority('FriendsManagement')")
     public ResponseEntity<PlayerDto> findPlayer(
-            @PathVariable("playerId") UUID playerId
+            @AuthenticationPrincipal Jwt jwt
     ) {
+        String userId = jwt.getClaimAsString("UserId");
+
+        UUID playerId = UUID.fromString(userId);
+
         final Player player = loadFriends.findPlayer(playerId);
 
         final PlayerDto response = PlayerDto.convertToDTO(player);
@@ -92,7 +96,7 @@ public class FriendsRestController {
     }
 
 
-    @DeleteMapping("/friends/{friendId}")
+    @DeleteMapping("/{friendId}")
     @PreAuthorize("hasAuthority('FriendsManagement')")
     public ResponseEntity<Void> removeFriend(
             @AuthenticationPrincipal Jwt jwt,

@@ -14,5 +14,4 @@ import java.util.UUID;
 public class Recommendation {
     private UUID playerId;
     private List<String> recommendedGameIds;
-    private LocalDateTime generatedAt;
 }

@@ -6,6 +6,7 @@ import be.kdg.prog6.statistics.ports.in.PredictionUseCase;
 import be.kdg.prog6.statistics.ports.in.command.PredictionCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -17,6 +18,7 @@ public class PredictionController {
     private final PredictionUseCase predictionUseCase;
 
     @PostMapping("/{type}")
+    @PreAuthorize("hasAuthority('LobbyManagement')")
     public ResponseEntity<Prediction> predict(
             @PathVariable("type") String predictionType,
             @RequestBody Map<String, Object> playerData

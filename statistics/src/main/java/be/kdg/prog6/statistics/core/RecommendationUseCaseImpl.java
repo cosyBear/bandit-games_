@@ -14,11 +14,11 @@ public class RecommendationUseCaseImpl implements RecommendationUseCase {
 
     @Override
     public Recommendation recommend(RecommendationCommand command) {
-        switch (command.recommendationType().toLowerCase()) {
-            case "collaborative" -> {
+        switch (command.recommendationType()) {
+            case COLLABORATIVE -> {
                 return recommendationServicePort.getCollaborativeRecommendations(command.id());
             }
-            case "content-based" -> {
+            case CONTENT_BASED -> {
                 return recommendationServicePort.getContentBasedRecommendations(command.id());
             }
             default -> throw new IllegalArgumentException("Invalid recommendation type: " + command.recommendationType());

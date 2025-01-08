@@ -21,12 +21,12 @@ public class RecommendationServiceAdapter implements RecommendationServicePort {
     @Override
     public Recommendation getCollaborativeRecommendations(String userId) {
         List<String> recommendations = feignClient.getRawCollaborativeRecommendations(userId);
-        return new Recommendation(UUID.fromString(userId), recommendations, LocalDateTime.now());
+        return new Recommendation(UUID.fromString(userId), recommendations);
     }
 
     @Override
     public Recommendation getContentBasedRecommendations(String gameId) {
         List<String> recommendations = feignClient.getRawContentRecommendations(gameId);
-        return new Recommendation(null, recommendations, LocalDateTime.now());
+        return new Recommendation(null, recommendations);
     }
 }

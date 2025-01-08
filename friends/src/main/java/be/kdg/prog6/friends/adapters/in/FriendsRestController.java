@@ -35,9 +35,7 @@ public class FriendsRestController {
 
     @PostMapping
     @PreAuthorize("hasAuthority('FriendsManagement')")
-    public ResponseEntity<PlayerDto> addNewFriend(
-            @AuthenticationPrincipal Jwt jwt,
-            @RequestBody AddFriendDto dto) {
+    public ResponseEntity<PlayerDto> addNewFriend(@AuthenticationPrincipal Jwt jwt, @RequestBody AddFriendDto dto) {
         String userId = jwt.getClaimAsString("UserId");
 
         UUID playerId = UUID.fromString(userId);

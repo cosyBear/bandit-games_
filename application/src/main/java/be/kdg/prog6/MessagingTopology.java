@@ -108,5 +108,23 @@ public class MessagingTopology {
         return BindingBuilder.bind(addGameQueue).to(addGameExchange).with(addGameRoutingKey);
     }
 
+    private static final String accountCreatedExchange = "AccountCreatedExchange";
+    private static final String accountCreatedQueue = "AccountCreatedQueue";
+    private static final String accountCreatedRoutingKey = "AccountCreated";
+
+    @Bean("AccountCreatedExchange")
+    DirectExchange AccountCreatedExchange() {
+        return new DirectExchange(accountCreatedExchange);
+    }
+
+    @Bean
+    Queue AccountCreatedQueue() {
+        return new Queue(accountCreatedQueue);
+    }
+
+    @Bean
+    public Binding AccountCreatedBinding(Queue AccountCreatedQueue, @Qualifier("AccountCreatedExchange") DirectExchange AccountCreatedExchange) {
+        return BindingBuilder.bind(AccountCreatedQueue).to(AccountCreatedExchange).with(accountCreatedRoutingKey);
+    }
 
 }

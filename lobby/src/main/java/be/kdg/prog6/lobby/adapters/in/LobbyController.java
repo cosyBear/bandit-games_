@@ -8,12 +8,10 @@ import be.kdg.prog6.lobby.domain.Lobby;
 import be.kdg.prog6.lobby.domain.RequestStatus;
 import be.kdg.prog6.lobby.domain.ids.LobbyId;
 import be.kdg.prog6.lobby.port.in.*;
-import be.kdg.prog6.lobby.port.in.Query.LeaveLobbyUseCase;
-import be.kdg.prog6.lobby.port.in.Query.LobbyCreateQuery;
-import be.kdg.prog6.lobby.port.in.Query.LobbyUpdateQuery;
-import be.kdg.prog6.lobby.port.in.Query.RequestQuery;
+import be.kdg.prog6.lobby.port.in.Query.*;
 import be.kdg.prog6.lobby.port.in.command.*;
 import be.kdg.prog6.lobby.port.out.LobbySsePort;
+import be.kdg.prog6.lobby.port.out.StartGameSsePort;
 import be.kdg.prog6.lobby.util.Mapper;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Request;
@@ -36,6 +34,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class LobbyController {
 
+    private final StartGameSsePort startGameSsePort;
 
     private static final Logger log = LoggerFactory.getLogger(LobbyController.class);
     private final CreateLobbyUseCase createLobbyUseCase;
@@ -44,6 +43,7 @@ public class LobbyController {
     private final CreateRequestAccessUseCase createRequestAccessUseCase;
     private final ShowLobbyRequestAccessQueryUseCase showLobbyRequestAccessQueryUseCase;
     private final LoadLobbyUseCase loadLobbyUseCase;
+    private final StartGame startGame;
 
 
     private final LobbySsePort lobbySsePort;
@@ -51,15 +51,13 @@ public class LobbyController {
 
     @PostMapping
     @PreAuthorize("hasAuthority('LobbyManagement')")
-
-    public ResponseEntity<LobbyCreateQuery> createLobby(@AuthenticationPrincipal Jwt jwt , @RequestBody CreateLobbyDto dto) {
-
+    public ResponseEntity<LobbyCreateQuery> createLobby(@AuthenticationPrincipal Jwt jwt, @RequestBody CreateLobbyDto dto) {
 
         String userId = jwt.getClaimAsString("UserId");
 
         UUID lobbyAdminId = UUID.fromString(userId);
 
-        CreateLobbyCommand command = new CreateLobbyCommand(dto.gameID(),lobbyAdminId);
+        CreateLobbyCommand command = new CreateLobbyCommand(dto.gameID(), lobbyAdminId);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(createLobbyUseCase.createLobby(command));
 
@@ -126,5 +124,17 @@ public class LobbyController {
         return lobbySsePort.createEmitter();
     }
 
+
+    @PostMapping("/{lobbyId}/start")
+    @PreAuthorize("hasAnyAuthority('GameAndEvents')")
+    public ResponseEntity<StartGameQuery> startGame(@PathVariable("lobbyId") UUID lobbyId) {
+        return ResponseEntity.status(HttpStatus.OK).body(startGame.startGame(new StartGameCommand(lobbyId)));
+    }
+
+    @GetMapping("/sse/start-game")
+    @PreAuthorize("hasAuthority('LobbyManagement')")
+    public SseEmitter streamStartGameEvents() {
+        return startGameSsePort.createEmitter();
+    }
 
 }

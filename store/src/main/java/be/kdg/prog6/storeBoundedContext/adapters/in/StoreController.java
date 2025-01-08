@@ -33,13 +33,13 @@ public class StoreController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('dev')")
+//    @PreAuthorize("hasAuthority('dev')")
     public ResponseEntity<String> addGame(@RequestBody CreateGameCommand command) {
         return ResponseEntity.status(HttpStatus.CREATED).body(storeUseCase.addGameToStore(command));
     }
 
     @DeleteMapping("/game/{id}")
-    @PreAuthorize("hasAuthority('dev')")
+//    @PreAuthorize("hasAuthority('dev')")
     public ResponseEntity<String> deleteGame(@PathVariable("id") UUID id) {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(storeUseCase.removeGameFromStore(new RemoveGameCommand(id)));
     }

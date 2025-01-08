@@ -38,7 +38,7 @@ public class GameController {
 
 
     @GetMapping("/userData")
-    @PreAuthorize("hasAuthority('GameAndEvents')")
+//    @PreAuthorize("hasAuthority('GameAndEvents')")
     public ResponseEntity<byte[]> exportLibrary(@AuthenticationPrincipal Jwt jwt, @RequestParam String playerName) {
         String userId = jwt.getClaimAsString("UserId");
 
@@ -54,7 +54,7 @@ public class GameController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAuthority('GameAndEvents')")
+//    @PreAuthorize("hasAuthority('GameAndEvents')")
     public ResponseEntity<List<GameQuery>> fetchAllAvailableGames(@AuthenticationPrincipal Jwt jwt) {
         String userId = jwt.getClaimAsString("UserId");
 
@@ -67,7 +67,7 @@ public class GameController {
 
 
     @GetMapping("/search")
-    @PreAuthorize("hasAuthority('GameAndEvents')")
+//    @PreAuthorize("hasAuthority('GameAndEvents')")
     public ResponseEntity<List<GameQuery>> fetchGamesByName(
             @AuthenticationPrincipal Jwt jwt,
             @RequestParam("game") String gameName) {
@@ -85,7 +85,7 @@ public class GameController {
     }
 
     @GetMapping("/details/{gameId}")
-    @PreAuthorize("hasAuthority('GameAndEvents')")
+//    @PreAuthorize("hasAuthority('GameAndEvents')")
     public ResponseEntity<GameQuery> fetchGameDetails(@PathVariable UUID gameId) {
         final GameQuery gameQuery = gameQueryUseCase.findGameById(gameId);
 
@@ -94,7 +94,7 @@ public class GameController {
 
 
     @GetMapping("/category")
-    @PreAuthorize("hasAuthority('GameAndEvents')")
+//    @PreAuthorize("hasAuthority('GameAndEvents')")
     public ResponseEntity<List<GameQuery>> fetchGamesByCategory(
             @AuthenticationPrincipal Jwt jwt,
             @RequestParam("category") String category) {
@@ -113,7 +113,7 @@ public class GameController {
 
 
     @PatchMapping("/{gameId}/favorite")
-    @PreAuthorize("hasAuthority('GameAndEvents')")
+//    @PreAuthorize("hasAuthority('GameAndEvents')")
     public ResponseEntity<GameQuery> toggleGameFavorite( @AuthenticationPrincipal Jwt jwt,
             @PathVariable UUID gameId) {
 
@@ -129,7 +129,7 @@ public class GameController {
 
 
     @PostMapping("/ownership")
-    @PreAuthorize("hasAuthority('GameAndEvents')")
+//    @PreAuthorize("hasAuthority('GameAndEvents')")
     public ResponseEntity<Boolean> PlayerOwnGame( @AuthenticationPrincipal Jwt jwt, @RequestBody PlayerGameOwnershipCommandDto dto) {
         String userId = jwt.getClaimAsString("UserId");
 

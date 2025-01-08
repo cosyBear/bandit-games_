@@ -34,7 +34,7 @@ public class FriendsRestController {
     private final LoadFriendsLobbies loadFriendsLobbies;
 
     @PostMapping
-    @PreAuthorize("hasAuthority('FriendsManagement')")
+//    @PreAuthorize("hasAuthority('FriendsManagement')")
     public ResponseEntity<PlayerDto> addNewFriend(
             @AuthenticationPrincipal Jwt jwt,
             @RequestBody AddFriendDto dto) {
@@ -50,7 +50,7 @@ public class FriendsRestController {
     }
 
     @GetMapping("/all")
-    @PreAuthorize("hasAuthority('FriendsManagement')")
+//    @PreAuthorize("hasAuthority('FriendsManagement')")
     public ResponseEntity<List<PlayerDto>> getAllFriends(
             @AuthenticationPrincipal Jwt jwt
     ) {
@@ -67,7 +67,7 @@ public class FriendsRestController {
     }
 
     @GetMapping("/{playerId}")
-    @PreAuthorize("hasAnyAuthority('FriendsManagement', 'dev')")
+//    @PreAuthorize("hasAnyAuthority('FriendsManagement', 'dev')")
     public ResponseEntity<PlayerDto> getFriend(
             @PathVariable("playerId") UUID playerId
     ) {
@@ -79,7 +79,7 @@ public class FriendsRestController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAuthority('FriendsManagement')")
+//    @PreAuthorize("hasAuthority('FriendsManagement')")
     public ResponseEntity<PlayerDto> findPlayer(
             @AuthenticationPrincipal Jwt jwt
     ) {
@@ -95,7 +95,7 @@ public class FriendsRestController {
     }
 
     @GetMapping("/nickname")
-    @PreAuthorize("hasAnyAuthority('FriendsManagement', 'dev')")
+//    @PreAuthorize("hasAnyAuthority('FriendsManagement', 'dev')")
     public ResponseEntity<List<PlayerDto>> searchByNickname(
             @RequestParam("searchTerm") final String nickname
     ) {
@@ -109,7 +109,7 @@ public class FriendsRestController {
 
 
     @DeleteMapping("/{friendId}")
-    @PreAuthorize("hasAuthority('FriendsManagement')")
+//    @PreAuthorize("hasAuthority('FriendsManagement')")
     public ResponseEntity<Void> removeFriend(
             @AuthenticationPrincipal Jwt jwt,
             @PathVariable("friendId") final UUID friendId
@@ -123,7 +123,7 @@ public class FriendsRestController {
     }
 
     @GetMapping("/lobbies")
-    @PreAuthorize("hasAuthority('FriendsManagement')")
+//    @PreAuthorize("hasAuthority('FriendsManagement')")
     public ResponseEntity<List<LobbyQuery>> showMyFriendsLobbies(@AuthenticationPrincipal Jwt jwt) {
         String userId = jwt.getClaimAsString("UserId");
 

@@ -50,7 +50,7 @@ public class LobbyController {
 
 
     @PostMapping
-    @PreAuthorize("hasAuthority('LobbyManagement')")
+//    @PreAuthorize("hasAuthority('LobbyManagement')")
 
     public ResponseEntity<LobbyCreateQuery> createLobby(@AuthenticationPrincipal Jwt jwt , @RequestBody CreateLobbyDto dto) {
 
@@ -66,7 +66,7 @@ public class LobbyController {
     }
 
     @GetMapping("/{lobbyId}")
-    @PreAuthorize("hasAuthority('LobbyManagement')")
+//    @PreAuthorize("hasAuthority('LobbyManagement')")
     public ResponseEntity<LobbyUpdateQuery> getLobbyDetails(@PathVariable("lobbyId") UUID lobbyId) {
         final Lobby lobby = loadLobbyUseCase.findLobbyById(lobbyId);
 
@@ -77,7 +77,7 @@ public class LobbyController {
 
 
     @PatchMapping
-    @PreAuthorize("hasAuthority('LobbyManagement')")
+//    @PreAuthorize("hasAuthority('LobbyManagement')")
 
     public ResponseEntity<LobbyUpdateQuery> leaveLobby(@RequestBody LeaveLobbyDto dto) {
 
@@ -89,7 +89,7 @@ public class LobbyController {
 
 
     @PostMapping("/{lobbyId}/requests")
-    @PreAuthorize("hasAuthority('LobbyManagement')")
+//    @PreAuthorize("hasAuthority('LobbyManagement')")
 
     public ResponseEntity<String> createRequestAccess(
             @PathVariable("lobbyId") UUID lobbyId,
@@ -106,7 +106,7 @@ public class LobbyController {
 
 
     @GetMapping("/{lobbyId}/request")
-    @PreAuthorize("hasAuthority('LobbyManagement')")
+//    @PreAuthorize("hasAuthority('LobbyManagement')")
     public ResponseEntity<List<RequestQuery>> showAllRequestForLobby(@PathVariable("lobbyId") UUID lobbyId) {
 
         return ResponseEntity.status(HttpStatus.OK).body(showLobbyRequestAccessQueryUseCase.
@@ -115,7 +115,7 @@ public class LobbyController {
 
 
     @PatchMapping("/joinLobby")
-    @PreAuthorize("hasAuthority('LobbyManagement')")
+//    @PreAuthorize("hasAuthority('LobbyManagement')")
     public ResponseEntity<String> addGuestPlayerTOLobby(@RequestBody RequestAccessDto dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(joinLobbyUseCase.requestAccessToJoinLobby(
                 new RequestAccessCommand(new LobbyId(dto.lobbyId()), dto.guestId(), RequestStatus.valueOf(dto.status()))));

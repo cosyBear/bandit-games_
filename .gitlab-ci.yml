@@ -101,14 +101,6 @@ deploy:
     - az extension add --name containerapp --upgrade
   script:
     - echo "Deploying Azure Container App"
-    # Deploy the container app
     - az containerapp up --name bandit-backend --resource-group rg-banditgames --location northeurope --environment banditgames-environment --target-port 8090 --ingress external --image "acrbanditgames.azurecr.io/integration5:latest"
-
-    # Retrieve the identity of the deployed container app
-    - OBJECT_ID=$(az containerapp identity show --name bandit-backend --resource-group rg-banditgames --query principalId -o tsv)
-
-    # Assign the acrpull role to the identity
-    - az role assignment create --assignee $OBJECT_ID --scope /subscriptions/e3b1c48c-8944-4037-aba9-65732f242e57/resourceGroups/rg-banditgames/providers/Microsoft.ContainerRegistry/registries/acrbanditgames --role acrpull
-
   only:
     - tags

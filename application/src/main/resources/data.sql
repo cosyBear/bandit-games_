@@ -46,6 +46,72 @@ FROM friends.lobby;
 
 -- Library
 
+
+INSERT INTO library.player (player_id)
+VALUES ('c56a4182-65aa-42ec-a945-5fd21dec0540');
+
+INSERT INTO library.library (library_id, player_id)
+VALUES ('789f65e4-a89c-45d3-b891-326674f54a10', 'c56a4182-65aa-42ec-a945-5fd21dec0540');
+
+
+-- Insert a new game for the player's library
+INSERT INTO library.game (
+    game_id,
+    game_name,
+    game_type,
+    image_url,
+    favourite,
+    library_id,
+    background_image_url,
+    description
+)
+VALUES (
+           '34eaf65a-7abc-4e7a-b65f-8c4e675d8f99', -- New game ID
+           'Space Conqueror',
+           'STRATEGY',
+           'https://placehold.co/100x80',
+           true, -- Favorite game
+           '789f65e4-a89c-45d3-b891-326674f54a10', -- Library ID
+           'https://placehold.co/1400x220',
+           'A strategy game where players build fleets and conquer the galaxy.'
+       );
+
+-- Insert achievements for the new game
+INSERT INTO library.achievement (
+    achievement_id,
+    achievement_name,
+    achievement_description,
+    image_url,
+    achieved,
+    game_id
+)
+VALUES
+    (
+        '1e8b76c9-4abc-4b2e-9b65-e7c4a65d8f91', -- Achievement ID for "Fleet Admiral"
+        'Fleet Admiral',
+        'Awarded for creating a fleet of 100 ships.',
+        'https://example.com/images/achievement_fleet_admiral.png',
+        false,
+        '34eaf65a-7abc-4e7a-b65f-8c4e675d8f99' -- Associated with the new game ID
+    ),
+    (
+        '2f9c86d2-5acd-4a3f-a976-f5b2d84e9c02', -- Achievement ID for "First Colony"
+        'First Colony',
+        'Awarded for establishing the first colony.',
+        'https://example.com/images/achievement_first_colony.png',
+        false,
+        '34eaf65a-7abc-4e7a-b65f-8c4e675d8f99' -- Associated with the new game ID
+    ),
+    (
+        '3c5d7fe3-6bac-4b4e-b87c-d4b2e85f9c13', -- Achievement ID for "Galaxy Ruler"
+        'Galaxy Ruler',
+        'Awarded for conquering the entire galaxy.',
+        'https://example.com/images/achievement_galaxy_ruler.png',
+        false,
+        '34eaf65a-7abc-4e7a-b65f-8c4e675d8f99' -- Associated with the new game ID
+    );
+
+
 -- Insert Players
 INSERT INTO library.player (player_id)
 VALUES
@@ -211,3 +277,5 @@ VALUES
         false,
         '5789e55e-08ad-4917-8aea-6863b6825413' -- Associated with Checkers game ID
     );
+
+

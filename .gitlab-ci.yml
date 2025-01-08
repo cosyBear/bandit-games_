@@ -84,6 +84,9 @@ test:
 build-deploy:
   stage: build-deploy
   image: gradle:8.11.0-jdk21
+  services:
+    - name: docker:dind
+      command: [ "--tls=false" ]
   script:
     - echo "Building and Pushing Docker Image"
     - ./gradlew clean bootBuildImage

@@ -4,6 +4,8 @@
 
 # client for backend 
  - bandit-games-backend 
+- ![Screenshot_1.png](Screenshot_1.png)
+- ![Screenshot_2.png](Screenshot_2.png)
 
 # user 
  - player 

@@ -101,6 +101,6 @@ deploy:
     - az extension add --name containerapp --upgrade
   script:
     - echo "Deploying Azure Container App"
-    - az containerapp up --name bandit-backend --resource-group rg-banditgames --location northeurope --environment banditgames-environment --target-port 8090 --ingress external --image "acrbanditgames.azurecr.io/integration5:latest"
+    - az containerapp up --name bandit-backend --resource-group rg-banditgames --location northeurope --environment banditgames-environment --target-port 8090 --ingress external --image "acrbanditgames.azurecr.io/integration5:latest" --vnet my-vnet --subnet container-app-subnet
   only:
     - tags

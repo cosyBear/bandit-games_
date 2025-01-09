@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/application/integration5.application.main.iml" filepath="$PROJECT_DIR$/.idea/modules/application/integration5.application.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/friends/integration5.friends.main.iml" filepath="$PROJECT_DIR$/.idea/modules/friends/integration5.friends.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/integration5.library.main.iml" filepath="$PROJECT_DIR$/.idea/modules/library/integration5.library.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/integration5.library.test.iml" filepath="$PROJECT_DIR$/.idea/modules/library/integration5.library.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lobby/integration5.lobby.main.iml" filepath="$PROJECT_DIR$/.idea/modules/lobby/integration5.lobby.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/statistics/integration5.statistics.main.iml" filepath="$PROJECT_DIR$/.idea/modules/statistics/integration5.statistics.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/store/integration5.store.main.iml" filepath="$PROJECT_DIR$/.idea/modules/store/integration5.store.main.iml" />

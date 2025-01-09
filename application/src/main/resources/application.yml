@@ -27,21 +27,25 @@ spring:
       show-sql: true
     defer-datasource-initialization: true
   datasource:
-    #    url: "jdbc:mysql://banditgames-mysql-server.mysql.database.azure.com:3306/library?useSSL=true&trustCertificateKeyStoreUrl=classpath:DigiCertGlobalRootCA.crt.pem"
-    #    username: admin_bandit
-    #    password: Strongpassword!123
-    url: "jdbc:mysql://localhost:3306/"
-    username: user
-    password: password
-    driver-class-name: com.mysql.cj.jdbc.Driver
+      url: "jdbc:mysql://banditgames-mysql-server.mysql.database.azure.com:3306/library?useSSL=true&trustCertificateKeyStoreUrl=classpath:DigiCertGlobalRootCA.crt.pem"
+      username: admin_bandit
+      password: Strongpassword!123
+#    url: "jdbc:mysql://localhost:3306/"
+#    username: user
+#    password: password
+      driver-class-name: com.mysql.cj.jdbc.Driver
   config:
     additional-location: ${SPRING_CONFIG_ADDITIONAL_LOCATION}
   security:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: "http://localhost:8180/realms/bandit-games/protocol/openid-connect/certs"
-          issuer-uri: http://localhost:8180/realms/bandit-games
+           # Local Keycloak configuration
+          # jwk-set-uri: "http://localhost:8180/realms/bandit-games/protocol/openid-connect/certs"
+          # issuer-uri: http://localhost:8180/realms/bandit-games
+           # Deployed Keycloak configuration
+          jwk-set-uri: "https://lemur-1.cloud-iam.com/auth/realms/bandit-games/protocol/openid-connect/certs"
+          issuer-uri: "https://lemur-1.cloud-iam.com/auth/realms/bandit-games"
 
 
 

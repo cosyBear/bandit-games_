@@ -67,7 +67,11 @@ public class SecurityConfig {
 
     @Bean
     public JwtDecoder jwtDecoder() {
-        return JwtDecoders.fromIssuerLocation("http://localhost:8180/realms/bandit-games");
+        // Local Keycloak
+//        return JwtDecoders.fromIssuerLocation("http://localhost:8180/realms/bandit-games");
+        // The URL for the deployed Keycloak Admin
+        return JwtDecoders.fromIssuerLocation("https://lemur-1.cloud-iam.com/auth/realms/bandit-games");
+
     }
 }
 

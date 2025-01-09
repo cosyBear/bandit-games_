@@ -2,6 +2,7 @@ import be.kdg.prog6.statistics.StatisticsBoundedContextApplication;
 import be.kdg.prog6.statistics.core.PredictionUseCaseImpl;
 import be.kdg.prog6.statistics.core.RecommendationUseCaseImpl;
 import be.kdg.prog6.statistics.domain.Recommendation;
+import be.kdg.prog6.statistics.domain.RecommendationType;
 import be.kdg.prog6.statistics.ports.in.command.RecommendationCommand;
 import be.kdg.prog6.statistics.ports.out.RecommendationServicePort;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,13 +41,13 @@ class RecommendationUseCaseImplTest {
         String userId = UUID.randomUUID().toString();
         Recommendation expectedRecommendation = new Recommendation(
                 UUID.fromString(userId),
-                List.of("game1", "game2", "game3"),
-                LocalDateTime.now()
+                List.of("game1", "game2", "game3")
         );
 
-        when(recommendationServicePort.getCollaborativeRecommendations(userId)).thenReturn(expectedRecommendation);
+        when(recommendationServicePort.getCollaborativeRecommendations(userId))
+                .thenReturn(expectedRecommendation);
 
-        RecommendationCommand command = new RecommendationCommand("collaborative", userId);
+        RecommendationCommand command = new RecommendationCommand(RecommendationType.COLLABORATIVE, userId);
 
         // Act
         Recommendation actualRecommendation = useCase.recommend(command);

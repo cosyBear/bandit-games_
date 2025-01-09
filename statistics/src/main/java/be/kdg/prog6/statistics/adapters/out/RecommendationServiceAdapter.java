@@ -4,6 +4,7 @@ import be.kdg.prog6.statistics.adapters.out.web.RecommendationFeignClient;
 import be.kdg.prog6.statistics.domain.Recommendation;
 import be.kdg.prog6.statistics.ports.out.RecommendationServicePort;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,18 +16,17 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class RecommendationServiceAdapter implements RecommendationServicePort {
     private final RecommendationFeignClient feignClient;
 
     @Override
-    public Recommendation getCollaborativeRecommendations(String userId) {
-        List<String> recommendations = feignClient.getRawCollaborativeRecommendations(userId);
-        return new Recommendation(UUID.fromString(userId), recommendations);
+    public String getCollaborativeRecommendations(String userId) {
+        return feignClient.getRawCollaborativeRecommendations(userId);
     }
 
     @Override
-    public Recommendation getContentBasedRecommendations(String gameId) {
-        List<String> recommendations = feignClient.getRawContentRecommendations(gameId);
-        return new Recommendation(null, recommendations);
+    public String getContentBasedRecommendations(String gameId) {
+        return feignClient.getRawContentRecommendations(gameId);
     }
 }

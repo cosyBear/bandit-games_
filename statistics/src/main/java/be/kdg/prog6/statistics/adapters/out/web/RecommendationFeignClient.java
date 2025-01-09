@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "recommendationService", url = "http:///chatbox.westeurope.cloudapp.azure.com:8000")
+@FeignClient(name = "recommendationService", url = "http://chatbox.westeurope.cloudapp.azure.com:8000/api/recommend")
 public interface RecommendationFeignClient {
-    @GetMapping("api/recommend/collaborative/{userId}")
-    List<String> getRawCollaborativeRecommendations(@PathVariable String userId);
+    @GetMapping("/collaborative/{userId}")
+    String getRawCollaborativeRecommendations(@PathVariable String userId);
 
-    @GetMapping("api/recommend/content/{gameId}")
-    List<String> getRawContentRecommendations(@PathVariable String gameId);
+    @GetMapping("/content/{gameId}")
+    String getRawContentRecommendations(@PathVariable String gameId);
 }

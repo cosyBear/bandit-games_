@@ -22,10 +22,13 @@ public class MessagingTopology {
     private static String LobbyCreatedQueue = "LobbyCreatedQueue";
     private static String LobbyCreatedRoutingKey = "LobbyCreatedRoutingKey";
 
-    private static final String RABBITMQ_USERNAME = "bulletcoachwhips";
-    private static final String RABBITMQ_PASSWORD = "fbYfN3Nnx!F0R6e{";
+    private static final String RABBITMQ_USERNAME = "myuser";
+//    private static final String RABBITMQ_USERNAME = "bulletcoachwhips";
+    private static final String RABBITMQ_PASSWORD = "mypassword";
+//    private static final String RABBITMQ_PASSWORD = "fbYfN3Nnx!F0R6e{";
     private static final String RABBITMQ_VIRTUAL_HOST = "/";
-    private static final String RABBITMQ_HOST = "rabbitmq-container.livelymushroom-dcbf4550.northeurope.azurecontainerapps.io";
+    private static final String RABBITMQ_HOST = "localhost";
+//    private static final String RABBITMQ_HOST = "rabbitmq-container.livelymushroom-dcbf4550.northeurope.azurecontainerapps.io";
 
     @Bean
     public ConnectionFactory connectionFactory() {

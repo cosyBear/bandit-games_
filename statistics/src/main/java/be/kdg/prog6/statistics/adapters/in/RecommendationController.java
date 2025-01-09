@@ -4,10 +4,14 @@ import be.kdg.prog6.statistics.domain.Recommendation;
 import be.kdg.prog6.statistics.domain.RecommendationType;
 import be.kdg.prog6.statistics.ports.in.RecommendationUseCase;
 import be.kdg.prog6.statistics.ports.in.command.RecommendationCommand;
+import org.springframework.security.oauth2.jwt.Jwt;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/recommendations")
@@ -15,14 +19,18 @@ import org.springframework.web.bind.annotation.*;
 public class RecommendationController {
     private final RecommendationUseCase recommendationUseCase;
 
-    @GetMapping("/{type}/{id}")
+    @GetMapping("/{type}")
     @PreAuthorize("hasAuthority('LobbyManagement')")
-    public ResponseEntity<Recommendation> recommend(
-            @PathVariable("type")RecommendationType type,
-            @PathVariable("id") String id
+    public ResponseEntity<String> recommend(
+            @PathVariable("type")String type,
+            @AuthenticationPrincipal Jwt token
     ) {
-        RecommendationCommand command = new RecommendationCommand(type, id);
-        Recommendation recommendation = recommendationUseCase.recommend(command);
+        String userId = token.getClaimAsString("UserId");
+
+        RecommendationType recommendationType = RecommendationType.fromType(type);
+        RecommendationCommand command = new RecommendationCommand(recommendationType, userId);
+
+        String recommendation = recommendationUseCase.recommend(command);
         return ResponseEntity.ok(recommendation);
     }
 }

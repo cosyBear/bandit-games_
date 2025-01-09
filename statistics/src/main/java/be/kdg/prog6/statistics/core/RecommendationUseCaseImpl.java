@@ -13,7 +13,7 @@ public class RecommendationUseCaseImpl implements RecommendationUseCase {
     private final RecommendationServicePort recommendationServicePort;
 
     @Override
-    public Recommendation recommend(RecommendationCommand command) {
+    public String recommend(RecommendationCommand command) {
         switch (command.recommendationType()) {
             case COLLABORATIVE -> {
                 return recommendationServicePort.getCollaborativeRecommendations(command.id());

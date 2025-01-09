@@ -7,6 +7,14 @@ stripe:
   api:
     key: "sk_test_51QT0WL2NZGipqhsDvQvShmF49rAzpZjwdHC5AYVyxzb2rN6m8TSrbFEnIjyT7BQ7DEu8nzzvKAYc0w5uM8I5SYr500A4mBS7EN"
 
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: FULL
+
 spring:
   sql:
     init:

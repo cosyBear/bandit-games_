@@ -5,6 +5,7 @@ import be.kdg.prog6.statistics.ports.in.command.ExportCommand;
 import be.kdg.prog6.statistics.ports.in.ExportPlayerStatisticsUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -16,6 +17,7 @@ public class ExportController {
     private final ExportPlayerStatisticsUseCase exportUseCase;
 
     @PostMapping("/player-statistics")
+    @PreAuthorize("hasAuthority('dev')")
     public ResponseEntity<byte[]> exportPlayerStatistics(@RequestParam UUID userId) {
         ExportCommand command = new ExportCommand(userId);
 

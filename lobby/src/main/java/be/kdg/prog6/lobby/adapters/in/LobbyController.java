@@ -132,7 +132,6 @@ public class LobbyController {
     }
 
     @GetMapping("/sse/start-game")
-    @PreAuthorize("hasAuthority('LobbyManagement')")
     public SseEmitter streamStartGameEvents() {
         return startGameSsePort.createEmitter();
     }

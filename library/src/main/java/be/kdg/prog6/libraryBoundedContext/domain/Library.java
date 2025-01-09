@@ -46,16 +46,15 @@ public class Library {
                 .toList();
     }
 
-    public Game givePlayerAnAchievement(GameId gameId, String achievementName) {
+    public Game givePlayerAnAchievement(String gameName, String achievementName) {
         Game game = games.stream()
-                .filter(g -> g.getGameId().equals(gameId))
+                .filter(g -> g.getGameName().equals(gameName))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Game not found with ID: " + gameId));
+                .orElseThrow(() -> new IllegalArgumentException("Game not found with gameName: " + gameName));
         game.givePlayerAnAchievement(achievementName);
 
         return game;
     }
-
 
     public void addGame(Game game) {
         games.add(game);

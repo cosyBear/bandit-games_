@@ -60,7 +60,7 @@ public class GameUseCaseImp implements GameUseCase {
             throw new LibraryNotFoundException("Library not found for player ID: {}" + command.playerId());
         }
 
-        Game game = library.givePlayerAnAchievement(new GameId(command.gameId()), command.AchievementName());
+        Game game = library.givePlayerAnAchievement(command.gameName(), command.AchievementName());
 
         librarySavePort.save(library);
         return Mapper.toQuery(game);

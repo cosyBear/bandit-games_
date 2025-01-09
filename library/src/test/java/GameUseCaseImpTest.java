@@ -84,7 +84,6 @@ class GameUseCaseImpTest {
         EarnAchievementCommand command = new EarnAchievementCommand(
                 playerId,
                 gameName,
-                gameId.id(),
                 "First Blood"
         );
 
@@ -134,7 +133,6 @@ class GameUseCaseImpTest {
         EarnAchievementCommand command = new EarnAchievementCommand(
                 playerId,
                 gameName,
-                gameId.id(),
                 "First Blood"
         );
 

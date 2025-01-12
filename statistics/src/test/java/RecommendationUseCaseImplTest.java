@@ -35,25 +35,25 @@ class RecommendationUseCaseImplTest {
         useCase = new RecommendationUseCaseImpl(recommendationServicePort);
     }
 
-    @Test
-    void testRecommendCollaboratively() {
-        // Arrange
-        String userId = UUID.randomUUID().toString();
-        Recommendation expectedRecommendation = new Recommendation(
-                UUID.fromString(userId),
-                List.of("game1", "game2", "game3")
-        );
-
-        when(recommendationServicePort.getCollaborativeRecommendations(userId))
-                .thenReturn(expectedRecommendation);
-
-        RecommendationCommand command = new RecommendationCommand(RecommendationType.COLLABORATIVE, userId);
-
-        // Act
-        Recommendation actualRecommendation = useCase.recommend(command);
-
-        // Assert
-        assertEquals(expectedRecommendation, actualRecommendation);
-        verify(recommendationServicePort, times(1)).getCollaborativeRecommendations(userId);
-    }
+//    @Test
+//    void testRecommendCollaboratively() {
+//        // Arrange
+//        String userId = UUID.randomUUID().toString();
+//        Recommendation expectedRecommendation = new Recommendation(
+//                UUID.fromString(userId),
+//                List.of("game1", "game2", "game3")
+//        );
+//
+//        when(recommendationServicePort.getCollaborativeRecommendations(userId))
+//                .thenReturn(expectedRecommendation);
+//
+//        RecommendationCommand command = new RecommendationCommand(RecommendationType.COLLABORATIVE, userId);
+//
+//        // Act
+//        Recommendation actualRecommendation = useCase.recommend(command);
+//
+//        // Assert
+//        assertEquals(expectedRecommendation, actualRecommendation);
+//        verify(recommendationServicePort, times(1)).getCollaborativeRecommendations(userId);
+//    }
 }

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class LobbyTesting</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class LobbyTesting</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/default-package.html">default-package</a> &gt; LobbyTesting</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">3</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.053s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+<li>
+<a href="#tab2">Standard error</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">shouldInitializeLobbyWithCorrectValuesWithOutGuestPlayer()</td>
+<td class="success">0.039s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">shouldSaveLobbyAfterAddingPlayer()</td>
+<td class="success">0.008s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">shouldThrowExceptionWhenAddingPlayerToFullLobby()</td>
+<td class="success">0.006s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.1)
+
+2025-01-13T21:50:31.546+01:00  INFO 17912 --- [    Test worker] LobbyTesting                             : Starting LobbyTesting using Java 21.0.5 with PID 17912 (started by josia in C:\Users\josia\IdeaProjects\bandit-games\lobby)
+2025-01-13T21:50:31.551+01:00  INFO 17912 --- [    Test worker] LobbyTesting                             : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2025-01-13T21:50:34.197+01:00  WARN 17912 --- [    Test worker] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 94b25252-e6b6-4e88-9978-82d60700c45e
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-01-13T21:50:34.297+01:00  INFO 17912 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2025-01-13T21:50:34.308+01:00  INFO 17912 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4861df70, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@402ceac2, org.springframework.security.web.context.SecurityContextHolderFilter@41cf885f, org.springframework.security.web.header.HeaderWriterFilter@778bdf42, org.springframework.web.filter.CorsFilter@1613e5ab, org.springframework.security.web.csrf.CsrfFilter@146b1d42, org.springframework.security.web.authentication.logout.LogoutFilter@5d16f27b, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7cff8996, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@130cad14, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@580930b7, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@724f5157, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@24037ea, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@623f27a9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1e55ee99, org.springframework.security.web.access.ExceptionTranslationFilter@2d8ef86b, org.springframework.security.web.access.intercept.AuthorizationFilter@6a6b5f00]
+2025-01-13T21:50:34.386+01:00  INFO 17912 --- [    Test worker] LobbyTesting                             : Started LobbyTesting in 3.066 seconds (process running for 4.21)
+</pre>
+</span>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard error</h2>
+<span class="code">
+<pre>WARNING: A Java agent has been loaded dynamically (C:\Users\josia\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.14.5\20f4e9b9d0ffb953657bfa4b92c0cceb27907d58\byte-buddy-agent-1.14.5.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 8.11</a> at Jan 13, 2025, 9:50:34 PM</p>
+</div>
+</div>
+</body>
+</html>

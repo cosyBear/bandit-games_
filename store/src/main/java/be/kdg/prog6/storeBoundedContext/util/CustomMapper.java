@@ -69,6 +69,10 @@ public class CustomMapper {
 
     // Convert GameEntity to Game
     public static Game toGame(GameEntity gameEntity) {
+        List<Achievement> achievements = gameEntity.getAchievementList().stream()
+                .map(CustomMapper::toAchievement)
+                .toList();
+
         Game game = new Game(
                 new GameId(gameEntity.getGameId()),
                 gameEntity.getGameName(),
@@ -77,13 +81,10 @@ public class CustomMapper {
                 gameEntity.getBackgroundImageUrl(),
                 gameEntity.getDescription(),
                 gameEntity.getPrice(),
-                gameEntity.getRating()
+                gameEntity.getRating(),
+                achievements,
+                gameEntity.getDomainUrl()
         );
-
-        List<Achievement> achievements = gameEntity.getAchievementList().stream()
-                .map(CustomMapper::toAchievement)
-                .collect(Collectors.toList());
-        game.setAchievementList(achievements);
 
         return game;
     }

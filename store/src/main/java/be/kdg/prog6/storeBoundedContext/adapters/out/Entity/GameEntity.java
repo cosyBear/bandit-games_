@@ -32,6 +32,7 @@ public class GameEntity {
     private String description;
     private double price;
     private double rating;
+    private String domainUrl;
 
     @Override
     public int hashCode() {

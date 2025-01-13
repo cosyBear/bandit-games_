@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - RemoveFriendImplTestIntegration</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>RemoveFriendImplTestIntegration</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/be.kdg.prog6.friends.core.html">be.kdg.prog6.friends.core</a> &gt; RemoveFriendImplTestIntegration</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">2</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.284s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">shouldNotRemoveNotExistingFriend()</td>
+<td class="success">0.211s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">shouldRemoveFriendOfPlayer()</td>
+<td class="success">0.073s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>21:49:21.107 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [be.kdg.prog6.friends.core.AbstractDatabaseAndRabbitTest]: AbstractDatabaseAndRabbitTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+21:49:21.239 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration be.kdg.prog6.friends.FriendsBondedContextApplication for test class be.kdg.prog6.friends.core.RemoveFriendImplTestIntegration
+21:49:21.400 [Test worker] INFO org.testcontainers.utility.ImageNameSubstitutor -- Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+21:49:21.682 [Test worker] INFO org.testcontainers.dockerclient.DockerClientProviderStrategy -- Loaded org.testcontainers.dockerclient.NpipeSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+21:49:21.964 [Test worker] INFO org.testcontainers.dockerclient.DockerClientProviderStrategy -- Found Docker environment with local Npipe socket (npipe:////./pipe/docker_engine)
+21:49:21.966 [Test worker] INFO org.testcontainers.DockerClientFactory -- Docker host IP address is localhost
+21:49:21.983 [Test worker] INFO org.testcontainers.DockerClientFactory -- Connected to docker: 
+  Server Version: 27.4.0
+  API Version: 1.47
+  Operating System: Docker Desktop
+  Total Memory: 15543 MB
+21:49:22.373 [Test worker] INFO tc.testcontainers/ryuk:0.5.1 -- Creating container for image: testcontainers/ryuk:0.5.1
+21:49:22.651 [Test worker] INFO tc.testcontainers/ryuk:0.5.1 -- Container testcontainers/ryuk:0.5.1 is starting: 012931e964dda848d376783e47931397f6e126d17cd9184d6a5aafcf55d5c3ea
+21:49:23.128 [Test worker] INFO tc.testcontainers/ryuk:0.5.1 -- Container testcontainers/ryuk:0.5.1 started in PT1.1380139S
+21:49:23.133 [Test worker] INFO org.testcontainers.utility.RyukResourceReaper -- Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+21:49:23.133 [Test worker] INFO org.testcontainers.DockerClientFactory -- Checking the system...
+21:49:23.134 [Test worker] INFO org.testcontainers.DockerClientFactory -- ✔︎ Docker server version should be at least 1.6.0
+21:49:23.136 [Test worker] INFO tc.mysql:8.0.30 -- Creating container for image: mysql:8.0.30
+21:49:23.267 [Test worker] INFO tc.mysql:8.0.30 -- Container mysql:8.0.30 is starting: 9289929fca7ab7a73237eb00c9db4c7700a2f3e6bd74974ce2161792d6d65cb2
+21:49:23.633 [Test worker] INFO tc.mysql:8.0.30 -- Waiting for database connection to become available at jdbc:mysql://localhost:49907/friends using query 'SELECT 1'
+21:49:37.667 [Test worker] INFO tc.mysql:8.0.30 -- Container mysql:8.0.30 started in PT14.5302714S
+21:49:37.667 [Test worker] INFO tc.mysql:8.0.30 -- Container is started (JDBC URL: jdbc:mysql://localhost:49907/friends)
+21:49:37.667 [Test worker] INFO tc.rabbitmq:3.11-management -- Creating container for image: rabbitmq:3.11-management
+21:49:37.755 [Test worker] INFO tc.rabbitmq:3.11-management -- Container rabbitmq:3.11-management is starting: 7d2279b8518a0b917992ce4a09821049f7b34d711d013174d878e938ea318f30
+21:49:44.411 [Test worker] INFO tc.rabbitmq:3.11-management -- Container rabbitmq:3.11-management started in PT6.743889S
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.1)
+
+2025-01-13T21:49:44.728+01:00  INFO 9292 --- [    Test worker] .k.p.f.c.RemoveFriendImplTestIntegration : Starting RemoveFriendImplTestIntegration using Java 21.0.5 with PID 9292 (started by josia in C:\Users\josia\IdeaProjects\bandit-games\friends)
+2025-01-13T21:49:44.729+01:00  INFO 9292 --- [    Test worker] .k.p.f.c.RemoveFriendImplTestIntegration : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2025-01-13T21:49:45.176+01:00  INFO 9292 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-13T21:49:45.231+01:00  INFO 9292 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 48 ms. Found 4 JPA repository interfaces.
+2025-01-13T21:49:45.577+01:00  INFO 9292 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-13T21:49:45.624+01:00  INFO 9292 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.5.Final
+2025-01-13T21:49:45.626+01:00  INFO 9292 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2025-01-13T21:49:45.726+01:00  INFO 9292 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2025-01-13T21:49:45.733+01:00  INFO 9292 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-13T21:49:45.747+01:00  INFO 9292 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-13T21:49:45.891+01:00  INFO 9292 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@129a09d9
+2025-01-13T21:49:45.893+01:00  INFO 9292 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-13T21:49:46.133+01:00  INFO 9292 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2025-01-13T21:49:46.565+01:00  INFO 9292 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-01-13T21:49:46.596+01:00  WARN 9292 --- [    Test worker] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL &quot;alter table friends.address drop foreign key FK33v30veck8k5uqevpb90j87df&quot; via JDBC [Table 'friends.address' doesn't exist]
+
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL &quot;alter table friends.address drop foreign key FK33v30veck8k5uqevpb90j87df&quot; via JDBC [Table 'friends.address' doesn't exist]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:92) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.tool.schema.internal.Helper.applySqlString(Helper.java:235) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.tool.schema.internal.Helper.applySqlStrings(Helper.java:219) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applyConstraintDropping(SchemaDropperImpl.java:455) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropConstraintsTablesSequences(SchemaDropperImpl.java:242) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:215) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:185) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:155) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:115) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:242) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429) ~[na:na]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.internal.SessionFactoryImpl.&lt;init&gt;(SessionFactoryImpl.java:292) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:431) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1455) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.0.10.jar:6.0.10]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376) ~[spring-orm-6.0.10.jar:6.0.10]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.0.10.jar:6.0.10]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.0.10.jar:6.0.10]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352) ~[spring-orm-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1816) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1766) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:931) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:436) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:137) ~[spring-boot-test-3.1.1.jar:3.1.1]
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58) ~[spring-core-6.0.10.jar:6.0.10]
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46) ~[spring-core-6.0.10.jar:6.0.10]
+	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1406) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:545) ~[spring-boot-test-3.1.1.jar:3.1.1]
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:137) ~[spring-boot-test-3.1.1.jar:3.1.1]
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:108) ~[spring-boot-test-3.1.1.jar:3.1.1]
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:187) ~[spring-test-6.0.10.jar:6.0.10]
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:119) ~[spring-test-6.0.10.jar:6.0.10]
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:127) ~[spring-test-6.0.10.jar:6.0.10]
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:191) ~[spring-test-6.0.10.jar:6.0.10]
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:130) ~[spring-test-6.0.10.jar:6.0.10]
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:241) ~[spring-test-6.0.10.jar:6.0.10]
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:138) ~[spring-test-6.0.10.jar:6.0.10]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$8(ClassBasedTestDescriptor.java:363) ~[junit-jupiter-engine-5.8.1.jar:5.8.1]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:368) ~[junit-jupiter-engine-5.8.1.jar:5.8.1]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$9(ClassBasedTestDescriptor.java:363) ~[junit-jupiter-engine-5.8.1.jar:5.8.1]
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179) ~[na:na]
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310) ~[na:na]
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735) ~[na:na]
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762) ~[na:na]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:362) ~[junit-jupiter-engine-5.8.1.jar:5.8.1]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:283) ~[junit-jupiter-engine-5.8.1.jar:5.8.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:282) ~[junit-jupiter-engine-5.8.1.jar:5.8.1]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:272) ~[junit-jupiter-engine-5.8.1.jar:5.8.1]
+	at java.base/java.util.Optional.orElseGet(Optional.java:364) ~[na:na]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:271) ~[junit-jupiter-engine-5.8.1.jar:5.8.1]
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31) ~[junit-jupiter-engine-5.8.1.jar:5.8.1]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:102) ~[junit-jupiter-engine-5.8.1.jar:5.8.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:101) ~[junit-jupiter-engine-5.8.1.jar:5.8.1]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:66) ~[junit-jupiter-engine-5.8.1.jar:5.8.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:123) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:123) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:90) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:124) ~[na:na]
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:99) ~[na:na]
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:94) ~[na:na]
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:63) ~[na:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36) ~[na:na]
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24) ~[na:na]
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33) ~[na:na]
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:92) ~[na:na]
+	at jdk.proxy2/jdk.proxy2.$Proxy6.stop(Unknown Source) ~[na:na]
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:200) ~[na:na]
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:132) ~[na:na]
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103) ~[na:na]
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63) ~[na:na]
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56) ~[na:na]
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:121) ~[na:na]
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71) ~[na:na]
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69) ~[gradle-worker.jar:na]
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74) ~[gradle-worker.jar:na]
+Caused by: java.sql.SQLSyntaxErrorException: Table 'friends.address' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:763) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:648) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-5.0.1.jar:na]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:78) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	... 129 common frames omitted
+
+2025-01-13T21:49:46.606+01:00  WARN 9292 --- [    Test worker] o.h.t.s.i.ExceptionHandlerLoggedImpl     : GenerationTarget encountered exception accepting command : Error executing DDL &quot;alter table friends.lobby drop foreign key FK3bod5oao1eq140gs771251s76&quot; via JDBC [Table 'friends.lobby' doesn't exist]
+
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL &quot;alter table friends.lobby drop foreign key FK3bod5oao1eq140gs771251s76&quot; via JDBC [Table 'friends.lobby' doesn't exist]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:92) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.tool.schema.internal.Helper.applySqlString(Helper.java:235) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.tool.schema.internal.Helper.applySqlStrings(Helper.java:219) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applyConstraintDropping(SchemaDropperImpl.java:455) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropConstraintsTablesSequences(SchemaDropperImpl.java:242) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:215) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:185) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:155) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:115) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:242) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429) ~[na:na]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.internal.SessionFactoryImpl.&lt;init&gt;(SessionFactoryImpl.java:292) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:431) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1455) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.0.10.jar:6.0.10]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376) ~[spring-orm-6.0.10.jar:6.0.10]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.0.10.jar:6.0.10]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.0.10.jar:6.0.10]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352) ~[spring-orm-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1816) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1766) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:931) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608) ~[spring-context-6.0.10.jar:6.0.10]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:436) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:137) ~[spring-boot-test-3.1.1.jar:3.1.1]
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58) ~[spring-core-6.0.10.jar:6.0.10]
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46) ~[spring-core-6.0.10.jar:6.0.10]
+	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1406) ~[spring-boot-3.1.1.jar:3.1.1]
+	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:545) ~[spring-boot-test-3.1.1.jar:3.1.1]
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:137) ~[spring-boot-test-3.1.1.jar:3.1.1]
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:108) ~[spring-boot-test-3.1.1.jar:3.1.1]
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:187) ~[spring-test-6.0.10.jar:6.0.10]
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:119) ~[spring-test-6.0.10.jar:6.0.10]
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:127) ~[spring-test-6.0.10.jar:6.0.10]
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:191) ~[spring-test-6.0.10.jar:6.0.10]
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:130) ~[spring-test-6.0.10.jar:6.0.10]
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:241) ~[spring-test-6.0.10.jar:6.0.10]
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:138) ~[spring-test-6.0.10.jar:6.0.10]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$8(ClassBasedTestDescriptor.java:363) ~[junit-jupiter-engine-5.8.1.jar:5.8.1]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:368) ~[junit-jupiter-engine-5.8.1.jar:5.8.1]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$9(ClassBasedTestDescriptor.java:363) ~[junit-jupiter-engine-5.8.1.jar:5.8.1]
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179) ~[na:na]
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310) ~[na:na]
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735) ~[na:na]
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762) ~[na:na]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:362) ~[junit-jupiter-engine-5.8.1.jar:5.8.1]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:283) ~[junit-jupiter-engine-5.8.1.jar:5.8.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:282) ~[junit-jupiter-engine-5.8.1.jar:5.8.1]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:272) ~[junit-jupiter-engine-5.8.1.jar:5.8.1]
+	at java.base/java.util.Optional.orElseGet(Optional.java:364) ~[na:na]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:271) ~[junit-jupiter-engine-5.8.1.jar:5.8.1]
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31) ~[junit-jupiter-engine-5.8.1.jar:5.8.1]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:102) ~[junit-jupiter-engine-5.8.1.jar:5.8.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:101) ~[junit-jupiter-engine-5.8.1.jar:5.8.1]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:66) ~[junit-jupiter-engine-5.8.1.jar:5.8.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:123) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:123) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:90) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.9.3.jar:1.9.3]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86) ~[junit-platform-launcher-1.8.2.jar:1.8.2]
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:124) ~[na:na]
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:99) ~[na:na]
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:94) ~[na:na]
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:63) ~[na:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36) ~[na:na]
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24) ~[na:na]
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33) ~[na:na]
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:92) ~[na:na]
+	at jdk.proxy2/jdk.proxy2.$Proxy6.stop(Unknown Source) ~[na:na]
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:200) ~[na:na]
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:132) ~[na:na]
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103) ~[na:na]
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63) ~[na:na]
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56) ~[na:na]
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:121) ~[na:na]
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71) ~[na:na]
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69) ~[gradle-worker.jar:na]
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74) ~[gradle-worker.jar:na]
+Caused by: java.sql.SQLSyntaxErrorException: Table 'friends.lobby' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:763) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:648) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-5.0.1.jar:na]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:78) ~[hibernate-core-6.2.5.Final.jar:6.2.5.Final]
+	... 129 common frames omitted
+
+2025-01-13T21:49:47.081+01:00  INFO 9292 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-13T21:49:47.272+01:00  INFO 9292 --- [    Test worker] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-01-13T21:49:47.842+01:00  WARN 9292 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-13T21:49:48.145+01:00  WARN 9292 --- [    Test worker] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: b3c5f39f-6f5e-4dae-987d-314582abf6e2
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-01-13T21:49:48.230+01:00  INFO 9292 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@147d0ede, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1f7eaf31, org.springframework.security.web.context.SecurityContextHolderFilter@4b0a2375, org.springframework.security.web.header.HeaderWriterFilter@4565b430, org.springframework.security.web.csrf.CsrfFilter@1d76c0e5, org.springframework.security.web.authentication.logout.LogoutFilter@5a9790d7, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@426a83e9, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@6e8f721a, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@1862dd1f, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@381663db, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@58b27de7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2671e286, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@70691043, org.springframework.security.web.access.ExceptionTranslationFilter@198cfcad, org.springframework.security.web.access.intercept.AuthorizationFilter@594722f1]
+2025-01-13T21:49:48.268+01:00  INFO 9292 --- [    Test worker] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: https://rabbitmq-container.happyglacier-269bf72e.northeurope.azurecontainerapps.io:5672
+2025-01-13T21:49:48.272+01:00  INFO 9292 --- [    Test worker] o.s.a.r.l.SimpleMessageListenerContainer : Broker not available; cannot force queue declarations during start: java.net.UnknownHostException: No such host is known (https://rabbitmq-container.happyglacier-269bf72e.northeurope.azurecontainerapps.io)
+2025-01-13T21:49:48.277+01:00  INFO 9292 --- [ntContainer#0-1] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: https://rabbitmq-container.happyglacier-269bf72e.northeurope.azurecontainerapps.io:5672
+2025-01-13T21:49:48.278+01:00 ERROR 9292 --- [ntContainer#0-1] o.s.a.r.l.SimpleMessageListenerContainer : Failed to check/redeclare auto-delete queue(s).
+
+org.springframework.amqp.AmqpIOException: java.net.UnknownHostException: https://rabbitmq-container.happyglacier-269bf72e.northeurope.azurecontainerapps.io
+	at org.springframework.amqp.rabbit.support.RabbitExceptionTranslator.convertRabbitAccessException(RabbitExceptionTranslator.java:70) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.createBareConnection(AbstractConnectionFactory.java:594) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.connection.CachingConnectionFactory.createConnection(CachingConnectionFactory.java:687) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.connection.ConnectionFactoryUtils.createConnection(ConnectionFactoryUtils.java:257) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.doExecute(RabbitTemplate.java:2225) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.execute(RabbitTemplate.java:2198) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.execute(RabbitTemplate.java:2178) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.core.RabbitAdmin.getQueueInfo(RabbitAdmin.java:459) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.core.RabbitAdmin.getQueueProperties(RabbitAdmin.java:443) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.attemptDeclarations(AbstractMessageListenerContainer.java:1891) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.redeclareElementsIfNecessary(AbstractMessageListenerContainer.java:1858) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.initialize(SimpleMessageListenerContainer.java:1384) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1230) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: java.net.UnknownHostException: https://rabbitmq-container.happyglacier-269bf72e.northeurope.azurecontainerapps.io
+	at java.base/java.net.InetAddress$CachedLookup.get(InetAddress.java:988) ~[na:na]
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1818) ~[na:na]
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1688) ~[na:na]
+	at com.rabbitmq.client.DnsRecordIpAddressResolver.resolveIpAddresses(DnsRecordIpAddressResolver.java:83) ~[amqp-client-5.17.0.jar:5.17.0]
+	at com.rabbitmq.client.DnsRecordIpAddressResolver.getAddresses(DnsRecordIpAddressResolver.java:73) ~[amqp-client-5.17.0.jar:5.17.0]
+	at com.rabbitmq.client.ConnectionFactory.newConnection(ConnectionFactory.java:1219) ~[amqp-client-5.17.0.jar:5.17.0]
+	at com.rabbitmq.client.ConnectionFactory.newConnection(ConnectionFactory.java:1173) ~[amqp-client-5.17.0.jar:5.17.0]
+	at com.rabbitmq.client.ConnectionFactory.newConnection(ConnectionFactory.java:1342) ~[amqp-client-5.17.0.jar:5.17.0]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.connectHostPort(AbstractConnectionFactory.java:645) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.connect(AbstractConnectionFactory.java:610) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.createBareConnection(AbstractConnectionFactory.java:557) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	... 12 common frames omitted
+
+2025-01-13T21:49:48.280+01:00  INFO 9292 --- [ntContainer#0-1] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: https://rabbitmq-container.happyglacier-269bf72e.northeurope.azurecontainerapps.io:5672
+2025-01-13T21:49:48.280+01:00  INFO 9292 --- [    Test worker] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: https://rabbitmq-container.happyglacier-269bf72e.northeurope.azurecontainerapps.io:5672
+2025-01-13T21:49:48.280+01:00  INFO 9292 --- [    Test worker] o.s.a.r.l.SimpleMessageListenerContainer : Broker not available; cannot force queue declarations during start: java.net.UnknownHostException: https://rabbitmq-container.happyglacier-269bf72e.northeurope.azurecontainerapps.io
+2025-01-13T21:49:48.280+01:00  INFO 9292 --- [ntContainer#1-1] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: https://rabbitmq-container.happyglacier-269bf72e.northeurope.azurecontainerapps.io:5672
+2025-01-13T21:49:48.281+01:00 ERROR 9292 --- [ntContainer#1-1] o.s.a.r.l.SimpleMessageListenerContainer : Failed to check/redeclare auto-delete queue(s).
+
+org.springframework.amqp.AmqpIOException: java.net.UnknownHostException: https://rabbitmq-container.happyglacier-269bf72e.northeurope.azurecontainerapps.io
+	at org.springframework.amqp.rabbit.support.RabbitExceptionTranslator.convertRabbitAccessException(RabbitExceptionTranslator.java:70) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.createBareConnection(AbstractConnectionFactory.java:594) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.connection.CachingConnectionFactory.createConnection(CachingConnectionFactory.java:687) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.connection.ConnectionFactoryUtils.createConnection(ConnectionFactoryUtils.java:257) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.doExecute(RabbitTemplate.java:2225) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.execute(RabbitTemplate.java:2198) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.execute(RabbitTemplate.java:2178) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.core.RabbitAdmin.getQueueInfo(RabbitAdmin.java:459) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.core.RabbitAdmin.getQueueProperties(RabbitAdmin.java:443) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.attemptDeclarations(AbstractMessageListenerContainer.java:1891) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.redeclareElementsIfNecessary(AbstractMessageListenerContainer.java:1858) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.initialize(SimpleMessageListenerContainer.java:1384) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1230) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: java.net.UnknownHostException: https://rabbitmq-container.happyglacier-269bf72e.northeurope.azurecontainerapps.io
+	at java.base/java.net.InetAddress$CachedLookup.get(InetAddress.java:988) ~[na:na]
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1818) ~[na:na]
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1688) ~[na:na]
+	at com.rabbitmq.client.DnsRecordIpAddressResolver.resolveIpAddresses(DnsRecordIpAddressResolver.java:83) ~[amqp-client-5.17.0.jar:5.17.0]
+	at com.rabbitmq.client.DnsRecordIpAddressResolver.getAddresses(DnsRecordIpAddressResolver.java:73) ~[amqp-client-5.17.0.jar:5.17.0]
+	at com.rabbitmq.client.ConnectionFactory.newConnection(ConnectionFactory.java:1219) ~[amqp-client-5.17.0.jar:5.17.0]
+	at com.rabbitmq.client.ConnectionFactory.newConnection(ConnectionFactory.java:1173) ~[amqp-client-5.17.0.jar:5.17.0]
+	at com.rabbitmq.client.ConnectionFactory.newConnection(ConnectionFactory.java:1342) ~[amqp-client-5.17.0.jar:5.17.0]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.connectHostPort(AbstractConnectionFactory.java:645) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.connect(AbstractConnectionFactory.java:610) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	at org.springframework.amqp.rabbit.connection.AbstractConnectionFactory.createBareConnection(AbstractConnectionFactory.java:557) ~[spring-rabbit-3.0.5.jar:3.0.5]
+	... 12 common frames omitted
+
+2025-01-13T21:49:48.281+01:00  INFO 9292 --- [ntContainer#1-1] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: https://rabbitmq-container.happyglacier-269bf72e.northeurope.azurecontainerapps.io:5672
+2025-01-13T21:49:48.289+01:00  INFO 9292 --- [    Test worker] .k.p.f.c.RemoveFriendImplTestIntegration : Started RemoveFriendImplTestIntegration in 3.71 seconds (process running for 29.123)
+Database Container logs:
+2025-01-13 20:49:23+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.30-1.el8 started.
+2025-01-13 20:49:23+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+2025-01-13 20:49:23+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.30-1.el8 started.
+2025-01-13 20:49:23+00:00 [Note] [Entrypoint]: Initializing database files
+2025-01-13T20:49:23.759856Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2025-01-13T20:49:23.759877Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2025-01-13T20:49:23.759932Z 0 [System] [MY-013169] [Server] /usr/sbin/mysqld (mysqld 8.0.30) initializing of server in progress as process 80
+2025-01-13T20:49:23.765296Z 0 [Warning] [MY-013907] [InnoDB] Deprecated configuration parameters innodb_log_file_size and/or innodb_log_files_in_group have been used to compute innodb_redo_log_capacity=10485760. Please use innodb_redo_log_capacity instead.
+2025-01-13T20:49:23.766637Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2025-01-13T20:49:24.651933Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2025-01-13T20:49:26.852082Z 6 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+2025-01-13T20:49:28.134875Z 0 [Warning] [MY-013865] [InnoDB] Redo log writer is waiting for a new redo log file. Consider increasing innodb_redo_log_capacity.
+2025-01-13T20:49:28.807173Z 0 [Warning] [MY-013865] [InnoDB] Redo log writer is waiting for a new redo log file. Consider increasing innodb_redo_log_capacity.
+2025-01-13 20:49:31+00:00 [Note] [Entrypoint]: Database files initialized
+2025-01-13 20:49:31+00:00 [Note] [Entrypoint]: Starting temporary server
+2025-01-13T20:49:32.054279Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2025-01-13T20:49:32.054305Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2025-01-13T20:49:32.056489Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.30) starting as process 131
+2025-01-13T20:49:32.066514Z 0 [Warning] [MY-013907] [InnoDB] Deprecated configuration parameters innodb_log_file_size and/or innodb_log_files_in_group have been used to compute innodb_redo_log_capacity=10485760. Please use innodb_redo_log_capacity instead.
+2025-01-13T20:49:32.067861Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2025-01-13T20:49:32.174907Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2025-01-13T20:49:32.480033Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2025-01-13T20:49:32.480070Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2025-01-13T20:49:32.483498Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2025-01-13T20:49:32.500153Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Socket: /var/run/mysqld/mysqlx.sock
+2025-01-13T20:49:32.500263Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.30'  socket: '/var/run/mysqld/mysqld.sock'  port: 0  MySQL Community Server - GPL.
+2025-01-13 20:49:32+00:00 [Note] [Entrypoint]: Temporary server started.
+'/var/lib/mysql/mysql.sock' -&gt; '/var/run/mysqld/mysqld.sock'
+Warning: Unable to load '/usr/share/zoneinfo/iso3166.tab' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/leapseconds' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/tzdata.zi' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/zone.tab' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/zone1970.tab' as time zone. Skipping it.
+2025-01-13 20:49:34+00:00 [Note] [Entrypoint]: Creating database friends
+2025-01-13 20:49:35+00:00 [Note] [Entrypoint]: Creating user user
+2025-01-13 20:49:35+00:00 [Note] [Entrypoint]: Giving user user access to schema friends
+
+2025-01-13 20:49:35+00:00 [Note] [Entrypoint]: Stopping temporary server
+2025-01-13T20:49:35.042847Z 13 [System] [MY-013172] [Server] Received SHUTDOWN from user root. Shutting down mysqld (Version: 8.0.30).
+2025-01-13T20:49:36.083391Z 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.30)  MySQL Community Server - GPL.
+2025-01-13 20:49:37+00:00 [Note] [Entrypoint]: Temporary server stopped
+
+2025-01-13 20:49:37+00:00 [Note] [Entrypoint]: MySQL init process done. Ready for start up.
+
+2025-01-13T20:49:37.227648Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2025-01-13T20:49:37.227674Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2025-01-13T20:49:37.228954Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.30) starting as process 1
+2025-01-13T20:49:37.233381Z 0 [Warning] [MY-013907] [InnoDB] Deprecated configuration parameters innodb_log_file_size and/or innodb_log_files_in_group have been used to compute innodb_redo_log_capacity=10485760. Please use innodb_redo_log_capacity instead.
+2025-01-13T20:49:37.234393Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2025-01-13T20:49:37.346159Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2025-01-13T20:49:37.539986Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2025-01-13T20:49:37.540028Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2025-01-13T20:49:37.543586Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2025-01-13T20:49:37.562297Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+2025-01-13T20:49:37.562359Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.30'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+
+RabbitMQ Container logs:
+2025-01-13 20:49:40.880838+00:00 [notice] &lt;0.44.0&gt; Application syslog exited with reason: stopped
+2025-01-13 20:49:40.886170+00:00 [notice] &lt;0.230.0&gt; Logging: switching to configured handler(s); following messages may not be visible in this log output
+2025-01-13 20:49:40.903034+00:00 [notice] &lt;0.230.0&gt; Logging: configured log handlers are now ACTIVE
+2025-01-13 20:49:41.090937+00:00 [info] &lt;0.230.0&gt; ra: starting system quorum_queues
+2025-01-13 20:49:41.091014+00:00 [info] &lt;0.230.0&gt; starting Ra system: quorum_queues in directory: /var/lib/rabbitmq/mnesia/rabbit@7d2279b8518a/quorum/rabbit@7d2279b8518a
+2025-01-13 20:49:41.147244+00:00 [info] &lt;0.266.0&gt; ra system 'quorum_queues' running pre init for 0 registered servers
+2025-01-13 20:49:41.157376+00:00 [info] &lt;0.267.0&gt; ra: meta data store initialised for system quorum_queues. 0 record(s) recovered
+2025-01-13 20:49:41.170483+00:00 [notice] &lt;0.272.0&gt; WAL: ra_log_wal init, open tbls: ra_log_open_mem_tables, closed tbls: ra_log_closed_mem_tables
+2025-01-13 20:49:41.180275+00:00 [info] &lt;0.230.0&gt; ra: starting system coordination
+2025-01-13 20:49:41.180310+00:00 [info] &lt;0.230.0&gt; starting Ra system: coordination in directory: /var/lib/rabbitmq/mnesia/rabbit@7d2279b8518a/coordination/rabbit@7d2279b8518a
+2025-01-13 20:49:41.181733+00:00 [info] &lt;0.279.0&gt; ra system 'coordination' running pre init for 0 registered servers
+2025-01-13 20:49:41.182639+00:00 [info] &lt;0.280.0&gt; ra: meta data store initialised for system coordination. 0 record(s) recovered
+2025-01-13 20:49:41.182802+00:00 [notice] &lt;0.285.0&gt; WAL: ra_coordination_log_wal init, open tbls: ra_coordination_log_open_mem_tables, closed tbls: ra_coordination_log_closed_mem_tables
+2025-01-13 20:49:41.187639+00:00 [info] &lt;0.230.0&gt; 
+2025-01-13 20:49:41.187639+00:00 [info] &lt;0.230.0&gt;  Starting RabbitMQ 3.11.28 on Erlang 25.3.2.9 [jit]
+2025-01-13 20:49:41.187639+00:00 [info] &lt;0.230.0&gt;  Copyright (c) 2007-2023 Broadcom Inc and/or its subsidiaries
+2025-01-13 20:49:41.187639+00:00 [info] &lt;0.230.0&gt;  Licensed under the MPL 2.0. Website: https://rabbitmq.com
+
+  ##  ##      RabbitMQ 3.11.28
+  ##  ##
+  ##########  Copyright (c) 2007-2023 Broadcom Inc and/or its subsidiaries
+  ######  ##
+  ##########  Licensed under the MPL 2.0. Website: https://rabbitmq.com
+
+  Erlang:      25.3.2.9 [jit]
+  TLS Library: OpenSSL - OpenSSL 3.1.5 30 Jan 2024
+  Release series support status: supported
+
+  Doc guides:  https://rabbitmq.com/documentation.html
+  Support:     https://rabbitmq.com/contact.html
+  Tutorials:   https://rabbitmq.com/getstarted.html
+  Monitoring:  https://rabbitmq.com/monitoring.html
+
+  Logs: /var/log/rabbitmq/rabbit@7d2279b8518a_upgrade.log
+        &lt;stdout&gt;
+
+  Config file(s): /etc/rabbitmq/conf.d/10-defaults.conf
+
+  Starting broker...2025-01-13 20:49:41.188898+00:00 [info] &lt;0.230.0&gt; 
+2025-01-13 20:49:41.188898+00:00 [info] &lt;0.230.0&gt;  node           : rabbit@7d2279b8518a
+2025-01-13 20:49:41.188898+00:00 [info] &lt;0.230.0&gt;  home dir       : /var/lib/rabbitmq
+2025-01-13 20:49:41.188898+00:00 [info] &lt;0.230.0&gt;  config file(s) : /etc/rabbitmq/conf.d/10-defaults.conf
+2025-01-13 20:49:41.188898+00:00 [info] &lt;0.230.0&gt;  cookie hash    : UZ+xIjRUXHcAZhJUUvvkNg==
+2025-01-13 20:49:41.188898+00:00 [info] &lt;0.230.0&gt;  log(s)         : /var/log/rabbitmq/rabbit@7d2279b8518a_upgrade.log
+2025-01-13 20:49:41.188898+00:00 [info] &lt;0.230.0&gt;                 : &lt;stdout&gt;
+2025-01-13 20:49:41.188898+00:00 [info] &lt;0.230.0&gt;  database dir   : /var/lib/rabbitmq/mnesia/rabbit@7d2279b8518a
+2025-01-13 20:49:43.849098+00:00 [info] &lt;0.230.0&gt; Running boot step pre_boot defined by app rabbit
+2025-01-13 20:49:43.849170+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_global_counters defined by app rabbit
+2025-01-13 20:49:43.849472+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_osiris_metrics defined by app rabbit
+2025-01-13 20:49:43.849565+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_core_metrics defined by app rabbit
+2025-01-13 20:49:43.850687+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_alarm defined by app rabbit
+2025-01-13 20:49:43.854594+00:00 [info] &lt;0.300.0&gt; Memory high watermark set to 6217 MiB (6519278796 bytes) of 15543 MiB (16298196992 bytes) total
+2025-01-13 20:49:43.857252+00:00 [info] &lt;0.302.0&gt; Enabling free disk space monitoring (disk free space: 1002902376448, total memory: 16298196992)
+2025-01-13 20:49:43.857287+00:00 [info] &lt;0.302.0&gt; Disk free limit set to 50MB
+2025-01-13 20:49:43.858866+00:00 [info] &lt;0.230.0&gt; Running boot step code_server_cache defined by app rabbit
+2025-01-13 20:49:43.858916+00:00 [info] &lt;0.230.0&gt; Running boot step file_handle_cache defined by app rabbit
+2025-01-13 20:49:43.859118+00:00 [info] &lt;0.305.0&gt; Limiting to approx 1048479 file handles (943629 sockets)
+2025-01-13 20:49:43.859267+00:00 [info] &lt;0.306.0&gt; FHC read buffering: OFF
+2025-01-13 20:49:43.859302+00:00 [info] &lt;0.306.0&gt; FHC write buffering: ON
+2025-01-13 20:49:43.859748+00:00 [info] &lt;0.230.0&gt; Running boot step worker_pool defined by app rabbit
+2025-01-13 20:49:43.859854+00:00 [info] &lt;0.287.0&gt; Will use 12 processes for default worker pool
+2025-01-13 20:49:43.859900+00:00 [info] &lt;0.287.0&gt; Starting worker pool 'worker_pool' with 12 processes in it
+2025-01-13 20:49:43.860541+00:00 [info] &lt;0.230.0&gt; Running boot step database defined by app rabbit
+2025-01-13 20:49:43.860875+00:00 [info] &lt;0.230.0&gt; Node database directory at /var/lib/rabbitmq/mnesia/rabbit@7d2279b8518a is empty. Assuming we need to join an existing cluster or initialise from scratch...
+2025-01-13 20:49:43.860933+00:00 [info] &lt;0.230.0&gt; Configured peer discovery backend: rabbit_peer_discovery_classic_config
+2025-01-13 20:49:43.860972+00:00 [info] &lt;0.230.0&gt; Will try to lock with peer discovery backend rabbit_peer_discovery_classic_config
+2025-01-13 20:49:43.861128+00:00 [info] &lt;0.230.0&gt; All discovered existing cluster peers:
+2025-01-13 20:49:43.861155+00:00 [info] &lt;0.230.0&gt; Discovered no peer nodes to cluster with. Some discovery backends can filter nodes out based on a readiness criteria. Enabling debug logging might help troubleshoot.
+2025-01-13 20:49:43.863143+00:00 [notice] &lt;0.44.0&gt; Application mnesia exited with reason: stopped
+2025-01-13 20:49:43.985328+00:00 [info] &lt;0.230.0&gt; Waiting for Mnesia tables for 30000 ms, 9 retries left
+2025-01-13 20:49:43.985455+00:00 [info] &lt;0.230.0&gt; Successfully synced tables from a peer
+2025-01-13 20:49:43.994586+00:00 [info] &lt;0.230.0&gt; Feature flags: `feature_flags_v2`: supported, attempt to enable...
+2025-01-13 20:49:44.010309+00:00 [notice] &lt;0.288.0&gt; Feature flags: attempt to enable `classic_mirrored_queue_version`...
+2025-01-13 20:49:44.026129+00:00 [notice] &lt;0.288.0&gt; Feature flags: `classic_mirrored_queue_version` enabled
+2025-01-13 20:49:44.026527+00:00 [notice] &lt;0.288.0&gt; Feature flags: attempt to enable `classic_queue_type_delivery_support`...
+2025-01-13 20:49:44.034258+00:00 [notice] &lt;0.288.0&gt; Feature flags: attempt to enable `stream_queue`...
+2025-01-13 20:49:44.051141+00:00 [notice] &lt;0.288.0&gt; Feature flags: `stream_queue` enabled
+2025-01-13 20:49:44.059791+00:00 [notice] &lt;0.288.0&gt; Feature flags: `classic_queue_type_delivery_support` enabled
+2025-01-13 20:49:44.060416+00:00 [notice] &lt;0.288.0&gt; Feature flags: attempt to enable `direct_exchange_routing_v2`...
+2025-01-13 20:49:44.068290+00:00 [info] &lt;0.507.0&gt; Waiting for Mnesia tables for 30000 ms, 9 retries left
+2025-01-13 20:49:44.068389+00:00 [info] &lt;0.507.0&gt; Successfully synced tables from a peer
+2025-01-13 20:49:44.082551+00:00 [notice] &lt;0.288.0&gt; Feature flags: `direct_exchange_routing_v2` enabled
+2025-01-13 20:49:44.083057+00:00 [notice] &lt;0.288.0&gt; Feature flags: attempt to enable `drop_unroutable_metric`...
+2025-01-13 20:49:44.100362+00:00 [notice] &lt;0.288.0&gt; Feature flags: `drop_unroutable_metric` enabled
+2025-01-13 20:49:44.100850+00:00 [notice] &lt;0.288.0&gt; Feature flags: attempt to enable `empty_basic_get_metric`...
+2025-01-13 20:49:44.116540+00:00 [notice] &lt;0.288.0&gt; Feature flags: `empty_basic_get_metric` enabled
+2025-01-13 20:49:44.117166+00:00 [notice] &lt;0.288.0&gt; Feature flags: attempt to enable `listener_records_in_ets`...
+2025-01-13 20:49:44.152577+00:00 [notice] &lt;0.288.0&gt; Feature flags: `listener_records_in_ets` enabled
+2025-01-13 20:49:44.153752+00:00 [notice] &lt;0.288.0&gt; Feature flags: attempt to enable `stream_sac_coordinator_unblock_group`...
+2025-01-13 20:49:44.161860+00:00 [notice] &lt;0.288.0&gt; Feature flags: attempt to enable `stream_single_active_consumer`...
+2025-01-13 20:49:44.179917+00:00 [notice] &lt;0.288.0&gt; Feature flags: `stream_single_active_consumer` enabled
+2025-01-13 20:49:44.187743+00:00 [notice] &lt;0.288.0&gt; Feature flags: `stream_sac_coordinator_unblock_group` enabled
+2025-01-13 20:49:44.188500+00:00 [notice] &lt;0.288.0&gt; Feature flags: attempt to enable `tracking_records_in_ets`...
+2025-01-13 20:49:44.204301+00:00 [notice] &lt;0.288.0&gt; Feature flags: `tracking_records_in_ets` enabled
+2025-01-13 20:49:44.205147+00:00 [info] &lt;0.230.0&gt; Waiting for Mnesia tables for 30000 ms, 9 retries left
+2025-01-13 20:49:44.205262+00:00 [info] &lt;0.230.0&gt; Successfully synced tables from a peer
+2025-01-13 20:49:44.217589+00:00 [info] &lt;0.230.0&gt; Waiting for Mnesia tables for 30000 ms, 9 retries left
+2025-01-13 20:49:44.217682+00:00 [info] &lt;0.230.0&gt; Successfully synced tables from a peer
+2025-01-13 20:49:44.217716+00:00 [info] &lt;0.230.0&gt; Peer discovery backend rabbit_peer_discovery_classic_config does not support registration, skipping registration.
+2025-01-13 20:49:44.217788+00:00 [info] &lt;0.230.0&gt; Will try to unlock with peer discovery backend rabbit_peer_discovery_classic_config
+2025-01-13 20:49:44.217885+00:00 [info] &lt;0.230.0&gt; Running boot step tracking_metadata_store defined by app rabbit
+2025-01-13 20:49:44.217999+00:00 [info] &lt;0.640.0&gt; Setting up a table for connection tracking on this node: tracked_connection
+2025-01-13 20:49:44.218113+00:00 [info] &lt;0.640.0&gt; Setting up a table for per-vhost connection counting on this node: tracked_connection_per_vhost
+2025-01-13 20:49:44.218206+00:00 [info] &lt;0.640.0&gt; Setting up a table for per-user connection counting on this node: tracked_connection_per_user
+2025-01-13 20:49:44.218273+00:00 [info] &lt;0.640.0&gt; Setting up a table for channel tracking on this node: tracked_channel
+2025-01-13 20:49:44.218415+00:00 [info] &lt;0.640.0&gt; Setting up a table for channel tracking on this node: tracked_channel_per_user
+2025-01-13 20:49:44.218524+00:00 [info] &lt;0.230.0&gt; Running boot step networking_metadata_store defined by app rabbit
+2025-01-13 20:49:44.218603+00:00 [info] &lt;0.230.0&gt; Running boot step database_sync defined by app rabbit
+2025-01-13 20:49:44.218688+00:00 [info] &lt;0.230.0&gt; Running boot step feature_flags defined by app rabbit
+2025-01-13 20:49:44.218867+00:00 [info] &lt;0.230.0&gt; Running boot step codec_correctness_check defined by app rabbit
+2025-01-13 20:49:44.218905+00:00 [info] &lt;0.230.0&gt; Running boot step external_infrastructure defined by app rabbit
+2025-01-13 20:49:44.218972+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_event defined by app rabbit
+2025-01-13 20:49:44.219139+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_registry defined by app rabbit
+2025-01-13 20:49:44.219312+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_auth_mechanism_amqplain defined by app rabbit
+2025-01-13 20:49:44.219402+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_auth_mechanism_cr_demo defined by app rabbit
+2025-01-13 20:49:44.219524+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_auth_mechanism_plain defined by app rabbit
+2025-01-13 20:49:44.219610+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_exchange_type_direct defined by app rabbit
+2025-01-13 20:49:44.219699+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_exchange_type_fanout defined by app rabbit
+2025-01-13 20:49:44.219784+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_exchange_type_headers defined by app rabbit
+2025-01-13 20:49:44.219895+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_exchange_type_topic defined by app rabbit
+2025-01-13 20:49:44.220003+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_mirror_queue_mode_all defined by app rabbit
+2025-01-13 20:49:44.220056+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_mirror_queue_mode_exactly defined by app rabbit
+2025-01-13 20:49:44.220115+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_mirror_queue_mode_nodes defined by app rabbit
+2025-01-13 20:49:44.220215+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_priority_queue defined by app rabbit
+2025-01-13 20:49:44.220251+00:00 [info] &lt;0.230.0&gt; Priority queues enabled, real BQ is rabbit_variable_queue
+2025-01-13 20:49:44.220355+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_queue_location_client_local defined by app rabbit
+2025-01-13 20:49:44.220439+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_queue_location_min_masters defined by app rabbit
+2025-01-13 20:49:44.220526+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_queue_location_random defined by app rabbit
+2025-01-13 20:49:44.220583+00:00 [info] &lt;0.230.0&gt; Running boot step kernel_ready defined by app rabbit
+2025-01-13 20:49:44.220620+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_sysmon_minder defined by app rabbit
+2025-01-13 20:49:44.220877+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_epmd_monitor defined by app rabbit
+2025-01-13 20:49:44.221668+00:00 [info] &lt;0.649.0&gt; epmd monitor knows us, inter-node communication (distribution) port: 25672
+2025-01-13 20:49:44.221761+00:00 [info] &lt;0.230.0&gt; Running boot step guid_generator defined by app rabbit
+2025-01-13 20:49:44.225579+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_node_monitor defined by app rabbit
+2025-01-13 20:49:44.225709+00:00 [info] &lt;0.653.0&gt; Starting rabbit_node_monitor (in ignore mode)
+2025-01-13 20:49:44.225896+00:00 [info] &lt;0.230.0&gt; Running boot step delegate_sup defined by app rabbit
+2025-01-13 20:49:44.226373+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_memory_monitor defined by app rabbit
+2025-01-13 20:49:44.226608+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_fifo_dlx_sup defined by app rabbit
+2025-01-13 20:49:44.226709+00:00 [info] &lt;0.230.0&gt; Running boot step core_initialized defined by app rabbit
+2025-01-13 20:49:44.226736+00:00 [info] &lt;0.230.0&gt; Running boot step upgrade_queues defined by app rabbit
+2025-01-13 20:49:44.230972+00:00 [info] &lt;0.230.0&gt; message_store upgrades: 1 to apply
+2025-01-13 20:49:44.231061+00:00 [info] &lt;0.230.0&gt; message_store upgrades: Applying rabbit_variable_queue:move_messages_to_vhost_store
+2025-01-13 20:49:44.231149+00:00 [info] &lt;0.230.0&gt; message_store upgrades: No durable queues found. Skipping message store migration
+2025-01-13 20:49:44.231168+00:00 [info] &lt;0.230.0&gt; message_store upgrades: Removing the old message store data
+2025-01-13 20:49:44.231958+00:00 [info] &lt;0.230.0&gt; message_store upgrades: All upgrades applied successfully
+2025-01-13 20:49:44.239247+00:00 [info] &lt;0.230.0&gt; Running boot step channel_tracking defined by app rabbit
+2025-01-13 20:49:44.239277+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_channel_tracking_handler defined by app rabbit
+2025-01-13 20:49:44.239352+00:00 [info] &lt;0.230.0&gt; Running boot step connection_tracking defined by app rabbit
+2025-01-13 20:49:44.239392+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_connection_tracking_handler defined by app rabbit
+2025-01-13 20:49:44.239535+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_definitions_hashing defined by app rabbit
+2025-01-13 20:49:44.239672+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_exchange_parameters defined by app rabbit
+2025-01-13 20:49:44.239826+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_mirror_queue_misc defined by app rabbit
+2025-01-13 20:49:44.240292+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_policies defined by app rabbit
+2025-01-13 20:49:44.240548+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_policy defined by app rabbit
+2025-01-13 20:49:44.240592+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_queue_location_validator defined by app rabbit
+2025-01-13 20:49:44.240641+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_quorum_memory_manager defined by app rabbit
+2025-01-13 20:49:44.240712+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_stream_coordinator defined by app rabbit
+2025-01-13 20:49:44.240903+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_vhost_limit defined by app rabbit
+2025-01-13 20:49:44.240990+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_mgmt_reset_handler defined by app rabbitmq_management
+2025-01-13 20:49:44.241111+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_mgmt_db_handler defined by app rabbitmq_management_agent
+2025-01-13 20:49:44.241140+00:00 [info] &lt;0.230.0&gt; Management plugin: using rates mode 'basic'
+2025-01-13 20:49:44.241703+00:00 [info] &lt;0.230.0&gt; Running boot step recovery defined by app rabbit
+2025-01-13 20:49:44.242504+00:00 [info] &lt;0.230.0&gt; Running boot step empty_db_check defined by app rabbit
+2025-01-13 20:49:44.242537+00:00 [info] &lt;0.230.0&gt; Will seed default virtual host and user...
+2025-01-13 20:49:44.242627+00:00 [info] &lt;0.230.0&gt; Adding vhost '/' (description: 'Default virtual host', tags: [])
+2025-01-13 20:49:44.270874+00:00 [info] &lt;0.695.0&gt; Making sure data directory '/var/lib/rabbitmq/mnesia/rabbit@7d2279b8518a/msg_stores/vhosts/628WB79CIFDYO9LJI6DKMI09L' for vhost '/' exists
+2025-01-13 20:49:44.272502+00:00 [info] &lt;0.695.0&gt; Setting segment_entry_count for vhost '/' with 0 queues to '2048'
+2025-01-13 20:49:44.277007+00:00 [info] &lt;0.695.0&gt; Starting message stores for vhost '/'
+2025-01-13 20:49:44.277183+00:00 [info] &lt;0.700.0&gt; Message store &quot;628WB79CIFDYO9LJI6DKMI09L/msg_store_transient&quot;: using rabbit_msg_store_ets_index to provide index
+2025-01-13 20:49:44.278502+00:00 [info] &lt;0.695.0&gt; Started message store of type transient for vhost '/'
+2025-01-13 20:49:44.278617+00:00 [info] &lt;0.704.0&gt; Message store &quot;628WB79CIFDYO9LJI6DKMI09L/msg_store_persistent&quot;: using rabbit_msg_store_ets_index to provide index
+2025-01-13 20:49:44.279360+00:00 [warning] &lt;0.704.0&gt; Message store &quot;628WB79CIFDYO9LJI6DKMI09L/msg_store_persistent&quot;: rebuilding indices from scratch
+2025-01-13 20:49:44.280252+00:00 [info] &lt;0.695.0&gt; Started message store of type persistent for vhost '/'
+2025-01-13 20:49:44.280346+00:00 [info] &lt;0.695.0&gt; Recovering 0 queues of type rabbit_classic_queue took 7ms
+2025-01-13 20:49:44.280385+00:00 [info] &lt;0.695.0&gt; Recovering 0 queues of type rabbit_quorum_queue took 0ms
+2025-01-13 20:49:44.280458+00:00 [info] &lt;0.695.0&gt; Recovering 0 queues of type rabbit_stream_queue took 0ms
+2025-01-13 20:49:44.285321+00:00 [info] &lt;0.230.0&gt; Created user 'guest'
+2025-01-13 20:49:44.289033+00:00 [info] &lt;0.230.0&gt; Successfully set user tags for user 'guest' to [administrator]
+2025-01-13 20:49:44.292667+00:00 [info] &lt;0.230.0&gt; Successfully set permissions for 'guest' in virtual host '/' to '.*', '.*', '.*'
+2025-01-13 20:49:44.292712+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_observer_cli defined by app rabbit
+2025-01-13 20:49:44.292806+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_looking_glass defined by app rabbit
+2025-01-13 20:49:44.292839+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_core_metrics_gc defined by app rabbit
+2025-01-13 20:49:44.292924+00:00 [info] &lt;0.230.0&gt; Running boot step background_gc defined by app rabbit
+2025-01-13 20:49:44.293139+00:00 [info] &lt;0.230.0&gt; Running boot step routing_ready defined by app rabbit
+2025-01-13 20:49:44.293190+00:00 [info] &lt;0.230.0&gt; Running boot step pre_flight defined by app rabbit
+2025-01-13 20:49:44.293239+00:00 [info] &lt;0.230.0&gt; Running boot step notify_cluster defined by app rabbit
+2025-01-13 20:49:44.293287+00:00 [info] &lt;0.230.0&gt; Running boot step networking defined by app rabbit
+2025-01-13 20:49:44.293372+00:00 [info] &lt;0.230.0&gt; Running boot step definition_import_worker_pool defined by app rabbit
+2025-01-13 20:49:44.293517+00:00 [info] &lt;0.287.0&gt; Starting worker pool 'definition_import_pool' with 12 processes in it
+2025-01-13 20:49:44.294143+00:00 [info] &lt;0.230.0&gt; Running boot step cluster_name defined by app rabbit
+2025-01-13 20:49:44.294248+00:00 [info] &lt;0.230.0&gt; Initialising internal cluster ID to 'rabbitmq-cluster-id-fHM8lTHoZ_WeyLnmbHGOZw'
+2025-01-13 20:49:44.297955+00:00 [info] &lt;0.230.0&gt; Running boot step direct_client defined by app rabbit
+2025-01-13 20:49:44.298039+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_maintenance_mode_state defined by app rabbit
+2025-01-13 20:49:44.298077+00:00 [info] &lt;0.230.0&gt; Creating table rabbit_node_maintenance_states for maintenance mode status
+2025-01-13 20:49:44.303642+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_management_load_definitions defined by app rabbitmq_management
+2025-01-13 20:49:44.303755+00:00 [info] &lt;0.750.0&gt; Resetting node maintenance status
+2025-01-13 20:49:44.313256+00:00 [info] &lt;0.809.0&gt; Management plugin: HTTP (non-TLS) listener started on port 15672
+2025-01-13 20:49:44.313360+00:00 [info] &lt;0.837.0&gt; Statistics database started.
+2025-01-13 20:49:44.313439+00:00 [info] &lt;0.836.0&gt; Starting worker pool 'management_worker_pool' with 3 processes in it
+2025-01-13 20:49:44.318769+00:00 [info] &lt;0.851.0&gt; Prometheus metrics: HTTP (non-TLS) listener started on port 15692
+2025-01-13 20:49:44.318859+00:00 [info] &lt;0.750.0&gt; Ready to start client connection listeners
+2025-01-13 20:49:44.320502+00:00 [info] &lt;0.895.0&gt; started TCP listener on [::]:5672
+ completed with 4 plugins.
+2025-01-13 20:49:44.410458+00:00 [info] &lt;0.750.0&gt; Server startup complete; 4 plugins started.
+2025-01-13 20:49:44.410458+00:00 [info] &lt;0.750.0&gt;  * rabbitmq_prometheus
+2025-01-13 20:49:44.410458+00:00 [info] &lt;0.750.0&gt;  * rabbitmq_management
+2025-01-13 20:49:44.410458+00:00 [info] &lt;0.750.0&gt;  * rabbitmq_management_agent
+2025-01-13 20:49:44.410458+00:00 [info] &lt;0.750.0&gt;  * rabbitmq_web_dispatch
+2025-01-13 20:49:44.504204+00:00 [info] &lt;0.9.0&gt; Time to start RabbitMQ: 6283445 us
+2025-01-13 20:49:44.526864+00:00 [info] &lt;0.897.0&gt; Successfully changed password for user 'guest'
+2025-01-13 20:49:44.526913+00:00 [info] &lt;0.897.0&gt; Successfully set user tags for user 'guest' to []
+
+Database Container logs:
+2025-01-13 20:49:23+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.30-1.el8 started.
+2025-01-13 20:49:23+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+2025-01-13 20:49:23+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.30-1.el8 started.
+2025-01-13 20:49:23+00:00 [Note] [Entrypoint]: Initializing database files
+2025-01-13T20:49:23.759856Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2025-01-13T20:49:23.759877Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2025-01-13T20:49:23.759932Z 0 [System] [MY-013169] [Server] /usr/sbin/mysqld (mysqld 8.0.30) initializing of server in progress as process 80
+2025-01-13T20:49:23.765296Z 0 [Warning] [MY-013907] [InnoDB] Deprecated configuration parameters innodb_log_file_size and/or innodb_log_files_in_group have been used to compute innodb_redo_log_capacity=10485760. Please use innodb_redo_log_capacity instead.
+2025-01-13T20:49:23.766637Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2025-01-13T20:49:24.651933Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2025-01-13T20:49:26.852082Z 6 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+2025-01-13T20:49:28.134875Z 0 [Warning] [MY-013865] [InnoDB] Redo log writer is waiting for a new redo log file. Consider increasing innodb_redo_log_capacity.
+2025-01-13T20:49:28.807173Z 0 [Warning] [MY-013865] [InnoDB] Redo log writer is waiting for a new redo log file. Consider increasing innodb_redo_log_capacity.
+2025-01-13 20:49:31+00:00 [Note] [Entrypoint]: Database files initialized
+2025-01-13 20:49:31+00:00 [Note] [Entrypoint]: Starting temporary server
+2025-01-13T20:49:32.054279Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2025-01-13T20:49:32.054305Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2025-01-13T20:49:32.056489Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.30) starting as process 131
+2025-01-13T20:49:32.066514Z 0 [Warning] [MY-013907] [InnoDB] Deprecated configuration parameters innodb_log_file_size and/or innodb_log_files_in_group have been used to compute innodb_redo_log_capacity=10485760. Please use innodb_redo_log_capacity instead.
+2025-01-13T20:49:32.067861Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2025-01-13T20:49:32.174907Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2025-01-13T20:49:32.480033Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2025-01-13T20:49:32.480070Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2025-01-13T20:49:32.483498Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2025-01-13T20:49:32.500153Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Socket: /var/run/mysqld/mysqlx.sock
+2025-01-13T20:49:32.500263Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.30'  socket: '/var/run/mysqld/mysqld.sock'  port: 0  MySQL Community Server - GPL.
+2025-01-13 20:49:32+00:00 [Note] [Entrypoint]: Temporary server started.
+'/var/lib/mysql/mysql.sock' -&gt; '/var/run/mysqld/mysqld.sock'
+Warning: Unable to load '/usr/share/zoneinfo/iso3166.tab' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/leapseconds' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/tzdata.zi' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/zone.tab' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/zone1970.tab' as time zone. Skipping it.
+2025-01-13 20:49:34+00:00 [Note] [Entrypoint]: Creating database friends
+2025-01-13 20:49:35+00:00 [Note] [Entrypoint]: Creating user user
+2025-01-13 20:49:35+00:00 [Note] [Entrypoint]: Giving user user access to schema friends
+
+2025-01-13 20:49:35+00:00 [Note] [Entrypoint]: Stopping temporary server
+2025-01-13T20:49:35.042847Z 13 [System] [MY-013172] [Server] Received SHUTDOWN from user root. Shutting down mysqld (Version: 8.0.30).
+2025-01-13T20:49:36.083391Z 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.30)  MySQL Community Server - GPL.
+2025-01-13 20:49:37+00:00 [Note] [Entrypoint]: Temporary server stopped
+
+2025-01-13 20:49:37+00:00 [Note] [Entrypoint]: MySQL init process done. Ready for start up.
+
+2025-01-13T20:49:37.227648Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2025-01-13T20:49:37.227674Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2025-01-13T20:49:37.228954Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.30) starting as process 1
+2025-01-13T20:49:37.233381Z 0 [Warning] [MY-013907] [InnoDB] Deprecated configuration parameters innodb_log_file_size and/or innodb_log_files_in_group have been used to compute innodb_redo_log_capacity=10485760. Please use innodb_redo_log_capacity instead.
+2025-01-13T20:49:37.234393Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2025-01-13T20:49:37.346159Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2025-01-13T20:49:37.539986Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2025-01-13T20:49:37.540028Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2025-01-13T20:49:37.543586Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2025-01-13T20:49:37.562297Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+2025-01-13T20:49:37.562359Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.30'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+
+RabbitMQ Container logs:
+2025-01-13 20:49:40.880838+00:00 [notice] &lt;0.44.0&gt; Application syslog exited with reason: stopped
+2025-01-13 20:49:40.886170+00:00 [notice] &lt;0.230.0&gt; Logging: switching to configured handler(s); following messages may not be visible in this log output
+2025-01-13 20:49:40.903034+00:00 [notice] &lt;0.230.0&gt; Logging: configured log handlers are now ACTIVE
+2025-01-13 20:49:41.090937+00:00 [info] &lt;0.230.0&gt; ra: starting system quorum_queues
+2025-01-13 20:49:41.091014+00:00 [info] &lt;0.230.0&gt; starting Ra system: quorum_queues in directory: /var/lib/rabbitmq/mnesia/rabbit@7d2279b8518a/quorum/rabbit@7d2279b8518a
+2025-01-13 20:49:41.147244+00:00 [info] &lt;0.266.0&gt; ra system 'quorum_queues' running pre init for 0 registered servers
+2025-01-13 20:49:41.157376+00:00 [info] &lt;0.267.0&gt; ra: meta data store initialised for system quorum_queues. 0 record(s) recovered
+2025-01-13 20:49:41.170483+00:00 [notice] &lt;0.272.0&gt; WAL: ra_log_wal init, open tbls: ra_log_open_mem_tables, closed tbls: ra_log_closed_mem_tables
+2025-01-13 20:49:41.180275+00:00 [info] &lt;0.230.0&gt; ra: starting system coordination
+2025-01-13 20:49:41.180310+00:00 [info] &lt;0.230.0&gt; starting Ra system: coordination in directory: /var/lib/rabbitmq/mnesia/rabbit@7d2279b8518a/coordination/rabbit@7d2279b8518a
+2025-01-13 20:49:41.181733+00:00 [info] &lt;0.279.0&gt; ra system 'coordination' running pre init for 0 registered servers
+2025-01-13 20:49:41.182639+00:00 [info] &lt;0.280.0&gt; ra: meta data store initialised for system coordination. 0 record(s) recovered
+2025-01-13 20:49:41.182802+00:00 [notice] &lt;0.285.0&gt; WAL: ra_coordination_log_wal init, open tbls: ra_coordination_log_open_mem_tables, closed tbls: ra_coordination_log_closed_mem_tables
+2025-01-13 20:49:41.187639+00:00 [info] &lt;0.230.0&gt; 
+2025-01-13 20:49:41.187639+00:00 [info] &lt;0.230.0&gt;  Starting RabbitMQ 3.11.28 on Erlang 25.3.2.9 [jit]
+2025-01-13 20:49:41.187639+00:00 [info] &lt;0.230.0&gt;  Copyright (c) 2007-2023 Broadcom Inc and/or its subsidiaries
+2025-01-13 20:49:41.187639+00:00 [info] &lt;0.230.0&gt;  Licensed under the MPL 2.0. Website: https://rabbitmq.com
+
+  ##  ##      RabbitMQ 3.11.28
+  ##  ##
+  ##########  Copyright (c) 2007-2023 Broadcom Inc and/or its subsidiaries
+  ######  ##
+  ##########  Licensed under the MPL 2.0. Website: https://rabbitmq.com
+
+  Erlang:      25.3.2.9 [jit]
+  TLS Library: OpenSSL - OpenSSL 3.1.5 30 Jan 2024
+  Release series support status: supported
+
+  Doc guides:  https://rabbitmq.com/documentation.html
+  Support:     https://rabbitmq.com/contact.html
+  Tutorials:   https://rabbitmq.com/getstarted.html
+  Monitoring:  https://rabbitmq.com/monitoring.html
+
+  Logs: /var/log/rabbitmq/rabbit@7d2279b8518a_upgrade.log
+        &lt;stdout&gt;
+
+  Config file(s): /etc/rabbitmq/conf.d/10-defaults.conf
+
+  Starting broker...2025-01-13 20:49:41.188898+00:00 [info] &lt;0.230.0&gt; 
+2025-01-13 20:49:41.188898+00:00 [info] &lt;0.230.0&gt;  node           : rabbit@7d2279b8518a
+2025-01-13 20:49:41.188898+00:00 [info] &lt;0.230.0&gt;  home dir       : /var/lib/rabbitmq
+2025-01-13 20:49:41.188898+00:00 [info] &lt;0.230.0&gt;  config file(s) : /etc/rabbitmq/conf.d/10-defaults.conf
+2025-01-13 20:49:41.188898+00:00 [info] &lt;0.230.0&gt;  cookie hash    : UZ+xIjRUXHcAZhJUUvvkNg==
+2025-01-13 20:49:41.188898+00:00 [info] &lt;0.230.0&gt;  log(s)         : /var/log/rabbitmq/rabbit@7d2279b8518a_upgrade.log
+2025-01-13 20:49:41.188898+00:00 [info] &lt;0.230.0&gt;                 : &lt;stdout&gt;
+2025-01-13 20:49:41.188898+00:00 [info] &lt;0.230.0&gt;  database dir   : /var/lib/rabbitmq/mnesia/rabbit@7d2279b8518a
+2025-01-13 20:49:43.849098+00:00 [info] &lt;0.230.0&gt; Running boot step pre_boot defined by app rabbit
+2025-01-13 20:49:43.849170+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_global_counters defined by app rabbit
+2025-01-13 20:49:43.849472+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_osiris_metrics defined by app rabbit
+2025-01-13 20:49:43.849565+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_core_metrics defined by app rabbit
+2025-01-13 20:49:43.850687+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_alarm defined by app rabbit
+2025-01-13 20:49:43.854594+00:00 [info] &lt;0.300.0&gt; Memory high watermark set to 6217 MiB (6519278796 bytes) of 15543 MiB (16298196992 bytes) total
+2025-01-13 20:49:43.857252+00:00 [info] &lt;0.302.0&gt; Enabling free disk space monitoring (disk free space: 1002902376448, total memory: 16298196992)
+2025-01-13 20:49:43.857287+00:00 [info] &lt;0.302.0&gt; Disk free limit set to 50MB
+2025-01-13 20:49:43.858866+00:00 [info] &lt;0.230.0&gt; Running boot step code_server_cache defined by app rabbit
+2025-01-13 20:49:43.858916+00:00 [info] &lt;0.230.0&gt; Running boot step file_handle_cache defined by app rabbit
+2025-01-13 20:49:43.859118+00:00 [info] &lt;0.305.0&gt; Limiting to approx 1048479 file handles (943629 sockets)
+2025-01-13 20:49:43.859267+00:00 [info] &lt;0.306.0&gt; FHC read buffering: OFF
+2025-01-13 20:49:43.859302+00:00 [info] &lt;0.306.0&gt; FHC write buffering: ON
+2025-01-13 20:49:43.859748+00:00 [info] &lt;0.230.0&gt; Running boot step worker_pool defined by app rabbit
+2025-01-13 20:49:43.859854+00:00 [info] &lt;0.287.0&gt; Will use 12 processes for default worker pool
+2025-01-13 20:49:43.859900+00:00 [info] &lt;0.287.0&gt; Starting worker pool 'worker_pool' with 12 processes in it
+2025-01-13 20:49:43.860541+00:00 [info] &lt;0.230.0&gt; Running boot step database defined by app rabbit
+2025-01-13 20:49:43.860875+00:00 [info] &lt;0.230.0&gt; Node database directory at /var/lib/rabbitmq/mnesia/rabbit@7d2279b8518a is empty. Assuming we need to join an existing cluster or initialise from scratch...
+2025-01-13 20:49:43.860933+00:00 [info] &lt;0.230.0&gt; Configured peer discovery backend: rabbit_peer_discovery_classic_config
+2025-01-13 20:49:43.860972+00:00 [info] &lt;0.230.0&gt; Will try to lock with peer discovery backend rabbit_peer_discovery_classic_config
+2025-01-13 20:49:43.861128+00:00 [info] &lt;0.230.0&gt; All discovered existing cluster peers:
+2025-01-13 20:49:43.861155+00:00 [info] &lt;0.230.0&gt; Discovered no peer nodes to cluster with. Some discovery backends can filter nodes out based on a readiness criteria. Enabling debug logging might help troubleshoot.
+2025-01-13 20:49:43.863143+00:00 [notice] &lt;0.44.0&gt; Application mnesia exited with reason: stopped
+2025-01-13 20:49:43.985328+00:00 [info] &lt;0.230.0&gt; Waiting for Mnesia tables for 30000 ms, 9 retries left
+2025-01-13 20:49:43.985455+00:00 [info] &lt;0.230.0&gt; Successfully synced tables from a peer
+2025-01-13 20:49:43.994586+00:00 [info] &lt;0.230.0&gt; Feature flags: `feature_flags_v2`: supported, attempt to enable...
+2025-01-13 20:49:44.010309+00:00 [notice] &lt;0.288.0&gt; Feature flags: attempt to enable `classic_mirrored_queue_version`...
+2025-01-13 20:49:44.026129+00:00 [notice] &lt;0.288.0&gt; Feature flags: `classic_mirrored_queue_version` enabled
+2025-01-13 20:49:44.026527+00:00 [notice] &lt;0.288.0&gt; Feature flags: attempt to enable `classic_queue_type_delivery_support`...
+2025-01-13 20:49:44.034258+00:00 [notice] &lt;0.288.0&gt; Feature flags: attempt to enable `stream_queue`...
+2025-01-13 20:49:44.051141+00:00 [notice] &lt;0.288.0&gt; Feature flags: `stream_queue` enabled
+2025-01-13 20:49:44.059791+00:00 [notice] &lt;0.288.0&gt; Feature flags: `classic_queue_type_delivery_support` enabled
+2025-01-13 20:49:44.060416+00:00 [notice] &lt;0.288.0&gt; Feature flags: attempt to enable `direct_exchange_routing_v2`...
+2025-01-13 20:49:44.068290+00:00 [info] &lt;0.507.0&gt; Waiting for Mnesia tables for 30000 ms, 9 retries left
+2025-01-13 20:49:44.068389+00:00 [info] &lt;0.507.0&gt; Successfully synced tables from a peer
+2025-01-13 20:49:44.082551+00:00 [notice] &lt;0.288.0&gt; Feature flags: `direct_exchange_routing_v2` enabled
+2025-01-13 20:49:44.083057+00:00 [notice] &lt;0.288.0&gt; Feature flags: attempt to enable `drop_unroutable_metric`...
+2025-01-13 20:49:44.100362+00:00 [notice] &lt;0.288.0&gt; Feature flags: `drop_unroutable_metric` enabled
+2025-01-13 20:49:44.100850+00:00 [notice] &lt;0.288.0&gt; Feature flags: attempt to enable `empty_basic_get_metric`...
+2025-01-13 20:49:44.116540+00:00 [notice] &lt;0.288.0&gt; Feature flags: `empty_basic_get_metric` enabled
+2025-01-13 20:49:44.117166+00:00 [notice] &lt;0.288.0&gt; Feature flags: attempt to enable `listener_records_in_ets`...
+2025-01-13 20:49:44.152577+00:00 [notice] &lt;0.288.0&gt; Feature flags: `listener_records_in_ets` enabled
+2025-01-13 20:49:44.153752+00:00 [notice] &lt;0.288.0&gt; Feature flags: attempt to enable `stream_sac_coordinator_unblock_group`...
+2025-01-13 20:49:44.161860+00:00 [notice] &lt;0.288.0&gt; Feature flags: attempt to enable `stream_single_active_consumer`...
+2025-01-13 20:49:44.179917+00:00 [notice] &lt;0.288.0&gt; Feature flags: `stream_single_active_consumer` enabled
+2025-01-13 20:49:44.187743+00:00 [notice] &lt;0.288.0&gt; Feature flags: `stream_sac_coordinator_unblock_group` enabled
+2025-01-13 20:49:44.188500+00:00 [notice] &lt;0.288.0&gt; Feature flags: attempt to enable `tracking_records_in_ets`...
+2025-01-13 20:49:44.204301+00:00 [notice] &lt;0.288.0&gt; Feature flags: `tracking_records_in_ets` enabled
+2025-01-13 20:49:44.205147+00:00 [info] &lt;0.230.0&gt; Waiting for Mnesia tables for 30000 ms, 9 retries left
+2025-01-13 20:49:44.205262+00:00 [info] &lt;0.230.0&gt; Successfully synced tables from a peer
+2025-01-13 20:49:44.217589+00:00 [info] &lt;0.230.0&gt; Waiting for Mnesia tables for 30000 ms, 9 retries left
+2025-01-13 20:49:44.217682+00:00 [info] &lt;0.230.0&gt; Successfully synced tables from a peer
+2025-01-13 20:49:44.217716+00:00 [info] &lt;0.230.0&gt; Peer discovery backend rabbit_peer_discovery_classic_config does not support registration, skipping registration.
+2025-01-13 20:49:44.217788+00:00 [info] &lt;0.230.0&gt; Will try to unlock with peer discovery backend rabbit_peer_discovery_classic_config
+2025-01-13 20:49:44.217885+00:00 [info] &lt;0.230.0&gt; Running boot step tracking_metadata_store defined by app rabbit
+2025-01-13 20:49:44.217999+00:00 [info] &lt;0.640.0&gt; Setting up a table for connection tracking on this node: tracked_connection
+2025-01-13 20:49:44.218113+00:00 [info] &lt;0.640.0&gt; Setting up a table for per-vhost connection counting on this node: tracked_connection_per_vhost
+2025-01-13 20:49:44.218206+00:00 [info] &lt;0.640.0&gt; Setting up a table for per-user connection counting on this node: tracked_connection_per_user
+2025-01-13 20:49:44.218273+00:00 [info] &lt;0.640.0&gt; Setting up a table for channel tracking on this node: tracked_channel
+2025-01-13 20:49:44.218415+00:00 [info] &lt;0.640.0&gt; Setting up a table for channel tracking on this node: tracked_channel_per_user
+2025-01-13 20:49:44.218524+00:00 [info] &lt;0.230.0&gt; Running boot step networking_metadata_store defined by app rabbit
+2025-01-13 20:49:44.218603+00:00 [info] &lt;0.230.0&gt; Running boot step database_sync defined by app rabbit
+2025-01-13 20:49:44.218688+00:00 [info] &lt;0.230.0&gt; Running boot step feature_flags defined by app rabbit
+2025-01-13 20:49:44.218867+00:00 [info] &lt;0.230.0&gt; Running boot step codec_correctness_check defined by app rabbit
+2025-01-13 20:49:44.218905+00:00 [info] &lt;0.230.0&gt; Running boot step external_infrastructure defined by app rabbit
+2025-01-13 20:49:44.218972+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_event defined by app rabbit
+2025-01-13 20:49:44.219139+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_registry defined by app rabbit
+2025-01-13 20:49:44.219312+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_auth_mechanism_amqplain defined by app rabbit
+2025-01-13 20:49:44.219402+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_auth_mechanism_cr_demo defined by app rabbit
+2025-01-13 20:49:44.219524+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_auth_mechanism_plain defined by app rabbit
+2025-01-13 20:49:44.219610+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_exchange_type_direct defined by app rabbit
+2025-01-13 20:49:44.219699+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_exchange_type_fanout defined by app rabbit
+2025-01-13 20:49:44.219784+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_exchange_type_headers defined by app rabbit
+2025-01-13 20:49:44.219895+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_exchange_type_topic defined by app rabbit
+2025-01-13 20:49:44.220003+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_mirror_queue_mode_all defined by app rabbit
+2025-01-13 20:49:44.220056+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_mirror_queue_mode_exactly defined by app rabbit
+2025-01-13 20:49:44.220115+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_mirror_queue_mode_nodes defined by app rabbit
+2025-01-13 20:49:44.220215+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_priority_queue defined by app rabbit
+2025-01-13 20:49:44.220251+00:00 [info] &lt;0.230.0&gt; Priority queues enabled, real BQ is rabbit_variable_queue
+2025-01-13 20:49:44.220355+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_queue_location_client_local defined by app rabbit
+2025-01-13 20:49:44.220439+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_queue_location_min_masters defined by app rabbit
+2025-01-13 20:49:44.220526+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_queue_location_random defined by app rabbit
+2025-01-13 20:49:44.220583+00:00 [info] &lt;0.230.0&gt; Running boot step kernel_ready defined by app rabbit
+2025-01-13 20:49:44.220620+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_sysmon_minder defined by app rabbit
+2025-01-13 20:49:44.220877+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_epmd_monitor defined by app rabbit
+2025-01-13 20:49:44.221668+00:00 [info] &lt;0.649.0&gt; epmd monitor knows us, inter-node communication (distribution) port: 25672
+2025-01-13 20:49:44.221761+00:00 [info] &lt;0.230.0&gt; Running boot step guid_generator defined by app rabbit
+2025-01-13 20:49:44.225579+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_node_monitor defined by app rabbit
+2025-01-13 20:49:44.225709+00:00 [info] &lt;0.653.0&gt; Starting rabbit_node_monitor (in ignore mode)
+2025-01-13 20:49:44.225896+00:00 [info] &lt;0.230.0&gt; Running boot step delegate_sup defined by app rabbit
+2025-01-13 20:49:44.226373+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_memory_monitor defined by app rabbit
+2025-01-13 20:49:44.226608+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_fifo_dlx_sup defined by app rabbit
+2025-01-13 20:49:44.226709+00:00 [info] &lt;0.230.0&gt; Running boot step core_initialized defined by app rabbit
+2025-01-13 20:49:44.226736+00:00 [info] &lt;0.230.0&gt; Running boot step upgrade_queues defined by app rabbit
+2025-01-13 20:49:44.230972+00:00 [info] &lt;0.230.0&gt; message_store upgrades: 1 to apply
+2025-01-13 20:49:44.231061+00:00 [info] &lt;0.230.0&gt; message_store upgrades: Applying rabbit_variable_queue:move_messages_to_vhost_store
+2025-01-13 20:49:44.231149+00:00 [info] &lt;0.230.0&gt; message_store upgrades: No durable queues found. Skipping message store migration
+2025-01-13 20:49:44.231168+00:00 [info] &lt;0.230.0&gt; message_store upgrades: Removing the old message store data
+2025-01-13 20:49:44.231958+00:00 [info] &lt;0.230.0&gt; message_store upgrades: All upgrades applied successfully
+2025-01-13 20:49:44.239247+00:00 [info] &lt;0.230.0&gt; Running boot step channel_tracking defined by app rabbit
+2025-01-13 20:49:44.239277+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_channel_tracking_handler defined by app rabbit
+2025-01-13 20:49:44.239352+00:00 [info] &lt;0.230.0&gt; Running boot step connection_tracking defined by app rabbit
+2025-01-13 20:49:44.239392+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_connection_tracking_handler defined by app rabbit
+2025-01-13 20:49:44.239535+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_definitions_hashing defined by app rabbit
+2025-01-13 20:49:44.239672+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_exchange_parameters defined by app rabbit
+2025-01-13 20:49:44.239826+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_mirror_queue_misc defined by app rabbit
+2025-01-13 20:49:44.240292+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_policies defined by app rabbit
+2025-01-13 20:49:44.240548+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_policy defined by app rabbit
+2025-01-13 20:49:44.240592+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_queue_location_validator defined by app rabbit
+2025-01-13 20:49:44.240641+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_quorum_memory_manager defined by app rabbit
+2025-01-13 20:49:44.240712+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_stream_coordinator defined by app rabbit
+2025-01-13 20:49:44.240903+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_vhost_limit defined by app rabbit
+2025-01-13 20:49:44.240990+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_mgmt_reset_handler defined by app rabbitmq_management
+2025-01-13 20:49:44.241111+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_mgmt_db_handler defined by app rabbitmq_management_agent
+2025-01-13 20:49:44.241140+00:00 [info] &lt;0.230.0&gt; Management plugin: using rates mode 'basic'
+2025-01-13 20:49:44.241703+00:00 [info] &lt;0.230.0&gt; Running boot step recovery defined by app rabbit
+2025-01-13 20:49:44.242504+00:00 [info] &lt;0.230.0&gt; Running boot step empty_db_check defined by app rabbit
+2025-01-13 20:49:44.242537+00:00 [info] &lt;0.230.0&gt; Will seed default virtual host and user...
+2025-01-13 20:49:44.242627+00:00 [info] &lt;0.230.0&gt; Adding vhost '/' (description: 'Default virtual host', tags: [])
+2025-01-13 20:49:44.270874+00:00 [info] &lt;0.695.0&gt; Making sure data directory '/var/lib/rabbitmq/mnesia/rabbit@7d2279b8518a/msg_stores/vhosts/628WB79CIFDYO9LJI6DKMI09L' for vhost '/' exists
+2025-01-13 20:49:44.272502+00:00 [info] &lt;0.695.0&gt; Setting segment_entry_count for vhost '/' with 0 queues to '2048'
+2025-01-13 20:49:44.277007+00:00 [info] &lt;0.695.0&gt; Starting message stores for vhost '/'
+2025-01-13 20:49:44.277183+00:00 [info] &lt;0.700.0&gt; Message store &quot;628WB79CIFDYO9LJI6DKMI09L/msg_store_transient&quot;: using rabbit_msg_store_ets_index to provide index
+2025-01-13 20:49:44.278502+00:00 [info] &lt;0.695.0&gt; Started message store of type transient for vhost '/'
+2025-01-13 20:49:44.278617+00:00 [info] &lt;0.704.0&gt; Message store &quot;628WB79CIFDYO9LJI6DKMI09L/msg_store_persistent&quot;: using rabbit_msg_store_ets_index to provide index
+2025-01-13 20:49:44.279360+00:00 [warning] &lt;0.704.0&gt; Message store &quot;628WB79CIFDYO9LJI6DKMI09L/msg_store_persistent&quot;: rebuilding indices from scratch
+2025-01-13 20:49:44.280252+00:00 [info] &lt;0.695.0&gt; Started message store of type persistent for vhost '/'
+2025-01-13 20:49:44.280346+00:00 [info] &lt;0.695.0&gt; Recovering 0 queues of type rabbit_classic_queue took 7ms
+2025-01-13 20:49:44.280385+00:00 [info] &lt;0.695.0&gt; Recovering 0 queues of type rabbit_quorum_queue took 0ms
+2025-01-13 20:49:44.280458+00:00 [info] &lt;0.695.0&gt; Recovering 0 queues of type rabbit_stream_queue took 0ms
+2025-01-13 20:49:44.285321+00:00 [info] &lt;0.230.0&gt; Created user 'guest'
+2025-01-13 20:49:44.289033+00:00 [info] &lt;0.230.0&gt; Successfully set user tags for user 'guest' to [administrator]
+2025-01-13 20:49:44.292667+00:00 [info] &lt;0.230.0&gt; Successfully set permissions for 'guest' in virtual host '/' to '.*', '.*', '.*'
+2025-01-13 20:49:44.292712+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_observer_cli defined by app rabbit
+2025-01-13 20:49:44.292806+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_looking_glass defined by app rabbit
+2025-01-13 20:49:44.292839+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_core_metrics_gc defined by app rabbit
+2025-01-13 20:49:44.292924+00:00 [info] &lt;0.230.0&gt; Running boot step background_gc defined by app rabbit
+2025-01-13 20:49:44.293139+00:00 [info] &lt;0.230.0&gt; Running boot step routing_ready defined by app rabbit
+2025-01-13 20:49:44.293190+00:00 [info] &lt;0.230.0&gt; Running boot step pre_flight defined by app rabbit
+2025-01-13 20:49:44.293239+00:00 [info] &lt;0.230.0&gt; Running boot step notify_cluster defined by app rabbit
+2025-01-13 20:49:44.293287+00:00 [info] &lt;0.230.0&gt; Running boot step networking defined by app rabbit
+2025-01-13 20:49:44.293372+00:00 [info] &lt;0.230.0&gt; Running boot step definition_import_worker_pool defined by app rabbit
+2025-01-13 20:49:44.293517+00:00 [info] &lt;0.287.0&gt; Starting worker pool 'definition_import_pool' with 12 processes in it
+2025-01-13 20:49:44.294143+00:00 [info] &lt;0.230.0&gt; Running boot step cluster_name defined by app rabbit
+2025-01-13 20:49:44.294248+00:00 [info] &lt;0.230.0&gt; Initialising internal cluster ID to 'rabbitmq-cluster-id-fHM8lTHoZ_WeyLnmbHGOZw'
+2025-01-13 20:49:44.297955+00:00 [info] &lt;0.230.0&gt; Running boot step direct_client defined by app rabbit
+2025-01-13 20:49:44.298039+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_maintenance_mode_state defined by app rabbit
+2025-01-13 20:49:44.298077+00:00 [info] &lt;0.230.0&gt; Creating table rabbit_node_maintenance_states for maintenance mode status
+2025-01-13 20:49:44.303642+00:00 [info] &lt;0.230.0&gt; Running boot step rabbit_management_load_definitions defined by app rabbitmq_management
+2025-01-13 20:49:44.303755+00:00 [info] &lt;0.750.0&gt; Resetting node maintenance status
+2025-01-13 20:49:44.313256+00:00 [info] &lt;0.809.0&gt; Management plugin: HTTP (non-TLS) listener started on port 15672
+2025-01-13 20:49:44.313360+00:00 [info] &lt;0.837.0&gt; Statistics database started.
+2025-01-13 20:49:44.313439+00:00 [info] &lt;0.836.0&gt; Starting worker pool 'management_worker_pool' with 3 processes in it
+2025-01-13 20:49:44.318769+00:00 [info] &lt;0.851.0&gt; Prometheus metrics: HTTP (non-TLS) listener started on port 15692
+2025-01-13 20:49:44.318859+00:00 [info] &lt;0.750.0&gt; Ready to start client connection listeners
+2025-01-13 20:49:44.320502+00:00 [info] &lt;0.895.0&gt; started TCP listener on [::]:5672
+ completed with 4 plugins.
+2025-01-13 20:49:44.410458+00:00 [info] &lt;0.750.0&gt; Server startup complete; 4 plugins started.
+2025-01-13 20:49:44.410458+00:00 [info] &lt;0.750.0&gt;  * rabbitmq_prometheus
+2025-01-13 20:49:44.410458+00:00 [info] &lt;0.750.0&gt;  * rabbitmq_management
+2025-01-13 20:49:44.410458+00:00 [info] &lt;0.750.0&gt;  * rabbitmq_management_agent
+2025-01-13 20:49:44.410458+00:00 [info] &lt;0.750.0&gt;  * rabbitmq_web_dispatch
+2025-01-13 20:49:44.504204+00:00 [info] &lt;0.9.0&gt; Time to start RabbitMQ: 6283445 us
+2025-01-13 20:49:44.526864+00:00 [info] &lt;0.897.0&gt; Successfully changed password for user 'guest'
+2025-01-13 20:49:44.526913+00:00 [info] &lt;0.897.0&gt; Successfully set user tags for user 'guest' to []
+
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 8.11</a> at Jan 13, 2025, 9:50:20 PM</p>
+</div>
+</div>
+</body>
+</html>

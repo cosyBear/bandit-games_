@@ -25,7 +25,7 @@ public class MessagingTopology {
     private static final String RABBITMQ_USERNAME = "bulletcoachwhips";
     private static final String RABBITMQ_PASSWORD = "fbYfN3Nnx!F0R6e{";
     private static final String RABBITMQ_VIRTUAL_HOST = "/";
-    private static final String RABBITMQ_HOST = "https://rabbitmq-container.happyglacier-269bf72e.northeurope.azurecontainerapps.io";
+    private static final String RABBITMQ_HOST = "rabbitmq-container.happyglacier-269bf72e.northeurope.azurecontainerapps.io";
     @Bean
     public ConnectionFactory connectionFactory() {
         CachingConnectionFactory connectionFactory = new CachingConnectionFactory(RABBITMQ_HOST);

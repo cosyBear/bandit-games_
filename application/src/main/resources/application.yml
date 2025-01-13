@@ -1,0 +1,58 @@
+server:
+  port: ${PORT:8090}
+  servlet:
+    context-path: /api
+
+stripe:
+  api:
+    key: "sk_test_51QT0WL2NZGipqhsDvQvShmF49rAzpZjwdHC5AYVyxzb2rN6m8TSrbFEnIjyT7BQ7DEu8nzzvKAYc0w5uM8I5SYr500A4mBS7EN"
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: FULL
+
+spring:
+  sql:
+    init:
+      mode: always
+      logging: debug
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: create-drop
+      show-sql: true
+    defer-datasource-initialization: true
+  datasource:
+      url: "jdbc:mysql://banditgames-mysql-server.mysql.database.azure.com:3306/library?useSSL=true&trustCertificateKeyStoreUrl=classpath:DigiCertGlobalRootCA.crt.pem"
+      username: admin_bandit
+      password: Strongpassword!123
+#    url: "jdbc:mysql://localhost:3306/"
+#    username: user
+#    password: password
+      driver-class-name: com.mysql.cj.jdbc.Driver
+  config:
+    additional-location: ${SPRING_CONFIG_ADDITIONAL_LOCATION}
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+           # Local Keycloak configuration
+          # jwk-set-uri: "http://localhost:8180/realms/bandit-games/protocol/openid-connect/certs"
+          # issuer-uri: http://localhost:8180/realms/bandit-games
+           # Deployed Keycloak configuration
+          jwk-set-uri: "https://lemur-1.cloud-iam.com/auth/realms/bandit-games/protocol/openid-connect/certs"
+          issuer-uri: "https://lemur-1.cloud-iam.com/auth/realms/bandit-games"
+
+
+
+
+logging:
+  level:
+    be.kdg.prog6.friends: debug
+    org.springframework: info
+    org.springframework.security: debug
+

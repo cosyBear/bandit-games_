@@ -1,8 +1,11 @@
 package be.kdg.prog6.libraryBoundedContext.domain;
 
 import be.kdg.prog6.libraryBoundedContext.domain.id.AchievementId;
+import be.kdg.prog6.libraryBoundedContext.domain.id.GameId;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -12,7 +15,7 @@ public class Achievement {
     private String achievementDescription;
     private String imageUrl;
     private boolean achieved;
-
+    private GameId gameId;
     public Achievement() {
 
     }
@@ -21,6 +24,7 @@ public class Achievement {
         this.achievementDescription = achievementDescription;
         this.imageUrl = imageUrl;
         this.achieved = achieved;
+
     }
     public Achievement(AchievementId achievementId, String achievementName, String achievementDescription, String imageUrl, boolean achieved) {
         this.achievementId = achievementId;
@@ -28,6 +32,17 @@ public class Achievement {
         this.achievementDescription = achievementDescription;
         this.imageUrl = imageUrl;
         this.achieved = achieved;
+    }
+
+    public Achievement(AchievementId achievementId, String achievementName, String achievementDescription, String imageUrl, boolean achieved, GameId gameId) {
+
+        this.achievementId = achievementId;
+        this.achievementName = achievementName;
+        this.achievementDescription = achievementDescription;
+        this.imageUrl = imageUrl;
+        this.achieved = achieved;
+        this.gameId = gameId;
+
     }
 
     public void markAsAchieved() {

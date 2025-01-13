@@ -1,4 +1,4 @@
-image: gradle:8.1-jdk17
+image: gradle:8.11.0-jdk21
 
 before_script:
   - chmod +x gradlew
@@ -8,10 +8,12 @@ before_script:
 stages:
   - build
   - test
+  - build-deploy
+  - deploy
 
 variables:
-  MODULES: "application common library friends"
-  TEST_ONLY_MODULES: "friends"
+  MODULES: "application common library friends lobby statistics store"
+  TEST_ONLY_MODULES: "friends library lobby statistics"
   DOCKER_HOST: "tcp://docker:2375"
   DOCKER_TLS_CERTDIR: ""
   DOCKER_DRIVER: overlay2
@@ -39,7 +41,9 @@ build:
   artifacts:
     paths:
       - friends/build/libs/
-      - library/build/libs/
+      - lobby/build/libs/
+      - statistics/build/libs/
+      - Store/build/libs/
     when: always
 
 test:
@@ -50,12 +54,45 @@ test:
       command: [ "--tls=false" ]
   script:
     - echo "Running tests with Testcontainers"
-    - ./gradlew $TEST_ONLY_MODULES:test jacocoTestReport --no-daemon --max-workers 4 --info
+    - |
+      for MODULE in $TEST_ONLY_MODULES; do
+        echo "Running tests for module $MODULE"
+        ./gradlew --no-daemon --max-workers 4 --info :$MODULE:test :$MODULE:jacocoTestReport
+      done
   artifacts:
     paths:
-      - $TEST_ONLY_MODULES/build/test-results/
-      - $TEST_ONLY_MODULES/build/reports/jacoco/
+      - friends/build/test-results/
+      - library/build/test-results/
+      - lobby/build/test-results/
+      - statistics/build/test-results/
+      - friends/build/reports/jacoco/
+      - library/build/reports/jacoco/
+      - lobby/build/reports/jacoco/
+      - statistics/build/reports/jacoco/
     when: always
     reports:
-      junit: $TEST_ONLY_MODULES/build/test-results/test/*.xml
-  coverage: '/TOTAL\s+\d+\%\s+/'
+      junit: "*/build/test-results/test/*.xml"
+
+build-deploy:
+  stage: build-deploy
+  image: gradle:8.11.0-jdk21
+  services:
+    - name: docker:dind
+      command: [ "--tls=false" ]
+  script:
+    - echo "Building and Pushing Docker Image"
+    - ./gradlew clean bootBuildImage
+  only:
+    - tags
+
+deploy:
+  image: mcr.microsoft.com/azure-cli
+  stage: deploy
+  before_script:
+    - az login --service-principal -u $AZURE_APP_ID -p $AZURE_PASSWORD --tenant $AZURE_TENANT
+    - az extension add --name containerapp --upgrade
+  script:
+    - echo "Deploying Azure Container App"
+    - az containerapp up --name bandit-backend --resource-group rg-banditgames --location northeurope --environment banditgames-environment --target-port 8090 --ingress external --image "acrbanditgames.azurecr.io/integration5:latest"
+  only:
+    - tags

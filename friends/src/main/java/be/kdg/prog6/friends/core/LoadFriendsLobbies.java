@@ -7,6 +7,7 @@ import be.kdg.prog6.friends.port.in.LoadFriends;
 import be.kdg.prog6.friends.port.in.Query.LobbyQuery;
 import be.kdg.prog6.friends.port.in.Query.LoadLobbiesQuery;
 import be.kdg.prog6.friends.port.in.lobby.LoadLobbiesUseCase;
+import be.kdg.prog6.friends.port.out.FriendsPort;
 import be.kdg.prog6.friends.port.out.LobbyLoadPort;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,14 +23,14 @@ import java.util.List;
 @Slf4j
 public class LoadFriendsLobbies implements LoadLobbiesUseCase {
 
-    private final LoadFriends loadFriends;
     private final LobbyLoadPort lobbyLoadPort;
+    private final FriendsPort friendsPort;
 
     @Override
     @Transactional(readOnly = true)
     public List<LobbyQuery> fetchFriendsLobbies(LoadLobbiesQuery query) {
 
-        Friends friends = loadFriends.getAllFriends(query.playerId());
+        Friends friends = friendsPort.findAll(query.playerId());
         log.info(String.valueOf(friends.getFriends().size()));
 
         List<Lobby> lobbies = friends.getFriends().stream().map(

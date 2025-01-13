@@ -1,3 +1,27 @@
+#### Get access token for 'manager'
+POST http://localhost:8180/realms/bandit-games/protocol/openid-connect/token HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+client_id=bandit-games-backend&client_secret=caMobJWsVRLMwIqYsdBo7EdDJzdgpi3d&username=player&password=player&grant_type=password&scope=openid
+
+> {%
+    client.global.set("access_token", response.body.access_token);
+%}
+
+###
+
+
+POST http://localhost:8090/api/lobbies/1d095e14-8c15-4d2b-a2e5-59e7d8ff7129/start
+Accept: application/json
+Authorization: Bearer {{access_token}}
+###
+
+
+
+
+
+
+
 
 ### Create lobby
 POST http://localhost:8090/api/lobbies
@@ -10,7 +34,7 @@ content-type: application/json
 
 
 ### Create request access
-POST http://localhost:8090/api/lobbies/cfddae8c-a1b7-4870-bbd4-990a46b2cd0c/requests
+POST http://localhost:8090/api/lobbies/a2acf8f4-e89b-4f1f-bde5-911b4894e3dd/requests
 content-type: application/json
 
 {
@@ -24,7 +48,7 @@ PATCH http://localhost:8090/api/lobbies/joinLobby
 content-type: application/json
 
 {
-  "LobbyId": "cfddae8c-a1b7-4870-bbd4-990a46b2cd0c",
+  "LobbyId": "a2acf8f4-e89b-4f1f-bde5-911b4894e3dd",
   "guestId": "c56a4183-65aa-42ec-a945-5fd21dec0541",
   "status": "ACCEPTED"
 }

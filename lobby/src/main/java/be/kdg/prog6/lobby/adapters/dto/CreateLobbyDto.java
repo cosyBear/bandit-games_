@@ -2,5 +2,5 @@ package be.kdg.prog6.lobby.adapters.dto;
 
 import java.util.UUID;
 
-public record CreateLobbyDto(UUID gameID, UUID lobbyAdminId ) {
+public record CreateLobbyDto(UUID gameID) {
 }

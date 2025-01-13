@@ -1,9 +1,6 @@
 package be.kdg.prog6.libraryBoundedContext.adapters.out.persistence.library;
 
-import be.kdg.prog6.libraryBoundedContext.adapters.out.Entity.GameTypeEntity;
 import be.kdg.prog6.libraryBoundedContext.adapters.out.Entity.LibraryEntity;
-import be.kdg.prog6.libraryBoundedContext.domain.GameType;
-import be.kdg.prog6.libraryBoundedContext.domain.id.PlayerId;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,8 +12,6 @@ public interface LibraryJpaRepository  extends JpaRepository<LibraryEntity, UUID
 
 
 
-    @Query("select l from LibraryEntity l LEFT JOIN FETCH l.games  where l.playerEntity.playerId = :playerId")
-    LibraryEntity loadLibraryByPlayerId(@Param("playerId") UUID playerId);
 
 
     @Query("SELECT l FROM LibraryEntity l LEFT JOIN FETCH l.games WHERE l.playerEntity.playerId = :playerId")

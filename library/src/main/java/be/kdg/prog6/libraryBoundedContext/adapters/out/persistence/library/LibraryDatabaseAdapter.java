@@ -4,9 +4,7 @@ import be.kdg.prog6.common.events.util.DatabaseException;
 import be.kdg.prog6.common.events.util.InvalidCategoryException;
 import be.kdg.prog6.common.events.util.LibraryNotFoundException;
 import be.kdg.prog6.common.exception.EntityNotFoundException;
-import be.kdg.prog6.libraryBoundedContext.adapters.out.Entity.GameTypeEntity;
 import be.kdg.prog6.libraryBoundedContext.adapters.out.Entity.LibraryEntity;
-import be.kdg.prog6.libraryBoundedContext.domain.GameType;
 import be.kdg.prog6.libraryBoundedContext.domain.Library;
 import be.kdg.prog6.libraryBoundedContext.domain.id.PlayerId;
 import be.kdg.prog6.libraryBoundedContext.port.out.LibraryLoadPort;
@@ -28,24 +26,14 @@ public class LibraryDatabaseAdapter implements LibraryLoadPort, LibrarySavePort 
         this.libraryJpaRepository = libraryJpaRepository;
     }
 
-    @Override
-    public Library getLibraryForPlayer(PlayerId playerId) {
-        LibraryEntity library = libraryJpaRepository.loadLibraryByPlayerId(playerId.Id());
 
-        if (library == null) {
-            throw new EntityNotFoundException("library  for player with ID {" + playerId.Id() + "}  dont exist ");
-        }
-
-        return Mapper.mapDomainLibrary(library);
-
-    }
 
     @Override
     public Library fetchLibraryWithAllAvailableGames(PlayerId playerId) {
         try {
             LibraryEntity libraryEntity = Optional.ofNullable(
                     libraryJpaRepository.fetchLibraryWithAllAvailableGames(playerId.Id())
-            ).orElseThrow(() -> new LibraryNotFoundException("Library not found for Player ID: " + playerId));
+            ).orElse(new LibraryEntity());
 
             return Mapper.mapDomainLibrary(libraryEntity);
         } catch (DataAccessException e) {
@@ -88,6 +76,7 @@ public class LibraryDatabaseAdapter implements LibraryLoadPort, LibrarySavePort 
 
         return Mapper.mapDomainLibrary(libraryEntity);
     }
+
 
     @Override
     public void save(Library library) {

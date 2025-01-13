@@ -22,12 +22,10 @@ public class MessagingTopology {
     private static String LobbyCreatedQueue = "LobbyCreatedQueue";
     private static String LobbyCreatedRoutingKey = "LobbyCreatedRoutingKey";
 
-    private static final String RABBITMQ_USERNAME = "myuser";
-    private static final String RABBITMQ_PASSWORD = "mypassword";
+    private static final String RABBITMQ_USERNAME = "bulletcoachwhips";
+    private static final String RABBITMQ_PASSWORD = "fbYfN3Nnx!F0R6e{";
     private static final String RABBITMQ_VIRTUAL_HOST = "/";
-    private static final String RABBITMQ_HOST = "localhost";
-
-
+    private static final String RABBITMQ_HOST = "rabbitmq-container.livelymushroom-dcbf4550.northeurope.azurecontainerapps.io";
     @Bean
     public ConnectionFactory connectionFactory() {
         CachingConnectionFactory connectionFactory = new CachingConnectionFactory(RABBITMQ_HOST);
@@ -48,7 +46,6 @@ public class MessagingTopology {
     public Queue lobbyCreatedQueue() {
         return new Queue(LobbyCreatedQueue);
     }
-
 
 
     @Bean
@@ -87,6 +84,98 @@ public class MessagingTopology {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         return new Jackson2JsonMessageConverter(objectMapper);
+    }
+
+
+    private static final String addGameExchange = "AddGameExchange";
+    private static final String addGameQueue = "AddGameQueue";
+    private static final String addGameRoutingKey = "addGame";
+
+
+    @Bean("addGameExchange")
+    DirectExchange addGameExchange() {
+        return new DirectExchange(addGameExchange);
+    }
+
+    @Bean
+    Queue addGameQueue() {
+        return new Queue(addGameQueue);
+    }
+
+    @Bean
+    public Binding addGameBinding(Queue addGameQueue, @Qualifier("addGameExchange") DirectExchange addGameExchange) {
+        return BindingBuilder.bind(addGameQueue).to(addGameExchange).with(addGameRoutingKey);
+    }
+
+    private static final String accountCreatedExchange = "AccountCreatedExchange";
+    private static final String accountCreatedQueue = "AccountCreatedQueue";
+    private static final String accountCreatedRoutingKey = "AccountCreated";
+
+    @Bean("AccountCreatedExchange")
+    DirectExchange AccountCreatedExchange() {
+        return new DirectExchange(accountCreatedExchange);
+    }
+
+    @Bean
+    Queue AccountCreatedQueue() {
+        return new Queue(accountCreatedQueue);
+    }
+
+    @Bean
+    public Binding AccountCreatedBinding(Queue AccountCreatedQueue, @Qualifier("AccountCreatedExchange") DirectExchange AccountCreatedExchange) {
+        return BindingBuilder.bind(AccountCreatedQueue).to(AccountCreatedExchange).with(accountCreatedRoutingKey);
+    }
+
+
+
+
+    private static final String ACHIEVEMENT_EXCHANGE = "AwardPlayerAchievement";
+    private static final String ACHIEVEMENT_QUEUE = "AwardPlayerAchievementQueue";
+    private static final String ROUTING_KEY = "achievement";
+
+
+    private static final String GAME_RESULT_EXCHANGE = "gameResultExchange";
+    private static final String GAME_RESULT_QUEUE = "gameResultQueue";
+    private static final String GAME_RESULT_ROUTING_KEY = "gameResult";
+
+    @Bean(name = "achievementExchangeBean")
+    DirectExchange achievementExchange() {
+        // autoDelete set to false to prevent automatic deletion of the exchange
+        return new DirectExchange(ACHIEVEMENT_EXCHANGE);
+    }
+
+    @Bean(name = "achievementQueueBean")
+    Queue achievementQueue() {
+        // Durable queue that will persist across broker restarts
+        return new Queue(ACHIEVEMENT_QUEUE);
+    }
+
+    @Bean(name = "achievementBindingBean")
+    Binding achievementBinding(@Qualifier("achievementQueueBean") Queue achievementQueue,
+                               @Qualifier("achievementExchangeBean") DirectExchange achievementExchange) {
+        return BindingBuilder.bind(achievementQueue)
+                .to(achievementExchange)
+                .with(ROUTING_KEY);
+    }
+
+    @Bean(name = "gameResultExchangeBean")
+    DirectExchange gameResultExchange() {
+        // autoDelete set to false to prevent automatic deletion of the exchange
+        return new DirectExchange(GAME_RESULT_EXCHANGE);
+    }
+
+    @Bean(name = "gameResultQueueBean")
+    Queue gameResultQueue() {
+        // Durable queue that will persist across broker restarts
+        return new Queue(GAME_RESULT_QUEUE);
+    }
+
+    @Bean(name = "gameResultBindingBean")
+    Binding gameResultBinding(@Qualifier("gameResultQueueBean") Queue gameResultQueue,
+                              @Qualifier("gameResultExchangeBean") DirectExchange gameResultExchange) {
+        return BindingBuilder.bind(gameResultQueue)
+                .to(gameResultExchange)
+                .with(GAME_RESULT_ROUTING_KEY);
     }
 
 

@@ -4,6 +4,7 @@ import be.kdg.prog6.common.events.util.LibraryNotFoundException;
 import be.kdg.prog6.libraryBoundedContext.domain.Library;
 import be.kdg.prog6.libraryBoundedContext.domain.id.GameId;
 import be.kdg.prog6.libraryBoundedContext.domain.id.PlayerId;
+import be.kdg.prog6.libraryBoundedContext.port.in.command.AddGameCommand;
 import be.kdg.prog6.libraryBoundedContext.port.in.command.EarnAchievementCommand;
 import be.kdg.prog6.libraryBoundedContext.port.in.command.GameCommand;
 import be.kdg.prog6.libraryBoundedContext.port.in.command.PlayerGameOwnershipCommand;
@@ -19,10 +20,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -61,7 +60,7 @@ public class GameUseCaseImp implements GameUseCase {
             throw new LibraryNotFoundException("Library not found for player ID: {}" + command.playerId());
         }
 
-        Game game = library.givePlayerAnAchievement(new GameId(command.gameId()), command.AchievementName());
+        Game game = library.givePlayerAnAchievement(command.gameName(), command.AchievementName());
 
         librarySavePort.save(library);
         return Mapper.toQuery(game);
@@ -69,18 +68,31 @@ public class GameUseCaseImp implements GameUseCase {
 
     @Override
     @Transactional
-    public Map<Boolean, String> hasPlayerPurchasedGame(List<PlayerGameOwnershipCommand> command) {
+    public Boolean hasPlayerPurchasedGame(PlayerGameOwnershipCommand command) {
 
-        PlayerId playerId = command.stream().findFirst().get().playerId();
-        Library library = libraryLoadPort.getLibraryForPlayer(playerId);
+        PlayerId playerId = command.playerId();
+        Library library = libraryLoadPort.fetchLibraryWithAllAvailableGames(playerId);
 
 
-        return command.stream()
-                .collect(Collectors.toMap(
-                        item -> library.containsGame(item.gameName()),
-                        item -> item.gameName(),
-                        (existing, replacement) -> existing + ", " + replacement
-                ));
+        return library.containsGame(command.gameName());
+    }
+
+    @Override
+    @Transactional
+    public void addGameToPlayerLibrary(AddGameCommand command) {
+
+        Library library = libraryLoadPort.fetchLibraryWithAllAvailableGames(command.playerId());
+
+        List<Game> mutableGames = new ArrayList<>(library.getGames());
+        mutableGames.add(command.game());
+
+        library.setGames(mutableGames);
+
+
+        librarySavePort.save(library);
+        log.info("games has been added and saved to the player  library: {}", library);
+
+
     }
 
 

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 
 @FeignClient(
         name = "game-service",
-        url = "http://localhost:8090/api/games",
+        url = "https://bandit-backend.happyglacier-269bf72e.northeurope.azurecontainerapps.io/api/games",
         configuration = GameWebClientConfig.class
 )
 public interface GamesWebClient {

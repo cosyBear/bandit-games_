@@ -12,7 +12,6 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/chatbot")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173")
 public class ChatbotController {
     private final ChatbotUseCase chatbotUseCase;
 

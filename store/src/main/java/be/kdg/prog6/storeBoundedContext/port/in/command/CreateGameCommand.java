@@ -10,7 +10,7 @@ public record CreateGameCommand(
         String backgroundImageUrl,
         String description,
         double price,
-        SystemRequirementsCommand systemRequirementsCommand
+        String domainUrl
 ) {
 }
 

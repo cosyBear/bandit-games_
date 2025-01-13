@@ -21,18 +21,7 @@ public class Game {
     private double price;
     private double rating;
     List<Achievement> achievementList = new ArrayList<>();
-
-    public Game(GameId gameId, String gameName, GameType gameType, String imageUrl, String backgroundImageUrl, String description, double price, double rating) {
-        this.gameId = gameId;
-        this.gameName = gameName;
-        this.gameType = gameType;
-        this.achievementList = new ArrayList<>();
-        this.imageUrl = imageUrl;
-        this.backgroundImageUrl = backgroundImageUrl;
-        this.description = description;
-        this.price = price;
-        this.rating = rating;
-    }
+    private String domainUrl;
 
     @Override
     public boolean equals(Object o) {

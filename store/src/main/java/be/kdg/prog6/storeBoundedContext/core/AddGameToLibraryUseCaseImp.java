@@ -64,7 +64,9 @@ public class AddGameToLibraryUseCaseImp implements AddGameToLibraryUseCase {
                 game.getImageUrl(),
                 game.getBackgroundImageUrl(),
                 game.getDescription(),
-                false);
+                false,
+                game.getDomainUrl()
+        );
 
 
         AddGameToLibraryEvent addGameToLibraryEvent = new AddGameToLibraryEvent(gameEvents, command.playerId());

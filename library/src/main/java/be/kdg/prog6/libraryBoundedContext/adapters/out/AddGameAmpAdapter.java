@@ -58,7 +58,8 @@ public class AddGameAmpAdapter {
                 achievements,
                 event.gameEvent().favourite(),
                 event.gameEvent().imageUrl(),
-                event.gameEvent().backgroundImageUrl()
+                event.gameEvent().backgroundImageUrl(),
+                event.gameEvent().domainUrl()
         );
 
         AddGameCommand addGameCommand = new AddGameCommand(game, playerId);

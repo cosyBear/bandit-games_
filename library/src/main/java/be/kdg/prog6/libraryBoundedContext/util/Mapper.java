@@ -96,7 +96,8 @@ public class Mapper {
                 achievements,
                 entity.isFavourite(),
                 entity.getImageUrl(),
-                entity.getBackgroundImageUrl()
+                entity.getBackgroundImageUrl(),
+                entity.getDomainUrl()
         );
     }
 
@@ -139,7 +140,8 @@ public class Mapper {
                 achievementQueryList,
                 game.isFavourite(),
                 game.getImageUrl(),
-                game.getBackgroundImageUrl()
+                game.getBackgroundImageUrl(),
+                game.getDomainUrl()
         );
     }
 

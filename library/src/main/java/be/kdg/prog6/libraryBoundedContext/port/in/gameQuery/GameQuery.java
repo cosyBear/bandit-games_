@@ -24,6 +24,7 @@ public class GameQuery {
 
     private String imageUrl;
     private String backgroundImageUrl;
+    private String domainUrl;
 
 
 

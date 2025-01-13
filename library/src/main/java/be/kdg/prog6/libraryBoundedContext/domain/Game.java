@@ -28,6 +28,8 @@ public class Game {
 
     private String backgroundImageUrl;
 
+    private String domainUrl;
+
 
 
     public Game(GameId gameId, String gameName, GameType gameType, List<Achievement> achievementList, String imageUrl, boolean favourite) {

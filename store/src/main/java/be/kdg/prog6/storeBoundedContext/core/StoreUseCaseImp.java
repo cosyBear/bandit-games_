@@ -32,18 +32,6 @@ public class StoreUseCaseImp implements StoreUseCase {
         Store store = gameLoadPort.loadAllAvailGames();
 
 
-
-        Game game = new Game(
-                new GameId(UUID.randomUUID()),
-                command.gameName(),
-                GameType.valueOf(command.gameType()),
-                command.imageUrl(),
-                command.backgroundImageUrl(),
-                command.description(),
-                command.price(),
-                0.0
-        );
-
         List<Achievement> achievements = command.achievements().stream()
                 .map(achievementCommand -> new Achievement(
                         new AchievementId(UUID.randomUUID()),
@@ -53,7 +41,19 @@ public class StoreUseCaseImp implements StoreUseCase {
                 ))
                 .toList();
 
-        game.setAchievementList(achievements);
+        Game game = new Game(
+                new GameId(UUID.randomUUID()),
+                command.gameName(),
+                GameType.valueOf(command.gameType()),
+                command.imageUrl(),
+                command.backgroundImageUrl(),
+                command.description(),
+                command.price(),
+                0.0,
+                achievements,
+                command.domainUrl()
+        );
+
 
         store.addGame(game);
 

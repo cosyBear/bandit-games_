@@ -14,6 +14,7 @@ import java.util.UUID;
 @Table(catalog = "library", name = "game")
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @BatchSize(size = 10) // Adjust the batch size as needed
 public class GameEntity {
 
@@ -41,12 +42,7 @@ public class GameEntity {
     @JoinColumn(name = "library_id")
     private LibraryEntity libraryEntity;
 
-
-
-    public GameEntity() {
-
-    }
-
+    private String domainUrl;
 
     public GameEntity(UUID uuid, String gameName, GameTypeEntity gameTypeEntity, List<AchievementEntity> achievementEntities, String imageUrl, boolean favourite) {
         this.gameId = uuid;

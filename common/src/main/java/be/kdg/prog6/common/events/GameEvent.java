@@ -11,6 +11,7 @@ public record GameEvent(
         String imageUrl ,
         String backgroundImageUrl,
         String description,
-        boolean favourite
+        boolean favourite,
+        String domainUrl
         ) {
 }

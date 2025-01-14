@@ -36,7 +36,7 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers(HttpMethod.GET , "api/store", "api/store/{gameId}/details").permitAll()
+                        .requestMatchers(HttpMethod.GET , "api/store", "api/store/{gameId}/details", "api/lobbies/events").permitAll()
                         .anyRequest()
                         .authenticated()
                 ).sessionManagement(mgmt -> mgmt.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

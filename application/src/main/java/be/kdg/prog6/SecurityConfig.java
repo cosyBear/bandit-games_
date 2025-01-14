@@ -47,6 +47,7 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
+//        configuration.setAllowedOrigins(List.of("https://mango-forest-0d710071e.4.azurestaticapps.net")); // Explicit frontend origin
         configuration.setAllowedOrigins(List.of("https://mango-forest-0d710071e.4.azurestaticapps.net")); // Explicit frontend origin
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Allowed HTTP methods
         configuration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
